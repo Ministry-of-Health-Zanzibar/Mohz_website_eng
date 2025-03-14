@@ -30,22 +30,6 @@ public rightColumn: any[] = [];
     this.getAllTeams();
   }
 
-  // public getAllBanners(): void {
-  //   this.bannerService.getAllBanners().subscribe(
-  //     (response: any) => {
-  //       if (response?.data) {
-  //         console.log(response.data);
-  //         this.banners = response.data.filter((banners:any) => !banners.deletede_at)
-  //         console.log('Filtered banners:', this.banners);
-  //       } 
-          
-       
-  //     },
-  //     (errorResponse: HttpErrorResponse) => {
-  //       console.log(errorResponse.error.message);
-  //     }
-  //   );
-  // }
 
   // Fetch all ministry systems excluding deleted ones
   getAllBanners(): void {
@@ -61,33 +45,36 @@ public rightColumn: any[] = [];
     );
   }
 
- public getAllTeams() {
-  this.teamService.getAllTeams().subscribe((response: { data: Team[] }) => {
-    const allTeams: Team[] = response.data;
-
-    // Tafuta Waziri, Naibu Waziri, Katibu Mkuu, na Mkurugenzi
-    const waziri = allTeams.find(member => member.professional.toLowerCase().includes("waziri")) || null;
-    const naibuWaziri = allTeams.find(member => member.professional.toLowerCase().includes("naibu waziri")) || null;
-    const katibuMkuu = allTeams.find(member => member.professional.toLowerCase().includes("katibu mkuu")) || null;
-    const mkurugenzi = allTeams.find(member => member.professional.toLowerCase().includes("mkurugenzi")) || null;
-
-    // Epuka dublicate kwa kuondoa null values mapema
-    const selectedMembers = [waziri, naibuWaziri, katibuMkuu, mkurugenzi].filter(member => member !== null);
-
-    // Pata members wengine ambao hawako kwenye list ya viongozi waliotajwa
-    const otherMembers = allTeams.filter(member => !selectedMembers.includes(member));
-
-    // Pangilia Left Column (Waziri na Naibu Waziri)
-    this.leftColumn = [waziri, naibuWaziri].filter(Boolean);
-
-    // Pangilia Right Column (Katibu Mkuu, Mkurugenzi)
-    this.rightColumn = [katibuMkuu, mkurugenzi, ...otherMembers].filter(Boolean).slice(0, 2);
-    
-  }, (error) => {
-    console.error("Error fetching teams:", error);
-  });
-}
-
+  public getAllTeams() {
+    this.teamService.getAllTeams().subscribe((response: { data: Team[] }) => {
+      const allTeams: Team[] = response.data;
+  
+      // Find specific positions accurately
+      const waziri = allTeams.find(member => 
+        member.professional.toLowerCase() === "waziri") || null;
+      
+      const naibuWaziri = allTeams.find(member => 
+        member.professional.toLowerCase() === "naibu waziri") || null;
+  
+      const katibuMkuu = allTeams.find(member => 
+        member.professional.toLowerCase() === "katibu mkuu") || null;
+  
+      const mkurugenzi = allTeams.find(member => 
+        member.professional.toLowerCase() === "mkurugenzi") || null;
+  
+      // Ensure the left column displays Waziri first, then Naibu Waziri
+      this.leftColumn = [waziri, naibuWaziri].filter(Boolean);
+  
+      // Ensure the right column includes Katibu Mkuu, Mkurugenzi, and at most 2 other members
+      const selectedLeaders = [waziri, naibuWaziri, katibuMkuu, mkurugenzi].filter(Boolean);
+      const otherMembers = allTeams.filter(member => !selectedLeaders.includes(member));
+  
+      this.rightColumn = [katibuMkuu, mkurugenzi, ...otherMembers].filter(Boolean).slice(0, 2);
+  
+    }, (error) => {
+      console.error("Error fetching teams:", error);
+    });
+  }
   
   
 }
