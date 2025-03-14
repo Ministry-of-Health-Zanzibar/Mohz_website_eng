@@ -16,6 +16,8 @@ const routes: Routes = [
         (c) => c.SetNewPasswordComponent
       ),
   },
+
+ 
 ];
 
 @NgModule({

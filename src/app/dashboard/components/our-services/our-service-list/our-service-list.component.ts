@@ -176,7 +176,7 @@ export class OurServiceListComponent
   // Delete
   public deleteOurService(data: any): void {
     // console.log(data);
-    this.ourService.deleteOurService(data.id).subscribe(
+    this.ourService.deleteOurService(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllOurServices();
@@ -192,6 +192,28 @@ export class OurServiceListComponent
       }
     );
   }
+
+  // Restore
+    // Delete
+    public restoreOurService(data: any): void {
+      console.log(data);
+      console.log(data.id);
+      this.ourService.restore(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.getAllOurServices();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
+        }
+      );
+    }
 
   // View Ann Details
   public navigateToOurServiceDetails(data: any): void {

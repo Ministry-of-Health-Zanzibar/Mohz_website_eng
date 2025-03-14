@@ -219,6 +219,8 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
+  
+
   // View
   public navigateToPartnerDetails(data: any): void {
     this.router.navigate(['/dashboard/partner-details', data.id]);

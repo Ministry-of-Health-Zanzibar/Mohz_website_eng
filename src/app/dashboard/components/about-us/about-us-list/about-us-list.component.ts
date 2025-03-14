@@ -201,7 +201,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   // Delete
   public deleteAboutUs(data: any): void {
     // console.log(data);
-    this.aboutUsService.deleteAboutUs(data.id).subscribe(
+    this.aboutUsService.deleteAboutUs(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllAboutUsData();
@@ -218,6 +218,28 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
   }
+
+  // Restore
+    // Delete
+    public restoreMinistrySystem(data: any): void {
+      console.log(data);
+      console.log(data.id);
+      this.aboutUsService.restore(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.getAllAboutUsData();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
+        }
+      );
+    }
 
   // View
   public navigateToAboutDetails(data: any): void {

@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="card p-3">
+        <div class="row mb-4">
+            <!-- First Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>First name
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.first_name }}
+                </p>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>Middle name
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.middle_name }}
+                </p>
+            </div>
+
+            <!-- Third Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>Last name
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.last_name }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- First Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>Address
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.address }}
+                </p>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>Phone
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.phone_no }}
+                </p>
+            </div>
+
+            <!-- Third Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>Date of Birth
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.date_of_birth }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- First Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">
+                    <i class="fa-sharp fa-solid fa-star-of-life me-2"></i>Gender
+                </h5>
+                <p class="ps-5 pe-3">
+                    {{ user?.gender }}
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <button routerLink="../../user-list" mat-flat-button color="warn" class="float-end">
+                <mat-icon>arrow_back_ios</mat-icon> Back
+            </button>
+        </div>
+    </div>
+</div>

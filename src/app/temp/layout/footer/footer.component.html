@@ -22,12 +22,10 @@
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item">
                     <h4 class="text-white mb-4">Useful Links</h4>
-                    <a href="#" style="color: white;"><i class="fas fa-angle-right me-2"></i> Zahri</a>
-                    <a href="#" style="color: white;"><i class="fas fa-angle-right me-2"></i> ZFDA</a>
-                    <a href="#" style="color: white;"><i class="fas fa-angle-right me-2"></i> CGCLA</a>
-                    <a href="#" style="color: white;"><i class="fas fa-angle-right me-2"></i> ZAMEP</a>
-                    <a href="#" style="color: white;"><i class="fas fa-angle-right me-2"></i> Afya Msafiri</a>
-                    <a href="#" style="color: white;"><i class="fas fa-angle-right me-2"></i> Wizara ya Afya Tanzania</a>
+                    <a *ngFor="let site of siteLink" [href]="site?.sitelinks_url" style="color: white;">
+                        <i class="fas fa-angle-right me-2"></i>{{site?.sitelinks_name}} {{ site?.sitelinks_url }}
+                    </a>
+            
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">

@@ -198,25 +198,67 @@ export class BannerListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
    // Delete
-   public deleteBanner(data: any): void {
-    console.log(data);
-    this.bannerService.deleteBanner(data.id).subscribe(
-      (response: any) => {
-        if (response.statusCode === 200) {
-          this.getAllBanners();
-          this.toastService.toastSuccess(response.message);
-        } else {
-          this.toastService.toastError(response.message);
-          // this.toastService.toastError('An error occured while processing');
+  //  public deleteBanner(data: any): void {
+  //   console.log(data);
+  //   this.bannerService.deleteBanner(data,data.id).subscribe(
+  //     (response: any) => {
+  //       if (response.statusCode === 200) {
+  //         this.getAllBanners();
+  //         this.toastService.toastSuccess(response.message);
+  //       } else {
+  //         this.toastService.toastError(response.message);
+  //         this.toastService.toastError('An error occured while processing');
+  //       }
+  //     },
+  //     (errorResponse: HttpErrorResponse) => {
+  //       if (errorResponse) {
+  //         this.toastService.toastError(errorResponse.error.message);
+  //       }
+  //     }
+  //   );
+  // }
+
+    // Delete Banner
+    public deleteBarnner(data: any): void {
+      // console.log(data);
+      this.bannerService.deleteBanner(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.getAllBanners();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError('An error occured while processing');
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
         }
-      },
-      (errorResponse: HttpErrorResponse) => {
-        if (errorResponse) {
-          this.toastService.toastError(errorResponse.error.message);
+      );
+    }
+
+      // Restore
+    // Delete
+    public restoreBanner(data: any): void {
+      console.log(data);
+      console.log(data.id);
+      this.bannerService.restore(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.getAllBanners();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
         }
-      }
-    );
-  }
+      );
+    }
 
   // View
   public navigateToBannerDetails(data: any): void {

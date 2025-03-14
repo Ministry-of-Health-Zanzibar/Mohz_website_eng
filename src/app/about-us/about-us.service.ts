@@ -26,9 +26,14 @@ private apiUrl = 'http://localhost:9095';
     return this.httpClient.get<any>(`${this.apiUrl}/api/AboutUs/${id}`);
   }
 
-  public deleteAboutUs(id: number): Observable<any> {
+  public deleteAboutUs(data: any, id: number): Observable<any> {
     return this.httpClient.delete<any>(
       `${this.apiUrl}/api/AboutUs/delete/${id}`
     );
+  }
+
+   // Restore 
+   public restore(data: any, id: number): Observable<any> {
+    return this.httpClient.patch(`${this.apiUrl}/api/AboutUs/restore/${id}`, data);
   }
 }

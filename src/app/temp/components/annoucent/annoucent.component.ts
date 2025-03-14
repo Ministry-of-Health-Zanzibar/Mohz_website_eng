@@ -36,25 +36,30 @@ export class AnnoucentComponent implements OnInit {
     this.isLoading = true;
     this.annoucementService.getAllAnnouncements().subscribe(
       (response: any) => {
-        this.announcements = response.data.map((announcement: any) => ({
-          ...announcement,
-          document_urls: Array.isArray(announcement.document_urls)
-            ? announcement.document_urls.map((url: string) => ({
-                url,
-                name: url.split('/').pop() || 'Unknown File'
-              }))
-            : []
-        }));
+        if (response?.data) {
+          // Chuja matangazo yaliyofutwa
+          this.announcements = response.data
+            .filter((announcement: any) => !announcement.deleted_at)
+            .map((announcement: any) => ({
+              ...announcement,
+              document_urls: Array.isArray(announcement.document_urls)
+                ? announcement.document_urls.map((url: string) => ({
+                    url,
+                    name: url.split('/').pop() || 'Unknown File'
+                  }))
+                : []
+            }));
+          console.log('Matangazo yaliyofanyiwa uchujaji:', this.announcements);
+        }
         this.isLoading = false;
       },
       (errorResponse: HttpErrorResponse) => {
         this.isLoading = false;
-        console.log(errorResponse.error.message);
+        console.error('Hitilafu katika kupakia matangazo:', errorResponse.error.message);
       }
     );
   }
   
-
    // Kupunguza ukubwa wa text
    public truncateDescription(description: string, words: number): string {
     if (!description) return '';

@@ -5,7 +5,7 @@
         <!-- <img src="assets/img/logo.png" alt="" /> -->
         <span class="d-none d-lg-block">MOHZ Website</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
+      <i class="fa-solid fa-list"></i>
       <!-- <i class="bi bi-list toggle-sidebar-btn" (click)="toggleSidebar()"></i> -->
     </div>
     <!-- End Logo -->
@@ -13,7 +13,7 @@
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        <button type="submit" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
     <!-- End Search Bar -->
@@ -238,7 +238,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
         <a class="nav-link" routerLink="/dashboard/home">
-          <i class="bi bi-grid"></i>
+         <i class="fa-solid fa-gauge"></i>
           <span>Dashboard</span>
         </a>
       </li>
@@ -248,12 +248,16 @@
        <li class="nav-heading">Users</li>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#manage-users-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-people"></i><span>Manage Users</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa-solid fa-users"></i><span>Manage Users</span>
           </a>
           <ul id="manage-users-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+
             <li>
               <a routerLink="./user-list"> <i class="bi bi-circle"></i><span>View All Users</span> </a>
             </li>
+            <li>
+              <a routerLink="/dashboard/role-list"> <i class="bi bi-circle"></i><span>Manage role</span> </a>
+            </li> 
             <li>
               <a routerLink="./team-list"> <i class="bi bi-circle"></i><span>View Team Members</span> </a>
             </li>
@@ -266,7 +270,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#manage-dp-programs-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-people"></i><span>Manage Dep Programs</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fas fa-building"></i><span>Manage Dep Programs</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="manage-dp-programs-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
@@ -279,7 +283,7 @@
         <li class="nav-heading">Website</li>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#banners-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-people"></i><span>Manage Banners</span><i
+            <i class="fa-regular fa-images"></i><span>Manage Banners</span><i
               class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="banners-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -294,7 +298,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#announcements-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-diagram-3"></i><span>Manage Annoucements</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa-solid fa-megaphone"></i><span>Manage Annoucements</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="announcements-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
@@ -308,7 +312,7 @@
   
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#news-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-tags"></i><span>Manage News</span><i
+            <i class="fa-solid fa-newspaper"></i><span>Manage News</span><i
               class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="news-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -323,7 +327,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#about-us-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-tags"></i><span>Manage AboutUs</span><i
+            <i class="fa-solid fa-address-card"></i><span>Manage AboutUs</span><i
               class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="about-us-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -344,7 +348,7 @@
           <ul id="our-services-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
               <a routerLink="../dashboard/our-service-list">
-                <i class="bi bi-circle"></i><span>View Our Services</span>
+                <i class="fa-solid fa-pen-to-square"></i><span>View Our Services</span>
               </a>
             </li>
           </ul>
@@ -353,7 +357,7 @@
   
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#comments-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-tags"></i><span>Manage Comments</span><i
+            <i class="fa-regular fa-comment"></i><span>Manage Comments</span><i
               class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="comments-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -369,7 +373,7 @@
       <li class="nav-heading">Post & Types</li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#types-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-people"></i><span>Manage Post & Types</span><i
+          <i class="fa-solid fa-sign-posts"></i><span>Manage Post & Types</span><i
             class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="types-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -409,7 +413,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#sitelinks-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-people"></i><span>Manage SiteLinks</span><i
+            <i class="fa-solid fa-link"></i><span>Manage SiteLinks</span><i
               class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="sitelinks-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">

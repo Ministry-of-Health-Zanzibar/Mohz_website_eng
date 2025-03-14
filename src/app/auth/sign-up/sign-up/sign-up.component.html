@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <mat-card class="p-4 shadow-lg">
+      <h2 class="text-center">Sign Up</h2>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" placeholder="Enter first name">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="signupForm.get('firstName')?.invalid">First Name is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Middle Name</mat-label>
+              <input matInput formControlName="middleName" placeholder="Enter middle name">
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" placeholder="Enter last name">
+              <mat-error *ngIf="signupForm.get('lastName')?.invalid">Last Name is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" type="email" placeholder="Enter email">
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="signupForm.get('email')?.invalid">Valid Email is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phoneNo" type="tel" placeholder="Enter phone number">
+              <mat-icon matSuffix>call</mat-icon>
+              <mat-error *ngIf="signupForm.get('phoneNo')?.invalid">Valid Phone Number is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Date of Birth</mat-label>
+              <input matInput formControlName="dateOfBirth" type="date">
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password" placeholder="Enter password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="signupForm.get('password')?.invalid">Password must be at least 6 characters</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="signupForm.get('confirmPassword')?.invalid">Passwords must match</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="text-center mt-3">
+          <button mat-raised-button color="primary" type="submit" class="px-4">
+            <mat-icon>person_add</mat-icon> Sign Up
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

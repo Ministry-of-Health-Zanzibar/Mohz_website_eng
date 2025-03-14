@@ -1,1 +1,27 @@
-<p>read-more-events works!</p>
+
+<div class="container-sm justify-content-center mt-4">
+  <div class="card w-75 mx-auto p-3 shadow">
+    <div class="card-body">
+      <!-- Bootstrap Carousel -->
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngFor="let imageUrl of events?.post_filepath; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+            <img class="d-block w-100 rounded" [src]="imageUrl" alt="News Image">
+          </div>
+        </div>
+      </div>
+
+      <!-- News Details -->
+      <div class="mt-4">
+        <h3 class="fw-bold">{{ events?.post_title}}</h3>
+      <p class="text-secondary">{{ events?.post_description}}</p>
+      <p class="text-muted"> <span class="fw-bold">Posted date:</span> {{ events?.created_at | date:'medium' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <button mat-raised-button color="warn" class="mb-2" routerLink="/temp/main">
+    <mat-icon>arrow_back</mat-icon>
+    back</button>
+</div>
+

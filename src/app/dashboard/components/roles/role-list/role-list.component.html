@@ -1,0 +1,151 @@
+<div *ngIf="isLoading" class="loading-spinner">
+    <span>Loading...</span>
+  </div>
+  <div *ngIf="!isLoading">
+    <div class="container-fluid">
+      <div class="card">
+        <h5 class="pt-4 ps-2">Roles</h5>
+        <hr />
+        <div class="mb-0 float-end">
+          <div class="btn-group ms-2 me-2">
+            <div class="btn-group btn-fa-sync me-2">
+              <button
+                (click)="getAllRoles()"
+                mat-raised-button
+                color="primary"
+              >
+                <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i>
+                <i *ngIf="!refreshing" class="fas fa-sync"></i>
+              </button>
+            </div>
+            <span>
+              <input
+                matInput
+                class="form-control me-sm-2 shadow-none"
+                type="search"
+                placeholder="Search..."
+                (keyup)="applyFilter($event)"
+                #input
+              />
+            </span>
+          </div>
+          <button
+            mat-flat-button
+            (click)="handleOpenAddDialogForm()"
+            color="primary"
+            type="button"
+            class="float-end me-3"
+          >
+            <i class="fa fa-plus me-2"></i>Add new Roles
+          </button>
+        </div>
+  
+        <table mat-table [dataSource]="dataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold">No.</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              {{ i + 1 }}
+            </td>
+          </ng-container>
+  
+          <!-- Title Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold">
+              Role name
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element?.name}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="guard_name">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold">
+              Guard name
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element?.guard_name}}
+            </td>
+          </ng-container>
+  
+          
+  
+          <!-- Weight Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold">Action</th>
+            <td mat-cell *matCellDef="let element">
+      
+              <button
+              (click)="handleOpenEditDialogForm(element)"
+              mat-mini-fab
+              color="primary"
+              matTooltip="Edit"
+              class="mt-2 me-2"
+            >
+              <mat-icon class="font-icon">edit_square</mat-icon>
+            </button> 
+              <!-- Delete -->
+            <span *ngIf="element.deleted_at === null">
+              <button
+                (click)="deleteRoleById(element)"
+                mat-mini-fab
+                color="accent"
+                matTooltip="Delete"
+                class="mt-2 mb-2 me-2"
+              >
+                <mat-icon class="font-icon">delete</mat-icon>
+              </button>
+            </span>
+  
+            <!-- Restore -->
+          <!-- <span *ngIf="element.deleted_at !== null">
+            <button
+            (click)="restoreAnnoucement(element)"
+              mat-mini-fab
+              color="info"
+              matTooltip="Restore"
+              class="mt-2 mb-2 me-2"
+            >
+            <mat-icon>restore_from_trash</mat-icon>
+            </button>
+          </span> -->
+            <!-- View -->
+            <button
+            (click)="navigateToAnnouncementDetails(element)"
+            mat-mini-fab
+            color="primary"
+            matTooltip="View"
+          >
+            <mat-icon class="font-icon">visibility</mat-icon>
+          </button>
+            <!-- <button
+              mat-mini-fab
+              color="accent"
+              matTooltip="Delete"
+              class="mt-2"
+            >
+              <mat-icon class="font-icon">home</mat-icon>
+            </button> -->
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell tablefoter" colspan="4">
+              No data matching the filter " {{ input.value }} "
+            </td>
+          </tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[10, 15, 20]"
+          showFirstLastButtons
+          aria-label="Select page of permission"
+          class="pt-3"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  

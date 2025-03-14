@@ -16,20 +16,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 20px; /* Urefu wa block yenye mistari mitatu */
-    width: 50px;  /* Upana wa mistari */
+    height: 20px; 
+    width: 50px;  
   }
   
   .heading::before {
     background: linear-gradient(
       to bottom,
-      white 5px,   /* Mstari wa kwanza */
+      white 5px,   
       transparent 5px, 
       transparent 8px,
-      white 8px,   /* Mstari wa pili mkubwa */
+      white 8px,   
       transparent 12px, 
       transparent 15px,
-      white 15px   /* Mstari wa mwisho */
+      white 15px   
     );
     margin-right: 15px;
   }
@@ -37,14 +37,19 @@
   .heading::after {
     background: linear-gradient(
       to bottom,
-      white 5px,   /* Mstari wa kwanza */
+      white 5px,   
       transparent 5px, 
       transparent 8px,
-      white 8px,   /* Mstari wa pili mkubwa */
+      white 8px,   
       transparent 12px, 
       transparent 15px,
-      white 15px   /* Mstari wa mwisho */
+      white 15px   
     );
     margin-left: 15px;
   }
-  
+  .feature-item {
+    min-height: 350px; /* Unaweza kurekebisha thamani hii */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

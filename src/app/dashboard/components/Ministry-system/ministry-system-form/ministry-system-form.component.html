@@ -2,7 +2,7 @@
   <h1 class="text-primary text-center mt-2">Create New Ministry System</h1>
   <form [formGroup]="ministryForm" (ngSubmit)="onSubmit()" class="mt-4">
     <!-- System Title -->
-    <mat-form-field appearance="fill" class="form-group full-width">
+    <mat-form-field appearance="outline" class="form-group full-width">
       <mat-label>System Title</mat-label>
       <input matInput id="system_title" formControlName="system_title" type="text" placeholder="Enter system title">
       <mat-error *ngIf="ministryForm.get('system_title')?.invalid && ministryForm.get('system_title')?.touched">
@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <!-- System Link -->
-    <mat-form-field appearance="fill" class="form-group full-width">
+    <mat-form-field appearance="outline" class="form-group full-width">
       <mat-label>System Link</mat-label>
       <input matInput id="system_link" formControlName="system_link" type="text" placeholder="Enter system link">
       <mat-error *ngIf="ministryForm.get('system_link')?.invalid && ministryForm.get('system_link')?.touched">

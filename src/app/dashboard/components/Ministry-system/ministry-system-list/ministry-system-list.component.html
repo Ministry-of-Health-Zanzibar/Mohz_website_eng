@@ -13,7 +13,7 @@
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>ID</th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
       </ng-container>
       
@@ -36,11 +36,37 @@
         </td>
       </ng-container>
       
-      
-      <!-- <ng-container matColumnDef="user_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.user_id }}</td>
-      </ng-container> -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold">Action</th>
+        <td mat-cell *matCellDef="let element">
+          <!-- Delete -->
+          <span *ngIf="element.deleted_at === null">
+            <button
+              (click)="deleteDepartmentProgram(element)"
+              mat-mini-fab
+              color="accent"
+              matTooltip="Delete"
+              class="mt-2 mb-2 me-2"
+            >
+              <mat-icon class="font-icon">delete</mat-icon>
+            </button>
+          </span>
+
+          <!-- Restore -->
+        <span *ngIf="element.deleted_at !== null">
+          <button
+          (click)="restoreMinistrySystem(element)"
+            mat-mini-fab
+            color="info"
+            matTooltip="Restore"
+            class="mt-2 mb-2 me-2"
+          >
+          <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </span>
+         
+        </td>
+      </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

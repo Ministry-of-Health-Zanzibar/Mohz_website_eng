@@ -82,16 +82,32 @@
             class="mt-2 me-2"
           >
             <mat-icon class="font-icon">edit_square</mat-icon>
-          </button>
+          </button> 
+            <!-- Delete -->
+          <span *ngIf="element.deleted_at === null">
+            <button
+              (click)="deleteAnnouncement(element)"
+              mat-mini-fab
+              color="accent"
+              matTooltip="Delete"
+              class="mt-2 mb-2 me-2"
+            >
+              <mat-icon class="font-icon">delete</mat-icon>
+            </button>
+          </span>
+
+          <!-- Restore -->
+        <span *ngIf="element.deleted_at !== null">
           <button
-          (click)="deleteAnnouncement(element)"
+          (click)="restoreAnnoucement(element)"
             mat-mini-fab
-            color="accent"
-            matTooltip="Delete"
+            color="info"
+            matTooltip="Restore"
             class="mt-2 mb-2 me-2"
           >
-            <mat-icon class="font-icon">delete</mat-icon>
+          <mat-icon>restore_from_trash</mat-icon>
           </button>
+        </span>
           <!-- View -->
           <button
           (click)="navigateToAnnouncementDetails(element)"

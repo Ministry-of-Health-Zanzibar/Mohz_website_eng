@@ -5,6 +5,8 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { ToastService } from '../../services/toast/toast.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     FormsModule,
     CommonModule,
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

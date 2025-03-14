@@ -45,6 +45,10 @@ private apiUrl = 'http://localhost:9095';
     return this.httpClient.get<any>(`${this.apiUrl}/api/post/type/${typeId}`);
   }
 
+  public deletePostByType(data:any, id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiUrl}/api/types/delete/${id}`);
+  }
+
  
 
   public findPostById(id: number): Observable<any> {
@@ -55,7 +59,17 @@ private apiUrl = 'http://localhost:9095';
     return this.httpClient.post<any>(`${this.apiUrl}/api/posts/update`, data);
   }
 
-  public deletePost(id: number): Observable<any> {
+  public deletePost(data:any, id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}/api/posts/delete/${id}`);
   }
+  
+    // Restore 
+    public restore(data: any, id: number): Observable<any> {
+      return this.httpClient.patch(`${this.apiUrl}/api/posts/restore/${id}`, data);
+    }
+
+    // Restore 
+    public restorePostType(data: any, id: number): Observable<any> {
+      return this.httpClient.patch(`${this.apiUrl}/api/ types/restore/${id}`, data);
+    }
 }

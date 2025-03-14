@@ -30,7 +30,13 @@ export class AnnouncementService {
     return this.httpClient.post<any>(`${this.apiUrl}/api/announcements/update/${id}`, data);
   }
 
-  public deleteAnnouncement(id: number): Observable<any> {
+  public deleteAnnouncement(data: any, id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}/api/announcements/delete/${id}`);
   }
+
+// Restore 
+public restore(data: any, id: number): Observable<any> {
+return this.httpClient.patch(`${this.apiUrl}/api/announcements/restore/${id}`, data);
+}
+
 }

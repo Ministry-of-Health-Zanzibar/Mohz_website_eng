@@ -17,7 +17,13 @@
                       <i class="fa-solid fa-bullhorn fa-4x text-primary"></i>
 
                   </div>
-                  <h4 class="fw-bold">{{ announcement?.announcement_title }}</h4>
+                  <h4 class="fw-bold">
+                    {{ announcement?.announcement_title }}
+                    <span class="badge bg-danger blinking ms-2">NEW</span>
+                  </h4>
+                  
+                  
+                  
                   <p class="mb-4">{{ truncateDescription(announcement?.announcement_content, 20) }}</p>
 
                   <div class="d-flex justify-content-center">

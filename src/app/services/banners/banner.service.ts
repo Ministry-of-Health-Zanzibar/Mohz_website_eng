@@ -26,9 +26,16 @@ export class BannerService {
     return this.httpClient.get<any>(`${this.apiUrl}/api/banners/${id}`);
   }
 
-  public deleteBanner(id: number): Observable<any> {
+  public deleteBanner(data:any, id: number): Observable<any> {
     return this.httpClient.delete<any>(
-      `${this.apiUrl}/api/delete-banner/${id}`
+      `${this.apiUrl}/api/delete-banner/${id}`, data
     );
   }
+
+// Restore 
+public restore(data: any, id: number): Observable<any> {
+return this.httpClient.patch(`${this.apiUrl}/api/banner/restore/${id}`, data);
+}
+
+
 }

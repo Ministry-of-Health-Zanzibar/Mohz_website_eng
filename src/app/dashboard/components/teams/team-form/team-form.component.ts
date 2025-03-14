@@ -1,5 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -14,20 +20,24 @@ import {
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthenticationService } from '../../../../services/auth/authentication.service';
-import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
+import { TeamService } from '../../../../services/teams/team.service';
 import { CommonModule } from '@angular/common';
+
+import { MatGridListModule } from '@angular/material/grid-list';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { TeamService } from '../../../../services/teams/team.service';
 
 @Component({
   selector: 'app-team-form',
   standalone: true,
   imports: [
+    MatSnackBarModule,
+    MatGridListModule,
     CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -39,13 +49,13 @@ import { TeamService } from '../../../../services/teams/team.service';
   templateUrl: './team-form.component.html',
   styleUrl: './team-form.component.css',
 })
-export class TeamFormComponent {
+export class TeamFormComponent implements OnInit, OnDestroy {
   private readonly onDestroy = new Subject<void>();
-  onAddTeamEventEmitter = new EventEmitter();
-  onEditTeamEventEmitter = new EventEmitter();
-  public teamForm: any = FormGroup;
-  public dialogAction: any = 'CREATE NEW';
-  public action: any = 'Save';
+  public onAddTeamEventEmitter = new EventEmitter();
+  public onEditTeamEventEmitter = new EventEmitter();
+  public teamForm: FormGroup;
+  public dialogAction: string = 'CREATE NEW';
+  public action: string = 'Save';
   public previewImage: string | ArrayBuffer | null = null;
   public fileError: string | null = null;
 
@@ -53,18 +63,20 @@ export class TeamFormComponent {
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private formBuilder: FormBuilder,
     private teamService: TeamService,
-    private dialogRef: MatDialogRef<AnnouncementFormComponent>,
+    private dialogRef: MatDialogRef<TeamFormComponent>,
     private toastService: ToastService,
     private authService: AuthenticationService,
     private router: Router
   ) {
     this.teamForm = this.formBuilder.group({
+      id: [''],  // Add this field
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
       professional: ['', Validators.required],
-      profileImage: ['', Validators.required],
+      profileImage: [''],
     });
+    
   }
 
   ngOnInit(): void {
@@ -72,18 +84,11 @@ export class TeamFormComponent {
   }
 
   private getTeamData(): void {
-    this.teamForm.patchValue({
-      firstName: this.dialogData.data.first_name,
-      middleName: this.dialogData.data.middle_name,
-      lastName: this.dialogData.data.last_name,
-      professional: this.dialogData.data.professional,
-      profileImage: this.dialogData.data.team_photo,
-    });
-
-    if (this.dialogData.action === 'EDIT') {
+    if (this.dialogData?.action === 'EDIT') {
       this.dialogAction = 'EDIT';
       this.action = 'Update';
       this.teamForm.patchValue({
+        id: this.dialogData.data.id,  // Ensure ID is included
         firstName: this.dialogData.data.first_name,
         middleName: this.dialogData.data.middle_name,
         lastName: this.dialogData.data.last_name,
@@ -92,6 +97,7 @@ export class TeamFormComponent {
       });
     }
   }
+  
 
   public handleTeamSubmit(): void {
     if (this.dialogAction === 'EDIT') {
@@ -101,87 +107,93 @@ export class TeamFormComponent {
     }
   }
 
-  // Add
   public onAddTeam(): void {
     if (this.teamForm.valid) {
-      const formData = new FormData();
-      formData.append('first_name', this.teamForm.get('firstName')?.value);
-      formData.append('middle_name', this.teamForm.get('middleName')?.value);
-      formData.append('last_name', this.teamForm.get('lastName')?.value);
-      formData.append('professional', this.teamForm.get('professional')?.value);
-      formData.append('team_photo', this.teamForm.get('profileImage')?.value);
-
+      const formData = this.createFormData();
       this.teamService.registerTeamMember(formData).subscribe(
         (response: any) => {
           this.dialogRef.close();
           this.onAddTeamEventEmitter.emit();
-          if (response.statusCode === 201) {
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
+          response.statusCode === 201
+            ? this.toastService.toastSuccess(response.message)
+            : this.toastService.toastError(response.message);
         },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+        (error: HttpErrorResponse) => {
+          this.toastService.toastError(error.error.message);
         }
       );
     }
   }
 
-  // Update
+
   public onUpdateTeam(): void {
     if (this.teamForm.valid) {
-      const formData = new FormData();
-      formData.append('first_name', this.teamForm.get('firstName')?.value);
-      formData.append('middle_name', this.teamForm.get('middleName')?.value);
-      formData.append('last_name', this.teamForm.get('lastName')?.value);
-      formData.append('professional', this.teamForm.get('professional')?.value);
-      formData.append('team_photo', this.teamForm.get('profileImage')?.value);
-
-      this.teamService.updateTeamMember(formData, 1).subscribe(
+      const id = this.teamForm.get('id')?.value;
+      if (!id) {
+        this.toastService.toastError('Invalid team ID');
+        return;
+      }
+      const formData = this.createFormData();
+      this.teamService.updateTeamMember(id, formData).subscribe(
         (response: any) => {
           this.dialogRef.close();
           this.onEditTeamEventEmitter.emit();
-          if (response.statusCode === 201) {
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
+          response.statusCode === 200
+            ? this.toastService.toastSuccess(response.message)
+            : this.toastService.toastError(response.message);
         },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+        (error: HttpErrorResponse) => {
+          this.toastService.toastError(error.error.message);
         }
       );
     }
   }
+  
+  private createFormData(): FormData {
+    const formData = new FormData();
+    
+    const firstName = this.teamForm.get('firstName')?.value?.trim();
+    const middleName = this.teamForm.get('middleName')?.value?.trim();
+    const lastName = this.teamForm.get('lastName')?.value?.trim();
+    const professional = this.teamForm.get('professional')?.value?.trim();
+    const file = this.teamForm.get('profileImage')?.value;
+  
+    // Debugging: Log values before sending
+    console.log("Form Values:", { firstName, middleName, lastName, professional });
+  
+    if (!firstName || !middleName || !lastName || !professional) {
+      this.toastService.toastError('All fields are required');
+      return formData;
+    }
+  
+    formData.append('first_name', firstName);
+    formData.append('middle_name', middleName);
+    formData.append('last_name', lastName);
+    formData.append('professional', professional);
+  
+    if (file instanceof File) {
+      formData.append('team_photo', file);
+    }
+  
+    return formData;
+  }
+  
+
 
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
       const file = input.files[0];
-
-      // Validate file type
       if (!file.type.startsWith('image/')) {
         this.fileError = 'Please select a valid image file.';
         return;
       }
-
-      // Validate file size
       if (file.size > 5 * 1024 * 1024) {
-        // 5 MB size limit
         this.fileError = 'Image size should not exceed 5MB.';
         return;
       }
-
-      // Clear error and set file in form
       this.fileError = null;
       this.teamForm.get('profileImage')?.setValue(file);
-
-      // Create a preview
       const reader = new FileReader();
       reader.onload = () => {
         this.previewImage = reader.result;
@@ -194,7 +206,8 @@ export class TeamFormComponent {
     this.onDestroy.next();
   }
 
-  onClose() {
+  onClose(): void {
     this.dialogRef.close(false);
   }
+
 }

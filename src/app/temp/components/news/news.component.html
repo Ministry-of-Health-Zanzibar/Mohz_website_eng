@@ -27,7 +27,7 @@
         <div class="row">
           <h5 class="fw-bold text-primary text-uppercase">Lates News</h5>
           <div class="col-md-12" *ngFor="let news of newses; let i = index">
-            <div class="row mb-4 mt-2" *ngIf="i < 5">
+            <div class="row mb-4 mt-2" *ngIf="i < 2">
               <div class="col-md-6">
                 <div class="service-img">
                   <img
@@ -71,7 +71,7 @@
           <h5 class="fw-bold text-primary text-uppercase">Lates Events</h5>
           
           <div class="col-md-12" *ngFor="let event of events; let i = index">
-            <div class="row mb-4 mt-2" *ngIf="i < 5">
+            <div class="row mb-4 mt-2" *ngIf="i < 2">
               <div class="col-md-6">
                 <div class="service-img">
                   <img
@@ -93,7 +93,7 @@
                   Posted On: {{ event?.created_at | date : "mediumDate" }}
                 </div>
                 <div class="">
-                  {{ truncateEventDescription(event?.post_description, 20)}} <span (click)="findEventById(event?.id)" class="text-primary readMore">{{ readMore }}</span>
+                  {{ truncateEventDescription(event?.post_description, 20)}} <span (click)="navigateToPostDetails(event)" class="text-primary readMore">{{ readMore }}</span>
                 </div> 
                 <!-- <button (click)="fetchPost(event?.id)" mat-button color="primary">
                   Pata Post

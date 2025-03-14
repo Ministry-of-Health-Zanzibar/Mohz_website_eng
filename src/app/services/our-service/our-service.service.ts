@@ -29,7 +29,12 @@ export class OurServiceService {
     return this.httpClient.put<any>(`${this.apiUrl}/api/our_services/update/${id}`, data);
   }
 
-  public deleteOurService(id: number): Observable<any> {
+  public deleteOurService(data:any, id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}/api/our_services/delete/${id}`);
+  }
+
+   // Restore 
+   public restore(data: any, id: number): Observable<any> {
+    return this.httpClient.patch(`${this.apiUrl}/api/our_services/restore/${id}`, data);
   }
 }

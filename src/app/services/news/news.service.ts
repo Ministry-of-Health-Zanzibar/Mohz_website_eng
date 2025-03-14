@@ -27,7 +27,13 @@ export class NewsService {
     return this.httpClient.post<any>(`${this.apiUrl}/api/update-news`, data);
   }
 
-  public deleteNews(id: number): Observable<any> {
+  public deleteNews(data:any, id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}/api/delete-news/${id}`);
   }
+
+  // Restore 
+public restore(data: any, id: number): Observable<any> {
+  return this.httpClient.patch(`${this.apiUrl}/api/news/restore/${id}`, data);
+  }
+  
 }

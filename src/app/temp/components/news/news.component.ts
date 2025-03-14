@@ -43,21 +43,18 @@ export class NewsComponent implements OnInit {
     console.log("Event Data:", this.events);
   }
 
-  public getAllNeews(): void {
-    this.isLoading = true;
-    this.newsService.getAllNews().subscribe(
-      (response: any) => {
-        this.newses = response.data;
-        console.log('NEWS: ', response.data);
-        this.isLoading = false;
-      },
-      (errorResponse: HttpErrorResponse) => {
-        this.isLoading = false;
-        console.log(errorResponse.error.message);
+public getAllNeews(): void {
+  this.newsService.getAllNews().subscribe(
+    (response) => {
+      if (response?.data) {
+        // Filter out deleted records (assuming deleted records have a 'deleted_at' property)
+        this.newses = response.data.filter((news: any) => !news.deleted_at);
+        console.log('Filtered systems:', this.newses);
       }
-    );
-  }
-
+    },
+    (error) => console.error('Error fetching ministry systems:', error)
+  );
+}
 
     // Kupunguza ukubwa wa text
     public truncateNewsDescription(description: string, words: number): string {
@@ -141,6 +138,11 @@ export class NewsComponent implements OnInit {
         }
       );
     }
+
+    // View
+  public navigateToPostDetails(data: any): void {
+    this.router.navigate(['/temp/main/read-events', data.post_id]);
+  }
 
 
     // Kupunguza ukubwa wa text

@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from '../services/auth/authentication.service';
 import { ToastService } from '../services/toast/toast.service';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     RouterModule,
+    MatIconModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private toastService: ToastService,
+    public userAuthService: AuthenticationService
   ) { }
 
 
@@ -33,7 +36,7 @@ export class DashboardComponent implements OnInit {
   public logOut(): void {
     this.authService.logOut();
     this.toastService.toastSuccess('You have been successfully log out.')
-    this.router.navigateByUrl('/temp/blog');
+    this.router.navigateByUrl('/auth/login');
   }
 
   // ROLES

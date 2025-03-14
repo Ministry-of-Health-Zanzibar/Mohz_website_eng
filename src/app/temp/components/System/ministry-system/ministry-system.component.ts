@@ -15,32 +15,28 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule 
   ],
   templateUrl: './ministry-system.component.html',
-  styleUrl: './ministry-system.component.css'
+  styleUrls: ['./ministry-system.component.css']
 })
 export class MinistrySystemComponent implements OnInit {
  
-  ministrySystems: any;
-
-
-  constructor(private ministrySystemService:MinistrySystemService){}
+  ministrySystems: any[] = []; 
+  constructor(private ministrySystemService: MinistrySystemService) {}
 
   ngOnInit(): void {
     this.getAllMinistrySystem();
-      
   }
 
-  // Fetch all ministry systems
+  // Fetch all ministry systems excluding deleted ones
   getAllMinistrySystem(): void {
     this.ministrySystemService.getAllMinistrySystem().subscribe(
       (response) => {
-        this.ministrySystems = response?.data;
-        console.log('Received data:', this.ministrySystems);
+        if (response?.data) {
+          // Filter out deleted records (assuming deleted records have a 'deleted_at' property)
+          this.ministrySystems = response.data.filter((system: any) => !system.deleted_at);
+          console.log('Filtered systems:', this.ministrySystems);
+        }
       },
       (error) => console.error('Error fetching ministry systems:', error)
     );
   }
-  
-  
-  
-
 }

@@ -174,7 +174,7 @@ export class PublicationListComponent
   // Delete
   public deletePost(data: any): void {
     // console.log(data);
-    this.postService.deletePost(data.id).subscribe(
+    this.postService.deletePost(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 204) {
           this.getPublicationPosts();

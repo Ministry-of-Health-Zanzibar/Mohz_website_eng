@@ -36,8 +36,8 @@ export class MinistrySystemFormComponent implements OnInit {
   ngOnInit(): void {
     this.ministryForm = this.fb.group({
       system_title: ['', [Validators.required, Validators.maxLength(255)]],
-      system_link: ['', [Validators.required, Validators.pattern('https?://.+')]],  // URL validation
-      system_logo: [null]  // Initialize as null, will be set with file later
+      system_link: ['', [Validators.required]],  // URL validation
+      system_logo: [null]   
     });
   }
 

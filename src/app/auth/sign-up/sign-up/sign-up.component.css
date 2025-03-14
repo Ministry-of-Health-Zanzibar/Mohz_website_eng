@@ -1,0 +1,12 @@
+.container {
+    max-width: 700px;
+  }
+  
+  mat-card {
+    border-radius: 10px;
+  }
+  
+  button {
+    font-size: 16px;
+  }
+  

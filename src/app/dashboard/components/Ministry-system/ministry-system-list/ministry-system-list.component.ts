@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MinistrySystemFormComponent } from '../ministry-system-form/ministry-system-form.component';
+import { ToastService } from '../../../../services/toast/toast.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-ministry-system-list',
@@ -29,7 +31,7 @@ import { MinistrySystemFormComponent } from '../ministry-system-form/ministry-sy
   styleUrls: ['./ministry-system-list.component.css']
 })
 export class MinistrySystemListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'system_title', 'system_link', 'system_logo'];
+  displayedColumns: string[] = ['id', 'system_title', 'system_link', 'system_logo', 'action'];
   dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,7 +39,9 @@ export class MinistrySystemListComponent implements OnInit {
 
   constructor(
     private ministrySystemService: MinistrySystemService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastService:ToastService
+    
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +83,50 @@ export class MinistrySystemListComponent implements OnInit {
       console.log('Dialog was closed');
       // Handle logic after dialog is closed
     });
+  }
+
+
+  // Restore
+    // Delete
+    public restoreMinistrySystem(data: any): void {
+      console.log(data);
+      console.log(data.id);
+      this.ministrySystemService.restore(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.fetchMinistrySystems();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
+        }
+      );
+    }
+
+
+    // Delete
+  public deleteDepartmentProgram(data: any): void {
+    // console.log(data);
+    this.ministrySystemService.deleteMinistrySystem(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.fetchMinistrySystems();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError('An error occured while processing');
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
   }
 
 }

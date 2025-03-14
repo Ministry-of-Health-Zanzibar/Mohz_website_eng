@@ -1,5 +1,4 @@
 <div class="container-fluid">
-  <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} News</h5> -->
   <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
     Create New News
   </h5>
@@ -11,84 +10,36 @@
       <!-- First Name -->
       <mat-form-field appearance="outline" class="col-md-12 mt-3">
         <mat-label>First Name</mat-label>
-        <input
-          type="text"
-          formControlName="firstName"
-          matInput
-          class="text-black"
-        />
-        <mat-error
-          *ngIf="
-            teamForm.controls.firstName.touched &&
-            teamForm.controls.firstName.invalid
-          "
-        >
-          <span *ngIf="teamForm.controls.firstName.errors.required"
-            >This field is mandatory</span
-          >
+        <input type="text" formControlName="first_name" matInput class="text-black" />
+        <mat-error *ngIf="teamForm.get('firstName')?.touched && teamForm.get('firstName')?.invalid">
+          <span *ngIf="teamForm.get('firstName')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
       </mat-form-field>
 
       <!-- Middle Name -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Middle Name</mat-label>
-        <input
-          formControlName="middleName"
-          matInput
-          rows="5"
-          class="text-black"
-        />
-        <mat-error
-          *ngIf="
-            teamForm.controls.middleName.touched &&
-            teamForm.controls.middleName.invalid
-          "
-        >
-          <span *ngIf="teamForm.controls.middleName.errors?.required"
-            >This field is mandatory</span
-          >
+        <input formControlName="middleName" matInput class="text-black" />
+        <mat-error *ngIf="teamForm.get('middleName')?.touched && teamForm.get('middleName')?.invalid">
+          <span *ngIf="teamForm.get('middleName')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
       </mat-form-field>
 
       <!-- Last Name -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Last Name</mat-label>
-        <input
-          formControlName="lastName"
-          matInput
-          rows="5"
-          class="text-black"
-        />
-        <mat-error
-          *ngIf="
-            teamForm.controls.lastName.touched &&
-            teamForm.controls.lastName.invalid
-          "
-        >
-          <span *ngIf="teamForm.controls.lastName.errors?.required"
-            >This field is mandatory</span
-          >
+        <input formControlName="lastName" matInput class="text-black" />
+        <mat-error *ngIf="teamForm.get('lastName')?.touched && teamForm.get('lastName')?.invalid">
+          <span *ngIf="teamForm.get('lastName')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
       </mat-form-field>
 
       <!-- Professional -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Professional</mat-label>
-        <input
-          formControlName="professional"
-          matInput
-          rows="5"
-          class="text-black"
-        />
-        <mat-error
-          *ngIf="
-            teamForm.controls.professional.touched &&
-            teamForm.controls.professional.invalid
-          "
-        >
-          <span *ngIf="teamForm.controls.professional.errors?.required"
-            >This field is mandatory</span
-          >
+        <input formControlName="professional" matInput class="text-black" />
+        <mat-error *ngIf="teamForm.get('professional')?.touched && teamForm.get('professional')?.invalid">
+          <span *ngIf="teamForm.get('professional')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
       </mat-form-field>
 
@@ -97,23 +48,11 @@
         <div class="mb-2">
           <mat-label>Profile Image</mat-label>
         </div>
-        <input
-          type="file"
-          (change)="onFileSelected($event)"
-          accept="image/*"
-          class="form-control"
-        />
-        <mat-error *ngIf="fileError">
-          {{ fileError }}
-        </mat-error>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" />
+        <mat-error *ngIf="fileError">{{ fileError }}</mat-error>
       </div>
       <div *ngIf="previewImage" class="mt-3">
-        <img
-          [src]="previewImage"
-          alt="Preview"
-          class="img-fluid"
-          style="max-height: 200px"
-        />
+        <img [src]="previewImage" alt="Preview" class="img-fluid" style="max-height: 200px" />
       </div>
     </div>
   </form>
@@ -126,7 +65,7 @@
       [disabled]="!(teamForm.valid && teamForm.dirty)"
       (click)="handleTeamSubmit()"
     >
-      {{ action }} Data
+      {{ dialogData.action === 'EDIT' ? 'Update' : 'Create' }} Data
     </button>
   </mat-dialog-actions>
 </div>

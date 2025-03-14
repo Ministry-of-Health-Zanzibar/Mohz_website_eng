@@ -210,7 +210,7 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
    // Delete
    public deleteNews(data: any): void {
     console.log(data);
-    this.newsService.deleteNews(data.id).subscribe(
+    this.newsService.deleteNews(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllNews();
@@ -227,6 +227,28 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
   }
+  // Restore
+    // Delete
+    public restoreNews(data: any): void {
+      console.log(data);
+      console.log(data.id);
+      this.newsService.restore(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.getAllNews();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
+        }
+      );
+    }
+
 
   ngOnDestroy(): void {
     this.onDestroy.next();

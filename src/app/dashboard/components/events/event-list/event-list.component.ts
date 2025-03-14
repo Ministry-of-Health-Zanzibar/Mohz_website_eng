@@ -179,7 +179,7 @@ export class EventListComponent implements OnInit, OnDestroy, AfterViewInit {
   // Delete
   public deletePost(data: any): void {
     console.log(data);
-    this.postService.deletePost(data.post_id).subscribe(
+    this.postService.deletePost(data, data.post_id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getEventPosts();

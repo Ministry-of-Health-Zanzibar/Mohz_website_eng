@@ -31,7 +31,7 @@ export class PostTypeService {
     return this.httpClient.put<any>(`${this.apiUrl}/api/types/update/${id}`, data);
   }
 
-  public deletePostType(id: number): Observable<any> {
+  public deletePostType(data:any, id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}/api/types/delete/${id}`);
   }
 

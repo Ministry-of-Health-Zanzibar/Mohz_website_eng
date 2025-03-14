@@ -180,7 +180,7 @@ export class AnnouncementListComponent
   // Delete
   public deleteAnnouncement(data: any): void {
     console.log(data);
-    this.announcementService.deleteAnnouncement(data.id).subscribe(
+    this.announcementService.deleteAnnouncement(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllAnnouncements();
@@ -196,6 +196,30 @@ export class AnnouncementListComponent
       }
     );
   }
+
+
+  // Restore
+    // Delete
+    public restoreAnnoucement(data: any): void {
+      console.log(data);
+      console.log(data.id);
+      this.announcementService.restore(data, data.id).subscribe(
+        (response: any) => {
+          if (response.statusCode === 200) {
+            this.getAllAnnouncements();
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
+        }
+      );
+    }
+
 
   // View Ann Details
   public navigateToAnnouncementDetails(data: any): void {

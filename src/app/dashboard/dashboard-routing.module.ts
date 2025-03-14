@@ -48,6 +48,16 @@ const routes: Routes = [
             (c) => c.UserFormComponent
           ),
       },
+
+      {
+        path: 'view-user-details/:id',
+        title: '',
+        loadComponent: () =>
+          import('./components/users/view-user-details/view-user-details.component').then(
+            (c) => c.ViewUserDetailsComponent
+          ),
+      },
+
       {
         path: 'announcement-list',
         title: '',
@@ -361,6 +371,17 @@ const routes: Routes = [
             './components/Ministry-system/ministry-system-list/ministry-system-list.component'
           ).then((c) => c.MinistrySystemListComponent),
       },
+
+
+      {
+        path: 'role-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/roles/role-list/role-list.component'
+          ).then((c) => c.RoleListComponent),
+      },
+
 
 
     ],

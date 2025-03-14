@@ -1,1 +1,106 @@
-<p>user-form works!</p>
+<div class="container mt-5">
+  <mat-card class="p-4 shadow-lg">
+    <h2 class="text-center">Create User</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="first_name" placeholder="Enter first name">
+            <mat-error *ngIf="signupForm.get('first_name')?.invalid">First Name is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middle_name" placeholder="Enter middle name">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="last_name" placeholder="Enter last name">
+            <mat-error *ngIf="signupForm.get('last_name')?.invalid">Last Name is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" placeholder="Enter address">
+            <mat-error *ngIf="signupForm.get('address')?.invalid">Address is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="Enter email">
+            <mat-error *ngIf="signupForm.get('email')?.invalid">Valid Email is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phone_no" type="tel" placeholder="Enter phone number">
+            <mat-error *ngIf="signupForm.get('phone_no')?.invalid">Valid Phone Number is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput formControlName="date_of_birth" type="date">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="ROLE ADMIN">Admin</mat-option>
+              <mat-option value="ROLE NATIONAL">Journalist</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <button mat-raised-button color="primary" type="submit" class="px-4">
+          Create
+        </button>
+      </div>
+      
+    </form>
+  </mat-card>
+</div>

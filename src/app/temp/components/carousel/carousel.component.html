@@ -1,85 +1,57 @@
-<!-- New -->
-<div class="d-flex justify-content-center owl-carousel align-items-center mt-4">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-1"></div>
-
-      <div class="col-md-3 animated fadeInLeft pl-5">
-        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta sit
-        explicabo aut accusamus repellendus doloremque quibusdam ratione esse
-        debitis molestias eius libero unde adipisci, laborum similique fuga omnis
-        necessitatibus quidem. -->
-        <div class="frame-container">
-          <div class="image-frame">
-            <img src="https://www.ikulu.go.tz/uploads/administration/e073e2269bd8ca9e267c3178f6127f09.jpeg" alt="Hon. Dr. Samia Suluhu Hassan">
-          </div>
-          <div class="title mt-5">HON. DR. SAMIA SULUHU HASSAN</div>
-          <div class="subtitle mt-4">President of the United Republic of Tanzania</div>
-          <button mat-flat-button color="primary">Biography</button>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Left Column for Image Frames -->
+    <div class="col-md-3 d-flex flex-column align-items-center">
+      <div class="custom-image-frame mt-2" *ngFor="let member of leftColumn">
+        <img [src]="member?.team_photo" alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
+        <div class="custom-caption">
+          <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
+          <p class="profession">{{ member?.professional }}</p>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-8 animated fadeInRight">
+    <!-- Center Column for Carousel -->
+    <div class="col-md-6">
       <span *ngIf="banners.length === 0" class="alert alert-dark">No data available.</span>
-        <div *ngIf="banners.length !== 0"
-        id="carouselExampleIndicators"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <!-- Carousel Indicators -->
+      <div *ngIf="banners.length !== 0" id="customCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
+        <!-- Indicators -->
         <div class="carousel-indicators">
-          <button
-            *ngFor="let banner of banners; let i = index"
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            [attr.data-bs-slide-to]="i"
-            [class.active]="i === 0"
-            [attr.aria-current]="i === 0 ? 'true' : null"
-            [attr.aria-label]="'Slide ' + (i + 1)"
-          ></button>
+          <button *ngFor="let banner of banners; let i = index" type="button" data-bs-target="#customCarousel"
+            [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
         </div>
-    
+
         <!-- Carousel Items -->
         <div class="carousel-inner">
-          <div
-            *ngFor="let banner of banners; let i = index"
-            class="carousel-item"
-            [class.active]="i === 0"
-          >
-            <!-- <img [src]="banner.banner_image" class="d-block w-100" [alt]="'Banner ' + (i + 1)"> -->
-            <img
-              [src]="banner.banner_image"
-              class="d-block mx-auto w-75 rounded-bottom rounded-top"
-              [alt]="'Banner ' + (i + 1)"
-            />
-    
-            <div class="carousel-caption d-none d-md-block">
+          <div *ngFor="let banner of banners; let i = index" class="carousel-item" [class.active]="i === 0">
+            <div class="carousel-frame">
+              <img [src]="banner.banner_image" class="d-block w-100" [alt]="'Banner ' + (i + 1)">
+            </div>
+            <div class="carousel-caption">
               <h5>{{ banner.banner_title }}</h5>
               <p>{{ banner.banner_descriptions }}</p>
             </div>
           </div>
         </div>
-    
-        <!-- Carousel Controls -->
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
         </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
         </button>
       </div>
+    </div>
+
+    <!-- Right Column for Image Frames -->
+    <div class="col-md-3 d-flex flex-column align-items-center">
+      <div class="custom-image-frame mt-2" *ngFor="let member of rightColumn">
+        <img [src]="member?.team_photo" alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
+        <div class="custom-caption">
+          <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
+          <p class="profession">{{ member?.professional }}</p>
+        </div>
       </div>
     </div>
   </div>

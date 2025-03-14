@@ -165,7 +165,7 @@ export class TypeListComponent implements OnInit, OnDestroy, AfterViewInit {
   // Delete
   public deleteType(data: any): void {
     console.log(data.id);
-    this.typeService.deletePostType(data.id).subscribe(
+    this.typeService.deletePostType(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllTypes();

@@ -223,7 +223,7 @@ export class PostFormComponent implements OnInit {
   
 
       this.fileError = null;
-      this.postForm.get('postFilepath')?.setValue(files); // Store files array
+      this.postForm.get('postFilepath')?.setValue(files);
   
       // Generate previews
       this.previewImages = [];
@@ -236,7 +236,7 @@ export class PostFormComponent implements OnInit {
       });
     }
   }
-
+  
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
@@ -275,4 +275,5 @@ export class PostFormComponent implements OnInit {
   onClose() {
     this.dialogRef.close(false);
   }
+  
 }

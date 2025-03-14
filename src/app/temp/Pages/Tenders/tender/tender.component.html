@@ -6,12 +6,14 @@
     <div class="card-body">
       
         
-          <div class="section-header">
+          <div>
             <h3>New tenders</h3>
           </div>
           <ol>
             <li *ngFor="let tender of tenders" class="mt-4">
-              <span class="new-icon text-danger fw-bold me-2">🌟 NEW</span>
+              <span class="new-icon text-danger fw-bold me-2">
+                <img class="img-fluid mx-auto" src="https://www.kilimo.go.tz/site/images/gif1.gif" width="70" height="50">
+                </span>
               {{ tender.post_title }}
               <span  (click)="previewPost(tender.post_filepath)" class="badge bg-primary mx-4" style="cursor: pointer;;">Preview</span>
               

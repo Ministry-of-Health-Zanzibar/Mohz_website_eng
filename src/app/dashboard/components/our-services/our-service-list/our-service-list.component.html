@@ -83,8 +83,10 @@
             >
               <mat-icon class="font-icon">edit_square</mat-icon>
             </button>
+                   <!-- Delete -->
+          <span *ngIf="element.deleted_at === null">
             <button
-            (click)="deleteOurService(element)"
+              (click)="deleteOurService(element)"
               mat-mini-fab
               color="accent"
               matTooltip="Delete"
@@ -92,6 +94,20 @@
             >
               <mat-icon class="font-icon">delete</mat-icon>
             </button>
+          </span>
+
+          <!-- Restore -->
+        <span *ngIf="element.deleted_at !== null">
+          <button
+          (click)="restoreOurService(element)"
+            mat-mini-fab
+            color="info"
+            matTooltip="Restore"
+            class="mt-2 mb-2 me-2"
+          >
+          <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </span>
             <!-- View -->
             <button
             (click)="navigateToOurServiceDetails(element)"

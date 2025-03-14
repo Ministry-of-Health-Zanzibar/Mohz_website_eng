@@ -1,26 +1,24 @@
 <div class="service container-fluid feature">
     <div class="container">
-        
         <div class="card p-4" style="background-color: #0d84ec;">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h1 class="heading">Our Services</h1>
-
-
+                <h1 class="heading text-white">Our Services</h1>
             </div>
-    
+
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeInUp" *ngFor="let ourService of ourServiceData" data-wow-delay="0.2s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon p-4 mb-4">
-                            <!-- <i class="fas fa-book fa-4x text-primary"></i> -->
-                            <i  class="fas fa-clipboard-list fa-4x text-primary"></i>
+                <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" *ngFor="let ourService of ourServiceData" data-wow-delay="0.2s">
+                    <div class="feature-item p-4 h-100 d-flex flex-column" style="background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                        <div class="feature-icon p-4 mb-4 text-center">
+                            <i class="fas fa-clipboard-list fa-4x text-primary"></i>
                         </div>
-                        <h4>{{ ourService?.service_title }}</h4>
-                        <p class="mb-4">{{truncateTitle (ourService?.service_description,7)  }}</p>
-                       
-                        <a class="btn btn-primary rounded-pill py-2 px-4" (click)="findServiceById(ourService?.id)">
-        
-                            Learn More</a>
+                        <h4 class="text-center">{{ ourService?.service_title }}</h4>
+                        <p class="mb-4 flex-grow-1 text-center">{{ truncateTitle(ourService?.service_description, 7) }}</p>
+
+                        <div class="text-center mt-auto">
+                            <a class="btn btn-primary rounded-pill py-2 px-4" (click)="findServiceById(ourService?.id)">
+                                Learn More
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

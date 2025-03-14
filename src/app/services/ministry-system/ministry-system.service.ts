@@ -31,8 +31,13 @@ export class MinistrySystemService {
       return this.httClient.post<any>(`${this.apiUrl}/api/ministrysystem/update`, data);
     }
   
-    public deleteMinistrySystem(id: number): Observable<any> {
-      return this.httClient.delete<any>(`${this.apiUrl}/api/ministrysystem/delete/${id}`);
+    public deleteMinistrySystem(data: any, id: number): Observable<any> {
+      return this.httClient.delete<any>(`${this.apiUrl}/api/ministrysystem/delete/${id}`, data);
     }
-  
+
+ 
+  // Restore MinistrySystem
+  public restore(data: any, id: number): Observable<any> {
+  return this.httClient.patch(`${this.apiUrl}/api/ministrysystem/restore/${id}`, data);
+}
 }

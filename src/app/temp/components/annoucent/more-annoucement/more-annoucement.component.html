@@ -17,13 +17,27 @@
                   <p class="card-text">
                   {{announcement?.announcement_content}}
                   </p>
-                  <a href="assets/announcement1.pdf" class="btn btn-primary" target="_blank">
-                    <mat-icon>cloud_download</mat-icon>
-                    Download PDF
-                  </a>
+                  
+                    <ul *ngIf="announcement?.document_urls?.length > 0; else noFiles" class="list-unstyled">
+                      <li *ngFor="let file of announcement?.document_urls">
+                        <a [href]="file.url" target="_blank">
+                          <i class="fa-solid fa-file-pdf fa-lg text-danger me-2"></i> <span class="fw-bold">Download File</span>
+                        </a>
+                      </li>
+                    </ul>
+
+                    <ng-template #noFiles>
+                      <p class="text-center">No files available</p>
+                    </ng-template>
                 </div>
               </div>
             </div>
           </div>
     </div>
+
+    <button mat-raised-button color="accent" 
+       class="mx-4 mb-2" routerLink="/temp/main">
+      <mat-icon >arrow_back</mat-icon> 
+      back</button>
   </div>
+
