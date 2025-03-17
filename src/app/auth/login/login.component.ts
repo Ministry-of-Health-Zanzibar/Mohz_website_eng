@@ -33,9 +33,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     if (this.authService.isUserLoggedIn()) {
-       this.router.navigateByUrl('/dashboard/home');
-    } else {
-      this.router.navigateByUrl('/auth/login');
+      this.router.navigateByUrl('/dashboard/home');
     }
   }
 
@@ -47,6 +45,7 @@ export class LoginComponent {
   public login(user: any): void {
     this.showLoading = true;
     this.authService.login(user.email, user.password).subscribe(
+      
       (response: any) => {
         if (response && response.error) {
           this.showLoading = false;
@@ -72,6 +71,7 @@ export class LoginComponent {
           }else{
             this.showLoading = false;
             this.toastService.toastError(response.message);
+
             this.router.navigateByUrl("/auth/login")
           }
         }
@@ -79,7 +79,7 @@ export class LoginComponent {
 
         // const token = response.data.token;
         // this.authService.saveToken(token!);
-        // this.authService.addUserToLocalStorage(response.data);
+        this.authService.addUserToLocalStorage(response.data);
         // this.toastService.toastSuccess('You have been login successfully.');
         // this.router.navigateByUrl('/dashboard/home');
         // this.showLoading = false;

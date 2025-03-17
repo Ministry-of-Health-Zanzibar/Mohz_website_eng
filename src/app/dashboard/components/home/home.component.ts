@@ -16,6 +16,7 @@
   export class HomeComponent implements OnInit {
     
     user: any[] = [];
+    username: string = '';
 
     constructor(private userAuthService:AuthenticationService){}
     ngOnInit(): void { 
@@ -24,14 +25,15 @@
     }
 
     getUserDetails() {
-      this.userAuthService.getUserFromLocalStorage().subscribe(
-        (data: any[]) => { 
-          this.user = data;
-          console.log("Users fetched successfully:", this.user);
-        },
-        
-      );
+      const user = this.userAuthService.getUserFromLocalStorage();
+      console.log(user); 
+      if (user && user.full_name) {
+        this.username = user.full_name; 
+      } else {
+        this.username = 'Guest'; 
+      }
     }
-
+    
+    
 
   }
