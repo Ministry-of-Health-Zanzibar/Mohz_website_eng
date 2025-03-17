@@ -10,7 +10,7 @@
       <!-- First Name -->
       <mat-form-field appearance="outline" class="col-md-12 mt-3">
         <mat-label>First Name</mat-label>
-        <input type="text" formControlName="first_name" matInput class="text-black" />
+        <input type="text" formControlName="firstName" matInput class="text-black" />
         <mat-error *ngIf="teamForm.get('firstName')?.touched && teamForm.get('firstName')?.invalid">
           <span *ngIf="teamForm.get('firstName')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
@@ -19,7 +19,7 @@
       <!-- Middle Name -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Middle Name</mat-label>
-        <input formControlName="middleName" matInput class="text-black" />
+        <input type="text" formControlName="middleName" matInput class="text-black" />
         <mat-error *ngIf="teamForm.get('middleName')?.touched && teamForm.get('middleName')?.invalid">
           <span *ngIf="teamForm.get('middleName')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
@@ -28,7 +28,7 @@
       <!-- Last Name -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Last Name</mat-label>
-        <input formControlName="lastName" matInput class="text-black" />
+        <input type="text" formControlName="lastName" matInput class="text-black" />
         <mat-error *ngIf="teamForm.get('lastName')?.touched && teamForm.get('lastName')?.invalid">
           <span *ngIf="teamForm.get('lastName')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
@@ -37,7 +37,7 @@
       <!-- Professional -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Professional</mat-label>
-        <input formControlName="professional" matInput class="text-black" />
+        <input type="text" formControlName="professional" matInput class="text-black" />
         <mat-error *ngIf="teamForm.get('professional')?.touched && teamForm.get('professional')?.invalid">
           <span *ngIf="teamForm.get('professional')?.errors?.['required']">This field is mandatory</span>
         </mat-error>
@@ -62,7 +62,7 @@
     <button
       mat-flat-button
       color="primary"
-      [disabled]="!(teamForm.valid && teamForm.dirty)"
+      [disabled]="!teamForm.valid"
       (click)="handleTeamSubmit()"
     >
       {{ dialogData.action === 'EDIT' ? 'Update' : 'Create' }} Data
