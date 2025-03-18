@@ -139,7 +139,7 @@
 
 .navbar{
   
-  background-color:  #0d84ec;
+  background-color:  #14497d;
   
 }
 .sticky-top.navbar-light .navbar-nav .nav-link,
@@ -179,7 +179,7 @@
 }
 
 .dropdown .dropdown-menu a:hover {
-    background: var(--bs-primary);
+    background: #14497d;
     color: var(--bs-white);
 }
 
@@ -919,7 +919,7 @@
 
 /*** Footer Start ***/
 .footer {
-    background-color: #0d84ec;
+  background-color:  #14497d;
 }
 
 .footer .footer-item {

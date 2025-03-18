@@ -88,7 +88,7 @@ export class TeamFormComponent implements OnInit, OnDestroy {
       this.dialogAction = 'EDIT';
       this.action = 'Update';
       this.teamForm.patchValue({
-        id: this.dialogData.data.id,  // Ensure ID is included
+        id: this.dialogData.data.id,  
         firstName: this.dialogData.data.first_name,
         middleName: this.dialogData.data.middle_name,
         lastName: this.dialogData.data.last_name,
@@ -126,28 +126,31 @@ export class TeamFormComponent implements OnInit, OnDestroy {
   }
 
 
-  public onUpdateTeam(): void {
-    if (this.teamForm.valid) {
-      const id = this.teamForm.get('id')?.value;
-      if (!id) {
-        this.toastService.toastError('Invalid team ID');
-        return;
-      }
-      const formData = this.createFormData();
-      this.teamService.updateTeamMember(id, formData).subscribe(
-        (response: any) => {
-          this.dialogRef.close();
-          this.onEditTeamEventEmitter.emit();
-          response.statusCode === 200
-            ? this.toastService.toastSuccess(response.message)
-            : this.toastService.toastError(response.message);
-        },
-        (error: HttpErrorResponse) => {
-          this.toastService.toastError(error.error.message);
-        }
-      );
+ public onUpdateTeam(): void {
+  if (this.teamForm.valid) {
+    const id = this.teamForm.get('id')?.value;
+    if (!id) {
+      this.toastService.toastError('Invalid team ID');
+      return;
     }
+    const formData = this.createFormData();
+    this.teamService.updateTeamMember(id, formData).subscribe(
+      (response: any) => {
+        console.log("Update Response:", response); 
+        this.dialogRef.close();
+        this.onEditTeamEventEmitter.emit();
+        response.statusCode === 200
+          ? this.toastService.toastSuccess(response.message)
+          : this.toastService.toastError(response.message);
+      },
+      (error: HttpErrorResponse) => {
+        console.error("Update Error:", error); 
+        this.toastService.toastError(error.error.message);
+      }
+    );
   }
+}
+
   
   private createFormData(): FormData {
     const formData = new FormData();

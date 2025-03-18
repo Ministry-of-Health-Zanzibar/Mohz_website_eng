@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
+  username: string = '';
 
 
   constructor(
@@ -29,8 +30,20 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getUserDetails();
       
   }
+
+  getUserDetails() {
+    const user = this.userAuthService.getUserFromLocalStorage();
+    console.log(user); 
+    if (user && user.full_name) {
+      this.username = user.full_name; 
+    } else {
+      this.username = 'Guest'; 
+    }
+  }
+  
 
 
   public logOut(): void {
