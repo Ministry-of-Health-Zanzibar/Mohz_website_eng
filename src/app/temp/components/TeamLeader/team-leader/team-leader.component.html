@@ -1,25 +1,23 @@
-
-
-<div class="container text-center  my-4 mt-5">
-  <div class="py-2">
-      <h1 class="fw-bold" style="color:  #14497d;">
-          <span class="p-2 ">Ministry Partners</span>
+<div class="container text-center my-4 mt-5">
+    <div class="py-2">
+      <h1 class="fw-bold" style="color: #14497d;">
+        <span class="p-2">Ministry Partners</span>
       </h1>
-  </div>
-
-  <!-- Background Image Section -->
-  <div class="position-relative" 
-     style="background-image: url('../../../../../assets/img/tretement'); background-size: cover; background-position: center; height: 270px; border-radius: 10px;">
-    <!-- Marquee Section -->
-    <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
+    </div>
+  
+    <!-- Background Image Section with Overlay -->
+    <div class="position-relative bg-container">
+      <!-- Dark Overlay -->
+      <div class="overlay"></div>
+  
+      <!-- Marquee Section -->
+      <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
         <marquee behavior="scroll" direction="left" scrollamount="3">
-            <!-- Loop Through Partners -->
-            <img *ngFor="let partner of partners" 
-                 [src]="partner?.partner_logo" 
-                 class="rounded-circle mx-3" 
-                 style="width: 200px; height: 200px; border: 3px solid rgb(255, 255, 255); object-fit: contain; background-color: white; padding: 15px;">
+          <img *ngFor="let partner of partners" 
+               [src]="partner?.partner_logo" 
+               class="rounded-circle mx-3 partner-logo">
         </marquee>
-        
+      </div>
     </div>
   </div>
-</div>
+  
