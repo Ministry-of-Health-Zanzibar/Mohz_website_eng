@@ -61,12 +61,12 @@ export class LoginComponent {
                 this.router.navigateByUrl('/dashboard/home');
                 this.showLoading = false;
             }
-            else{
-              console.log('change password');
-              this.showLoading = false;
-              this.toastService.toastWarning('Please change the password first');
-              this.router.navigateByUrl("auth/set-new-password")
-            }
+            // else{
+            //   console.log('change password');
+            //   this.showLoading = false;
+            //   this.toastService.toastWarning('Please change the password first');
+            //   this.router.navigateByUrl("auth/set-new-password")
+            // }
 
           }else{
             this.showLoading = false;
