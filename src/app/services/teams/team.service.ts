@@ -27,8 +27,9 @@ export class TeamService {
   }
 
   updateTeamMember(id: number, data: FormData): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}/api/update_team/${id}`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}/api/update_team`, data);
   }
+  
   
   
 
