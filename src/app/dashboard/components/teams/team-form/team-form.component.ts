@@ -85,10 +85,12 @@ export class TeamFormComponent implements OnInit, OnDestroy {
 
   private getTeamData(): void {
     if (this.dialogData?.action === 'EDIT') {
+      console.log("Dialog Data:", this.dialogData);  //  Debugging log
+  
       this.dialogAction = 'EDIT';
       this.action = 'Update';
       this.teamForm.patchValue({
-        id: this.dialogData.data.id,  
+        id: this.dialogData.data.id,  //  Ensure ID is set
         firstName: this.dialogData.data.first_name,
         middleName: this.dialogData.data.middle_name,
         lastName: this.dialogData.data.last_name,
@@ -97,6 +99,7 @@ export class TeamFormComponent implements OnInit, OnDestroy {
       });
     }
   }
+  
   
 
   public handleTeamSubmit(): void {
@@ -125,15 +128,19 @@ export class TeamFormComponent implements OnInit, OnDestroy {
     }
   }
 
-
- public onUpdateTeam(): void {
+public onUpdateTeam(): void {
   if (this.teamForm.valid) {
     const id = this.teamForm.get('id')?.value;
     if (!id) {
       this.toastService.toastError('Invalid team ID');
       return;
     }
+
     const formData = this.createFormData();
+    formData.append('id', id.toString()); // Ensure ID is sent in the form data
+
+    console.log("Updating team with ID:", id);  //  Debugging log
+
     this.teamService.updateTeamMember(id, formData).subscribe(
       (response: any) => {
         console.log("Update Response:", response); 
@@ -151,24 +158,27 @@ export class TeamFormComponent implements OnInit, OnDestroy {
   }
 }
 
-  
   private createFormData(): FormData {
     const formData = new FormData();
     
+    const id = this.teamForm.get('id')?.value;
     const firstName = this.teamForm.get('firstName')?.value?.trim();
     const middleName = this.teamForm.get('middleName')?.value?.trim();
     const lastName = this.teamForm.get('lastName')?.value?.trim();
     const professional = this.teamForm.get('professional')?.value?.trim();
     const file = this.teamForm.get('profileImage')?.value;
   
-    // Debugging: Log values before sending
-    console.log("Form Values:", { firstName, middleName, lastName, professional });
+    console.log("Form Values:", { id, firstName, middleName, lastName, professional });  //  Debugging log
   
     if (!firstName || !middleName || !lastName || !professional) {
       this.toastService.toastError('All fields are required');
       return formData;
     }
   
+    if (id) {
+      formData.append('id', id.toString());  //  Ensure ID is included
+    }
+    
     formData.append('first_name', firstName);
     formData.append('middle_name', middleName);
     formData.append('last_name', lastName);
@@ -181,7 +191,6 @@ export class TeamFormComponent implements OnInit, OnDestroy {
     return formData;
   }
   
-
 
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
