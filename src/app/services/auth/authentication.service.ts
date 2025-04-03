@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  // public apiUrl = environment.backendUrl;
-  public apiUrl = 'http://localhost:9095';
+  public apiUrl = environment.backendUrl;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -17,7 +16,7 @@ export class AuthenticationService {
   //   password: string
   // ): Observable<HttpResponse<any>> {
   //   return this.httpClient.post<any>(
-  //     `${this.apiUrl}/api/login`,
+  //     `${this.apiUrl}login`,
   //     { email, password },
   //     {
   //       observe: 'response',
@@ -26,14 +25,14 @@ export class AuthenticationService {
   // }
 
   public login(email: string, password: string): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/login`, {
+    return this.httpClient.post<any>(`${this.apiUrl}login`, {
       email,
       password,
     });
   }
 
   public signup(formData: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/userAccounts`, formData);
+    return this.httpClient.post<any>(`${this.apiUrl}userAccounts`, formData);
   }
 
   public saveToken(token: string | null): void {
@@ -56,23 +55,23 @@ export class AuthenticationService {
   }
 
   public getAllUser(): Observable<any> {
-    const href = `${this.apiUrl}/api/userAccounts`;
+    const href = `${this.apiUrl}userAccounts`;
     return this.httpClient.get<any>(href);
   }
 
   public updateUser(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}/api/userAccounts/${id}`, data);
+    return this.httpClient.put<any>(`${this.apiUrl}userAccounts/${id}`, data);
   }
 
   public findUserById( id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/userAccounts/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}userAccounts/${id}`);
   }
 
   public getUserFromLocalStorage(): any {
     // return JSON.parse(localStorage.getItem('user')!);
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
-  }                                                                          
+  }
 
   public isUserLoggedIn(): boolean {
     return this.getToken() !== null;
@@ -84,7 +83,7 @@ export class AuthenticationService {
   }
 
   changePassword(data: any) {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/changePassword`,data);
+    return this.httpClient.post<any>(`${this.apiUrl}changePassword`,data);
   }
 
   public setRoles(roles: any[]) {

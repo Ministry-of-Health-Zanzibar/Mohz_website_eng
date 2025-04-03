@@ -1,75 +1,76 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-private apiUrl = 'http://localhost:9095';
+private apiUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   public createPost(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}/api/posts/create`,
+      `${this.apiUrl}posts/create`,
       data
     );
   }
 
   public getAllPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/all`);
   }
 
    public getPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/type/Post`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/type/Post`);
   }
 
    public getProjectPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/type/Project`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/type/Project`);
   }
 
   public getEventPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/type/Event`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/type/Event`);
   }
 
   public getTenderPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/type/Tender`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/type/Tender`);
   }
 
   public getPublicationPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/type/Publication`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/type/Publication`);
   }
 
   public getPostByType(typeId: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/post/type/${typeId}`);
+    return this.httpClient.get<any>(`${this.apiUrl}post/type/${typeId}`);
   }
 
   public deletePostByType(data:any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}/api/types/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}types/delete/${id}`);
   }
 
- 
+
 
   public findPostById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/posts/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}posts/${id}`);
   }
 
   public updatePost(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/posts/update`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}posts/update`, data);
   }
 
   public deletePost(data:any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}/api/posts/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}posts/delete/${id}`);
   }
-  
-    // Restore 
+
+    // Restore
     public restore(data: any, id: number): Observable<any> {
-      return this.httpClient.patch(`${this.apiUrl}/api/posts/restore/${id}`, data);
+      return this.httpClient.patch(`${this.apiUrl}posts/restore/${id}`, data);
     }
 
-    // Restore 
+    // Restore
     public restorePostType(data: any, id: number): Observable<any> {
-      return this.httpClient.patch(`${this.apiUrl}/api/ types/restore/${id}`, data);
+      return this.httpClient.patch(`${this.apiUrl} types/restore/${id}`, data);
     }
 }

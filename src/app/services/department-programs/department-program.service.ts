@@ -1,40 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentProgramService {
-private apiUrl = 'http://localhost:9095';
+private apiUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   public createDepartmentProgram(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}/api/dp/create-dp`,
+      `${this.apiUrl}dp/create-dp`,
       data
     );
   }
 
   public getAllDepartmentPrograms(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/dp/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}dp/all`);
   }
 
   public findDepartmentProgramById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/dp/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}dp/${id}`);
   }
 
   public updateDepartmentProgram(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}/api/dp/update/${id}`, data);
+    return this.httpClient.put<any>(`${this.apiUrl}dp/update/${id}`, data);
   }
 
   public deleteDepartmentProgram(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}/api/dp/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}dp/delete/${id}`);
   }
 
 
   public restoreDeletedDepartmentProgram(data: any, id: number): Observable<any> {
-    return this.httpClient.patch<any>(`${this.apiUrl}/api/dp/restore/${id}`, data);
+    return this.httpClient.patch<any>(`${this.apiUrl}dp/restore/${id}`, data);
   }
 }
