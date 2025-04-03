@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  public apiUrl = environment.backendUrl;
+  public apiUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
