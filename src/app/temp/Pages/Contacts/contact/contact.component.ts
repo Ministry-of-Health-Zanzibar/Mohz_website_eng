@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ContactService } from '../../../../services/contact.service';
 import { Subject } from 'rxjs';
+import { ToastService } from '../../../../services/toast/toast.service';
 
 @Component({
   selector: 'app-contact',
@@ -26,7 +27,9 @@ export class ContactComponent implements OnInit{
 feedBackForm!:FormGroup;
 constructor(
   private fb:FormBuilder,
-  private contactService:ContactService){}
+  private contactService:ContactService,
+  private toastService: ToastService
+){}
   ngOnInit(): void {
     this.feedBackForm = this.fb.group({
       name: ['', Validators.required],
@@ -43,11 +46,13 @@ constructor(
       this.contactService.registerTeamMember(this.feedBackForm.value).subscribe({
         next: (data) => {
           console.log('Response:', data);
-          alert('Form Submitted successfully!');
+          this.toastService.toastSuccess('successfully submited.');
+          this.feedBackForm.reset();
         },
         error: (error) => {
           console.error('Error:', error);
           alert('Form submission failed. Please try again.');
+      
         }
       });
     } else {
