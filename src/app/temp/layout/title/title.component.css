@@ -1,15 +1,28 @@
-.container-fluid {
-    background-color: #f8f9fa; 
-    border-bottom: 4px solid #28a745; 
+.banner-container {
+  background-color: #f8f9fa;
+  /* border-bottom: 4px solid #28a745; */
+}
+
+.banner-container img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+/* Optional: Adjust max height for small screens */
+@media (max-width: 768px) {
+  .banner-container img {
+    max-height: 160px;
   }
-  
-  h1 {
-    font-family: "Arial", sans-serif;
-    color: #28a745; 
-  }
-  
-  h3 {
-    font-family: "Arial", sans-serif;
-    color: #6c757d; 
-  }
-  
+}
+
+h1 {
+  font-family: "Arial", sans-serif;
+  color: #28a745;
+}
+
+h3 {
+  font-family: "Arial", sans-serif;
+  color: #6c757d;
+}

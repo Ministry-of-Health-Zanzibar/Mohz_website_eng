@@ -107,7 +107,8 @@ export class DepartmentProgramFormComponent implements OnInit, OnDestroy {
           this.toastService.toastError(response.message);
         }
       },
-      (errorResponse: HttpErrorResponse) => {
+      (errorResponse: any) => {
+        
         if (errorResponse) {
           this.toastService.toastError(errorResponse.error.message);
         }
