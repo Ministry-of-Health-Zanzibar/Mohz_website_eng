@@ -12,19 +12,6 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // public login(
-  //   email: string,
-  //   password: string
-  // ): Observable<HttpResponse<any>> {
-  //   return this.httpClient.post<any>(
-  //     `${this.apiUrl}/api/login`,
-  //     { email, password },
-  //     {
-  //       observe: 'response',
-  //     }
-  //   );
-  // }
-
   public login(email: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}/api/login`, {
       email,
@@ -33,7 +20,10 @@ export class AuthenticationService {
   }
 
   public signup(formData: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/userAccounts`, formData);
+    return this.httpClient.post<any>(
+      `${this.apiUrl}/api/userAccounts`,
+      formData
+    );
   }
 
   public saveToken(token: string | null): void {
@@ -61,10 +51,13 @@ export class AuthenticationService {
   }
 
   public updateUser(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}/api/userAccounts/${id}`, data);
+    return this.httpClient.put<any>(
+      `${this.apiUrl}/api/userAccounts/${id}`,
+      data
+    );
   }
 
-  public findUserById( id: number): Observable<any> {
+  public findUserById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}/api/userAccounts/${id}`);
   }
 
@@ -72,7 +65,7 @@ export class AuthenticationService {
     // return JSON.parse(localStorage.getItem('user')!);
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
-  }                                                                          
+  }
 
   public isUserLoggedIn(): boolean {
     return this.getToken() !== null;
@@ -84,7 +77,7 @@ export class AuthenticationService {
   }
 
   changePassword(data: any) {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/changePassword`,data);
+    return this.httpClient.post<any>(`${this.apiUrl}/api/changePassword`, data);
   }
 
   public setRoles(roles: any[]) {
@@ -111,5 +104,11 @@ export class AuthenticationService {
     return isMatch;
   }
 
+  public setPermissions(permissions: []) {
+    localStorage.setItem('permissions', JSON.stringify(permissions));
+  }
 
+  public getPermissions(): [] {
+    return JSON.parse(localStorage.getItem('permissions')!);
+  }
 }
