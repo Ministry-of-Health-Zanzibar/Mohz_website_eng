@@ -19,19 +19,16 @@ export class BannerService {
     return this.httpClient.get<any>(`${this.apiUrl}banner`);
   }
 
-  public updateBanner(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}update-banner`, data);
+  public updateBanner(data: any, id: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.apiUrl}banner/${id}`, data);
   }
 
   public findBannerById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}banners/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}banner/${id}`);
   }
 
   public deleteBanner(data: any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(
-      `${this.apiUrl}delete-banner/${id}`,
-      data
-    );
+    return this.httpClient.delete<any>(`${this.apiUrl}banner/${id}`, data);
   }
 
   // Restore
