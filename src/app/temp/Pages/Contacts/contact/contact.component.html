@@ -1,11 +1,11 @@
 <div class="container py-5">
   <div class="card card-body">
-   <h2 class="text-center text-primary mb-4">Contact us</h2>
+   <h2 class="text-center  mb-4" style="color: #14497d;">Contact us</h2>
    <hr class="text-primary">
    <div class="row">
      <div class="col-md-6 mb-4">
        <div class="card shadow-sm">
-         <div class="card-header bg-success text-white">
+         <div class="card-header  text-white" style="background-color: #14497d;">
            <h5>Postal Address</h5>
          </div>
          <div class="card-body">
@@ -18,7 +18,7 @@
        </div> 
        
        <div class="card shadow-sm mt-4">
-         <div class="card-header bg-primary text-white">
+         <div class="card-header  text-white" style="background-color: #14497d;">
            <h5>Wizara ya Afya Zanzibar Location</h5>
          </div>
          <div class="card-body p-0">
@@ -38,39 +38,63 @@
 
      <div class="col-md-6">
        <div class="card shadow-sm">
-         <div class="card-header bg-success text-white">
+         <div class="card-header  text-white" style="background-color: #14497d;">
            <h5>Feedback, Complaints, or Suggestions</h5>
          </div>
          <div class="card-body">
-           <form>
-             <div class="form-group mb-3">
-               <label for="fullname">Full Name</label>
-               <input type="text" id="fullname" class="form-control" name="fullname" />
-             </div>
-             <div class="form-group mb-3">
-               <label for="email">Email</label>
-               <input type="email" id="email" class="form-control" required name="email" />
-             </div>
-             <div class="form-group mb-3">
-               <label for="phone">Phone</label>
-               <input type="text" id="phone" class="form-control" name="phone" />
-             </div>
-             <div class="form-group mb-3">
-               <label for="organization">Organization</label>
-               <input type="text" id="organization" class="form-control" name="organization" />
-             </div>
-             <div class="form-group mb-3">
-               <label for="subject">Subject</label>
-               <input type="text" id="subject" class="form-control" name="subject" />
-             </div>
-             <div class="form-group mb-3">
-               <label for="message">Message</label>
-               <textarea id="message" class="form-control" rows="4" name="message"></textarea>
-             </div>
-             <div class="form-group">
-               <button type="submit" class="btn btn-success w-100">Submit</button>
-             </div>
-           </form>
+          <form [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="fullname">Full Name</label>
+              <input type="text" formControlName="name" class="form-control" name="fullname" />
+              <small *ngIf="feedBackForm.get('name')?.invalid && feedBackForm.get('name')?.touched" class="text-danger">
+                Full Name is required.
+              </small>
+            </div>
+            <div class="form-group mb-3">
+              <label for="email">Email</label>
+              <input type="email" formControlName="email" class="form-control" required name="email" />
+              <small *ngIf="feedBackForm.get('email')?.invalid && feedBackForm.get('email')?.touched" class="text-danger">
+                Please enter a valid email.
+              </small>
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="phone">Phone</label>
+              <input type="text" formControlName="phone" class="form-control" name="phone" />
+              <small *ngIf="feedBackForm.get('phone')?.invalid && feedBackForm.get('phone')?.touched" class="text-danger">
+                Phone number is required.
+              </small>
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="organization">Organization</label>
+              <input type="text" formControlName="organization" class="form-control" name="organization" />
+              <small *ngIf="feedBackForm.get('organization')?.invalid && feedBackForm.get('organization')?.touched" class="text-danger">
+                Organization is required.
+              </small>
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="subject">Subject</label>
+              <input type="text" formControlName="subject" class="form-control" name="subject" />
+              <small *ngIf="feedBackForm.get('subject')?.invalid && feedBackForm.get('subject')?.touched" class="text-danger">
+                Subject is required.
+              </small>
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="message">Message</label>
+              <textarea formControlName="message" class="form-control" rows="4" name="message"></textarea>
+              <small *ngIf="feedBackForm.get('message')?.invalid && feedBackForm.get('message')?.touched" class="text-danger">
+                Message is required.
+              </small>
+            </div>
+          
+            <div class="form-group">
+              <button type="submit" class="btn w-100" style="background-color: #14497d; color: white;">Submit</button>
+            </div>
+          </form>
+          
          </div>
        </div>
      </div>    

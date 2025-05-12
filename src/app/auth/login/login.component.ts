@@ -40,36 +40,28 @@ export class LoginComponent {
     this.showLoading = true;
     this.authService.login(user.email, user.password).subscribe(
       (response: any) => {
-        if (response && response.error) {
-          this.showLoading = false;
-          this.toastService.toastError('Server returned an error');
-          console.log('Server returned an error:', response.error);
-        } else {
-          if (response.statusCode != 401 && response.data.statusCode == 200) {
-            const token = response.data.token;
-            this.authService.saveToken(token!);
-            if (response.data.login_status === '1') {
-              this.authService.addUserToLocalStorage(response.data);
-              this.authService.setPermissions(response.data.permissions);
-              this.toastService.toastSuccess(
-                'You have been login successfully.'
-              );
-              this.router.navigateByUrl('/dashboard/home');
-              this.showLoading = false;
-            } else {
-              console.log('change password');
-              this.showLoading = false;
-              this.toastService.toastWarning(
-                'Please change the password first'
-              );
-              this.router.navigateByUrl('auth/set-new-password');
-            }
-          } else {
-            this.showLoading = false;
-            this.toastService.toastError(response.message);
+        if (
+          response?.messageresponse?.statusCode !== 401 &&
+          response?.data?.statusCode === 200
+        ) {
+          const token = response.data.token;
+          this.authService.saveToken(token!);
 
-            this.router.navigateByUrl('/auth/login');
+          if (response.data.login_status === '1') {
+            this.authService.addUserToLocalStorage(response.data);
+            this.toastService.toastSuccess('You have been login successfully.');
+            this.router.navigateByUrl('/dashboard/home');
+            this.showLoading = false;
+          } else {
+            console.log('change password');
+            this.showLoading = false;
+            this.toastService.toastWarning('Please change the password first');
+            this.router.navigateByUrl('auth/set-new-password');
           }
+        } else {
+          this.showLoading = false;
+          this.toastService.toastError(response?.message || 'Login failed');
+          this.router.navigateByUrl('/auth/login');
         }
 
         // const token = response.data.token;

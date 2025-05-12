@@ -1,40 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OurServiceService {
- private apiUrl = 'http://localhost:9095';
+ private apiUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   public createOurService(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}/api/our_services/create`,
+      `${this.apiUrl}our_services/create`,
       data
     );
   }
 
   public getAllOurServices(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/our_services/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}our_services/all`);
   }
 
   public findOurServiceById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/our_services/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}our_services/${id}`);
   }
 
   public updateOurService(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}/api/our_services/update/${id}`, data);
+    return this.httpClient.put<any>(`${this.apiUrl}our_services/update/${id}`, data);
   }
 
   public deleteOurService(data:any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}/api/our_services/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}our_services/delete/${id}`);
   }
 
-   // Restore 
+   // Restore
    public restore(data: any, id: number): Observable<any> {
-    return this.httpClient.patch(`${this.apiUrl}/api/our_services/restore/${id}`, data);
+    return this.httpClient.patch(`${this.apiUrl}our_services/restore/${id}`, data);
   }
 }

@@ -6,7 +6,7 @@
       data-wow-delay="0.2s"
       style="max-width: 800px"
     >
-      <h1 class="text-primary text-capitalize">get lates news & events</h1>
+      <h1 class="text-capitalize" style="color: #14497d;">get lates news & events</h1>
       <p class="mb-0">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
         adipisci facilis cupiditate recusandae aperiam temporibus corporis
@@ -25,7 +25,7 @@
         data-wow-delay="0.2s"
       >
         <div class="row">
-          <h5 class="fw-bold text-primary text-uppercase">Lates News</h5>
+          <h5 class="fw-bold text-uppercase" style="color: #14497d;">Lates News</h5>
           <div class="col-md-12" *ngFor="let news of newses">
             <div class="row mb-4 mt-2">
               <div class="col-md-6">
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <h5 class="text-uppercase text-primary fw-bold">
+                <h5 class="text-uppercase fw-bold" style="color: #14497d;">
                   {{ truncateTitle(news?.news_title, 5) }}
                 </h5>
                 <div>
@@ -65,7 +65,7 @@
         data-wow-delay="0.2s"
       >
         <div class="row">
-          <h5 class="fw-bold text-primary text-uppercase">Lates Events</h5>
+          <h5 class="fw-bold  text-uppercase" style="color: #14497d;">Lates Events</h5>
           <!-- <hr /> -->
           <div class="col-md-12" *ngFor="let event of events">
             <div class="row mb-4 mt-2" >
@@ -82,7 +82,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <h5 class="text-uppercase text-primary fw-bold">
+                <h5 class="text-uppercase  fw-bold" style="color: #14497d;">
                   {{ truncateTitle(event?.post_title, 5) }}
                 </h5>
                 <div>
