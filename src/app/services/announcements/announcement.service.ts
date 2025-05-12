@@ -12,10 +12,7 @@ export class AnnouncementService {
   constructor(private httpClient: HttpClient) {}
 
   public createAnnouncement(formData: any): Observable<any> {
-    return this.httpClient.post<any>(
-      `${this.apiUrl}announcements/create`,
-      formData
-    );
+    return this.httpClient.post<any>(`${this.apiUrl}announcement`, formData);
   }
 
   public getAllAnnouncements(): Observable<any> {
@@ -23,11 +20,11 @@ export class AnnouncementService {
   }
 
   public getAllPublicAnnouncements(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/announcement`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/announcement`);
   }
 
   public findPublicAnnouncementById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/announcement/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/announcement/${id}`);
   }
 
   public findAnnouncementById(id: number): Observable<any> {

@@ -11,29 +11,37 @@ export class CommentService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public createComment(data: any, newsId: any): Observable<any> {
+  public createComment(data: any,): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}comments/create/${newsId}`,
+      `${this.apiUrl}comment`,
       data
     );
   }
 
   public getAllComments(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}comments/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}comment`);
   }
 
-  public findCommentById(newsId: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}comments/${newsId}`);
+  public getPublicAllComments(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/comment`);
   }
 
-  public updateComment(data: any, newsId: number): Observable<any> {
+  public findPublicCommentById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/comments/${id}`);
+  }
+
+  public findCommentById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}comments/${id}`);
+  }
+
+  public updateComment(data: any, id: number): Observable<any> {
     return this.httpClient.put<any>(
-      `${this.apiUrl}comments/update/${newsId}`,
+      `${this.apiUrl}comment/${id}`,
       data
     );
   }
 
-  public deleteComment(newsId: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}comments/${newsId}`);
+  public deleteComment(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiUrl}comments/${id}`);
   }
 }

@@ -21,11 +21,11 @@ private apiUrl = 'http://localhost:9095';
   }
 
   public getAllPublicAboutUsData(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/aboutus`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/aboutus`);
   }
 
    public getAllAboutUsPublicData(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/aboutus`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/aboutus`);
   }
 
   public updateAboutUs(data: any, id: number): Observable<any> {

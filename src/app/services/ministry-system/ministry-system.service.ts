@@ -15,17 +15,25 @@ export class MinistrySystemService {
 
    public createMinistrySystem(formData: any): Observable<any> {
       return this.httClient.post<any>(
-        `${this.apiUrl}ministrysystem/create`,
+        `${this.apiUrl}ministrys`,
         formData
       );
     }
 
     public getAllMinistrySystem(): Observable<any> {
-      return this.httClient.get<any>(`${this.apiUrl}ministrysystem/all`);
+      return this.httClient.get<any>(`${this.apiUrl}ministrys`);
+    }
+
+       public getPublicAllMinistrySystem(): Observable<any> {
+      return this.httClient.get<any>(`${this.apiUrl}/public/ministry`);
+    }
+
+      public findPublicMinistrySystemById(id: number): Observable<any> {
+      return this.httClient.get<any>(`${this.apiUrl}/public/ministrys/${id}`);
     }
 
     public findMinistrySystemById(id: number): Observable<any> {
-      return this.httClient.get<any>(`${this.apiUrl}ministrysystem/${id}`);
+      return this.httClient.get<any>(`${this.apiUrl}ministrys/${id}`);
     }
 
     public updateMinistrySystem(data: any): Observable<any> {

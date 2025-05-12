@@ -22,6 +22,14 @@ private apiUrl = environment.baseUrl;
     return this.httpClient.get<any>(`${this.apiUrl}partners`);
   }
 
+   public getPublicAllPartners(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/partners`);
+  }
+
+  public findPublicPartnerById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/partners/${id}`);
+  }
+
   public findPartnerById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}partners/${id}`);
   }
