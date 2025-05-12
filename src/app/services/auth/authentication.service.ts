@@ -72,7 +72,6 @@ export class AuthenticationService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
-  }
 
   public isUserLoggedIn(): boolean {
     return this.getToken() !== null;
