@@ -141,22 +141,24 @@ export class BannerFormComponent implements OnInit {
       );
       formData.append('banner_image', this.bannerForm.get('image')?.value);
 
-      this.bannerService.updateBanner(formData).subscribe(
-        (response: any) => {
-          this.dialogRef.close();
-          this.onEditNewsEventEmitter.emit();
-          if (response.statusCode === 200) {
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
+      this.bannerService
+        .updateBanner(formData, this.dialogData.data.id)
+        .subscribe(
+          (response: any) => {
+            this.dialogRef.close();
+            this.onEditNewsEventEmitter.emit();
+            if (response.statusCode === 200) {
+              this.toastService.toastSuccess(response.message);
+            } else {
+              this.toastService.toastError(response.message);
+            }
+          },
+          (errorResponse: HttpErrorResponse) => {
+            if (errorResponse) {
+              this.toastService.toastError(errorResponse.error.message);
+            }
           }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
-        }
-      );
+        );
     }
   }
 
