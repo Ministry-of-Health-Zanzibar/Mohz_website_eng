@@ -119,7 +119,7 @@ export class SiteLinkFormComponent {
       sitelinks_description: formData.sitelinkDescription,
     };
 
-    this.siteLinkService.updateSitelink(data).subscribe(
+    this.siteLinkService.updateSitelink(data, this.dialogData.id).subscribe(
       (response: any) => {
         this.dialogRef.close();
         this.onEditNewsEventEmitter.emit();

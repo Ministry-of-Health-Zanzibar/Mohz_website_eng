@@ -20,11 +20,11 @@ export class NewsService {
   }
 
    public getAllPublicNews(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/news`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/news`);
   }
 
    public findPublicNewsById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/news/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/news/${id}`);
   }
 
   public findNewsById(id: number): Observable<any> {

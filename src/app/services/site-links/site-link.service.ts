@@ -16,18 +16,26 @@ private apiUrl = environment.baseUrl;
   }
 
   public getAllSitelinks(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/sitelinks`);
+  }
+
+    public getPublicAllSitelinks(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}sitelinks`);
+  }
+
+   public findPublicSitelinkById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/sitelinks/${id}`);
   }
 
   public findSitelinkById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}sitelinks/${id}`);
   }
 
-  public updateSitelink(data: any): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}update-sitelinks`, data);
+  public updateSitelink(data: any, id: number): Observable<any> {
+    return this.httpClient.put<any>(`${this.apiUrl}sitelinks/${id}`, data);
   }
 
   public deleteSitelink(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}delete-sitelinks/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}sitelinks/${id}`);
   }
 }
