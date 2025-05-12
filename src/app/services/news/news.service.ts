@@ -12,11 +12,19 @@ export class NewsService {
   constructor(private httpClient: HttpClient) {}
 
   public createNews(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}create-news`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}news`, data);
   }
 
   public getAllNews(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}news`);
+  }
+
+   public getAllPublicNews(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/public/news`);
+  }
+
+   public findPublicNewsById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/public/news/${id}`);
   }
 
   public findNewsById(id: number): Observable<any> {
@@ -24,11 +32,11 @@ export class NewsService {
   }
 
   public updateNews(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}update-news`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}news`, data);
   }
 
   public deleteNews(data:any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}delete-news/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}news/${id}`);
   }
 
   // Restore

@@ -191,7 +191,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
         this.partnerForm.get('partnerLogo')?.value
       );
 
-      this.partnerService.updatePartner(formData).subscribe(
+      this.partnerService.updatePartner(formData, this.dialogData.data.id).subscribe(
         (response: any) => {
           this.dialogRef.close();
           this.onEditPartnerEventEmitter.emit();

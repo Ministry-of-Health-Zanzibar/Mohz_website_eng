@@ -21,6 +21,7 @@ export class CarouselComponent implements OnInit {
 teams: any;
 public leftColumn: any[] = [];
 public rightColumn: any[] = [];
+  public bannerImageUrl!: string;
 
 
   constructor(private bannerService: BannerService, private teamService:TeamService) {}
@@ -31,9 +32,11 @@ public rightColumn: any[] = [];
   }
 
 
+
+
   // Fetch all ministry systems excluding deleted ones
   getAllBanners(): void {
-    this.bannerService.getAllBanners().subscribe(
+    this.bannerService.getBanners().subscribe(
       (response) => {
         if (response?.data) {
           // Filter out deleted records (assuming deleted records have a 'deleted_at' property)

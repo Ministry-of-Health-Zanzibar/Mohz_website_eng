@@ -19,24 +19,32 @@ export class AnnouncementService {
   }
 
   public getAllAnnouncements(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}announcements/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}announcement`);
+  }
+
+    public getAllPublicAnnouncements(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/public/announcement`);
+  }
+
+   public findPublicAnnouncementById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/public/announcement/${id}`);
   }
 
   public findAnnouncementById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}announcements/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}announcement/${id}`);
   }
 
   public updateAnnouncement(data: any, id: number): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}announcements/update/${id}`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}announcement/${id}`, data);
   }
 
   public deleteAnnouncement(data: any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}announcements/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}announcement/${id}`);
   }
 
 // Restore
 public restore(data: any, id: number): Observable<any> {
-return this.httpClient.patch(`${this.apiUrl}announcements/restore/${id}`, data);
+return this.httpClient.patch(`${this.apiUrl}announcement/restore/${id}`, data);
 }
 
 }
