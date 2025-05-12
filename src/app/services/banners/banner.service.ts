@@ -35,4 +35,9 @@ export class BannerService {
   public restore(data: any, id: number): Observable<any> {
     return this.httpClient.patch(`${this.apiUrl}banner/restore/${id}`, data);
   }
+
+  // PULIC
+  public getBanners(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/banner`);
+  }
 }

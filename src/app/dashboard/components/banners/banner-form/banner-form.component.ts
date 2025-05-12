@@ -141,7 +141,7 @@ export class BannerFormComponent implements OnInit {
       );
       formData.append('banner_image', this.bannerForm.get('image')?.value);
 
-      this.bannerService.updateBanner(formData).subscribe(
+      this.bannerService.updateBanner(formData, this.dialogData.data.id).subscribe(
         (response: any) => {
           this.dialogRef.close();
           this.onEditNewsEventEmitter.emit();
