@@ -49,6 +49,7 @@ export class LoginComponent {
 
           if (response.data.login_status === '1') {
             this.authService.addUserToLocalStorage(response.data);
+            this.authService.setPermissions(response.data.permissions);
             this.toastService.toastSuccess('You have been login successfully.');
             this.router.navigateByUrl('/dashboard/home');
             this.showLoading = false;
