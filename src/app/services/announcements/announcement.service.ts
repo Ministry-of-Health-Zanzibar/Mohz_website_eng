@@ -13,7 +13,7 @@ export class AnnouncementService {
 
   public createAnnouncement(formData: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}announcements/create`,
+      `${this.apiUrl}announcement`,
       formData
     );
   }
@@ -23,11 +23,11 @@ export class AnnouncementService {
   }
 
     public getAllPublicAnnouncements(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/announcement`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/announcement`);
   }
 
    public findPublicAnnouncementById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/public/announcement/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}public/announcement/${id}`);
   }
 
   public findAnnouncementById(id: number): Observable<any> {
