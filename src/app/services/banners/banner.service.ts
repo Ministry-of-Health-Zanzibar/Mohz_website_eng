@@ -26,16 +26,18 @@ export class BannerService {
     return this.httpClient.get<any>(`${this.apiUrl}/api/banners/${id}`);
   }
 
-  public deleteBanner(data:any, id: number): Observable<any> {
+  public deleteBanner(data: any, id: number): Observable<any> {
     return this.httpClient.delete<any>(
-      `${this.apiUrl}/api/delete-banner/${id}`, data
+      `${this.apiUrl}/api/delete-banner/${id}`,
+      data
     );
   }
 
-// Restore 
-public restore(data: any, id: number): Observable<any> {
-return this.httpClient.patch(`${this.apiUrl}/api/banner/restore/${id}`, data);
-}
-
-
+  // Restore
+  public restore(data: any, id: number): Observable<any> {
+    return this.httpClient.patch(
+      `${this.apiUrl}/api/banner/restore/${id}`,
+      data
+    );
+  }
 }
