@@ -13,7 +13,7 @@ private apiUrl = environment.baseUrl;
 
   public createPartner(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}partners/create`,
+      `${this.apiUrl}partners`,
       data
     );
   }
@@ -26,11 +26,11 @@ private apiUrl = environment.baseUrl;
     return this.httpClient.get<any>(`${this.apiUrl}partners/${id}`);
   }
 
-  public updatePartner(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}partners/update`, data);
+  public updatePartner(data: any, id: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.apiUrl}partners/${id}`, data);
   }
 
   public deletePartner(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}partners/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}partners/${id}`);
   }
 }

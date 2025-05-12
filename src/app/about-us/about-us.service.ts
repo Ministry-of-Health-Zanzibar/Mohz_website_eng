@@ -9,31 +9,41 @@ export class AboutUsService {
 private apiUrl = 'http://localhost:9095';
 
   constructor(private httpClient: HttpClient) {}
+  
 
   public createAboutUs(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/AboutUs/create`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}aboutus`, data);
   }
+  
 
   public getAllAboutUsData(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/AboutUs/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}aboutus`);
   }
 
-  public updateAboutUs(data: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/api/AboutUs/update`, data);
+  public getAllPublicAboutUsData(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/public/aboutus`);
+  }
+
+   public getAllAboutUsPublicData(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/public/aboutus`);
+  }
+
+  public updateAboutUs(data: any, id: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.apiUrl}aboutus/${id}`, data);
   }
 
   public findAboutUsById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/api/AboutUs/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}aboutus/${id}`);
   }
 
   public deleteAboutUs(data: any, id: number): Observable<any> {
     return this.httpClient.delete<any>(
-      `${this.apiUrl}/api/AboutUs/delete/${id}`
+      `${this.apiUrl}aboutus/${id}`
     );
   }
 
    // Restore 
    public restore(data: any, id: number): Observable<any> {
-    return this.httpClient.patch(`${this.apiUrl}/api/AboutUs/restore/${id}`, data);
+    return this.httpClient.patch(`${this.apiUrl}aboutus/restore/${id}`, data);
   }
 }

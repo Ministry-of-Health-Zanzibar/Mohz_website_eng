@@ -147,7 +147,7 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
       formData.append('descriptions', this.aboutUsForm.get('description')?.value);
       formData.append('images', this.aboutUsForm.get('image')?.value);
 
-      this.aboutUsService.updateAboutUs(formData).subscribe(
+      this.aboutUsService.updateAboutUs(formData, this.dialogData.data.id).subscribe(
         (response: any) => {
           this.dialogRef.close();
           this.onEditAboutUsEventEmitter.emit();

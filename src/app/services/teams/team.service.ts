@@ -13,7 +13,7 @@ export class TeamService {
 
   public registerTeamMember(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}create_team`,
+      `${this.apiUrl}team`,
       data
     );
   }
@@ -23,17 +23,17 @@ export class TeamService {
   }
 
   public findTeamById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}team_byID/${id}`);
+    return this.httpClient.get<any>(`${this.apiUrl}team/${id}`);
   }
 
   updateTeamMember(id: number, data: FormData): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}update_team`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}team/update/${id}`, data);
   }
 
 
 
 
   public deleteTeam(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}delete_team/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}team/${id}`);
   }
 }

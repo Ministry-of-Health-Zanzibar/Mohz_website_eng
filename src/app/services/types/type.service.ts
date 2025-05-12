@@ -13,13 +13,13 @@ export class PostTypeService {
 
   public createPostType(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}types/create`,
+      `${this.apiUrl}types`,
       data
     );
   }
 
   public getAllPostTypes(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}types/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}types`);
   }
 
 
@@ -28,11 +28,11 @@ export class PostTypeService {
   }
 
   public updatePostType(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}types/update/${id}`, data);
+    return this.httpClient.put<any>(`${this.apiUrl}types/${id}`, data);
   }
 
   public deletePostType(data:any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}types/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}types/${id}`);
   }
 
   public restoreDeletedPostType(data: any, id: number): Observable<any> {
