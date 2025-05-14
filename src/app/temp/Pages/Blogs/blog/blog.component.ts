@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../../services/news/news.service';
 import { PostService } from '../../../../services/posts/post.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+     MatButtonModule,
+      MatIconModule,
+      RouterModule
+    ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
@@ -20,7 +25,10 @@ export class BlogComponent implements OnInit{
   public events: any;
   public isEventLoading!: boolean;
   public readMore = 'Read More';
-  constructor(private newsService: NewsService, private eventService: PostService, private router: Router){}
+  constructor(
+    private newsService: NewsService,
+     private eventService: PostService,
+      private router: Router){}
   ngOnInit(): void {
     this.getAllNeews();
     this.getEventPosts();
@@ -29,7 +37,7 @@ export class BlogComponent implements OnInit{
 
    public getAllNeews(): void {
         this.isLoading = true;
-        this.newsService.getAllNews().subscribe(
+        this.newsService.getAllPublicNews().subscribe(
           (response: any) => {
             this.newses = response.data;
             console.log('NEWS: ', response.data);

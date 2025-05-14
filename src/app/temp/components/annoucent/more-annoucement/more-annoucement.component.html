@@ -18,13 +18,14 @@
                   {{announcement?.announcement_content}}
                   </p>
                   
-                    <ul *ngIf="announcement?.document_urls?.length > 0; else noFiles" class="list-unstyled">
-                      <li *ngFor="let file of announcement?.document_urls">
-                        <a [href]="file.url" target="_blank">
-                          <i class="fa-solid fa-file-pdf fa-lg text-danger me-2"></i> <span class="fw-bold">Download File</span>
-                        </a>
-                      </li>
-                    </ul>
+                 <ul *ngIf="announcement?.document_names?.length > 0; else noFiles" class="list-unstyled">
+  <li *ngFor="let fileName of announcement?.document_names">
+    <a [href]="'http://localhost:8000/uploads/announcementDocs/' + fileName" target="_blank">
+      <i class="fa-solid fa-file-pdf fa-lg text-danger me-2"></i>
+      <span class="fw-bold">Download File</span>
+    </a>
+  </li>
+</ul>
 
                     <ng-template #noFiles>
                       <p class="text-center">No files available</p>
