@@ -22,7 +22,7 @@ export class ReadMoreServicesComponent implements OnInit {
 
    public getOurServiceData(): void {
       const newsId = this.activatedRoute.snapshot.params['id'];
-      this.ourService.findOurServiceById(newsId).subscribe(
+      this.ourService.findPublicOurServiceById(newsId).subscribe(
         (response: any) => {
           if (response.statusCode === 200) {
             console.log('NEWS DATA: ', response.data);
