@@ -356,6 +356,14 @@ const routes: Routes = [
             './components/Ministry-system/ministry-system-list/ministry-system-list.component'
           ).then((c) => c.MinistrySystemListComponent),
       },
+      {
+        path: 'ministry-system-details/:id',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/Ministry-system/ministry-system-detail/ministry-system-detail.component'
+          ).then((c) => c.MinistrySystemDetailComponent),
+      },
 
       {
         path: 'role-list',
