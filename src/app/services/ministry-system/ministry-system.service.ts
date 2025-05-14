@@ -4,49 +4,49 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MinistrySystemService {
-
   private apiUrl = environment.baseUrl;
 
-  constructor(private httClient:HttpClient) { }
+  constructor(private httClient: HttpClient) {}
 
+  public createMinistrySystem(formData: any): Observable<any> {
+    return this.httClient.post<any>(`${this.apiUrl}ministrys`, formData);
+  }
 
-   public createMinistrySystem(formData: any): Observable<any> {
-      return this.httClient.post<any>(
-        `${this.apiUrl}ministrys`,
-        formData
-      );
-    }
+  public getAllMinistrySystem(): Observable<any> {
+    return this.httClient.get<any>(`${this.apiUrl}ministrys`);
+  }
 
-    public getAllMinistrySystem(): Observable<any> {
-      return this.httClient.get<any>(`${this.apiUrl}ministrys`);
-    }
+  public getPublicAllMinistrySystem(): Observable<any> {
+    return this.httClient.get<any>(`${this.apiUrl}/public/ministry`);
+  }
 
-       public getPublicAllMinistrySystem(): Observable<any> {
-      return this.httClient.get<any>(`${this.apiUrl}/public/ministry`);
-    }
+  public findPublicMinistrySystemById(id: number): Observable<any> {
+    return this.httClient.get<any>(`${this.apiUrl}/public/ministrys/${id}`);
+  }
 
-      public findPublicMinistrySystemById(id: number): Observable<any> {
-      return this.httClient.get<any>(`${this.apiUrl}/public/ministrys/${id}`);
-    }
+  public findMinistrySystemById(id: number): Observable<any> {
+    return this.httClient.get<any>(`${this.apiUrl}ministrys/${id}`);
+  }
 
-    public findMinistrySystemById(id: number): Observable<any> {
-      return this.httClient.get<any>(`${this.apiUrl}ministrys/${id}`);
-    }
+  public updateMinistrySystem(data: any, id: number): Observable<any> {
+    return this.httClient.post<any>(`${this.apiUrl}ministrysystem/${id}`, data);
+  }
 
-    public updateMinistrySystem(data: any): Observable<any> {
-      return this.httClient.post<any>(`${this.apiUrl}ministrysystem/update`, data);
-    }
-
-    public deleteMinistrySystem(data: any, id: number): Observable<any> {
-      return this.httClient.delete<any>(`${this.apiUrl}ministrysystem/delete/${id}`, data);
-    }
-
+  public deleteMinistrySystem(data: any, id: number): Observable<any> {
+    return this.httClient.delete<any>(
+      `${this.apiUrl}ministrysystem/delete/${id}`,
+      data
+    );
+  }
 
   // Restore MinistrySystem
   public restore(data: any, id: number): Observable<any> {
-  return this.httClient.patch(`${this.apiUrl}ministrysystem/restore/${id}`, data);
-}
+    return this.httClient.patch(
+      `${this.apiUrl}ministrysystem/restore/${id}`,
+      data
+    );
+  }
 }

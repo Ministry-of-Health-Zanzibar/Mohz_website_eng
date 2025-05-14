@@ -14,8 +14,6 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { BannerFormComponent } from '../../banners/banner-form/banner-form.component';
-import { DisplayBennerImageComponent } from '../../banners/display-benner-image/display-benner-image.component';
 import { AboutUsService } from '../../../../about-us/about-us.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
