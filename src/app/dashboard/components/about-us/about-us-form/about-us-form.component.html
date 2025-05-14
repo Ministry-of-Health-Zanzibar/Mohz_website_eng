@@ -1,4 +1,7 @@
-<div class="container-fluid">
+<div
+  *ngIf="permission.parmissionMatched(['Create AboutUs', 'Update AboutUs'])"
+  class="container-fluid"
+>
   <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
     Create New AboutUs
   </h5>
@@ -144,7 +147,7 @@
       mat-flat-button
       color="primary"
       [disabled]="!(aboutUsForm.valid && aboutUsForm.dirty)"
-      (click)="handleBannerSubmit()"
+      (click)="handleAboutUsSubmit()"
     >
       {{ action }} Data
     </button>

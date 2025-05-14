@@ -23,6 +23,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-announcement-list',
@@ -54,6 +55,7 @@ export class AnnouncementListComponent
     private toastService: ToastService,
     private dialog: MatDialog,
     private router: Router,
+    public permission: PermissionService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -197,29 +199,27 @@ export class AnnouncementListComponent
     );
   }
 
-
   // Restore
-    // Delete
-    public restoreAnnoucement(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.announcementService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllAnnouncements();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  // Delete
+  public restoreAnnoucement(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.announcementService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllAnnouncements();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
-
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   // View Ann Details
   public navigateToAnnouncementDetails(data: any): void {

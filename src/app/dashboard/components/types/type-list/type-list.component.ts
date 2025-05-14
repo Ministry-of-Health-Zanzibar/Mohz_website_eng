@@ -23,6 +23,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { PostTypeService } from '../../../../services/types/type.service';
 import { TypeFormComponent } from '../type-form/type-form.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-type-list',
@@ -50,16 +51,13 @@ export class TypeListComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private typeService: PostTypeService,
     private toastService: ToastService,
+    public permission: PermissionService,
     private dialog: MatDialog,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
-  public displayedColumns: string[] = [
-    'id',
-    'typeName',
-    'action',
-  ];
+  public displayedColumns: string[] = ['id', 'typeName', 'action'];
 
   // public dataSource: MatTableDataSource<any> = new MatTableDataSource();
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
@@ -131,12 +129,11 @@ export class TypeListComponent implements OnInit, OnDestroy, AfterViewInit {
       dialogRef.close();
     });
 
-    const sub =
-      dialogRef.componentInstance.onAddTypeEventEmitter.subscribe(
-        () => {
-          this.getAllTypes();
-        }
-      );
+    const sub = dialogRef.componentInstance.onAddTypeEventEmitter.subscribe(
+      () => {
+        this.getAllTypes();
+      }
+    );
   }
 
   // Open Edit Dialog
@@ -154,12 +151,11 @@ export class TypeListComponent implements OnInit, OnDestroy, AfterViewInit {
       dialogRef.close();
     });
 
-    const sub =
-      dialogRef.componentInstance.onEditTypeEventEmitter.subscribe(
-        () => {
-          this.getAllTypes();
-        }
-      );
+    const sub = dialogRef.componentInstance.onEditTypeEventEmitter.subscribe(
+      () => {
+        this.getAllTypes();
+      }
+    );
   }
 
   // Delete
@@ -201,7 +197,6 @@ export class TypeListComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
   }
-
 
   ngOnDestroy(): void {
     this.onDestroy.next();

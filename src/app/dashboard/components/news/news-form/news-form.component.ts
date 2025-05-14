@@ -45,10 +45,7 @@ export class NewsFormComponent {
   public action: any = 'Save';
   public previewImage: string | ArrayBuffer | null = null;
   public fileError: string | null = null;
-  // public previewImages!: Promise<string>[];
   public previewImages!: any;
-  // selectedFiles: any;
-  // public previewImages: string[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
@@ -124,35 +121,6 @@ export class NewsFormComponent {
       }
     );
   }
-
-  // Update
-  // public onUpdateNews(): void {
-  //   var formData = this.newsForm.value;
-  //   var data = {
-  //     id: this.dialogData.data.id,
-  //     news_title: formData.newsTitle,
-  //     news_descriptions: formData.newsDescription,
-  //   };
-
-  //   this.newsService.updateNews(data).subscribe(
-  //     (response: any) => {
-  //       // console.log(this.newsForm.value);
-  //       // console.log(response.statusCode);
-  //       this.dialogRef.close();
-  //       this.onEditNewsEventEmitter.emit();
-  //       if (response.statusCode === 201) {
-  //         this.toastService.toastSuccess(response.message);
-  //       } else {
-  //         this.toastService.toastError(response.message);
-  //       }
-  //     },
-  //     (errorResponse: HttpErrorResponse) => {
-  //       if (errorResponse) {
-  //         this.toastService.toastError(errorResponse.error.message);
-  //       }
-  //     }
-  //   );
-  // }
 
   public onUpdateNews(): void {
     const formData = new FormData();
