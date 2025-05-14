@@ -2,7 +2,8 @@
   <div class="card p-3">
     <div class="mb-4">
       <h5 class="fw-bold">
-        <i class="fa-sharp fa-solid fa-star-of-life me-2"></i> Announcement Title
+        <i class="fa-sharp fa-solid fa-star-of-life me-2"></i> Announcement
+        Title
       </h5>
       <p class="ps-5 pe-3">
         {{ announcement?.announcement_title }}
@@ -11,7 +12,8 @@
 
     <div class="mb-4">
       <h5 class="fw-bold">
-        <i class="fa-sharp fa-solid fa-star-of-life me-2"></i> Announcement Content
+        <i class="fa-sharp fa-solid fa-star-of-life me-2"></i> Announcement
+        Content
       </h5>
       <p class="ps-5 pe-3">
         {{ announcement?.announcement_content }}
@@ -20,20 +22,36 @@
 
     <div class="mb-4">
       <h5 class="fw-bold">
-        <i class="fa-sharp fa-solid fa-star-of-life me-2"></i> Announcement Files
+        <i class="fa-sharp fa-solid fa-star-of-life me-2"></i> Announcement
+        Files
       </h5>
-      <ul *ngIf="announcement?.files?.length > 0; else noFiles">
-        <li *ngFor="let file of announcement?.files">
-          <a [href]="file.url" target="_blank">{{ file.name }}</a>
+      <ul *ngIf="announcement?.document_names?.length > 0; else noFiles">
+        <li
+          *ngFor="let fileName of announcement?.document_names; let i = index"
+        >
+          <a
+            [href]="
+              'http://localhost:8000/uploads/announcementDocs/' + fileName
+            "
+            target="_blank"
+          >
+            File {{ i + 1 }}
+          </a>
         </li>
       </ul>
+
       <ng-template #noFiles>
         <p class="ps-5 pe-3">No files uploaded for this announcement.</p>
       </ng-template>
     </div>
 
     <div>
-      <button routerLink="../../announcement-list" mat-flat-button color="warn" class="float-end">
+      <button
+        routerLink="../../announcement-list"
+        mat-flat-button
+        color="warn"
+        class="float-end"
+      >
         <mat-icon>arrow_back_ios</mat-icon> Back
       </button>
     </div>
