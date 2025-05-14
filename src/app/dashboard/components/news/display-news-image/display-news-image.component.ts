@@ -33,6 +33,6 @@ export class DisplayNewsImageComponent {
   }
 
   private getBannerData(): void {
-    this.newsImageUrl = this.dialogData.data.image_urls[0];
+    this.newsImageUrl = this.dialogData.data.image_names[0];
   }
 }

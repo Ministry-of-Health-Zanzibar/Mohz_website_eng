@@ -50,18 +50,17 @@ export class NewsFormComponent {
   // selectedFiles: any;
   // public previewImages: string[] = [];
 
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private formBuilder: FormBuilder,
     private newsService: NewsService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
-    private toastService: ToastService,
+    private toastService: ToastService
   ) {
     this.newsForm = this.formBuilder.group({
       newsTitle: ['', Validators.required],
       newsDescription: ['', Validators.required],
-      newsPhotos: ['',],
+      newsPhotos: [''],
     });
   }
 
@@ -93,20 +92,21 @@ export class NewsFormComponent {
     }
   }
 
-
-
   public onAddNews(): void {
     const formData = new FormData();
     formData.append('news_title', this.newsForm.get('newsTitle')?.value);
-    formData.append('news_descriptions', this.newsForm.get('newsDescription')?.value);
-  
+    formData.append(
+      'news_descriptions',
+      this.newsForm.get('newsDescription')?.value
+    );
+
     const files = this.newsForm.get('newsPhotos')?.value;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
         formData.append('news_photos[]', files[i]); // Append as an array
       }
     }
-  
+
     this.newsService.createNews(formData).subscribe(
       (response: any) => {
         this.dialogRef.close();
@@ -124,7 +124,6 @@ export class NewsFormComponent {
       }
     );
   }
-  
 
   // Update
   // public onUpdateNews(): void {
@@ -159,16 +158,19 @@ export class NewsFormComponent {
     const formData = new FormData();
     formData.append('id', this.dialogData.data.id);
     formData.append('news_title', this.newsForm.get('newsTitle')?.value);
-    formData.append('news_descriptions', this.newsForm.get('newsDescription')?.value);
-  
+    formData.append(
+      'news_descriptions',
+      this.newsForm.get('newsDescription')?.value
+    );
+
     const files = this.newsForm.get('newsPhotos')?.value;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
         formData.append('news_photos[]', files[i]); // Append as an array
       }
     }
-  
-    this.newsService.updateNews(formData).subscribe(
+
+    this.newsService.updateNews(formData, this.dialogData.data.id).subscribe(
       (response: any) => {
         this.dialogRef.close();
         this.onEditNewsEventEmitter.emit();
@@ -185,62 +187,57 @@ export class NewsFormComponent {
       }
     );
   }
-  
 
+  public onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
+      const files = Array.from(input.files);
 
-public onImageSelected(event: Event): void {
-  const input = event.target as HTMLInputElement;
-  if (input?.files?.length) {
-    const files = Array.from(input.files);
+      this.fileError = null;
+      this.newsForm.get('newsPhotos')?.setValue(files); // Store files array
 
-    this.fileError = null;
-    this.newsForm.get('newsPhotos')?.setValue(files); // Store files array
-
-    // Generate previews
-    this.previewImages = [];
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewImages.push(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    });
+      // Generate previews
+      this.previewImages = [];
+      files.forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.previewImages.push(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
   }
-}
 
-// WITH INDEX
-// public onImageSelected(event: Event): void {
-//   const input = event.target as HTMLInputElement;
-//   if (input?.files?.length) {
-//     const files = Array.from(input.files);
+  // WITH INDEX
+  // public onImageSelected(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input?.files?.length) {
+  //     const files = Array.from(input.files);
 
-//     this.fileError = null;
-//     this.newsForm.get('newsPhotos')?.setValue(files); // Store files array
+  //     this.fileError = null;
+  //     this.newsForm.get('newsPhotos')?.setValue(files); // Store files array
 
-//     // Reset previews and selected files
-//     this.previewImages = [];
-//     this.selectedFiles = files; // Store selected files
+  //     // Reset previews and selected files
+  //     this.previewImages = [];
+  //     this.selectedFiles = files; // Store selected files
 
-//     files.forEach((file) => {
-//       const reader = new FileReader();
-//       reader.onload = () => {
-//         this.previewImages.push(reader.result as string);
-//       };
-//       reader.readAsDataURL(file);
-//     });
-//   }
-// }
+  //     files.forEach((file) => {
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //         this.previewImages.push(reader.result as string);
+  //       };
+  //       reader.readAsDataURL(file);
+  //     });
+  //   }
+  // }
 
-// public removeImage(index: number): void {
-//   this.previewImages.splice(index, 1);
-//   this.selectedFiles.splice(index, 1);
+  // public removeImage(index: number): void {
+  //   this.previewImages.splice(index, 1);
+  //   this.selectedFiles.splice(index, 1);
 
-//   // Update form control with the modified file list
-//   this.newsForm.get('newsPhotos')?.setValue(this.selectedFiles.length ? this.selectedFiles : null);
-// }
-
-
-  
+  //   // Update form control with the modified file list
+  //   this.newsForm.get('newsPhotos')?.setValue(this.selectedFiles.length ? this.selectedFiles : null);
+  // }
 
   ngOnDestroy(): void {
     this.onDestroy.next();

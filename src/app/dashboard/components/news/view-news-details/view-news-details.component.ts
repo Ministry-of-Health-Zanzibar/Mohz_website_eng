@@ -10,7 +10,13 @@ import { MatTableModule } from '@angular/material/table';
 @Component({
   selector: 'app-view-news-details',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatTableModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+  ],
   templateUrl: './view-news-details.component.html',
   styleUrl: './view-news-details.component.css',
 })
@@ -43,25 +49,16 @@ export class ViewNewsDetailsComponent implements OnInit {
     });
   }
 
-  // private populateTableData(): void {
-  //   this.newsData = [
-  //     { title: 'Title', value: this.news?.news_title || '' },
-  //     { title: 'Description', value: this.news?.news_descriptions || '' },
-  //     { title: 'Image', value: this.news?.image_urls || '', isImage: true },
-  //   ];
-  // }
-
   private populateTableData(): void {
     this.newsData = [
       { title: 'Title', value: this.news?.news_title || '' },
       { title: 'Description', value: this.news?.news_descriptions || '' },
     ];
-  
+
     if (this.news?.image_urls?.length) {
       this.news.image_urls.forEach((imageUrl: string) => {
         this.newsData.push({ title: 'Image', value: imageUrl, isImage: true });
       });
     }
   }
-  
 }

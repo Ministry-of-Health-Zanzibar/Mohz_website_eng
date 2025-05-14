@@ -24,6 +24,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { ChangeDetectorRef } from '@angular/core';
 import { DisplayNewsImageComponent } from '../display-news-image/display-news-image.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 interface News {
   id: string;
@@ -64,6 +65,8 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     private dialog: MatDialog,
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
+    public permission: PermissionService,
+
     private router: Router
   ) {}
 
@@ -206,9 +209,8 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.router.navigate(['/dashboard/news-details', data.id]);
   }
 
-
-   // Delete
-   public deleteNews(data: any): void {
+  // Delete
+  public deleteNews(data: any): void {
     console.log(data);
     this.newsService.deleteNews(data, data.id).subscribe(
       (response: any) => {
@@ -228,27 +230,26 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
   // Restore
-    // Delete
-    public restoreNews(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.newsService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllNews();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  // Delete
+  public restoreNews(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.newsService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllNews();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
-
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   ngOnDestroy(): void {
     this.onDestroy.next();

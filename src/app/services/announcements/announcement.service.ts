@@ -12,21 +12,18 @@ export class AnnouncementService {
   constructor(private httpClient: HttpClient) {}
 
   public createAnnouncement(formData: any): Observable<any> {
-    return this.httpClient.post<any>(
-      `${this.apiUrl}announcement`,
-      formData
-    );
+    return this.httpClient.post<any>(`${this.apiUrl}announcement`, formData);
   }
 
   public getAllAnnouncements(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}announcement`);
   }
 
-    public getAllPublicAnnouncements(): Observable<any> {
+  public getAllPublicAnnouncements(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/announcement`);
   }
 
-   public findPublicAnnouncementById(id: number): Observable<any> {
+  public findPublicAnnouncementById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/announcement/${id}`);
   }             
 
@@ -42,9 +39,11 @@ export class AnnouncementService {
     return this.httpClient.delete<any>(`${this.apiUrl}announcement/${id}`);
   }
 
-// Restore
-public restore(data: any, id: number): Observable<any> {
-return this.httpClient.patch(`${this.apiUrl}announcement/restore/${id}`, data);
-}
-
+  // Restore
+  public restore(data: any, id: number): Observable<any> {
+    return this.httpClient.patch(
+      `${this.apiUrl}announcement/restore/${id}`,
+      data
+    );
+  }
 }
