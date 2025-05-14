@@ -31,8 +31,8 @@ export class NewsService {
     return this.httpClient.get<any>(`${this.apiUrl}news/${id}`);
   }
 
-  public updateNews(data: any, newsId: number): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}news/${newsId}`, data);
+  public updateNews(data: any, id: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.apiUrl}news/${id}`, data);
   }
 
   public deleteNews(data: any, id: number): Observable<any> {

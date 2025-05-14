@@ -33,7 +33,7 @@ export class ReadMoreNewsComponent implements OnInit {
 
   public getNewsData(): void {
     const newsId = this.activateRoute.snapshot.params['id'];
-    this.newsService.findNewsById(newsId).subscribe(
+    this.newsService.findPublicNewsById(newsId).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           console.log('NEWS DATA: ', response.data);
