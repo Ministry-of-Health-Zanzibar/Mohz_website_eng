@@ -28,7 +28,7 @@ export class AnnouncementService {
 
    public findPublicAnnouncementById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/announcement/${id}`);
-  }
+  }             
 
   public findAnnouncementById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}announcement/${id}`);
