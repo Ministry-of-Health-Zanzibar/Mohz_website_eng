@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} News</h5> -->
- 
+
   <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
     Create New Post
   </h5>
@@ -27,11 +27,15 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="dialogData.action === 'EDIT'" appearance="outline" class="col-md-12 mt-3">
+      <mat-form-field
+        *ngIf="dialogData.action === 'EDIT'"
+        appearance="outline"
+        class="col-md-12 mt-3"
+      >
         <mat-label>Type Name</mat-label>
         <input matInput formControlName="typeName" readonly />
       </mat-form-field>
-      
+
       <mat-form-field appearance="outline" class="col-md-12 mt-3">
         <mat-label>Post Type</mat-label>
         <mat-select disableRipple formControlName="postTypeId">
@@ -39,8 +43,16 @@
             {{ postType.type_name }}
           </mat-option>
         </mat-select>
-        <mat-error class="error-message" *ngIf="postForm.get('postTypeId')?.datatouched && postForm.get('postTypeId')?.invalid">
-          <span *ngIf="postForm.get('postTypeId')?.errors?.['required']">This field is mandatory</span>
+        <mat-error
+          class="error-message"
+          *ngIf="
+            postForm.get('postTypeId')?.datatouched &&
+            postForm.get('postTypeId')?.invalid
+          "
+        >
+          <span *ngIf="postForm.get('postTypeId')?.errors?.['required']"
+            >This field is mandatory</span
+          >
         </mat-error>
       </mat-form-field>
 
@@ -72,6 +84,7 @@
         </div>
         <input
           type="file"
+          multiple="true"
           (change)="onFileSelected($event)"
           class="form-control"
         />
