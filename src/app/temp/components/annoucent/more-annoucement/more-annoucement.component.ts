@@ -44,7 +44,7 @@ export class MoreAnnoucementComponent  implements OnInit{
 
     public getAllAnnouncements(): void {
       this.isLoading = true;
-      this.annoucementService.getAllAnnouncements().subscribe(
+      this.annoucementService.getAllPublicAnnouncements().subscribe(
         (response: any) => {
           if (response?.data) {
             // Chuja matangazo yaliyofutwa

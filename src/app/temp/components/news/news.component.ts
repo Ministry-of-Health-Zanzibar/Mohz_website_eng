@@ -44,7 +44,7 @@ export class NewsComponent implements OnInit {
   }
 
 public getAllNeews(): void {
-  this.newsService.getAllNews().subscribe(
+  this.newsService.getAllPublicNews().subscribe(
     (response) => {
       if (response?.data) {
         // Filter out deleted records (assuming deleted records have a 'deleted_at' property)

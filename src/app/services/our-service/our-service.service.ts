@@ -19,6 +19,14 @@ export class OurServiceService {
     return this.httpClient.get<any>(`${this.apiUrl}our_services`);
   }
 
+   public getAllPublicOurServices(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/our_services`);
+  }
+
+    public findPublicOurServiceById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/our_services/${id}`);
+  }
+
   public findOurServiceById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}our_services/${id}`);
   }
