@@ -1,7 +1,7 @@
 <div *ngIf="isLoading" class="loading-spinner">
   <span>Loading...</span>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading && permission.parmissionMatched(['View Sitelink'])">
   <div class="container-fluid">
     <div class="card">
       <h5 class="pt-4 ps-2">SiteLinks</h5>
@@ -87,33 +87,33 @@
             </mat-slide-toggle> -->
 
             <button
-            (click)="handleOpenEditDialogForm(element)"
-            mat-mini-fab
-            color="primary"
-            matTooltip="Edit"
-            class="mt-2 me-2"
-          >
-            <mat-icon class="font-icon">edit_square</mat-icon>
-          </button>
-          <button
-          (click)="deleteSitelink(element)"
-            mat-mini-fab
-            color="accent"
-            matTooltip="Delete"
-            class="mt-2 me-2 mb-2"
-          >
-            <mat-icon class="font-icon">delete</mat-icon>
-          </button>
+              (click)="handleOpenEditDialogForm(element)"
+              mat-mini-fab
+              color="primary"
+              matTooltip="Edit"
+              class="mt-2 me-2"
+            >
+              <mat-icon class="font-icon">edit_square</mat-icon>
+            </button>
+            <button
+              (click)="deleteSitelink(element)"
+              mat-mini-fab
+              color="accent"
+              matTooltip="Delete"
+              class="mt-2 me-2 mb-2"
+            >
+              <mat-icon class="font-icon">delete</mat-icon>
+            </button>
 
-          <!-- View -->
-          <button
-          (click)="navigateToSitelinkDetails(element)"
-          mat-mini-fab
-          color="primary"
-          matTooltip="View"
-        >
-          <mat-icon class="font-icon">visibility</mat-icon>
-        </button>
+            <!-- View -->
+            <button
+              (click)="navigateToSitelinkDetails(element)"
+              mat-mini-fab
+              color="primary"
+              matTooltip="View"
+            >
+              <mat-icon class="font-icon">visibility</mat-icon>
+            </button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
