@@ -26,6 +26,7 @@ import {
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { AuthenticationService } from '../../../../services/auth/authentication.service';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-announcement-form',
@@ -57,14 +58,14 @@ export class AnnouncementFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private announcementService: AnnouncementService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
-    private authService: AuthenticationService,
+    public permission: PermissionService,
     private toastService: ToastService,
     private router: Router
   ) {
     this.announcementForm = this.formBuilder.group({
       announcementTitle: ['', Validators.required],
       announcementContent: ['', Validators.required],
-      document: ['', ],
+      document: [''],
     });
   }
 
@@ -100,16 +101,22 @@ export class AnnouncementFormComponent implements OnInit {
 
   public addAnnouncement(): void {
     const formData = new FormData();
-    formData.append('announcement_title', this.announcementForm.get('announcementTitle')?.value);
-    formData.append('announcement_content', this.announcementForm.get('announcementContent')?.value);
-  
+    formData.append(
+      'announcement_title',
+      this.announcementForm.get('announcementTitle')?.value
+    );
+    formData.append(
+      'announcement_content',
+      this.announcementForm.get('announcementContent')?.value
+    );
+
     const files = this.announcementForm.get('document')?.value;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
         formData.append('announcement_document[]', files[i], files[i].name); // Append each file
       }
     }
-  
+
     this.announcementService.createAnnouncement(formData).subscribe(
       (response: any) => {
         this.dialogRef.close();
@@ -125,7 +132,6 @@ export class AnnouncementFormComponent implements OnInit {
       }
     );
   }
-  
 
   // Update
   public updateAnnouncement(): void {
@@ -141,7 +147,10 @@ export class AnnouncementFormComponent implements OnInit {
 
     // const file = this.announcementForm.get('document')?.value;
     // if (file) {
-      formData.append('announcement_document[]', this.announcementForm.get('document')?.value); // Ensure filename is included
+    formData.append(
+      'announcement_document[]',
+      this.announcementForm.get('document')?.value
+    ); // Ensure filename is included
     // }
 
     this.announcementService
@@ -203,7 +212,7 @@ export class AnnouncementFormComponent implements OnInit {
     if (input?.files?.length) {
       // Clear any previous errors
       this.fileError = null;
-      
+
       const files = input.files;
       // Ensure all files are valid
       for (let i = 0; i < files.length; i++) {
@@ -213,19 +222,18 @@ export class AnnouncementFormComponent implements OnInit {
           this.fileError = 'Please select only PDF files.';
           return;
         }
-  
+
         // Validate file size (Max 5MB per file)
         if (file.size > 5 * 1024 * 1024) {
           this.fileError = 'Document size should not exceed 5MB per file.';
           return;
         }
       }
-  
+
       // Set the files in the form control
       this.announcementForm.get('document')?.setValue(files);
     }
   }
-  
 
   ngOnDestroy(): void {
     this.onDestroy.next();

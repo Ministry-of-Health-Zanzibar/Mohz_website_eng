@@ -53,9 +53,9 @@ const routes: Routes = [
         path: 'view-user-details/:id',
         title: '',
         loadComponent: () =>
-          import('./components/users/view-user-details/view-user-details.component').then(
-            (c) => c.ViewUserDetailsComponent
-          ),
+          import(
+            './components/users/view-user-details/view-user-details.component'
+          ).then((c) => c.ViewUserDetailsComponent),
       },
 
       {
@@ -98,22 +98,7 @@ const routes: Routes = [
             (c) => c.NewsFormComponent
           ),
       },
-      {
-        path: 'comment-list',
-        title: '',
-        loadComponent: () =>
-          import(
-            './components/comments/coment-list/coment-list.component'
-          ).then((c) => c.ComentListComponent),
-      },
-      {
-        path: 'comment-form',
-        title: '',
-        loadComponent: () =>
-          import(
-            './components/comments/coment-form/coment-form.component'
-          ).then((c) => c.ComentFormComponent),
-      },
+
       {
         path: 'banner-list',
         title: '',
@@ -372,18 +357,14 @@ const routes: Routes = [
           ).then((c) => c.MinistrySystemListComponent),
       },
 
-
       {
         path: 'role-list',
         title: '',
         loadComponent: () =>
-          import(
-            './components/roles/role-list/role-list.component'
-          ).then((c) => c.RoleListComponent),
+          import('./components/roles/role-list/role-list.component').then(
+            (c) => c.RoleListComponent
+          ),
       },
-
-
-
     ],
   },
 ];

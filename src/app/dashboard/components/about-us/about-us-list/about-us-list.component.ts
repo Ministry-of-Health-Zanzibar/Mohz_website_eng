@@ -25,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AboutUsFormComponent } from '../about-us-form/about-us-form.component';
 import { DisplayAboutUsImageComponent } from '../display-about-us-image/display-about-us-image.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-about-us-list',
@@ -57,6 +58,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     private dialog: MatDialog,
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
+    public permission: PermissionService,
     private router: Router
   ) {}
 
@@ -220,26 +222,26 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Restore
-    // Delete
-    public restoreMinistrySystem(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.aboutUsService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllAboutUsData();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  // Delete
+  public restoreMinistrySystem(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.aboutUsService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllAboutUsData();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   // View
   public navigateToAboutDetails(data: any): void {

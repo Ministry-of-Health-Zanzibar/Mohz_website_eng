@@ -25,6 +25,7 @@ import { ToastService } from '../../../../services/toast/toast.service';
 import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { OurServiceService } from '../../../../services/our-service/our-service.service';
 import { OurServiceFormComponent } from '../our-service-form/our-service-form.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-our-service-list',
@@ -56,6 +57,7 @@ export class OurServiceListComponent
     private toastService: ToastService,
     private dialog: MatDialog,
     private router: Router,
+    public permission: PermissionService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -194,26 +196,26 @@ export class OurServiceListComponent
   }
 
   // Restore
-    // Delete
-    public restoreOurService(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.ourService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllOurServices();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  // Delete
+  public restoreOurService(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.ourService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllOurServices();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   // View Ann Details
   public navigateToOurServiceDetails(data: any): void {
