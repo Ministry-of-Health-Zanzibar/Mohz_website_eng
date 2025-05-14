@@ -1,35 +1,92 @@
-<div class="container mt-4 p-2">
-  <h5 class="fw-bold mt-4">
-    Create Ministry System
+<div
+  *ngIf="
+    permission.parmissionMatched([
+      'Create Ministry System',
+      'Update Ministry System'
+    ])
+  "
+  class="container-fluid"
+>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create New Ministry System
   </h5>
-  <form [formGroup]="ministryForm" (ngSubmit)="onSubmit()" class="mt-4">
-    <!-- System Title -->
-    <mat-form-field appearance="outline" class="form-group full-width">
-      <mat-label>System Title</mat-label>
-      <input matInput id="system_title" formControlName="system_title" type="text" placeholder="Enter system title">
-      <mat-error *ngIf="ministryForm.get('system_title')?.invalid && ministryForm.get('system_title')?.touched">
-        System Title is required and must be less than 255 characters.
-      </mat-error>
-    </mat-form-field>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Ministry System
+  </h5>
+  <form [formGroup]="ministryForm">
+    <div class="row">
+      <!-- Tile -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Title</mat-label>
+        <input
+          type="text"
+          formControlName="title"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            ministryForm.controls.title.touched &&
+            ministryForm.controls.title.invalid
+          "
+        >
+          <span *ngIf="ministryForm.controls.title.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
 
-    <!-- System Link -->
-    <mat-form-field appearance="outline" class="form-group full-width">
-      <mat-label>System Link</mat-label>
-      <input matInput id="system_link" formControlName="system_link" type="text" placeholder="Enter system link">
-      <mat-error *ngIf="ministryForm.get('system_link')?.invalid && ministryForm.get('system_link')?.touched">
-        A valid URL is required.
-      </mat-error>
-    </mat-form-field>
+      <!-- Link -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Link</mat-label>
+        <input type="text" formControlName="link" matInput class="text-black" />
+        <mat-error
+          *ngIf="
+            ministryForm.controls.link.touched &&
+            ministryForm.controls.link.invalid
+          "
+        >
+          <span *ngIf="ministryForm.controls.link.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
 
-    <!-- System Logo -->
-    <div class="form-group full-width">
-      <label for="system_logo">System Logo</label>
-      <input id="system_logo" formControlName="system_logo" type="file" (change)="onFileChange($event)">
-      <mat-error *ngIf="ministryForm.get('system_logo')?.invalid && ministryForm.get('system_logo')?.touched">
-        Please upload a logo.
-      </mat-error>
+      <!-- Image -->
+      <div class="col-md-12 mt-2 mb-3">
+        <div class="mb-2">
+          <mat-label>Logo</mat-label>
+        </div>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          class="form-control"
+        />
+        <mat-error *ngIf="fileError">
+          {{ fileError }}
+        </mat-error>
+      </div>
+      <div *ngIf="previewImage" class="mt-3">
+        <img
+          [src]="previewImage"
+          alt="Preview"
+          class="img-fluid"
+          style="max-height: 200px"
+        />
+      </div>
     </div>
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="ministryForm.invalid">Submit</button>
   </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(ministryForm.valid && ministryForm.dirty)"
+      (click)="handleMinistrySystemSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
 </div>
