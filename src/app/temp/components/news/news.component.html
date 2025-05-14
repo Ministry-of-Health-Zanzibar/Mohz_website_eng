@@ -31,7 +31,10 @@
               <div class="col-md-6">
                 <div class="service-img">
                   <img
-                    [src]="news?.image_urls[0]"
+                  [src]="
+                  'http://localhost:8000/uploads/newsPhotos/' +
+                  news?.image_names[0]
+                "
                     class="img-fluid rounded-top rounded-bottom w-100 h-100"
                     alt="Image"
                   />

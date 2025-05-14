@@ -34,7 +34,7 @@ public rightColumn: any[] = [];
 
 
 
-  // Fetch all ministry systems excluding deleted ones
+  // Fetch all 
   getAllBanners(): void {
     this.bannerService.getBanners().subscribe(
       (response) => {
