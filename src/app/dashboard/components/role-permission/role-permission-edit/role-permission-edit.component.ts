@@ -21,14 +21,9 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  MatFormField,
-  MatLabel,
-  MatError,
-  MatFormFieldModule,
-} from '@angular/material/form-field';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { RolePermissionService } from '../../../../services/Roles/role-permission.service';
 import Swal from 'sweetalert2';
 
