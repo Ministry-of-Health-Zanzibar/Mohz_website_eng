@@ -74,4 +74,20 @@ export class PostService {
   public getPublciPublicationPosts(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Publication`);
   }
+
+  
+  public getPublcProjectPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Project`);
+  }
+   public getPublcTenderPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Tender`);
+  }
+
+   public getPublcEventsPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Event`);
+  }
+
+  public getPublicPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Post`);
+  }
 }

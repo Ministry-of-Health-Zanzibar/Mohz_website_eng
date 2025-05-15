@@ -19,7 +19,7 @@ export class ProjectComponent  implements OnInit{
   }
 
   getAllProjectsPost() {
-    this.projectService.getProjectPosts().subscribe(
+    this.projectService.getPublcProjectPosts().subscribe(
       (response) => {
         console.log("API Response:", response); 
         this.projects = response.data || []; 

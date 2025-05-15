@@ -22,7 +22,7 @@ export class TenderComponent implements OnInit {
     this.getAllTenders();
   }
   getAllTenders() {
-    this.tenderService.getTenderPosts().subscribe(
+    this.tenderService.getPublcTenderPosts().subscribe(
       (response) => {
         console.log("API Response:", response); 
         this.tenders = response.data || []; 
