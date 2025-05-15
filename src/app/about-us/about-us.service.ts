@@ -1,22 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AboutUsService {
-private apiUrl = 'http://localhost:9095';
+  private apiUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
-  
 
   public createAboutUs(data: any): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}aboutus`, data);
   }
-  
 
-  public getAllAboutUsData(): Observable<any> {
+  public getAllAboutUsInfo(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}aboutus`);
   }
 
@@ -24,7 +23,7 @@ private apiUrl = 'http://localhost:9095';
     return this.httpClient.get<any>(`${this.apiUrl}public/aboutus`);
   }
 
-   public getAllAboutUsPublicData(): Observable<any> {
+  public getAllAboutUsPublicData(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/aboutus`);
   }
 
@@ -37,13 +36,11 @@ private apiUrl = 'http://localhost:9095';
   }
 
   public deleteAboutUs(data: any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(
-      `${this.apiUrl}aboutus/${id}`
-    );
+    return this.httpClient.delete<any>(`${this.apiUrl}aboutus/${id}`);
   }
 
-   // Restore 
-   public restore(data: any, id: number): Observable<any> {
+  // Restore
+  public restore(data: any, id: number): Observable<any> {
     return this.httpClient.patch(`${this.apiUrl}aboutus/restore/${id}`, data);
   }
 }

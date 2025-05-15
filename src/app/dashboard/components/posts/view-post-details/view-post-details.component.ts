@@ -11,14 +11,27 @@ import { MatTableModule } from '@angular/material/table';
 @Component({
   selector: 'app-view-post-details',
   standalone: true,
-  imports: [RouterModule, MatButtonModule, MatIconModule, CommonModule, MatTableModule],
+  imports: [
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    CommonModule,
+    MatTableModule,
+  ],
   templateUrl: './view-post-details.component.html',
   styleUrl: './view-post-details.component.css',
 })
 export class ViewPostDetailsComponent implements OnInit {
   public post: any;
-  public postData: { title: string; value: string; isImage?: boolean }[] =
-    [];
+  // public postData: { title: string; value: string; isImage?: boolean }[] =
+  //   [];
+  public postData: {
+    title: string;
+    value: string;
+    isImage?: boolean;
+    isPdf?: boolean;
+  }[] = [];
+
   public displayedColumns: string[] = ['title', 'value'];
 
   constructor(
@@ -44,13 +57,34 @@ export class ViewPostDetailsComponent implements OnInit {
     });
   }
 
+  // private populateTableData(): void {
+  //   this.postData = [
+  //     { title: 'Title', value: this.post?.post_title || '' },
+  //     { title: 'Description', value: this.post?.post_description || '' },
+  //     { title: 'Image', value: this.post?.post_filepath || '', isImage: true }
+  //   ];
+  // }
 
   private populateTableData(): void {
     this.postData = [
       { title: 'Title', value: this.post?.post_title || '' },
       { title: 'Description', value: this.post?.post_description || '' },
-      { title: 'Image', value: this.post?.post_filepath || '', isImage: true }
     ];
+
+    const filePaths: string[] = this.post?.post_filepath || [];
+
+    filePaths.forEach((filePath: string, index: number) => {
+      const ext = filePath.split('.').pop()?.toLowerCase();
+      const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(ext!);
+      const isPdf = ext === 'pdf';
+
+      this.postData.push({
+        title: `File ${index + 1}`,
+        value: filePath,
+        isImage,
+        isPdf,
+      });
+    });
   }
 
   public isImage(filePath: string): boolean {

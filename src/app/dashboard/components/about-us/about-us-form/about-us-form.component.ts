@@ -22,10 +22,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
-import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { AboutUsService } from '../../../../about-us/about-us.service';
@@ -62,8 +59,7 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
     private aboutUsService: AboutUsService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     private toastService: ToastService,
-    public permission: PermissionService,
-    private router: Router
+    public permission: PermissionService
   ) {
     this.aboutUsForm = this.formBuilder.group({
       vision: ['', Validators.required],

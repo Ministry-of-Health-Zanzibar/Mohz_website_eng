@@ -9,7 +9,7 @@
   </ng-container>
 
   <!-- Value Column -->
-  <ng-container matColumnDef="value">
+  <!-- <ng-container matColumnDef="value">
     <th mat-header-cell *matHeaderCellDef>Value</th>
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.isImage; else textValue">
@@ -23,9 +23,9 @@
         {{ element.value }}
       </ng-template>
     </td>
-  </ng-container>
+  </ng-container> -->
 
-  <!-- <ng-container matColumnDef="value">
+  <ng-container matColumnDef="value">
     <th mat-header-cell *matHeaderCellDef>Value</th>
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.isImage; else textValue">
@@ -35,11 +35,12 @@
           alt="News Image"
         />
       </ng-container>
+
       <ng-template #textValue>
         {{ element.value }}
       </ng-template>
     </td>
-  </ng-container> -->
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

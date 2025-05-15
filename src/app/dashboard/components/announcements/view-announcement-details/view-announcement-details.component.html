@@ -57,3 +57,23 @@
     </div>
   </div>
 </div>
+
+<!-- <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.isImage; else textValue">
+        <img
+          [src]="'http://localhost:8000/uploads/posts/images/' + element.value"
+          class="img-thumbnail w-50 my-2"
+          alt="Post File"
+        />
+      </ng-container>
+      <ng-template #textValue>
+        <a
+          [href]="
+            'http://localhost:8000/uploads/posts/documents/' + element.value
+          "
+          target="_blank"
+        >
+          File {{ element.value }}
+        </a>
+      </ng-template>
+    </td> -->

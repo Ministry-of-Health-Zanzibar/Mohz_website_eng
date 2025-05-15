@@ -1,32 +1,90 @@
-<table mat-table [dataSource]="postData" class="mat-elevation-z8">
+<table mat-table [dataSource]="postData" class="mat-elevation-z8 w-100">
+  <!-- Title Column -->
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef class="mat-column-title">Title</th>
+    <th mat-header-cell *matHeaderCellDef class="fw-bold">Title</th>
     <td mat-cell *matCellDef="let element">
       <i class="fa-sharp fa-solid fa-star-of-life me-2 fa-sm"></i>
       {{ element.title }}
     </td>
   </ng-container>
 
+  <!-- Value Column -->
   <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef>Value</th>
-    <td mat-cell *matCellDef="let element">
-      <ng-container *ngIf="element.isImage; else textValue">
+    <th mat-header-cell *matHeaderCellDef class="fw-bold">Value</th>
+    <!-- <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.isImage; else checkPdf">
         <img
-          [src]="'http://localhost:8000/uploads/posts/image/' + element.value"
-          class="img-thumbnail w-50 my-4"
-          alt="Post File"
+          [src]="'http://localhost:8000/uploads/posts/images/' + element.value"
+          class="img-thumbnail w-50 my-2"
+          alt="Post Image"
         />
       </ng-container>
-      <ng-template #textValue>
-        {{ element.value }}
+
+      <ng-template #checkPdf>
+        <ng-container *ngIf="element.isPdf; else defaultLink">
+          <iframe
+            [src]="
+              'http://localhost:8000/uploads/posts/documents/' + element.value
+            "
+            width="100%"
+            height="500px"
+            type="application/pdf"
+          ></iframe>
+        </ng-container>
+
+        <ng-template #defaultLink>
+          <a
+            [href]="
+              'http://localhost:8000/uploads/posts/documents/' + element.value
+            "
+            target="_blank"
+          >
+            Download {{ element.value }}
+          </a>
+        </ng-template>
       </ng-template>
+    </td> -->
+
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.isImage">
+        <img
+          [src]="'http://localhost:8000/uploads/posts/images/' + element.value"
+          class="img-thumbnail w-50 my-2"
+          alt="Post Image"
+        />
+      </ng-container>
+
+      <ng-container *ngIf="element.isPdf">
+        <iframe
+          [src]="
+            'http://localhost:8000/uploads/posts/documents/' + element.value
+          "
+          width="100%"
+          height="500px"
+          type="application/pdf"
+        ></iframe>
+      </ng-container>
+
+      <!-- Show download link if not image or PDF -->
+      <ng-container *ngIf="!element.isImage && !element.isPdf">
+        <a
+          [href]="
+            'http://localhost:8000/uploads/posts/documents/' + element.value
+          "
+          target="_blank"
+        >
+          Download {{ element.value }}
+        </a>
+      </ng-container>
     </td>
   </ng-container>
 
+  <!-- Table Headers & Rows -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
+<!-- Back Button -->
 <div class="d-flex justify-content-end">
   <button
     mat-raised-button

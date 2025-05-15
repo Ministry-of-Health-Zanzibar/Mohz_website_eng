@@ -83,17 +83,17 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getAllAboutUsData();
+    this.getAllAboutUsInfo();
   }
 
   onRefresh() {
-    this.getAllAboutUsData();
+    this.getAllAboutUsInfo();
   }
 
-  public getAllAboutUsData(): void {
+  public getAllAboutUsInfo(): void {
     this.refreshing = true;
     this.aboutUsService
-      .getAllAboutUsData()
+      .getAllAboutUsInfo()
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {
@@ -148,7 +148,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const sub = dialogRef.componentInstance.onAddAboutUsEventEmitter.subscribe(
       () => {
-        this.getAllAboutUsData();
+        this.getAllAboutUsInfo();
       }
     );
   }
@@ -171,7 +171,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const sub = dialogRef.componentInstance.onEditAboutUsEventEmitter.subscribe(
       () => {
-        this.getAllAboutUsData();
+        this.getAllAboutUsInfo();
       }
     );
   }
@@ -193,7 +193,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     const sub =
       dialogRef.componentInstance.onDisplayAboutImageEventEmitter.subscribe(
         () => {
-          this.getAllAboutUsData();
+          this.getAllAboutUsInfo();
         }
       );
   }
@@ -204,7 +204,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.aboutUsService.deleteAboutUs(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          this.getAllAboutUsData();
+          this.getAllAboutUsInfo();
           this.toastService.toastSuccess(response.message);
         } else {
           this.toastService.toastError(response.message);
@@ -227,7 +227,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.aboutUsService.restore(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          this.getAllAboutUsData();
+          this.getAllAboutUsInfo();
           this.toastService.toastSuccess(response.message);
         } else {
           this.toastService.toastError(response.message);
