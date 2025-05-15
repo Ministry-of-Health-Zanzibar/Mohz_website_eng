@@ -3,13 +3,17 @@
   <div class="card w-75 mx-auto p-3 shadow">
     <div class="card-body">
       <!-- Bootstrap Carousel -->
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div *ngFor="let imageUrl of events?.post_filepath; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
-            <img class="d-block w-100 rounded" [src]="imageUrl" alt="News Image">
-          </div>
-        </div>
-      </div>
+     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let imageUrl of events; let i = index" 
+         class="carousel-item" 
+         [ngClass]="{ 'active': i === 0 }">
+      <img class="d-block w-100 rounded" 
+           [src]="'http://localhost:8000/uploads/posts/images/' + imageUrl.post_filepath" 
+           alt="Event Image">
+    </div>
+  </div>
+</div>
 
       <!-- News Details -->
       <div class="mt-4">
