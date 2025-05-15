@@ -6,9 +6,10 @@
       <!-- Bootstrap Carousel -->
       <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-          <div *ngFor="let imageUrl of news?.image_urls; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
-            <img class="d-block w-100 rounded" [src]="imageUrl" alt="News Image">
+         <div *ngFor="let imageName of news?.image_names; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+          <img class="d-block w-100 rounded" [src]="'http://localhost:8000/uploads/newsPhotos/' + imageName" alt="News Image">
           </div>
+
         </div>
       </div>
 

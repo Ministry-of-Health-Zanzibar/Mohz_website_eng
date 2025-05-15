@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit{
 
 
      public getAllSiteLinks(): void {
-        this.siteLinkService.getAllSitelinks().subscribe((response: any) => {
+        this.siteLinkService.getPublicAllSitelinks().subscribe((response: any) => {
             this.siteLink = response.data;
             console.log(response.data);
           },

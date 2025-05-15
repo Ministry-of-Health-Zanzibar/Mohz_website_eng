@@ -41,4 +41,6 @@ private apiUrl = environment.baseUrl;
   public deletePartner(id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}partners/${id}`);
   }
+
+  
 }

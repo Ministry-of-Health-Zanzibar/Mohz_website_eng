@@ -3,7 +3,10 @@
     <!-- Left Column for Image Frames -->
     <div class="col-md-3 d-flex flex-column align-items-center">
       <div class="custom-image-frame mt-2" *ngFor="let member of leftColumn">
-        <img [src]="member?.team_photo" alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
+        <img [src]="
+                  'http://localhost:8000/uploads/team_photos/' +
+                  member?.team_photo
+                " alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
         <div class="custom-caption">
           <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
           <p class="profession">{{ member?.professional }}</p>
@@ -47,7 +50,10 @@
     <!-- Right Column for Image Frames -->
     <div class="col-md-3 d-flex flex-column align-items-center">
       <div class="custom-image-frame mt-2" *ngFor="let member of rightColumn">
-        <img [src]="member?.team_photo" alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
+        <img [src]="
+                  'http://localhost:8000/uploads/team_photos/' +
+                  member?.team_photo
+                " alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
         <div class="custom-caption">
           <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
           <p class="profession">{{ member?.professional }}</p>

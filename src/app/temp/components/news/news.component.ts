@@ -74,7 +74,7 @@ public getAllNeews(): void {
 
     // Get news by Id
     public findNewsById(id: any): void {
-      this.newsService.findNewsById(id).subscribe(
+      this.newsService.findPublicNewsById(id).subscribe(
         (response: any) => {
           // id = 'page';
           this.router.navigate(['/temp/main/news', id]);
