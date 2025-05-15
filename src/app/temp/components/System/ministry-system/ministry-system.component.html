@@ -3,16 +3,16 @@
         ___ Ministry's System ___
     </p>
     <div class="text-center">
-        <div class="row justify-content-center gx-3"> <!-- Keeps items in one row -->
-           <div class="col-auto" *ngFor="let ministrySystem of ministrySystems">
-  <img [src]="'http://localhost:8000/uploads/systemLogo/' + ministrySystem?.system_logo_name"
-       alt="System Logo"
-       class="rounded-circle"
-       style="width: 100px; height: 100px; border: 3px solid rgb(255, 255, 255); 
-              object-fit: contain; background-color: white; padding: 10px;">
-  <p class="h6" style="color: #14497d;">{{ ministrySystem?.system_title }}</p>
+    <div class="row justify-content-center gx-3"> <!-- Keeps items in one row -->
+  <div class="col-auto" *ngFor="let ministrySystem of ministrySystems">
+    <img [src]="'http://localhost:8000/uploads/systemLogo/' + ministrySystem.system_logo"
+         alt="System Logo"
+         class="rounded-circle"
+         style="width: 100px; height: 100px; border: 3px solid rgb(255, 255, 255); 
+                object-fit: contain; background-color: white; padding: 10px;">
+    <p class="h6" style="color: #14497d;">{{ ministrySystem.system_title }}</p>
+  </div>
 </div>
 
-        </div>
     </div>
 </div>

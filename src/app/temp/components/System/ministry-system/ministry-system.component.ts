@@ -28,7 +28,7 @@ export class MinistrySystemComponent implements OnInit {
 
   // Fetch all ministry systems excluding deleted ones
   getAllMinistrySystem(): void {
-    this.ministrySystemService.getAllMinistrySystem().subscribe(
+    this.ministrySystemService.getPublicAllMinistrySystem().subscribe(
       (response) => {
         if (response?.data) {
           // Filter out deleted records (assuming deleted records have a 'deleted_at' property)

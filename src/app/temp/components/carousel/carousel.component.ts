@@ -17,11 +17,12 @@ import { Team } from '../../../Model/Team';
   styleUrl: './carousel.component.css',
 })
 export class CarouselComponent implements OnInit {
-  public banners!: any;
-teams: any;
+public banners!: any;
+ public teams: any
 public leftColumn: any[] = [];
 public rightColumn: any[] = [];
-  public bannerImageUrl!: string;
+public bannerImageUrl!: string;
+ministrySystems: any;
 
 
   constructor(private bannerService: BannerService, private teamService:TeamService) {}
@@ -30,6 +31,14 @@ public rightColumn: any[] = [];
     this.getAllBanners();
     this.getAllTeams();
   }
+
+  getPhotoFilename(fullPath: string | null | undefined): string {
+  if (!fullPath) return '';
+  return fullPath.split('/').pop() || '';
+}
+
+
+  
 
 
 
@@ -49,7 +58,7 @@ public rightColumn: any[] = [];
   }
 
   public getAllTeams() {
-    this.teamService.getAllTeams().subscribe((response: { data: Team[] }) => {
+    this.teamService.getAllPublicTeams().subscribe((response: { data: Team[] }) => {
       const allTeams: Team[] = response.data;
   
       // Find specific positions accurately

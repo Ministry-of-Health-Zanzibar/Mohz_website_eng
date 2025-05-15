@@ -4,13 +4,13 @@
             <!-- Loop kupitia aboutUsData -->
             <div class="col-xl-7 wow fadeInLeft" data-wow-delay="0.2s" *ngFor="let aboutUs of aboutUsData">
                 <div>
-                    <h1 class="display-5 text-primary text-center mb-4">About Us</h1>
-                    <h5 class="display-6 mb-4">The Ministry of Health Zanzibar</h5>
+                    <h1 class="display-5  text-center mb-4" style="color: #093f64;">About Us</h1>
+                    <h5 class="display-6 mb-4" style="color: #093f64;">The Ministry of Health Zanzibar</h5>
                     <p class="mb-4">{{ aboutUs?.descriptions }}</p>
                     <div class="row g-4">
                         <div class="col-md-6 col-lg-6 col-xl-6">
                             <div class="d-flex">
-                                <div><i class="fas fa-lightbulb fa-3x text-primary"></i></div>
+                                <div><i class="fas fa-lightbulb fa-3x " style="color: #093f64;"></i></div>
                                 <div class="ms-4">
                                     <h4>Vision</h4>
                                     <p>{{ aboutUs?.vision }}</p> <!-- Vision kutoka API -->
@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-6">
                             <div class="d-flex">
-                                <div> <i class="bi bi-bookmark-heart-fill fa-3x text-primary"></i></div>
+                                <div> <i class="bi bi-bookmark-heart-fill fa-3x " style="color: #093f64;"></i></div>
                                 <div class="ms-4">
                                     <h4>Mission</h4>
                                     <p>{{ aboutUs?.mission }}</p> <!-- Mission kutoka API -->
@@ -27,11 +27,11 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#" class="btn btn-primary rounded-pill py-3 px-5 flex-shrink-0">Discover Now</a>
+                            <a href="#" class="btn  rounded-pill py-3 px-5 flex-shrink-0" style="background-color: #093f64; color: white;">Discover Now</a>
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex">
-                                <i class="fas fa-phone-alt fa-2x text-primary me-4"></i>
+                                <i class="fas fa-phone-alt fa-2x  me-4" style="color: #093f64;"></i>
                                 <div>
                                     <h4>Call Us</h4>
                                     <p class="mb-0 fs-5" style="letter-spacing: 1px;">{{ aboutUs?.contact_phone }}</p> 
@@ -44,8 +44,10 @@
 
             <!-- Sehemu ya picha -->
             <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
-                <div class="bg-primary rounded position-relative overflow-hidden">
-                    <img *ngIf="aboutUsData[0]?.images" [src]="aboutUsData[0]?.images" class="img-fluid rounded w-100" alt="About Us Image">
+                <div class="bg-primary rounded position-relative overflow-hidden" *ngFor="let aboutUss of aboutUsData">
+                    <img [src]="
+                  'http://localhost:8000/uploads/aboutImages/' + aboutUss?.images"  class="img-fluid rounded w-100" alt="About Us Image">
+                    <!-- <img *ngIf="aboutUsData[0]?.images" [src]="aboutUsData[0]?.images" class="img-fluid rounded w-100" alt="About Us Image"> -->
                     
                 </div>
             </div>

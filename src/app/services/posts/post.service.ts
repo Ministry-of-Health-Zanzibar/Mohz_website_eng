@@ -39,6 +39,8 @@ export class PostService {
     return this.httpClient.get<any>(`${this.apiUrl}posts/type/Publication`);
   }
 
+
+
   public getPostByType(typeId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}post/type/${typeId}`);
   }
@@ -67,5 +69,25 @@ export class PostService {
   // Restore
   public restorePostType(data: any, id: number): Observable<any> {
     return this.httpClient.patch(`${this.apiUrl} types/restore/${id}`, data);
+  }
+
+  public getPublciPublicationPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Publication`);
+  }
+
+  
+  public getPublcProjectPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Project`);
+  }
+   public getPublcTenderPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Tender`);
+  }
+
+   public getPublcEventsPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Event`);
+  }
+
+  public getPublicPosts(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Post`);
   }
 }

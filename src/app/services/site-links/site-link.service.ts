@@ -19,13 +19,7 @@ export class SiteLinkService {
     return this.httpClient.get<any>(`${this.apiUrl}siteLinks`);
   }
 
-  public getPublicAllSitelinks(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}public/sitelinks`);
-  }
 
-  public findPublicSitelinkById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}public/sitelinks/${id}`);
-  }
 
   public findSitelinkById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}siteLinks/${id}`);
@@ -37,5 +31,14 @@ export class SiteLinkService {
 
   public deleteSitelink(id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}siteLinks/${id}`);
+  }
+
+
+    public getPublicAllSitelinks(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/siteLinks`);
+  }
+
+  public findPublicSitelinkById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/sitelinks/${id}`);
   }
 }

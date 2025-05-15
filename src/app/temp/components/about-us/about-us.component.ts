@@ -20,7 +20,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   public getAllAboutUsData() {
-    this.aboutUsService.getAllAboutUsInfo().subscribe(
+    this.aboutUsService.getAllPublicAboutUsData().subscribe(
       (response) => {
         this.aboutUsData = response.data;
       },

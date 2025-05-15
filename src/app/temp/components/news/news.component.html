@@ -78,10 +78,7 @@
               <div class="col-md-6">
                 <div class="service-img">
                   <img
-                    [src]="
-                      event?.post_filepath ||
-                      '../../../../assets/img/no-image.jpg'
-                    "
+                    [src]="'http://localhost:8000/uploads/posts/images/' + event.post_filepath"
                     class="img-fluid rounded-top rounded-bottom w-100 h-100"
                     alt="Image"
                   />

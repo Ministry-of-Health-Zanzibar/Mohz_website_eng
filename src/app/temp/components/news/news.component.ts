@@ -126,7 +126,7 @@ public getAllNeews(): void {
     // Fetch events
     public getEventPosts(): void {
       this.isEventLoading = true;
-      this.postService.getEventPosts().subscribe(
+      this.postService.getPublcEventsPosts().subscribe(
         (response: any) => {
           this.events = response.data;
           // console.log('EVENTS: ', response.data);

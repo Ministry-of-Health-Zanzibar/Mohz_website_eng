@@ -19,13 +19,7 @@ export class MinistrySystemService {
     return this.httClient.get<any>(`${this.apiUrl}ministrys`);
   }
 
-  public getPublicAllMinistrySystem(): Observable<any> {
-    return this.httClient.get<any>(`${this.apiUrl}/public/ministry`);
-  }
-
-  public findPublicMinistrySystemById(id: number): Observable<any> {
-    return this.httClient.get<any>(`${this.apiUrl}/public/ministrys/${id}`);
-  }
+ 
 
   public findMinistrySystemById(id: number): Observable<any> {
     return this.httClient.get<any>(`${this.apiUrl}ministrys/${id}`);
@@ -48,5 +42,14 @@ export class MinistrySystemService {
       `${this.apiUrl}ministrysystem/restore/${id}`,
       data
     );
+  }
+
+
+   public getPublicAllMinistrySystem(): Observable<any> {
+    return this.httClient.get<any>(`${this.apiUrl}public/ministrys`);
+  }
+
+  public findPublicMinistrySystemById(id: number): Observable<any> {
+    return this.httClient.get<any>(`${this.apiUrl}public/ministrys/${id}`);
   }
 }
