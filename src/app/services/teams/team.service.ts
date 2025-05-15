@@ -30,6 +30,10 @@ export class TeamService {
     return this.httpClient.post<any>(`${this.apiUrl}team/update/${id}`, data);
   }
 
+    public getAllPublicTeams(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/teams`);
+  }
+
 
 
 

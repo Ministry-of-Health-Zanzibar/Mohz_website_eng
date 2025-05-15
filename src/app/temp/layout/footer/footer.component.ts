@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent implements OnInit{
-  siteLink: any[] = []
+  siteLink: any
 
   constructor(private siteLinkService:SiteLinkService, private toastService: ToastService){}
 

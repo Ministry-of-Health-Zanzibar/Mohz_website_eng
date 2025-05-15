@@ -30,7 +30,7 @@ throw new Error('Method not implemented.');
   }
 
   public getPublicationPosts(): void {
-    this.publicationService.getPublicationPosts().subscribe(response => {
+    this.publicationService.getPublciPublicationPosts().subscribe(response => {
       console.log('Publication List', response); // Debugging log
 
       if (response && response.data && Array.isArray(response.data)) {
