@@ -1,16 +1,36 @@
-import { Component, EventEmitter, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { GlobalConstants } from '@shared/global-constants';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+  FormArray,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
-import Swal from 'sweetalert2';
-import { RolePermissionService } from '../../../../services/users/role-permission.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { HDividerComponent } from '@elementar/components';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MatFormField,
+  MatLabel,
+  MatError,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { RolePermissionService } from '../../../../services/Roles/role-permission.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-role-permission-edit',
@@ -19,24 +39,20 @@ import { HDividerComponent } from '@elementar/components';
     CommonModule,
     MatButtonModule,
     MatDialogModule,
-    MatInput,
-    MatFormField,
-    MatLabel,
+    MatInputModule,
+    MatFormFieldModule,
     MatDialogModule,
-    MatCheckbox,
-    MatError,
+    MatCheckboxModule,
     ReactiveFormsModule,
-    HDividerComponent
   ],
   templateUrl: './role-permission-edit.component.html',
-  styleUrl: './role-permission-edit.component.scss'
+  styleUrl: './role-permission-edit.component.scss',
 })
-export class RolePermissionEditComponent implements OnInit,OnDestroy {
+export class RolePermissionEditComponent implements OnInit, OnDestroy {
+  private readonly onDestroy = new Subject<void>();
+  public sidebarVisible: boolean = true;
 
-  private readonly onDestroy = new Subject<void>()
-  public sidebarVisible:boolean = true
-
-  editRoleForm :any = FormGroup;
+  editRoleForm: any = FormGroup;
   checklist: any[] = [];
   filteredChecklist: any[] = [];
   onEditRolesPermission = new EventEmitter();
@@ -49,13 +65,12 @@ export class RolePermissionEditComponent implements OnInit,OnDestroy {
   countAllPermission: number = 0;
   countAllowedPermission: number = 0;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData:any,
-  private formBuilder:FormBuilder,
-  private roleService:RolePermissionService,
-  private dialogRef:MatDialogRef<RolePermissionEditComponent>){
-
-
-  }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
+    private formBuilder: FormBuilder,
+    private roleService: RolePermissionService,
+    private dialogRef: MatDialogRef<RolePermissionEditComponent>
+  ) {}
 
   ngOnInit(): void {
     this.rolesFormData();
@@ -63,83 +78,89 @@ export class RolePermissionEditComponent implements OnInit,OnDestroy {
     this.initPermission();
   }
   ngOnDestroy(): void {
-    this.onDestroy.next()
+    this.onDestroy.next();
   }
   onClose() {
-    this.dialogRef.close(false)
+    this.dialogRef.close(false);
   }
 
-  public rolesFormData(){
+  public rolesFormData() {
     this.editRoleForm = this.formBuilder.group({
-      name: new FormControl(null, [Validators.required, Validators.pattern(GlobalConstants.nameRegexOnly)]),
+      name: new FormControl(null, [Validators.required]),
       permissionName: new FormArray([]),
     });
   }
 
-
   permissionData() {
-    this.roleService.displayRolesPermission(this.dialogData.data.id).pipe(takeUntil(this.onDestroy)).subscribe((response: any) => {
-      this.permissions = response.permission;
-      this.roleName = response.roles;
-      this.editRoleForm.get("name")!.setValue(this.roleName[0].name);
-    });
+    this.roleService
+      .displayRolesPermission(this.dialogData.data.id)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((response: any) => {
+        this.permissions = response.permission;
+        this.roleName = response.roles;
+        this.editRoleForm.get('name')!.setValue(this.roleName[0].name);
+      });
   }
 
-
-
-  initPermission(){
-    this.roleService.allPermissions().pipe(takeUntil(this.onDestroy)).subscribe(response => {
-      this.checklist = response.data;
-      // console.log(this.checklist);
-      for (var i = 0; i < this.checklist.length; i++) {
-        this.countAllowedPermission = 0;
-        for (var j = 0; j < this.permissions.length; j++) {
-          if(this.checklist[i].name == this.permissions[j].name){
-            const selectedPermissions = (this.editRoleForm.get('permissionName') as FormArray);
-            selectedPermissions.push(new FormControl(this.checklist[i].name));
-            this.checklist[i].isSelected = true;
-            this.filteredChecklist = [...this.checklist];
+  initPermission() {
+    this.roleService
+      .allPermissions()
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((response) => {
+        this.checklist = response.data;
+        // console.log(this.checklist);
+        for (var i = 0; i < this.checklist.length; i++) {
+          this.countAllowedPermission = 0;
+          for (var j = 0; j < this.permissions.length; j++) {
+            if (this.checklist[i].name == this.permissions[j].name) {
+              const selectedPermissions = this.editRoleForm.get(
+                'permissionName'
+              ) as FormArray;
+              selectedPermissions.push(new FormControl(this.checklist[i].name));
+              this.checklist[i].isSelected = true;
+              this.filteredChecklist = [...this.checklist];
+            }
+            this.countAllowedPermission++;
           }
-          this.countAllowedPermission++;
+          this.countAllPermission++;
         }
-        this.countAllPermission++;
-      }
-      if(this.countAllPermission == this.countAllowedPermission)
-        this.checkedAll = true;
-    });
+        if (this.countAllPermission == this.countAllowedPermission)
+          this.checkedAll = true;
+      });
   }
-
 
   // filter permisiion
   applyFilter(event: any) {
     const searchTerm = event.target.value.toLowerCase();
 
     // Filter the checklist based on the search term
-    this.filteredChecklist = this.checklist.filter(
-      (item) => item.name.toLowerCase().includes(searchTerm)
+    this.filteredChecklist = this.checklist.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm)
     );
   }
 
-
   onCheckboxChange(name: string, event: any) {
-    const selectedPermissions = (this.editRoleForm.get('permissionName') as FormArray);
+    const selectedPermissions = this.editRoleForm.get(
+      'permissionName'
+    ) as FormArray;
     if (event.checked) {
       selectedPermissions.push(new FormControl(name));
     } else {
-      const index = selectedPermissions.controls.findIndex(x => x.value === name);
+      const index = selectedPermissions.controls.findIndex(
+        (x) => x.value === name
+      );
       selectedPermissions.removeAt(index);
     }
   }
 
-
-    // The master checkbox will check/ uncheck all items
-  checkUncheckAll(event:any) {
-    if(event.checked){
+  // The master checkbox will check/ uncheck all items
+  checkUncheckAll(event: any) {
+    if (event.checked) {
       for (var i = 0; i < this.checklist.length; i++) {
         this.checklist[i].isSelected = true;
         this.onCheckboxChange(this.checklist[i].name, event);
       }
-    }else{
+    } else {
       for (var i = 0; i < this.checklist.length; i++) {
         this.checklist[i].isSelected = false;
         this.onCheckboxChange(this.checklist[i].name, event);
@@ -147,63 +168,63 @@ export class RolePermissionEditComponent implements OnInit,OnDestroy {
     }
   }
 
-
-  editRolePermission(){
+  editRolePermission() {
     const data = {
       name: this.editRoleForm.value.name,
-      permission_id: this.editRoleForm.value.permissionName
-    }
+      permission_id: this.editRoleForm.value.permissionName,
+    };
 
-    if(this.editRoleForm.value.permissionName.length > 0){
-      this.roleService.updateRoles(data,this.dialogData.data.id).subscribe(response => {
-        this.dialogRef.close();
-        this.onEditRolesPermission.emit();
-        if(response.statusCode == 200){
-          Swal.fire({
-            title: "Success",
-            text: response.message,
-            icon: "success",
-            confirmButtonColor: "#4690eb",
-            confirmButtonText: "Continue"
-          });
-        }else{
-          Swal.fire({
-            title: "error",
-            text: response.message,
-            icon: "error",
-            confirmButtonColor: "#4690eb",
-            confirmButtonText: "Close"
-          });
-        }
-
-      },error => {
-        if(error.statusCode == 401){
+    if (this.editRoleForm.value.permissionName.length > 0) {
+      this.roleService.updateRoles(data, this.dialogData.data.id).subscribe(
+        (response) => {
+          this.dialogRef.close();
+          this.onEditRolesPermission.emit();
+          if (response.statusCode == 200) {
             Swal.fire({
-            title: "warning",
-            text: 'Role already exist. Please choose another role name',
-            icon: "warning",
-            confirmButtonColor: "#4690eb",
-            confirmButtonText: "Continue"
-          });
-        }else{
-          Swal.fire({
-            title: "Error",
-            text: error,
-            icon: "error",
-            confirmButtonColor: "#4690eb",
-            confirmButtonText: "Continue"
-          });
+              title: 'Success',
+              text: response.message,
+              icon: 'success',
+              confirmButtonColor: '#4690eb',
+              confirmButtonText: 'Continue',
+            });
+          } else {
+            Swal.fire({
+              title: 'error',
+              text: response.message,
+              icon: 'error',
+              confirmButtonColor: '#4690eb',
+              confirmButtonText: 'Close',
+            });
+          }
+        },
+        (error) => {
+          if (error.statusCode == 401) {
+            Swal.fire({
+              title: 'warning',
+              text: 'Role already exist. Please choose another role name',
+              icon: 'warning',
+              confirmButtonColor: '#4690eb',
+              confirmButtonText: 'Continue',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: error,
+              icon: 'error',
+              confirmButtonColor: '#4690eb',
+              confirmButtonText: 'Continue',
+            });
+          }
         }
-      });
-    }else{
+      );
+    } else {
       Swal.fire({
-        title: "warning",
+        title: 'warning',
         text: 'No permission selected, Please select atleast one permission for this role',
-        icon: "warning",
-        confirmButtonColor: "#4690eb",
-        confirmButtonText: "Continue"
+        icon: 'warning',
+        confirmButtonColor: '#4690eb',
+        confirmButtonText: 'Continue',
       });
     }
   }
-
 }

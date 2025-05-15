@@ -1,25 +1,47 @@
-<div class="w-full">
-  <div class="relative h-full rounded-lg  group  p-6">
-    <div class="font-semibold ">CREATE NEW ROLE</div>
+<!-- <div class="w-full">
+  <div class="relative h-full rounded-lg group p-6">
+    <div class="font-semibold">CREATE NEW ROLE</div>
 
     <form [formGroup]="roleForm">
       <mat-form-field class="w-full mt-6">
         <mat-label>Enter Role Name</mat-label>
-        <input matInput placeholder="Ex. Administration" formControlName="name" type="text">
-        <mat-error class="error-message" *ngIf="roleForm.controls.name.touched && roleForm.controls.name.invalid">
-          <span *ngIf="roleForm.controls.name.errors.required">This field is mandatory</span>
-          <span *ngIf="roleForm.controls.name.errors.pattern">This field is invalid (must be contain alpharbetical only)</span>
+        <input
+          matInput
+          placeholder="Ex. Administration"
+          formControlName="name"
+          type="text"
+        />
+        <mat-error
+          class="error-message"
+          *ngIf="
+            roleForm.controls.name.touched && roleForm.controls.name.invalid
+          "
+        >
+          <span *ngIf="roleForm.controls.name.errors.required"
+            >This field is mandatory</span
+          >
+          <span *ngIf="roleForm.controls.name.errors.pattern"
+            >This field is invalid (must be contain alpharbetical only)</span
+          >
         </mat-error>
       </mat-form-field>
 
       <div class="mt-4 flex items-center justify-between">
         <div class="flex items-center gap-1.5">
           <div class="text-sm uppercase">
-            <mat-checkbox class="me-3" (change)="checkUncheckAll($event)">Check/Uncheck All Permission</mat-checkbox>
+            <mat-checkbox class="me-3" (change)="checkUncheckAll($event)"
+              >Check/Uncheck All Permission</mat-checkbox
+            >
           </div>
         </div>
         <div class="text-sm">
-          <input type="text" placeholder="Search..." class="border-b h-10 w-96 text-sm bg-transparent dark:border-b-inverse outline-0 focus-within:border-neutral-950" matInput (input)="applyFilter($event)">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="border-b h-10 w-96 text-sm bg-transparent dark:border-b-inverse outline-0 focus-within:border-neutral-950"
+            matInput
+            (input)="applyFilter($event)"
+          />
         </div>
       </div>
     </form>
@@ -29,9 +51,17 @@
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="roleForm">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <ng-container *ngFor="let item of filteredChecklist; let i = index" class="permission" formArrayName="permissionID">
-        <mat-checkbox color="primary" [checked]="item.isSelected" (change)="onCheckboxChange(item.id, $event)">
-          {{item.name}}
+      <ng-container
+        *ngFor="let item of filteredChecklist; let i = index"
+        class="permission"
+        formArrayName="permissionID"
+      >
+        <mat-checkbox
+          color="primary"
+          [checked]="item.isSelected"
+          (change)="onCheckboxChange(item.id, $event)"
+        >
+          {{ item.name }}
         </mat-checkbox>
       </ng-container>
     </div>
@@ -40,8 +70,101 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial [disabled]="roleForm.invalid" (click)="createRolePermission()">Save Data</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    [disabled]="roleForm.invalid"
+    (click)="createRolePermission()"
+  >
+    Save Data
+  </button>
+</mat-dialog-actions> -->
+
+<!-- Role Creation Header & Form -->
+<div class="container my-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-primary mb-4">Create New Role</h5>
+
+      <form [formGroup]="roleForm">
+        <!-- Role Name Input -->
+        <mat-form-field appearance="outline" class="w-100 mb-4">
+          <mat-label>Enter Role Name</mat-label>
+          <input
+            matInput
+            placeholder="e.g., Administrator"
+            formControlName="name"
+            type="text"
+          />
+          <mat-error
+            *ngIf="
+              roleForm.controls.name.touched && roleForm.controls.name.invalid
+            "
+          >
+            <span *ngIf="roleForm.controls.name.errors?.required">
+              This field is mandatory
+            </span>
+            <span *ngIf="roleForm.controls.name.errors?.pattern">
+              This field is invalid (must contain only alphabetical characters)
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Top Controls: Check/Uncheck All + Search -->
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-3"
+        >
+          <mat-checkbox (change)="checkUncheckAll($event)">
+            Check/Uncheck All Permissions
+          </mat-checkbox>
+
+          <mat-form-field class="w-100 w-md-50">
+            <mat-label>Search permissions...</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Type to filter..."
+              (input)="applyFilter($event)"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Permissions Grid -->
+<mat-dialog-content class="mat-typography px-3">
+  <form [formGroup]="roleForm">
+    <div class="row">
+      <div
+        class="col-12 col-sm-6 col-md-4 mb-2"
+        *ngFor="let item of filteredChecklist; let i = index"
+        formArrayName="permissionID"
+      >
+        <mat-checkbox
+          color="primary"
+          [checked]="item.isSelected"
+          (change)="onCheckboxChange(item.id, $event)"
+        >
+          {{ item.name }}
+        </mat-checkbox>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- Action Buttons -->
+<mat-dialog-actions align="end" class="px-3 pb-3">
+  <button mat-stroked-button color="warn" mat-dialog-close>Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="roleForm.invalid"
+    (click)="createRolePermission()"
+  >
+    Save Data
+  </button>
 </mat-dialog-actions>
-
-
-

@@ -1,14 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { HDividerComponent } from '@elementar/components';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import {
+  MatFormField,
+  MatLabel,
+  MatError,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { Subject, takeUntil } from 'rxjs';
-import { RolePermissionService } from '../../../../services/users/role-permission.service';
+import { RolePermissionService } from '../../../../services/Roles/role-permission.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-role-permission-display',
@@ -17,60 +31,61 @@ import { RolePermissionService } from '../../../../services/users/role-permissio
     CommonModule,
     MatButtonModule,
     MatDialogModule,
-    MatInput,
-    MatFormField,
-    MatLabel,
+    MatInputModule,
+    MatFormFieldModule,
+    // MatLabel,
     MatDialogModule,
-    MatCheckbox,
-    MatError,
+    MatCheckboxModule,
+    // MatError,
     ReactiveFormsModule,
-    HDividerComponent
+    MatIconModule,
   ],
   templateUrl: './role-permission-display.component.html',
-  styleUrl: './role-permission-display.component.scss'
+  styleUrl: './role-permission-display.component.scss',
 })
-export class RolePermissionDisplayComponent implements OnInit,OnDestroy{
+export class RolePermissionDisplayComponent implements OnInit, OnDestroy {
+  private readonly onDestroy = new Subject<void>();
 
-  private readonly onDestroy = new Subject<void>()
-
-  diplayRoleForm :any = FormGroup;
-  roleName:any;
+  diplayRoleForm: any = FormGroup;
+  roleName: any;
 
   checklist: any[] = [];
   filteredChecklist: any[] = [];
-  public sidebarVisible:boolean = true
+  public sidebarVisible: boolean = true;
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData:any,
-    private formBuilder:FormBuilder,
-    private roleService:RolePermissionService,
-    private dialogRef: MatDialogRef<RolePermissionDisplayComponent>) {
-      this.initPermission();
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
+    private formBuilder: FormBuilder,
+    private roleService: RolePermissionService,
+    private dialogRef: MatDialogRef<RolePermissionDisplayComponent>
+  ) {
+    this.initPermission();
   }
 
   ngOnInit(): void {
-    this.roleName= this.dialogData.data.name ,
-    this.rolesFormData();
+    (this.roleName = this.dialogData.data.name), this.rolesFormData();
   }
   ngOnDestroy(): void {
-    this.onDestroy.next()
+    this.onDestroy.next();
   }
   onClose() {
-    this.dialogRef.close(false)
+    this.dialogRef.close(false);
   }
 
-  public rolesFormData(){
+  public rolesFormData() {
     this.diplayRoleForm = this.formBuilder.group({
       permissionID: new FormArray([]),
     });
   }
 
-
   initPermission() {
-    this.roleService.displayRolesPermission(this.dialogData.data.id).pipe(takeUntil(this.onDestroy)).subscribe((response: any) => {
-      this.checklist = response.permission;
-      this.filteredChecklist = [...this.checklist]; // Initialize filtered list with all permissions
-    });
+    this.roleService
+      .displayRolesPermission(this.dialogData.data.id)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((response: any) => {
+        this.checklist = response.permission;
+        this.filteredChecklist = [...this.checklist]; // Initialize filtered list with all permissions
+      });
   }
 
   // filter permisiion
@@ -78,10 +93,8 @@ export class RolePermissionDisplayComponent implements OnInit,OnDestroy{
     const searchTerm = event.target.value.toLowerCase();
 
     // Filter the checklist based on the search term
-    this.filteredChecklist = this.checklist.filter(
-      (item) => item.name.toLowerCase().includes(searchTerm)
+    this.filteredChecklist = this.checklist.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm)
     );
   }
-
-
 }

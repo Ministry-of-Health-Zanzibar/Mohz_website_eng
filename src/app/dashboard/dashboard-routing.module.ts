@@ -365,13 +365,21 @@ const routes: Routes = [
           ).then((c) => c.MinistrySystemDetailComponent),
       },
 
+      // {
+      //   path: 'role-list',
+      //   title: '',
+      //   loadComponent: () =>
+      //     import('./components/roles/role-list/role-list.component').then(
+      //       (c) => c.RoleListComponent
+      //     ),
+      // },
       {
         path: 'role-list',
         title: '',
         loadComponent: () =>
-          import('./components/roles/role-list/role-list.component').then(
-            (c) => c.RoleListComponent
-          ),
+          import(
+            './components/role-permission/role-permission-board/role-permission-board.component'
+          ).then((c) => c.RolePermissionBoardComponent),
       },
     ],
   },

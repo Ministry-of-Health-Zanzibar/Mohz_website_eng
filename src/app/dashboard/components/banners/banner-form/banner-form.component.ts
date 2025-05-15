@@ -11,9 +11,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { NewsService } from '../../../../services/news/news.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { CommonModule } from '@angular/common';
@@ -22,7 +20,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BannerService } from '../../../../services/banners/banner.service';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
 import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
@@ -56,9 +53,7 @@ export class BannerFormComponent implements OnInit {
     private bannerService: BannerService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     private toastService: ToastService,
-    private authService: AuthenticationService,
-    public permission: PermissionService,
-    private router: Router
+    public permission: PermissionService
   ) {
     this.bannerForm = this.formBuilder.group({
       title: ['', Validators.required],

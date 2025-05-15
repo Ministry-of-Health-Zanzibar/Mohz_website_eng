@@ -71,10 +71,7 @@ export class RolePermissionFormComponent implements OnInit, OnDestroy {
 
   public rolesFormData() {
     this.roleForm = this.formBuilder.group({
-      name: new FormControl(null, [
-        Validators.required,
-        // Validators.pattern(GlobalConstants.nameRegexOnly),
-      ]),
+      name: new FormControl(null, [Validators.required]),
       permissionID: new FormArray([]),
     });
   }
