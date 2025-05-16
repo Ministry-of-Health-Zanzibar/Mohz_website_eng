@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   max-width: 230px;
-  border: 3px solid #14497d; /* Rangi ya dark grey kwa umaridadi */
+  border: 3px solid #14497d; 
   border-radius: 14px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;

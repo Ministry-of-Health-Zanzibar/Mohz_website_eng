@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4">
   <div class="row">
     <!-- Left Column for Image Frames -->
-   <div class="col-md-3 d-flex flex-column align-items-center">
+   <div class="col-md-3 d-flex flex-column align-items-center ">
   <div class="custom-image-frame mt-2" *ngFor="let member of leftColumn">
     <img [src]="'http://localhost:8000/uploads/team_photos/' + getPhotoFilename(member?.team_photo)" 
          alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
@@ -14,7 +14,7 @@
 
 
     <!-- Center Column for Carousel -->
-    <div class="col-md-6">
+    <div class="col-md-6 mt-2">
       <span *ngIf="banners.length === 0" class="alert alert-dark">No data available.</span>
       <div *ngIf="banners.length !== 0" id="customCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
         <!-- Indicators -->
