@@ -5,14 +5,14 @@
       <!-- Bootstrap Carousel -->
      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div *ngFor="let imageUrl of events; let i = index" 
-         class="carousel-item" 
-         [ngClass]="{ 'active': i === 0 }">
-      <img class="d-block w-100 rounded" 
-           [src]="'http://localhost:8000/uploads/posts/images/' + imageUrl.post_filepath" 
-           alt="Event Image">
-    </div>
-  </div>
+   <div *ngFor="let image of events.post_filepath; let i = index" 
+     class="carousel-item" 
+     [ngClass]="{ 'active': i === 0 }">
+  <img class="d-block w-100 rounded" 
+       [src]="'http://localhost:8000/uploads/posts/images/' + image"
+       alt="Event Image">
+</div>
+
 </div>
 
       <!-- News Details -->
@@ -23,9 +23,11 @@
       </div>
     </div>
   </div>
-
-  <button mat-raised-button color="warn" class="mb-2" routerLink="/temp/main">
-    <mat-icon>arrow_back</mat-icon>
-    back</button>
 </div>
+
+ <div>
+  <button mat-raised-button color="warn" class="mb-2" routerLink="/temp/main/blog">
+    <mat-icon>arrow_back</mat-icon>
+    back</button> 
+ </div>
 

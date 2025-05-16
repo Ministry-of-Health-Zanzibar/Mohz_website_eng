@@ -47,7 +47,8 @@
                   Posted On: {{ news?.created_at | date : "mediumDate" }}
                 </div>
                 <div class="">
-                  {{ truncateNewsDescription(news?.news_descriptions, 20) }}<span (click)="findNewsById(news?.id)" class="text-primary readMore">{{ readMore }}</span>
+                  {{ truncateNewsDescription(news?.news_descriptions, 20) }}
+                  <span (click)="findNewsById(news?.id)" class="text-primary readMore">{{ readMore }}</span>
                 </div>
               </div>
             </div>
@@ -72,14 +73,12 @@
             <div class="row mb-4 mt-2" >
               <div class="col-md-6">
                 <div class="service-img">
-                  <img
-                    [src]="
-                      event?.post_filepath ||
-                      '../../../../assets/img/no-image.jpg'
-                    "
-                    class="img-fluid rounded-top rounded-bottom w-100 h-100"
-                    alt="Image"
-                  />
+                   <img
+    *ngIf="event.post_filepath && event.post_filepath.length > 0"
+    [src]="'http://localhost:8000/uploads/posts/images/' + event.post_filepath[0]"
+    class="img-fluid rounded-top rounded-bottom w-100 h-100"
+    alt="Image"
+  />
                 </div>
               </div>
               <div class="col-md-6">
@@ -92,6 +91,7 @@
                 </div>
                 <div class="">
                   {{ truncateEventDescription(event?.post_description, 20) }}
+                  <span (click)="navigateToPostDetails(event)" class="text-primary readMore">{{ readMore }}</span>
                 </div>
               </div>
             </div>
@@ -100,8 +100,13 @@
         
       </div>
     </div>
-    <button mat-raised-button color="accent" routLink="/">
+    <!-- back button -->
+ <div>
+  <button mat-raised-button color="accent" routerLink="/temp/main">
       <mat-icon>arrow_back</mat-icon>back</button>
   </div>
+ </div>
 </div>
+
+
 

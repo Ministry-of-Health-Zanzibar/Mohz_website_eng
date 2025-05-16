@@ -13,4 +13,7 @@
   .btn-success {
     border-radius: 20px;
   }
+  .readMore{
+    cursor: pointer;
+  }
   

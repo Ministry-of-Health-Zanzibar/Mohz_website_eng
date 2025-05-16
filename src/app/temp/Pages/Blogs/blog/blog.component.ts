@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../../services/news/news.service';
 import { PostService } from '../../../../services/posts/post.service';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,7 +28,9 @@ export class BlogComponent implements OnInit{
   constructor(
     private newsService: NewsService,
      private eventService: PostService,
-      private router: Router){}
+      private router: Router,
+      private activateRoute:ActivatedRoute
+    ){}
   ngOnInit(): void {
     this.getAllNeews();
     this.getEventPosts();
@@ -97,6 +99,12 @@ export class BlogComponent implements OnInit{
             }
           );
         }
+
+ 
+
+    public navigateToPostDetails(data: any): void {
+    this.router.navigate(['/temp/main/read-events', data.post_id]);
+  }
     
     
         // Kupunguza ukubwa wa text
