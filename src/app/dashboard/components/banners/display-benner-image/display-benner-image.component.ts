@@ -1,16 +1,12 @@
 import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
-import {
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-display-benner-image',
@@ -30,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 export class DisplayBennerImageComponent implements OnInit {
   public onDisplayBannerImageEventEmitter = new EventEmitter();
   public bannerImageUrl!: string;
+  public bannerUrl = environment.imageUrl + 'bannerImages/';
 
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any) {}
 

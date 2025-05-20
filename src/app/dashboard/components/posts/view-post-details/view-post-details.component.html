@@ -16,7 +16,7 @@
       <!-- If image -->
       <ng-container *ngIf="element.isImage">
         <img
-          [src]="'http://localhost:8000/uploads/posts/images/' + element.value"
+          [src]="postImageUrl + element.value"
           class="img-thumbnail w-50 my-2"
           alt="Post Image"
         />
@@ -24,26 +24,14 @@
 
       <!-- If PDF -->
       <ng-container *ngIf="element.isPdf">
-        <a
-          [href]="
-            'http://localhost:8000/uploads/posts/documents/' + element.value
-          "
-          target="_blank"
-          rel="noopener"
-        >
+        <a [href]="documentUrl + element.value" target="_blank" rel="noopener">
           View PDF
         </a>
       </ng-container>
 
       <!-- Other files -->
       <ng-container *ngIf="!element.isImage && !element.isPdf">
-        <a
-          [href]="
-            'http://localhost:8000/uploads/posts/documents/' + element.value
-          "
-          target="_blank"
-          rel="noopener"
-        >
+        <a [href]="documentUrl + element.value" target="_blank" rel="noopener">
           Download {{ element.value }}
         </a>
       </ng-container>

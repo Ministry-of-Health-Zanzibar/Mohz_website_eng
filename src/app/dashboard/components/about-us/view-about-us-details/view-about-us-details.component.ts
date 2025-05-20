@@ -7,6 +7,7 @@ import { ToastService } from '../../../../services/toast/toast.service';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { PermissionService } from '../../../../services/auth/permission.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-view-about-us-details',
@@ -26,6 +27,7 @@ export class ViewAboutUsDetailsComponent implements OnInit {
   public aboutUsData: { title: string; value: string; isImage?: boolean }[] =
     [];
   public displayedColumns: string[] = ['title', 'value'];
+  public aboutImageUrl = environment.imageUrl + 'aboutImages/';
 
   constructor(
     private aboutUsService: AboutUsService,

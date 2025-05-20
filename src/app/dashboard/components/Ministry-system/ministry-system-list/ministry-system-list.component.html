@@ -73,10 +73,7 @@
           <td mat-cell *matCellDef="let element">
             <span type="button">
               <img
-                [src]="
-                  'http://localhost:8000/uploads/systemLogo/' +
-                  element?.system_logo_name
-                "
+                [src]="systemLogoUrl + element?.system_logo_name"
                 class="rounded-circle"
                 width="40"
                 height="40"

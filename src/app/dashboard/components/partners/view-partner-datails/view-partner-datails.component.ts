@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-view-partner-datails',
@@ -21,8 +22,10 @@ import { MatTableModule } from '@angular/material/table';
   styleUrl: './view-partner-datails.component.css',
 })
 export class ViewPartnerDatailsComponent implements OnInit {
+  public partnerLogoUrl = environment.imageUrl + 'partnerLogos/';
   public partner: any;
-  public partnerData: { title: string; value: string; isImage?: boolean }[] = [];
+  public partnerData: { title: string; value: string; isImage?: boolean }[] =
+    [];
   public displayedColumns: string[] = ['title', 'value'];
 
   constructor(
