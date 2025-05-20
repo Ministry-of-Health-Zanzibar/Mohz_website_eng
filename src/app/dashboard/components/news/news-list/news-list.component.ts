@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit,
@@ -18,10 +17,10 @@ import { NewsFormComponent } from '../news-form/news-form.component';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChangeDetectorRef } from '@angular/core';
 import { DisplayNewsImageComponent } from '../display-news-image/display-news-image.component';
 import { PermissionService } from '../../../../services/auth/permission.service';
@@ -55,6 +54,8 @@ interface News {
 })
 export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public newsImageUrl = environment.imageUrl + 'newsPhotos/';
+
   public isLoading: boolean = false;
   public refreshing!: boolean;
   imageBaseUrl = environment.imageUrl;
@@ -68,7 +69,6 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
     public permission: PermissionService,
-
     private router: Router
   ) {}
 

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-ministry-system-detail',
@@ -23,6 +24,8 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class MinistrySystemDetailComponent implements OnInit {
   public ministrySystem: any;
+  public systemLogoUrl = environment.imageUrl + 'systemLogo/';
+
   public ministrySystemData: {
     title: string;
     value: string;

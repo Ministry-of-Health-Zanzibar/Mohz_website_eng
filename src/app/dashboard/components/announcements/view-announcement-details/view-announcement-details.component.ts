@@ -5,6 +5,7 @@ import { ToastService } from '../../../../services/toast/toast.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-view-announcement-details',
@@ -14,7 +15,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './view-announcement-details.component.css',
 })
 export class ViewAnnouncementDetailsComponent implements OnInit {
-  public announcement: any = { files: [] }; // Hifadhi faili kama array ya objects
+  public announcement: any = { files: [] };
+  public documentUrl = environment.imageUrl + 'announcementDocs/';
 
   constructor(
     private announcementService: AnnouncementService,

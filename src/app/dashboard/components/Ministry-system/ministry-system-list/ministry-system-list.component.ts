@@ -13,10 +13,9 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatInputModule } from '@angular/material/input';
 import { MinistrySystemService } from '../../../../services/ministry-system/ministry-system.service';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MinistrySystemFormComponent } from '../ministry-system-form/ministry-system-form.component';
 import { ToastService } from '../../../../services/toast/toast.service';
@@ -26,10 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
-import { AboutUsService } from '../../../../about-us/about-us.service';
 import { PermissionService } from '../../../../services/auth/permission.service';
-import { AboutUsFormComponent } from '../../about-us/about-us-form/about-us-form.component';
-import { DisplayAboutUsImageComponent } from '../../about-us/display-about-us-image/display-about-us-image.component';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-ministry-system-list',
@@ -53,6 +50,8 @@ export class MinistrySystemListComponent
   implements OnInit, OnDestroy, AfterViewInit
 {
   public readonly onDestroy = new Subject<void>();
+  public systemLogoUrl = environment.imageUrl + 'systemLogo/';
+
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();

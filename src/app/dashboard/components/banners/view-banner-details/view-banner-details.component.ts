@@ -6,6 +6,7 @@ import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-view-banner-details',
@@ -24,6 +25,7 @@ export class ViewBannerDetailsComponent implements OnInit {
   public banner: any;
   public bannerData: { title: string; value: string; isImage?: boolean }[] = [];
   public displayedColumns: string[] = ['title', 'value'];
+  public bannerImageUrl = environment.imageUrl + 'bannerImages/';
 
   constructor(
     private bannerService: BannerService,

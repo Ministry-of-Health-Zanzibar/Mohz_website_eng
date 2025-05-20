@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-view-post-details',
@@ -31,6 +32,8 @@ export class ViewPostDetailsComponent implements OnInit {
   }[] = [];
 
   public displayedColumns: string[] = ['title', 'value'];
+  public postImageUrl = environment.imageUrl + 'posts/images/';
+  public documentUrl = environment.imageUrl + 'posts/documents/';
 
   constructor(
     private postService: PostService,

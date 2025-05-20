@@ -24,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BannerFormComponent } from '../banner-form/banner-form.component';
 import { DisplayBennerImageComponent } from '../display-benner-image/display-benner-image.component';
 import { PermissionService } from '../../../../services/auth/permission.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-banner-list',
@@ -45,6 +46,8 @@ import { PermissionService } from '../../../../services/auth/permission.service'
 })
 export class BannerListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public bannerImageUrl = environment.imageUrl + 'bannerImages/';
+
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
