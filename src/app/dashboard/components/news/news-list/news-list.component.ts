@@ -25,6 +25,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { ChangeDetectorRef } from '@angular/core';
 import { DisplayNewsImageComponent } from '../display-news-image/display-news-image.component';
 import { PermissionService } from '../../../../services/auth/permission.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 interface News {
   id: string;
@@ -56,6 +57,7 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
   public isLoading: boolean = false;
   public refreshing!: boolean;
+  imageBaseUrl = environment.imageUrl;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

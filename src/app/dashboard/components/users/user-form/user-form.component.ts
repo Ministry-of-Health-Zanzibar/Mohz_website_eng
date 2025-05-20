@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthenticationService } from '../../../../services/auth/authentication.service';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { RoleService } from '../../../../services/Roles/role.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-form',
@@ -29,15 +31,18 @@ export class UserFormComponent implements OnInit {
   onEditUserEventEmitter = new EventEmitter();
   signupForm!: FormGroup;
   userData: any;
+  roles: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
+    private roleService:RoleService,
     @Inject(MAT_DIALOG_DATA) public data: any,  
     private dialogRef: MatDialogRef<UserFormComponent>  
   ) {}
 
   ngOnInit(): void {
+    this.getRoles();
      this.userData = this.data?.data;  
     this.signupForm = this.fb.group({
       first_name: [this.userData?.first_name || '', [Validators.required, Validators.minLength(2)]],
@@ -75,15 +80,40 @@ export class UserFormComponent implements OnInit {
       // Otherwise, sign up (add new user)
       this.authService.signup(formData).subscribe(
         (response) => {
-          console.log('User added successfully', response);
-          this.signupForm.reset();
-          this.onAddUserEventEmitter.emit();  
-          this.dialogRef.close();  
+          // console.log('User added successfully', response);
+          // this.signupForm.reset();
+          // this.onAddUserEventEmitter.emit();  
+          // this.dialogRef.close();  
+            if(response.statusCode == 201){
+               Swal.fire({
+                 title: "Success",
+                 text: "Data saved successfull",
+                 html: "<b>Default Credential</b><br> Username: <b>"+response.email +"</b><br> Password: <b>" +response.password +"</b>",
+                 icon: "success",
+                 confirmButtonColor: "#4690eb",
+                 confirmButtonText: "Continue"
+               });
+             }else{
+               Swal.fire({
+                 title: "Error",
+                 text: response.message,
+                 icon: "error",
+                 confirmButtonColor: "#4690eb",
+                 confirmButtonText: "Continue"
+               });
+             
+           }
+
         },
         (error) => {
           console.error('Error adding user', error);
         }
       );
     }
+  }
+    getRoles() {
+    this.roleService.getAllRoles().subscribe(response => {
+      this.roles = response.data;
+    });
   }
 }

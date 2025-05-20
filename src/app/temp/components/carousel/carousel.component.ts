@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { TeamService } from '../../../services/teams/team.service';
 import { Team } from '../../../Model/Team';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-carousel',
@@ -23,6 +24,8 @@ public leftColumn: any[] = [];
 public rightColumn: any[] = [];
 public bannerImageUrl!: string;
 ministrySystems: any;
+imageBaseUrl = environment.imageUrl;
+
 
 
   constructor(private bannerService: BannerService, private teamService:TeamService) {}
