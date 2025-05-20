@@ -32,7 +32,7 @@
                 <div class="service-img">
                   <img
                   [src]="
-                  'http://localhost:8000/uploads/newsPhotos/' +
+                  imageBaseUrl + 'newsPhotos/' +
                   news?.image_names[0]
                 "
                     class="img-fluid rounded-top rounded-bottom w-100 h-100"
@@ -79,7 +79,7 @@
                 <div class="service-img">
                <img
     *ngIf="event.post_filepath && event.post_filepath.length > 0"
-    [src]="'http://localhost:8000/uploads/posts/images/' + event.post_filepath[0]"
+    [src]="imageBaseUrl + '/posts/images/' + event.post_filepath[0]"
     class="img-fluid rounded-top rounded-bottom w-100 h-100"
     alt="Image"
   />

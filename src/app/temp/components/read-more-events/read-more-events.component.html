@@ -9,7 +9,7 @@
      class="carousel-item" 
      [ngClass]="{ 'active': i === 0 }">
   <img class="d-block w-100 rounded" 
-       [src]="'http://localhost:8000/uploads/posts/images/' + image"
+       [src]="imageBaseUrl + 'posts/images/' + image"
        alt="Event Image">
 </div>
 

@@ -7,6 +7,7 @@ import { PostService } from '../../../services/posts/post.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../../environments/environment.prod';
 
 
 
@@ -29,6 +30,7 @@ export class NewsComponent implements OnInit {
   public isEventLoading!: boolean;
   public readMore = 'Read More';
   postData: any;
+  imageBaseUrl = environment.imageUrl;
 
   constructor(
     private newsService: NewsService, 

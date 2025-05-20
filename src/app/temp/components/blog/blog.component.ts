@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-blog',
@@ -20,6 +21,7 @@ export class BlogComponent implements OnInit {
   public events: any;
   public isEventLoading!: boolean;
   public readMore = 'Read More';
+  imageBaseUrl = environment.imageUrl;
 
   constructor(private newsService: NewsService, private eventService: PostService, private router: Router){}
   ngOnInit(): void {
