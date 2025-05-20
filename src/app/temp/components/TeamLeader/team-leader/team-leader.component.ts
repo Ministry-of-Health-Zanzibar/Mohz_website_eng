@@ -5,6 +5,7 @@ import { PartnerService } from '../../../../services/partners/partner.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-team-leader',
@@ -23,6 +24,7 @@ export class TeamLeaderComponent implements OnInit {
   partners! : any [];
   public isLoading!: boolean;
   isAllPartnersPage: boolean = false;
+  imageBaseUrl = environment.imageUrl;
  
   constructor(
     private partnerService:PartnerService,

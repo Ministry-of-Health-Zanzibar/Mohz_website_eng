@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-read-more-news',
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ReadMoreNewsComponent implements OnInit {
   public news: any;
+  imageBaseUrl = environment.imageUrl;
 
   constructor(
     private newsService: NewsService,

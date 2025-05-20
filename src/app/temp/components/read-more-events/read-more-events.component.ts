@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-read-more-events',
@@ -20,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ReadMoreEventsComponent implements OnInit {
   public events: any;
-
+imageBaseUrl = environment.imageUrl;
 
   constructor(
      private eventService: PostService, 
