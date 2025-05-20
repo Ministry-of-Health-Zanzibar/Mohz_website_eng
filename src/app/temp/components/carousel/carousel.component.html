@@ -3,7 +3,7 @@
     <!-- Left Column for Image Frames -->
    <div class="col-md-3 d-flex flex-column align-items-center ">
   <div class="custom-image-frame mt-2" *ngFor="let member of leftColumn">
-    <img [src]="'http://localhost:8000/uploads/team_photos/' + getPhotoFilename(member?.team_photo)" 
+    <img [src]="imageBaseUrl + 'team_photos/' + getPhotoFilename(member?.team_photo)" 
          alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
     <div class="custom-caption">
       <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
@@ -27,7 +27,7 @@
         <div class="carousel-inner">
           <div *ngFor="let banner of banners; let i = index" class="carousel-item" [class.active]="i === 0">
             <div class="carousel-frame">
-              <img [src]="'http://localhost:8000/uploads/bannerImages/' + banner.banner_image" class="d-block w-100" [alt]="'Banner ' + (i + 1)">
+              <img [src]="imageBaseUrl + 'bannerImages/' + banner.banner_image" class="d-block w-100" [alt]="'Banner ' + (i + 1)">
             </div>
             <div class="carousel-caption">
               <h5>{{ banner.banner_title }}</h5>
@@ -49,7 +49,7 @@
     <!-- Right Column for Image Frames -->
      <div class="col-md-3 d-flex flex-column align-items-center">
   <div class="custom-image-frame mt-2" *ngFor="let member of rightColumn">
-    <img [src]="'http://localhost:8000/uploads/team_photos/' + getPhotoFilename(member?.team_photo)" 
+    <img [src]="imageBaseUrl + 'team_photos/' + getPhotoFilename(member?.team_photo)" 
          alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
     <div class="custom-caption">
       <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
