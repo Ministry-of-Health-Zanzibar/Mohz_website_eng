@@ -24,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AboutUsFormComponent } from '../about-us-form/about-us-form.component';
 import { DisplayAboutUsImageComponent } from '../display-about-us-image/display-about-us-image.component';
 import { PermissionService } from '../../../../services/auth/permission.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-about-us-list',
@@ -45,6 +46,7 @@ import { PermissionService } from '../../../../services/auth/permission.service'
 })
 export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public aboutImageUrl = environment.imageUrl + 'aboutImages/';
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();

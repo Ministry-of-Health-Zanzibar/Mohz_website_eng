@@ -13,10 +13,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { BannerFormComponent } from '../../banners/banner-form/banner-form.component';
-import { DisplayBennerImageComponent } from '../../banners/display-benner-image/display-benner-image.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TeamService } from '../../../../services/teams/team.service';
 import { TeamFormComponent } from '../team-form/team-form.component';
 import { DisplayTeamImageComponent } from '../display-team-image/display-team-image.component';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-team-list',
@@ -47,6 +45,8 @@ import { DisplayTeamImageComponent } from '../display-team-image/display-team-im
 })
 export class TeamListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public teamPhotoUrl = environment.imageUrl + 'team_photos/';
+
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -70,7 +70,6 @@ export class TeamListComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   ngAfterViewInit(): void {
-    // console.log('PAGINATOR: ', this.paginator);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -184,9 +183,8 @@ export class TeamListComponent implements OnInit, OnDestroy, AfterViewInit {
       );
   }
 
-
-   // Delete
-   public deleteTeam(data: any): void {
+  // Delete
+  public deleteTeam(data: any): void {
     this.teamService.deleteTeam(data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {

@@ -103,10 +103,7 @@
           <td mat-cell *matCellDef="let element">
             <span type="button" (click)="handleOpenDisplayDialogImage(element)">
               <img
-                [src]="
-                  'http://localhost:8000/uploads/partnerLogos/' +
-                  element?.partner_logo
-                "
+                [src]="partnerLogoUrl + element?.partner_logo"
                 class="rounded-circle"
                 width="40"
                 height="40"

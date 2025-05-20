@@ -15,7 +15,7 @@
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.isImage; else textValue">
         <img
-          [src]="'http://localhost:8000/uploads/partnerLogos/' + element.value"
+          [src]="partnerLogoUrl + element.value"
           class="img-thumbnail w-50 my-4"
           alt="Banner File"
         />
