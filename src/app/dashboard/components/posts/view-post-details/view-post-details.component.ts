@@ -23,8 +23,6 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class ViewPostDetailsComponent implements OnInit {
   public post: any;
-  // public postData: { title: string; value: string; isImage?: boolean }[] =
-  //   [];
   public postData: {
     title: string;
     value: string;
@@ -52,18 +50,9 @@ export class ViewPostDetailsComponent implements OnInit {
         this.populateTableData();
       } else {
         this.toastService.toastError('An error occured while processing');
-        // this.toastService.toastError(response.message);
       }
     });
   }
-
-  // private populateTableData(): void {
-  //   this.postData = [
-  //     { title: 'Title', value: this.post?.post_title || '' },
-  //     { title: 'Description', value: this.post?.post_description || '' },
-  //     { title: 'Image', value: this.post?.post_filepath || '', isImage: true }
-  //   ];
-  // }
 
   private populateTableData(): void {
     this.postData = [
