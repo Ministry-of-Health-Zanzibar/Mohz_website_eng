@@ -77,12 +77,14 @@
             <div class="row mb-4 mt-2" *ngIf="i < 3">
               <div class="col-md-6">
                 <div class="service-img">
-                  <img
-                    [src]="'http://localhost:8000/uploads/posts/images/' + event.post_filepath"
-                    class="img-fluid rounded-top rounded-bottom w-100 h-100"
-                    alt="Image"
-                  />
-                </div>
+               <img
+    *ngIf="event.post_filepath && event.post_filepath.length > 0"
+    [src]="'http://localhost:8000/uploads/posts/images/' + event.post_filepath[0]"
+    class="img-fluid rounded-top rounded-bottom w-100 h-100"
+    alt="Image"
+  />
+  </div>
+
               </div>
               <div class="col-md-6">
                 <h5 class="text-uppercase fw-bold" style="color: #14497d;">
