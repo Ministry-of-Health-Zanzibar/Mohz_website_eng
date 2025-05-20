@@ -39,13 +39,6 @@ imageBaseUrl = environment.imageUrl;
   if (!fullPath) return '';
   return fullPath.split('/').pop() || '';
 }
-
-
-  
-
-
-
-
   // Fetch all 
   getAllBanners(): void {
     this.bannerService.getBanners().subscribe(

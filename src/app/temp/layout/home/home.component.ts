@@ -11,10 +11,10 @@ import { NewsComponent } from "../../components/news/news.component";
 import { OurServiceComponent } from "../../components/our-service/our-service.component";
 import { CarouselComponent } from "../../components/carousel/carousel.component";
 
-// ✅ Define the interface
+
 interface News {
   title: string;
-  date: string; // API should return date as a string
+  date: string; 
 }
 
 @Component({
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
           const newsDate = new Date(news.date);
           const today = new Date();
           const fourDaysAgo = new Date();
-          // fourDaysAgo.setDate(today.getDate() - 4);
+          
           return newsDate >= fourDaysAgo;
         });
       })

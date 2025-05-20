@@ -78,7 +78,7 @@ public getAllNeews(): void {
     public findNewsById(id: any): void {
       this.newsService.findPublicNewsById(id).subscribe(
         (response: any) => {
-          // id = 'page';
+          
           this.router.navigate(['/temp/main/news', id]);
           // console.log('NEWS: ', response.data);
         },
@@ -101,30 +101,6 @@ public getAllNeews(): void {
         }
       );}
 
-      // fetchPost(id: any) {
-      //   this.postService.findPostById(id).subscribe(
-      //     data => {
-      //       this.postData = data;
-      //       console.log('Data:', data);
-      //     },
-      //     error => {
-      //       console.error('Error:', error);
-      //     }
-      //   );
-      // }
-    
-
-    
-
-   
-
-    
-
-    
-    
-
- 
-
     // Fetch events
     public getEventPosts(): void {
       this.isEventLoading = true;
@@ -145,7 +121,6 @@ public getAllNeews(): void {
   public navigateToPostDetails(data: any): void {
     this.router.navigate(['/temp/main/read-events', data.post_id]);
   }
-
 
     // Kupunguza ukubwa wa text
     public truncateEventTitle(description: string, words: number): string {
