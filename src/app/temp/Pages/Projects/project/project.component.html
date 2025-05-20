@@ -13,7 +13,7 @@
             <li *ngFor="let project of projects" class="mt-4">
               <span class="new-icon text-danger fw-bold me-2">🌟 NEW</span>
               {{ project.post_title }}
-              <span  (click)="previewPost(project.post_filepath)" class="badge bg-primary mx-4" style="cursor: pointer;;">Preview</span>
+              <span  (click)="previewPost(documentUrl + project.post_filepath)" class="badge bg-primary mx-4" style="cursor: pointer;;">Preview</span>
               
             </li>
           </ol>

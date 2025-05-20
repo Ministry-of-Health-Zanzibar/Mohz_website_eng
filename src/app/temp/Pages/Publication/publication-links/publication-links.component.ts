@@ -3,6 +3,7 @@ import { PostService } from '../../../../services/posts/post.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-publication-links',
@@ -16,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './publication-links.component.css'
 })
 export class PublicationLinksComponent implements OnInit {
+  public documentUrl = environment.imageUrl + 'posts/documents/'
 onView() {
 throw new Error('Method not implemented.');
 }

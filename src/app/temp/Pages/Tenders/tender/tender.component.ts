@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostService } from '../../../../services/posts/post.service';
 import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-tender',
@@ -15,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class TenderComponent implements OnInit {
   tenders: any[] = [];
+  public documentUrl = environment.imageUrl + 'posts/documents/'
 
   constructor(private tenderService: PostService) {}
 

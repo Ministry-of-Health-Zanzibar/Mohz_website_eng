@@ -15,7 +15,7 @@
                 <img class="img-fluid mx-auto" src="https://www.kilimo.go.tz/site/images/gif1.gif" width="70" height="50">
                 </span>
               {{ tender.post_title }}
-              <span  (click)="previewPost(tender.post_filepath)" class="badge bg-primary mx-4" style="cursor: pointer;;">Preview</span>
+              <span  (click)="previewPost(documentUrl + tender.post_filepath)" class="badge bg-primary mx-4" style="cursor: pointer;;">Preview</span>
               
             </li>
           </ol>
