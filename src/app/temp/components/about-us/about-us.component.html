@@ -46,7 +46,7 @@
             <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
                 <div class="bg-primary rounded position-relative overflow-hidden" *ngFor="let aboutUss of aboutUsData">
                     <img [src]="
-                  'http://localhost:8000/uploads/aboutImages/' + aboutUss?.images"  class="img-fluid rounded w-100" alt="About Us Image">
+                  imageBaseUrl + 'aboutImages/' + aboutUss?.images"  class="img-fluid rounded w-100" alt="About Us Image">
                     <!-- <img *ngIf="aboutUsData[0]?.images" [src]="aboutUsData[0]?.images" class="img-fluid rounded w-100" alt="About Us Image"> -->
                     
                 </div>

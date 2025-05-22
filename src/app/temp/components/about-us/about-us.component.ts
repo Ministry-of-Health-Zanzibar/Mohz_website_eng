@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AboutUsService } from '../../../about-us/about-us.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-about-us',
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AboutUsComponent implements OnInit {
   aboutUsData: any[] = [];
+  imageBaseUrl = environment.imageUrl;
 
   constructor(private aboutUsService: AboutUsService) {}
 
