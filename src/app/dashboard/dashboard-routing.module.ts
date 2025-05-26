@@ -227,14 +227,7 @@ const routes: Routes = [
             (c) => c.TenderListComponent
           ),
       },
-      {
-        path: 'tender-form',
-        title: '',
-        loadComponent: () =>
-          import('./components/tenders/tender-form/tender-form.component').then(
-            (c) => c.TenderFormComponent
-          ),
-      },
+
       {
         path: 'publication-list',
         title: '',

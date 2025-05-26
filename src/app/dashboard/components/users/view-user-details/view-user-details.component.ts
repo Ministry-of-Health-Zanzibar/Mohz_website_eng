@@ -5,43 +5,39 @@ import { AuthenticationService } from '../../../../services/auth/authentication.
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-view-user-details',
   standalone: true,
-  imports: [
-    RouterModule, MatButtonModule, MatIconModule, CommonModule
-  ],
+  imports: [RouterModule, MatButtonModule, MatIconModule, CommonModule],
   templateUrl: './view-user-details.component.html',
-  styleUrl: './view-user-details.component.css'
+  styleUrl: './view-user-details.component.css',
 })
-export class ViewUserDetailsComponent implements OnInit{
+export class ViewUserDetailsComponent implements OnInit {
   public user: any;
 
   constructor(
-        private  authService:AuthenticationService,
-        private activateRoute: ActivatedRoute,
-        private toastService: ToastService
-  ){
-
-  }
+    private authService: AuthenticationService,
+    public permission: PermissionService,
+    private activateRoute: ActivatedRoute,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.getUserData();
-      
   }
-
 
   public getUserData(): void {
     const id = this.activateRoute.snapshot.params['id'];
-    console.log('Fetching user with ID:', id);  
-    
+    console.log('Fetching user with ID:', id);
+
     this.authService.findUserById(id).subscribe(
       (response: any) => {
-        console.log('Response data:', response); 
+        console.log('Response data:', response);
         if (response.statusCode === 200 && response.data) {
-          this.user = response.data[0];  
-          console.log('User data:', this.user);  
+          this.user = response.data[0];
+          console.log('User data:', this.user);
         } else {
           this.toastService.toastError('An error occurred while processing');
         }
@@ -52,6 +48,4 @@ export class ViewUserDetailsComponent implements OnInit{
       }
     );
   }
-  
-
 }

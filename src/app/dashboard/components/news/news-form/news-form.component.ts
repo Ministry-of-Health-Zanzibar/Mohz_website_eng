@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-news-form',
@@ -51,6 +52,7 @@ export class NewsFormComponent {
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private formBuilder: FormBuilder,
     private newsService: NewsService,
+    public permission: PermissionService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     private toastService: ToastService
   ) {
