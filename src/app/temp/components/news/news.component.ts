@@ -45,6 +45,7 @@ export class NewsComponent implements OnInit {
     console.log("Event Data:", this.events);
   }
 
+  //Get All News
 public getAllNeews(): void {
   this.newsService.getAllPublicNews().subscribe(
     (response) => {
@@ -88,9 +89,11 @@ public getAllNeews(): void {
       );
     }
 
-     // Get news by Id
+    
+    //  Get news by Id
      public findEventById(id: any): void {
-      this.postService.findPostById(id).subscribe(
+      console.log("ID: ", id)
+      this.postService.getPublicPostsByTypeId(id).subscribe(
         (response: any) => {
           // id = 'page';
           this.router.navigate(['/temp/main/read-events', id]);
@@ -118,9 +121,9 @@ public getAllNeews(): void {
     }
 
     // View
-  public navigateToPostDetails(data: any): void {
-    this.router.navigate(['/temp/main/read-events', data.post_id]);
-  }
+  // public navigateToPostDetails(data: any): void {
+  //   this.router.navigate(['/temp/main/read-events', data.post_id]);
+  // }
 
     // Kupunguza ukubwa wa text
     public truncateEventTitle(description: string, words: number): string {

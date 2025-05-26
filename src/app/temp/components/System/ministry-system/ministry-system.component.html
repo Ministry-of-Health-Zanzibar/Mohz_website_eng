@@ -10,7 +10,10 @@
          class="rounded-circle"
          style="width: 100px; height: 100px; border: 3px solid rgb(255, 255, 255); 
                 object-fit: contain; background-color: white; padding: 10px;">
-    <p class="h6" style="color: #14497d;">{{ ministrySystem.system_title }}</p>
+   <p class="h6" style="color: #14497d;">
+  {{ ministrySystem.system_title }} - 
+  <a [href]="ministrySystem.system_link" target="_blank">{{ ministrySystem.system_link }}</a>
+</p>
   </div>
 </div>
 

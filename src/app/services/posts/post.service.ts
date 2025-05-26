@@ -90,4 +90,8 @@ export class PostService {
   public getPublicPosts(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Post`);
   }
+
+    getPublicPostsByTypeId(id: number): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.apiUrl}public/posts/${id}`);
+  }
 }

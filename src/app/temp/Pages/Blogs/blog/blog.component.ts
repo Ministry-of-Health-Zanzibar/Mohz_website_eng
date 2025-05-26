@@ -84,12 +84,11 @@ export class BlogComponent implements OnInit{
             }
           );
         }
-    
-    
+
         // Fetch events
         public getEventPosts(): void {
           this.isEventLoading = true;
-          this.eventService.getEventPosts().subscribe(
+          this.eventService.getPublcEventsPosts().subscribe(
             (response: any) => {
               this.events = response.data;
               // console.log('EVENTS: ', response.data);
