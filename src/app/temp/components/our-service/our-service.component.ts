@@ -3,11 +3,16 @@ import { Router, RouterModule } from '@angular/router';
 import { OurServiceService } from '../../../services/our-service/our-service.service';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-our-service',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    MatButtonModule
+  ],
   templateUrl: './our-service.component.html',
   styleUrl: './our-service.component.css'
 })
