@@ -227,11 +227,20 @@ const routes: Routes = [
         loadComponent: () =>
           import('./components/our-service/read-more-services/read-more-services.component').then((c)  => c.ReadMoreServicesComponent)
       },
+
       {
         path: 'read-events/:id',
         loadComponent: () =>
           import('./components/read-more-events/read-more-events.component').then((c)  => c.ReadMoreEventsComponent)
       },
+
+       {
+        path: 'more-service',
+        loadComponent: () =>
+          import('./components/our-service/more-service/more-service.component').then((c)  => c.MoreServiceComponent)
+      },
+
+
     ]
   },
  
