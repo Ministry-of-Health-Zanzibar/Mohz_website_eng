@@ -1,41 +1,33 @@
-/* administration-hr.component.css */
-.container {
-    max-width: 900px;
-    margin-top: 50px;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  ul li {
-    margin-bottom: 8px;
-  }
-  
-  ul li strong {
-    color: #007bff;
-  }
-  
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  .mb-4 {
-    margin-bottom: 30px;
-  }
-  
-  .mt-4 {
-    margin-top: 30px;
-  }
-  
+.container-fluid {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h2, h4 {
+  font-weight: 600;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+ul li strong {
+  color: #007bff;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.text-secondary {
+  color: #343a40;
+}

@@ -1,56 +1,53 @@
 <div class="about container-fluid mt-0">
-    <div class="container py-5">
-        <div class="row g-5 align-items-center" *ngIf="aboutUsData.length > 0">
-            <!-- Loop kupitia aboutUsData -->
-            <div class="col-xl-7 wow fadeInLeft" data-wow-delay="0.2s" *ngFor="let aboutUs of aboutUsData">
+  <div class="container py-5">
+    <div class="row g-5 align-items-center" *ngIf="aboutUsData.length > 0">
+      <!-- Left Column - About Us Text -->
+      <div class="col-xl-7 wow fadeInLeft" data-wow-delay="0.2s">
+        <div>
+          <h1 class="display-5 text-center mb-4" style="color: #093f64;">About Us</h1>
+          <h5 class="display-6 mb-4" style="color: #093f64;">The Ministry of Health Zanzibar</h5>
+          <p class="mb-4">{{ aboutUsData[0]?.descriptions }}</p>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <div class="d-flex">
+                <div><i class="fas fa-lightbulb fa-3x" style="color: #093f64;"></i></div>
+                <div class="ms-4">
+                  <h4>Vision</h4>
+                  <p>{{ aboutUsData[0]?.vision }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <div class="d-flex">
+                <div><i class="bi bi-bookmark-heart-fill fa-3x" style="color: #093f64;"></i></div>
+                <div class="ms-4">
+                  <h4>Mission</h4>
+                  <p>{{ aboutUsData[0]?.mission }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <a href="#" class="btn rounded-pill py-3 px-5 flex-shrink-0" style="background-color: #093f64; color: white;">Discover Now</a>
+            </div>
+            <div class="col-sm-6">
+              <div class="d-flex">
+                <i class="fas fa-phone-alt fa-2x me-4" style="color: #093f64;"></i>
                 <div>
-                    <h1 class="display-5  text-center mb-4" style="color: #093f64;">About Us</h1>
-                    <h5 class="display-6 mb-4" style="color: #093f64;">The Ministry of Health Zanzibar</h5>
-                    <p class="mb-4">{{ aboutUs?.descriptions }}</p>
-                    <div class="row g-4">
-                        <div class="col-md-6 col-lg-6 col-xl-6">
-                            <div class="d-flex">
-                                <div><i class="fas fa-lightbulb fa-3x " style="color: #093f64;"></i></div>
-                                <div class="ms-4">
-                                    <h4>Vision</h4>
-                                    <p>{{ aboutUs?.vision }}</p> <!-- Vision kutoka API -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-6">
-                            <div class="d-flex">
-                                <div> <i class="bi bi-bookmark-heart-fill fa-3x " style="color: #093f64;"></i></div>
-                                <div class="ms-4">
-                                    <h4>Mission</h4>
-                                    <p>{{ aboutUs?.mission }}</p> <!-- Mission kutoka API -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#" class="btn  rounded-pill py-3 px-5 flex-shrink-0" style="background-color: #093f64; color: white;">Discover Now</a>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="d-flex">
-                                <i class="fas fa-phone-alt fa-2x  me-4" style="color: #093f64;"></i>
-                                <div>
-                                    <h4>Call Us</h4>
-                                    <p class="mb-0 fs-5" style="letter-spacing: 1px;">{{ aboutUs?.contact_phone }}</p> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <h4>Call Us</h4>
+                  <p class="mb-0 fs-5" style="letter-spacing: 1px;">{{ aboutUsData[0]?.contact_phone }}</p>
                 </div>
+              </div>
             </div>
-
-            <!-- Sehemu ya picha -->
-            <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
-                <div class="bg-primary rounded position-relative overflow-hidden" *ngFor="let aboutUss of aboutUsData">
-                    <img [src]="
-                  imageBaseUrl + 'aboutImages/' + aboutUss?.images"  class="img-fluid rounded w-100" alt="About Us Image">
-                    <!-- <img *ngIf="aboutUsData[0]?.images" [src]="aboutUsData[0]?.images" class="img-fluid rounded w-100" alt="About Us Image"> -->
-                    
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Right Column - Image -->
+      <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
+        <div class="bg-primary rounded position-relative overflow-hidden">
+          <img [src]="imageBaseUrl + 'aboutImages/' + aboutUsData[0]?.images" class="img-fluid rounded w-100" alt="About Us Image">
+        </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -25,7 +25,7 @@ export class AboutUsComponent implements OnInit {
     this.aboutUsService.getAllPublicAboutUsData().subscribe(
       (response) => {
         this.aboutUsData = response.data;
-      },
+      }, 
       (error) => {
         console.error('Error fetching About Us data:', error);
       }

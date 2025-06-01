@@ -73,4 +73,6 @@ export class PublicationLinksComponent implements OnInit {
     this.currentPage = event.pageIndex;
     this.updatePaginatedData();
   }
+
+  
 }
