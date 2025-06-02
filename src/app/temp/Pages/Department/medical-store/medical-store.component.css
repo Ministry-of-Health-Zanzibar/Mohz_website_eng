@@ -1,41 +1,45 @@
-/* medical-store.component.css */
 .container {
-    max-width: 900px;
-    margin-top: 50px;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  ul li {
-    margin-bottom: 8px;
-  }
-  
-  ul li strong {
-    color: #007bff;
-  }
-  
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  .mb-4 {
-    margin-bottom: 30px;
-  }
-  
-  .mt-4 {
-    margin-top: 30px;
-  }
-  
+  max-width: 900px;
+  margin-top: 50px;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+h2, h5 {
+  font-weight: 600;
+}
+
+h2.border-bottom {
+  border-color: #007bff !important;
+}
+
+.lead {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #444;
+}
+
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+}
+
+.list-group-item {
+  border-bottom: 1px solid #eaeaea;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.fs-3 {
+  font-size: 1.75rem !important;
+  flex-shrink: 0;
+  color: #007bff;
+}
