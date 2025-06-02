@@ -6,15 +6,17 @@
       data-wow-delay="0.2s"
       style="max-width: 800px"
     >
-      <h1 class="text-capitalize" style="color:  #14497d;">get lates news & events</h1>
+      <h1 class="text-capitalize" style="color: #14497d">
+        get lates news & events
+      </h1>
       <p class="mb-0">
-        Stay updated with the latest news and events from the Ministry of Health,
-         Zanzibar. We provide timely information on health policies, 
-         public health initiatives, upcoming health-related events, 
-        and crucial health advisories to keep the community informed and safe.
+        Stay updated with the latest news and events from the Ministry of
+        Health, Zanzibar. We provide timely information on health policies,
+        public health initiatives, upcoming health-related events, and crucial
+        health advisories to keep the community informed and safe.
       </p>
     </div>
-  
+
     <div class="row">
       <span *ngIf="isLoading" class="loading-spinner">
         <span>Loading...</span>
@@ -25,24 +27,28 @@
         data-wow-delay="0.2s"
       >
         <div class="row">
-          <h5 class="fw-bold text-uppercase" style="color: #14497d;">Latest News</h5>
+          <h5 class="fw-bold text-uppercase" style="color: #14497d">
+            Latest News
+          </h5>
           <div class="col-md-12" *ngFor="let news of newses; let i = index">
             <div class="row mb-4 mt-2" *ngIf="i < 3">
               <div class="col-md-6">
                 <div class="service-img">
                   <img
-                  [src]="
-                  imageBaseUrl + 'newsPhotos/' +
-                  news?.image_names[0]
-                "
+                    [src]="imageBaseUrl + 'newsPhotos/' + news?.image_names[0]"
                     class="img-fluid rounded-top rounded-bottom w-100 h-100"
                     alt="Image"
                   />
                 </div>
               </div>
               <div class="col-md-6">
-                <h5 class="text-uppercase  fw-bold" style="color:  #14497d;">
-                  <img class="img-fluid mx-auto" src="https://www.kilimo.go.tz/site/images/gif1.gif" width="70" height="50">
+                <h5 class="text-uppercase fw-bold" style="color: #14497d">
+                  <img
+                    class="img-fluid mx-auto"
+                    src="https://www.kilimo.go.tz/site/images/gif1.gif"
+                    width="70"
+                    height="50"
+                  />
                   {{ truncateTitle(news?.news_title, 5) }}
                 </h5>
                 <div>
@@ -50,13 +56,22 @@
                   Posted On: {{ news?.created_at | date : "mediumDate" }}
                 </div>
                 <div class="">
-                  {{ truncateNewsDescription(news?.news_descriptions, 20) }}<span (click)="findNewsById(news.id)" class="text-primary readMore">{{ readMore }}</span>
+                  {{ truncateNewsDescription(news?.news_descriptions, 20)
+                  }}<span
+                    (click)="findNewsById(news.id)"
+                    class="text-primary readMore"
+                    >{{ readMore }}</span
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button mat-raised-button color="primary" routerLink="/temp/main/blog">
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/temp/main/all-news"
+        >
           View More <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
@@ -71,23 +86,28 @@
         data-wow-delay="0.2s"
       >
         <div class="row">
-          <h5 class="fw-bold  text-uppercase" style="color: #14497d;;">Latest Events</h5>
-          
+          <h5 class="fw-bold text-uppercase" style="color: #14497d">
+            Latest Events
+          </h5>
+
           <div class="col-md-12" *ngFor="let event of events; let i = index">
             <div class="row mb-4 mt-2" *ngIf="i < 3">
               <div class="col-md-6">
                 <div class="service-img">
-               <img
-    *ngIf="event.post_filepath && event.post_filepath.length > 0"
-    [src]="imageBaseUrl + '/posts/images/' + event.post_filepath[0]"
-    class="img-fluid rounded-top rounded-bottom w-100 h-100"
-    alt="Image"
-  />
-  </div>
-
+                  <img
+                    *ngIf="
+                      event.post_filepath && event.post_filepath.length > 0
+                    "
+                    [src]="
+                      imageBaseUrl + '/posts/images/' + event.post_filepath[0]
+                    "
+                    class="img-fluid rounded-top rounded-bottom w-100 h-100"
+                    alt="Image"
+                  />
+                </div>
               </div>
               <div class="col-md-6">
-                <h5 class="text-uppercase fw-bold" style="color: #14497d;">
+                <h5 class="text-uppercase fw-bold" style="color: #14497d">
                   {{ truncateTitle(event?.post_title, 5) }}
                 </h5>
                 <div>
@@ -95,25 +115,26 @@
                   Posted On: {{ event?.created_at | date : "mediumDate" }}
                 </div>
                 <div class="">
-                  {{ truncateEventDescription(event?.post_description, 20)}} <span (click)="findEventById(event.post_id)" class="text-primary readMore">{{ readMore }}</span>
-                </div> 
+                  {{ truncateEventDescription(event?.post_description, 20) }}
+                  <span
+                    (click)="findEventById(event.post_id)"
+                    class="text-primary readMore"
+                    >{{ readMore }}</span
+                  >
+                </div>
                 <!-- <button (click)="fetchPost(event?.id)" mat-button color="primary">
                   Pata Post
                 </button> -->
-                
+
                 <div *ngIf="postData">
                   <h3>Post Data:</h3>
                   <pre>{{ postData | json }}</pre>
                 </div>
-                
-
               </div>
             </div>
           </div>
-
-        
         </div>
-        <button mat-raised-button color="primary" routerLink="/temp/main/blog">
+        <button mat-raised-button color="primary" routerLink="/temp/main/all-events">
           View More <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>

@@ -1,0 +1,11 @@
+.readMore {
+  cursor: pointer;
+  font-weight: bold;
+  color: #14497d;
+}
+
+.service-img img {
+  object-fit: cover;
+  max-height: 200px;
+  border-radius: 8px;
+}
