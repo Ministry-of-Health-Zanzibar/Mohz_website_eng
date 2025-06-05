@@ -300,14 +300,7 @@ const routes: Routes = [
             './components/partners/partner-form/partner-form.component'
           ).then((c) => c.PartnerFormComponent),
       },
-      {
-        path: 'partner-details/:id',
-        title: '',
-        loadComponent: () =>
-          import(
-            './components/partners/view-partner-datails/view-partner-datails.component'
-          ).then((c) => c.ViewPartnerDatailsComponent),
-      },
+
       {
         path: 'dp-program-list',
         title: '',

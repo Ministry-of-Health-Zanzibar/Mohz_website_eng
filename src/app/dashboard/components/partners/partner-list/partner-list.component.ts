@@ -66,7 +66,6 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
     'partnerEmail',
     'partnerPhone',
     'partnerWebsite',
-    'partnerDescription',
     'partnerLogo',
     'action',
   ];
@@ -217,11 +216,6 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
     );
-  }
-
-  // View
-  public navigateToPartnerDetails(data: any): void {
-    this.router.navigate(['/dashboard/partner-details', data.id]);
   }
 
   ngOnDestroy(): void {
