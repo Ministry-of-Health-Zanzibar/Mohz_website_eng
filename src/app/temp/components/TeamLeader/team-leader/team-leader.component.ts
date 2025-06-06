@@ -25,6 +25,7 @@ export class TeamLeaderComponent implements OnInit {
   public isLoading!: boolean;
   isAllPartnersPage: boolean = false;
   imageBaseUrl = environment.imageUrl;
+  showMarquee: boolean = false;
  
   constructor(
     private partnerService:PartnerService,
@@ -32,7 +33,11 @@ export class TeamLeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllPartners()
+    this.getAllPartners();
+    
+    setTimeout(() => {
+    this.showMarquee = true;
+  }, 3000);
    
   }
 
