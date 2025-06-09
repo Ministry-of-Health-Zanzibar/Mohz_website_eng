@@ -351,14 +351,6 @@ const routes: Routes = [
           ).then((c) => c.MinistrySystemDetailComponent),
       },
 
-      // {
-      //   path: 'role-list',
-      //   title: '',
-      //   loadComponent: () =>
-      //     import('./components/roles/role-list/role-list.component').then(
-      //       (c) => c.RoleListComponent
-      //     ),
-      // },
       {
         path: 'role-list',
         title: '',
@@ -366,6 +358,15 @@ const routes: Routes = [
           import(
             './components/role-permission/role-permission-board/role-permission-board.component'
           ).then((c) => c.RolePermissionBoardComponent),
+      },
+
+      {
+        path: 'org-structure-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/organization-structure/organization-structure-list/organization-structure-list.component'
+          ).then((c) => c.OrganizationStructureListComponent),
       },
     ],
   },

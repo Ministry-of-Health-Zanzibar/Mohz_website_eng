@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create Organization Structure
+  </h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Organization Structure
+  </h5>
+  <form [formGroup]="orgStructureForm">
+    <div class="row">
+      <!-- Full Name -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Full Name</mat-label>
+        <input
+          type="text"
+          formControlName="fullName"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            orgStructureForm.controls.fullName.touched &&
+            orgStructureForm.controls.fullName.invalid
+          "
+        >
+          <span *ngIf="orgStructureForm.controls.fullName.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Position -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Position</mat-label>
+        <input
+          formControlName="position"
+          matInput
+          rows="11"
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            orgStructureForm.controls.position.touched &&
+            orgStructureForm.controls.position.invalid
+          "
+        >
+          <span *ngIf="orgStructureForm.controls.position.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- level -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Level</mat-label>
+        <mat-select name="level" formControlName="level">
+          <mat-option [value]="1">1</mat-option>
+          <mat-option [value]="2">2</mat-option>
+          <mat-option [value]="3">3</mat-option>
+          <mat-option [value]="4">4</mat-option>
+          <mat-option [value]="5">5</mat-option>
+          <mat-option [value]="6">6</mat-option>
+          <mat-option [value]="7">7</mat-option>
+          <mat-option [value]="8">8</mat-option>
+          <mat-option [value]="9">9</mat-option>
+          <mat-option [value]="10">10</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            orgStructureForm.controls.level.touched &&
+            orgStructureForm.controls.level.invalid
+          "
+        >
+          <span *ngIf="orgStructureForm.controls.level.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- picture -->
+      <div class="col-md-12 mt-2 mb-3">
+        <div class="mb-2">
+          <mat-label>Picture</mat-label>
+        </div>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          class="form-control"
+        />
+        <mat-error *ngIf="fileError">
+          {{ fileError }}
+        </mat-error>
+      </div>
+      <div *ngIf="previewImage" class="mt-3">
+        <img
+          [src]="previewImage"
+          alt="Preview"
+          class="img-fluid"
+          style="max-height: 200px"
+        />
+      </div>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(orgStructureForm.valid && orgStructureForm.dirty)"
+      (click)="handleOrgStructureSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
+</div>

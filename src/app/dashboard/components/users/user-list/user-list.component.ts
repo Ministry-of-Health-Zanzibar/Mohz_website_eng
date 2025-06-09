@@ -139,8 +139,8 @@ export class UserListComponent implements OnInit, OnDestroy, AfterViewInit {
     config.data = {
       action: 'CREATE NEW',
     };
-    config.width = '800px';
-    config.height = '670px';
+    config.width = '990px';
+    config.height = '610px';
 
     const dialogRef = this.dialog.open(UserFormComponent, config);
     this.router.events.subscribe(() => {
@@ -162,8 +162,8 @@ export class UserListComponent implements OnInit, OnDestroy, AfterViewInit {
       action: 'EDIT',
       data: data,
     };
-    config.width = '800px';
-    config.height = '775px';
+    config.width = '990px';
+    config.height = '610px';
 
     const dialogRef = this.dialog.open(UserFormComponent, config);
     this.router.events.subscribe(() => {
