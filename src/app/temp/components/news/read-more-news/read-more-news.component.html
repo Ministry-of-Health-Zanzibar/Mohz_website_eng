@@ -1,29 +1,57 @@
-
-
-<div class="container-sm justify-content-center mt-4">
-  <div class="card w-75 mx-auto p-3 shadow">
-    <div class="card-body">
-      <!-- Bootstrap Carousel -->
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-         <div *ngFor="let imageName of news?.image_names; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
-          <img class="d-block w-100 rounded" [src]="imageBaseUrl + 'newsPhotos/' + imageName" alt="News Image">
+<div class="container mt-4">
+  <div class="row">
+    <!-- Left Column: Main News -->
+    <div class="col-md-8">
+      <div class="card p-3 shadow">
+        <div class="card-body">
+          <!-- Carousel -->
+          <div *ngIf="news?.image_names?.length" id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let imageName of news?.image_names; let i = index"
+                   class="carousel-item"
+                   [ngClass]="{ 'active': i === 0 }">
+                <img class="d-block w-100 rounded" [src]="imageBaseUrl + 'newsPhotos/' + imageName" alt="News Image">
+              </div>
+            </div>
           </div>
 
+          <!-- News Details -->
+          <div class="mt-4">
+            <h3 class="fw-bold">{{ news?.news_title }}</h3>
+            <p class="text-secondary">{{ news?.news_descriptions }}</p>
+            <p class="text-muted">
+              <span class="fw-bold">Posted date:</span>
+              {{ news?.created_at | date:'medium' }}
+            </p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- News Details -->
-      <div class="mt-4">
-        <h3 class="fw-bold">{{ news?.news_title }}</h3>
-      <p class="text-secondary">{{ news?.news_descriptions }}</p>
-      <p class="text-muted"> <span class="fw-bold">Posted date:</span> {{ news?.created_at | date:'medium' }}</p>
+    <!-- Right Column: News Updates -->
+    <div class="col-md-4">
+      <h5 class="fw-bold mb-3">NEWS UPDATE</h5>
+
+      <div *ngFor="let item of recentNewsList" 
+           class="d-flex mb-3 border-bottom pb-2 p-2 rounded"
+           [class.bg-light]="item.id === currentNewsId">
+        <img [src]="imageBaseUrl + 'newsPhotos/' + item.image_names?.[0]"
+             class="me-2"
+             style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;"
+             alt="Update">
+        <div>
+          <small class="fw-bold d-block">
+            {{ item.news_title | slice:0:60 }}...
+          </small>
+          <span
+            (click)="findNewsById(item.id)"
+            class="text-primary readMore"
+            style="cursor: pointer;"
+          >
+            {{ readMore }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- <button mat-raised-button color="warn" class="mb-2" routerLink="/temp/main/blog">
-    <mat-icon>arrow_back</mat-icon>
-    back</button> -->
 </div>
-

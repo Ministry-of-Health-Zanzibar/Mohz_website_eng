@@ -57,7 +57,7 @@
   object-fit: contain;
   background-color: white;
   padding: 15px;
-  position: relative; /* Keeps it above the overlay */
+  position: relative; 
   z-index: 1;
 }
 
