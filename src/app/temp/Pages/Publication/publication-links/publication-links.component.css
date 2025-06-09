@@ -1,12 +1,61 @@
-body, html {
+/* body, html {
     height: 100%;
   }
   
   .container {
     min-height: calc(100vh - 50px); 
-  }
+  } */
   
  .curser {
   cursor: pointer;
  }
+
+ 
+
+ .container {
+  max-width: 1300px;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+ul {
+  padding-left: 1rem;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+ul li strong {
+  color: #007bff;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 123, 255, 0.1);
+}
+
+.material-icons {
+  font-size: 1.2rem;
+  margin-right: 6px;
+  color: #007bff;
+}
+
+.img-fluid {
+  max-height: 280px;
+  object-fit: cover;
+}
+
   

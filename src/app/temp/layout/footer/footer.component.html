@@ -36,13 +36,14 @@
       <div class="col-md-6 col-lg-6 col-xl-3">
         <div class="footer-item">
           <h4 class="text-white mb-4">Useful Links</h4>
+
           <a
-            *ngFor="let site of siteLink"
+            *ngFor="let site of siteLink.slice(0, 6); let i = index"
             [href]="site?.sitelinks_url"
             style="color: white"
           >
-            <i class="fas fa-angle-right me-2"></i>{{ site?.sitelinks_name }}
-            {{ site?.sitelinks_url }}
+            <i class="fas fa-angle-right me-2"></i>
+            {{ site?.sitelinks_name }} {{ site?.sitelinks_url }}
           </a>
         </div>
       </div>

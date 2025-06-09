@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class FooterComponent implements OnInit{
   siteLink: any
+i: any;
 
   constructor(private siteLinkService:SiteLinkService, private toastService: ToastService){}
 

@@ -1,35 +1,7 @@
 <div class="container mt-5 mb-5">
-  <div class="row">
-    <!-- Column ya Kwanza - List ya Titles -->
-    <!-- <div class="col-md-4">
-      <div class="card shadow-lg border-0">
-        <div class="card-header border text-primary text-center">
-          <h5 class="mb-0">Publications</h5>
-        </div>
-        <div class="card-body p-3">
-          <ul class="list-group list-group-flush curser">
-            <li
-              *ngFor="let publication of publications"
-              class="list-group-item list-group-item-action"
-              [class.active]="publication === selectedPublication"
-              (click)="selectPublication(publication)"
-            >
-              {{ publication.post_title }}
-            </li>
-          </ul>
-          <mat-paginator
-            [pageSizeOptions]="[10, 15, 20]"
-            showFirstLastButtons
-            aria-label="Select page of permission"
-            class="pt-3"
-          >
-          </mat-paginator>
-        </div>
-      </div>
-    </div> -->
-
+  <div class="row align-items-center bg-light p-4 rounded-4 shadow-sm mb-5">
     <!-- New -->
-    <div class="col-md-4">
+    <div class="col-md-8">
       <div class="card shadow-lg border-0">
         <div class="card-header border text-primary text-center">
           <h5 class="mb-0">Publications</h5>
@@ -60,7 +32,7 @@
     </div>
 
     <!-- Column ya Pili - Maelezo ya Publication -->
-    <div class="col-md-8">
+    <div class="col-md-4">
       <div
         *ngIf="!selectedPublication"
         class="alert alert-info text-center mt-3"
