@@ -19,6 +19,20 @@ export class OrganizationStructureService {
     return this.httpClient.get<any>(`${this.apiUrl}organizations`);
   }
 
+  public getPublicOrganizationStructureByLevelId(
+    levelId: number
+  ): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.apiUrl}public/organizations/level/${levelId}`
+    );
+  }
+
+  public getPublicOrgStuctureByLevel1(): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.apiUrl}public/organizations/byLevel/1`
+    );
+  }
+
   public getPublicAllOrganizations(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/Organization`);
   }
