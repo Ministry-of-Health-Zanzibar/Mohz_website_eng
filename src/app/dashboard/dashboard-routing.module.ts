@@ -368,6 +368,22 @@ const routes: Routes = [
             './components/organization-structure/organization-structure-list/organization-structure-list.component'
           ).then((c) => c.OrganizationStructureListComponent),
       },
+      {
+        path: 'gallery-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/galleries/gallery-list/gallery-list.component'
+          ).then((c) => c.GalleryListComponent),
+      },
+      {
+        path: 'gallery-type-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/galleries/gallery-type-list/gallery-type-list.component'
+          ).then((c) => c.GalleryTypeListComponent),
+      },
     ],
   },
 ];

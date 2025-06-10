@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
   getUserDetails() {
     const user = this.userAuthService.getUserFromLocalStorage();
-    console.log(user);
+    // console.log(user);
     if (user && user.full_name) {
       this.username = user.full_name;
     } else {
