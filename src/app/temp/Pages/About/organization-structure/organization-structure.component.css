@@ -1,15 +1,27 @@
-.organization-structure {
-  text-align: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.profile-img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border: 4px solid #0d6efd;
+  transition: transform 0.3s ease;
 }
 
-.image-container img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.leader-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border: 5px solid #198754;
+}
+
+.profile-card:hover .profile-img {
+  transform: scale(1.05);
+  border-color: #198754;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+h5, h4 {
+  margin-top: 0.5rem;
 }

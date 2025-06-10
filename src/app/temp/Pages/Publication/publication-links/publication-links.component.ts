@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { environment } from '../../../../../environments/environment.prod';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-publication-links',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatPaginatorModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatPaginatorModule,MatIconModule],
   templateUrl: './publication-links.component.html',
   styleUrl: './publication-links.component.css',
 })

@@ -324,6 +324,22 @@ const routes: Routes = [
             (c) => c.AllEventsComponent
           ),
       },
+
+      {
+        path: 'photo-gallery',
+        loadComponent: () =>
+          import('./Pages/Media-Center/photo-gallery/photo-gallery.component').then(
+            (c) => c.PhotoGalleryComponent
+          ),
+      },
+
+      {
+        path: 'video-gallery',
+        loadComponent: () =>
+          import('./Pages/Media-Center/video-gallery/video-gallery.component').then(
+            (c) => c.VideoGalleryComponent
+          ),
+      },
     ],
   },
 ];
