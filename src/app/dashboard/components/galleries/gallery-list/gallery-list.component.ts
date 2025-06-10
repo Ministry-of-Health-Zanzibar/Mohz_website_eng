@@ -69,7 +69,7 @@ export class GalleryListComponent implements OnInit, OnDestroy, AfterViewInit {
     'title',
     'description',
     'link',
-    'type_id',
+    'type_name',
     'gallery_photo',
     'action',
   ];
