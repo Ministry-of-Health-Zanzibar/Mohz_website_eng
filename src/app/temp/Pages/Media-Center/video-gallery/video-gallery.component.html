@@ -1,0 +1,24 @@
+<div class="gallery-container">
+  <div *ngIf="paginatedGallery.length === 0" class="text-center">
+    <p>No videos available.</p>
+  </div>
+
+  <div class="video-card" *ngFor="let item of paginatedGallery">
+    <iframe
+      width="100%"
+      height="250"
+      [src]="getSafeUrl(extractYouTubeId(item.url))"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+    <h4>{{ item.title }}</h4>
+    <p>{{ item.description }}</p>
+  </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination-controls">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages()">Next</button>
+</div>

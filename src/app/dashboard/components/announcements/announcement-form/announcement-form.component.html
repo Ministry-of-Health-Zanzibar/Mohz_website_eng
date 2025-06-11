@@ -1,8 +1,15 @@
-<div class="container-fluid">
+<div
+  *ngIf="
+    permission.parmissionMatched(['Create Announcement', 'Update Announcement'])
+  "
+  class="container-fluid"
+>
   <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
     Create New Announcement
   </h5>
-  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">Update Announcement</h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Announcement
+  </h5>
   <form [formGroup]="announcementForm">
     <div class="row">
       <mat-form-field appearance="outline" class="col-md-12 mt-3">
@@ -40,18 +47,70 @@
             announcementForm.controls.announcementContent.invalid
           "
         >
-          <span *ngIf="announcementForm.controls.announcementContent.errors?.required"
+          <span
+            *ngIf="
+              announcementForm.controls.announcementContent.errors?.required
+            "
             >This field is mandatory</span
           >
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>End Date</mat-label>
+        <input
+          type="text"
+          formControlName="endDate"
+          matInput
+          placeholder="2025/06/25"
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            announcementForm.controls.endDate.touched &&
+            announcementForm.controls.endDate.invalid
+          "
+        >
+          <span *ngIf="announcementForm.controls.endDate.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Choose a date</mat-label>
+        <input matInput formControlName="endDate" [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error
+          *ngIf="
+            announcementForm.controls.endDate.touched &&
+            announcementForm.controls.endDate.invalid
+          "
+        >
+          <span *ngIf="announcementForm.controls.endDate.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field> -->
 
       <!-- File Input for Multiple PDFs -->
       <div class="col-md-12 mt-2 mb-3">
         <div class="mb-2">
           <mat-label>Documents (PDFs)</mat-label>
         </div>
-        <input type="file" (change)="onFileSelected($event)" accept="application/pdf" multiple class="form-control"/>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="application/pdf"
+          multiple
+          class="form-control"
+        />
 
         <mat-error *ngIf="fileError">
           {{ fileError }}

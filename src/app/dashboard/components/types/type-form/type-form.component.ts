@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
   Inject,
@@ -20,16 +19,14 @@ import {
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AnnouncementService } from '../../../../services/announcements/announcement.service';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { PostTypeService } from '../../../../services/types/type.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-type-form',
@@ -58,6 +55,7 @@ export class TypeFormComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private formBuilder: FormBuilder,
     private postTypeService: PostTypeService,
+    public permission: PermissionService,
     private dialogRef: MatDialogRef<TypeFormComponent>,
     private toastService: ToastService,
     private router: Router

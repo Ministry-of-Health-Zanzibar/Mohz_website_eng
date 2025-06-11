@@ -1,81 +1,138 @@
 <!-- title -->
 <div class="container-fluid position-relative p-0">
-    <app-title></app-title>
-  
-    <!-- Navbar Section -->
-    <nav class="navbar navbar-expand-lg  navbar-light px-4 px-lg-5 py-3 py-lg-0" [class.sticky]="isSticky">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="fa fa-bars bg-white"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav py-0 width-100">
-  
-          <!-- Home-start -->
-          <a href="/" class="nav-item nav-link active">Home</a>
+  <app-title></app-title>
 
-           <!-- About Us Dropdown -->
-           <div class="nav-item dropdown">
-            <a href="#" class="nav-link" data-bs-toggle="dropdown">
-              <span class="dropdown-toggle">About Us</span>
-            </a>
-            <div class="dropdown-menu m-0">
-              <a routerLink="/temp/main/about-us" class="dropdown-item">Overviews</a>
-              <a routerLink="/temp/main/welcome-message" class="dropdown-item">Welcome message</a>
-              <a routerLink="/temp/main/mission-vision" class="dropdown-item">Vission & Mission</a>
-              <a routerLink="/temp/main/organization-structure" class="dropdown-item">Organization structure</a>
-            </div>
+  <!-- Navbar Section -->
+  <nav
+    class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+    [class.sticky]="isSticky"
+  >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+    >
+      <span class="fa fa-bars bg-white"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav py-0 width-100">
+        <!-- Home-start -->
+        <a href="/" class="nav-item nav-link active">Home</a>
+
+        <!-- About Us Dropdown -->
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link" data-bs-toggle="dropdown">
+            <span class="dropdown-toggle">About Us</span>
+          </a>
+          <div class="dropdown-menu m-0">
+            <a routerLink="/temp/main/about-us" class="dropdown-item"
+              >Overviews</a
+            >
+            <!-- <a routerLink="/temp/main/welcome-message" class="dropdown-item">Welcome message</a>
+              <a routerLink="/temp/main/mission-vision" class="dropdown-item">Vission & Mission</a> -->
+            <a
+              routerLink="/temp/main/organization-structure"
+              class="dropdown-item"
+              >Organization structure</a
+            >
           </div>
-          
-        
-  
-           <!-- Department Dropdown -->
-           <div class="nav-item dropdown">
-            <a href="#" class="nav-link" data-bs-toggle="dropdown">
-              <span class="dropdown-toggle">Department</span>
-            </a>
-            <div class="dropdown-menu m-0">
-              <a routerLink="/temp/main/administrative-hr" class="dropdown-item">Administration & HR</a>
-              <a routerLink="/temp/main/altanativemedicine" class="dropdown-item">Alternative Medicine</a>
-              <a routerLink="/temp/main/medical-store" class="dropdown-item">Medical Store</a>
-              <a routerLink="/temp/main/cgcl" class="dropdown-item">CGCL</a>
-              <a routerLink="/temp/main/chief-pharmacist" class="dropdown-item">Chief Pharmacist</a>
-              <a routerLink="/temp/main/nursing-midwifery" class="dropdown-item">Nursing & Midwifery</a>
-              <a routerLink="/temp/main/curretive" class="dropdown-item">Curretive</a>
-              <a routerLink="/temp/main/mhh" class="dropdown-item">MMH</a>
-              <a routerLink="/temp/main/planning" class="dropdown-item">Planning</a>
-              <a routerLink="/temp/main/preventive-health-education" class="dropdown-item">Preventive & Health Education</a>
-              <a routerLink="/temp/main/zfda" class="dropdown-item">ZFDA</a>
-            </div>
-          </div>
-  
-          <!-- Programme Dropdown -->
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link" data-bs-toggle="dropdown">
-              <span class="dropdown-toggle">Programme</span>
-            </a>
-            <div class="dropdown-menu m-0">
-              <a routerLink="/temp/main/irch" class="dropdown-item">IRCH</a>
-              <a routerLink="/temp/main/ncd" class="dropdown-item">NCD</a>
-              <a routerLink="/temp/main/ntd" class="dropdown-item">NTD</a>
-              <a href="/temp/main/zamep" class="dropdown-item">ZAMEP</a>
-              <a href="/temp/main/zihtlp" class="dropdown-item">ZIHTLP</a>
-            </div>
-          </div>
-  
-          <!-- Other Links -->
-          <a routerLink="/temp/main/tender" class="nav-item nav-link">Tenders</a>
-          <a routerLink="/temp/main/project" class="nav-item nav-link">Projects</a>
-          <a routerLink="/temp/main/blog" class="nav-item nav-link">News</a>
-          <a routerLink="/temp/main/publications" class="nav-item nav-link">Publications</a>
-          <a routerLink="/temp/main/contact-us" class="nav-item nav-link">Contact Us</a>
-         
-          <a href="https://mail.mohz.go.tz/" target="_blank" class="nav-item nav-link">Staff Mail</a>
-          <a href="https://eoffice.goz.go.tz" target="_blank" class="nav-item nav-link">E-Office</a>
-        
-          <a routerLink="" target="_blank" class="nav-item nav-link"></a>
         </div>
+
+        <!-- Department Dropdown -->
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link" data-bs-toggle="dropdown">
+            <span class="dropdown-toggle">Department</span>
+          </a>
+          <div class="dropdown-menu m-0">
+            <a routerLink="/temp/main/administrative-hr" class="dropdown-item"
+              >Administration & HR</a
+            >
+            <a routerLink="/temp/main/altanativemedicine" class="dropdown-item"
+              >Alternative Medicine</a
+            >
+            <a routerLink="/temp/main/medical-store" class="dropdown-item"
+              >Medical Store</a
+            >
+            <a routerLink="/temp/main/cgcl" class="dropdown-item">CGCL</a>
+            <a routerLink="/temp/main/chief-pharmacist" class="dropdown-item"
+              >Chief Pharmacist</a
+            >
+            <a routerLink="/temp/main/nursing-midwifery" class="dropdown-item"
+              >Nursing & Midwifery</a
+            >
+            <a routerLink="/temp/main/curretive" class="dropdown-item"
+              >Curretive</a
+            >
+            <a routerLink="/temp/main/mhh" class="dropdown-item">MMH</a>
+            <a routerLink="/temp/main/planning" class="dropdown-item"
+              >Planning</a
+            >
+            <a
+              routerLink="/temp/main/preventive-health-education"
+              class="dropdown-item"
+              >Preventive & Health Education</a
+            >
+            <a routerLink="/temp/main/zfda" class="dropdown-item">ZFDA</a>
+          </div>
+        </div>
+
+        <!-- Programme Dropdown -->
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link" data-bs-toggle="dropdown">
+            <span class="dropdown-toggle">Programme</span>
+          </a>
+          <div class="dropdown-menu m-0">
+            <a routerLink="/temp/main/irch" class="dropdown-item">IRCH</a>
+            <a routerLink="/temp/main/ncd" class="dropdown-item">NCD</a>
+            <a routerLink="/temp/main/ntd" class="dropdown-item">NTD</a>
+            <a routerLink="/temp/main/zamep" class="dropdown-item">ZAMEP</a>
+            <a routerLink="/temp/main/zihtlp" class="dropdown-item">ZIHTLP</a>
+          </div>
+        </div>
+
+        <!-- Other Links -->
+        <a routerLink="/temp/main/tender" class="nav-item nav-link">Tenders</a>
+        <a routerLink="/temp/main/project" class="nav-item nav-link"
+          >Projects</a
+        >
+        <a routerLink="/temp/main/blog" class="nav-item nav-link">News & Alert</a>
+        <a routerLink="/temp/main/publications" class="nav-item nav-link"
+          >Resource Library</a
+        >
+         <!-- Programme Dropdown -->
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link" data-bs-toggle="dropdown">
+            <span class="dropdown-toggle">Media Center</span>
+          </a>
+
+          <div class="dropdown-menu m-0">
+            <a routerLink="" class="dropdown-item">Press Release</a>
+            <a routerLink="/temp/main/video-gallery" class="dropdown-item">Video Gallery</a>
+            <a routerLink="/temp/main/photo-gallery" class="dropdown-item">Photo Gallery</a>
+      
+          </div>
+        </div>
+        <a routerLink="/temp/main/contact-us" class="nav-item nav-link"
+          >Contact Us</a
+        >
+
+        <a
+          href="https://mail.mohz.go.tz/"
+          target="_blank"
+          class="nav-item nav-link"
+          >Staff Mail</a
+        >
+        <a
+          href="https://eoffice.goz.go.tz/"
+          target="_blank"
+          class="nav-item nav-link"
+          >E-Office</a
+        >
+
+        <a routerLink="" target="_blank" class="nav-item nav-link"></a>
       </div>
-    </nav>
-  </div>
-  <!-- Navbar & Hero End -->
-  
+    </div>
+  </nav>
+</div>
+<!-- Navbar & Hero End -->

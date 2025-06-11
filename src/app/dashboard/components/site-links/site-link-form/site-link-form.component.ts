@@ -1,10 +1,18 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { NewsService } from '../../../../services/news/news.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { SiteLinkService } from '../../../../services/site-links/site-link.service';
@@ -13,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-site-link-form',
@@ -41,6 +50,7 @@ export class SiteLinkFormComponent {
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private formBuilder: FormBuilder,
     private siteLinkService: SiteLinkService,
+    public permission: PermissionService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     private toastService: ToastService,
     private router: Router
@@ -119,22 +129,24 @@ export class SiteLinkFormComponent {
       sitelinks_description: formData.sitelinkDescription,
     };
 
-    this.siteLinkService.updateSitelink(data).subscribe(
-      (response: any) => {
-        this.dialogRef.close();
-        this.onEditNewsEventEmitter.emit();
-        if (response.statusCode === 201) {
-          this.toastService.toastSuccess(response.message);
-        } else {
-          this.toastService.toastError(response.message);
+    this.siteLinkService
+      .updateSitelink(data, this.dialogData.data.id)
+      .subscribe(
+        (response: any) => {
+          this.dialogRef.close();
+          this.onEditNewsEventEmitter.emit();
+          if (response.statusCode === 201) {
+            this.toastService.toastSuccess(response.message);
+          } else {
+            this.toastService.toastError(response.message);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          if (errorResponse) {
+            this.toastService.toastError(errorResponse.error.message);
+          }
         }
-      },
-      (errorResponse: HttpErrorResponse) => {
-        if (errorResponse) {
-          this.toastService.toastError(errorResponse.error.message);
-        }
-      }
-    );
+      );
   }
 
   ngOnDestroy(): void {

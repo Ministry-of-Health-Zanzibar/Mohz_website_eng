@@ -24,6 +24,7 @@ import { ToastService } from '../../../../services/toast/toast.service';
 import { NewsFormComponent } from '../../news/news-form/news-form.component';
 import { SiteLinkService } from '../../../../services/site-links/site-link.service';
 import { SiteLinkFormComponent } from '../site-link-form/site-link-form.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-site-link-list',
@@ -53,6 +54,8 @@ export class SiteLinkListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private siteLinkService: SiteLinkService,
+    public permission: PermissionService,
+
     private dialog: MatDialog,
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,

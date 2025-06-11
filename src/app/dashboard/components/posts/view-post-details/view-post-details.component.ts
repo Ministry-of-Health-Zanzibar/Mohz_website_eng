@@ -7,19 +7,33 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-view-post-details',
   standalone: true,
-  imports: [RouterModule, MatButtonModule, MatIconModule, CommonModule, MatTableModule],
+  imports: [
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    CommonModule,
+    MatTableModule,
+  ],
   templateUrl: './view-post-details.component.html',
   styleUrl: './view-post-details.component.css',
 })
 export class ViewPostDetailsComponent implements OnInit {
   public post: any;
-  public postData: { title: string; value: string; isImage?: boolean }[] =
-    [];
+  public postData: {
+    title: string;
+    value: string;
+    isImage?: boolean;
+    isPdf?: boolean;
+  }[] = [];
+
   public displayedColumns: string[] = ['title', 'value'];
+  public postImageUrl = environment.imageUrl + 'posts/images/';
+  public documentUrl = environment.imageUrl + 'posts/documents/';
 
   constructor(
     private postService: PostService,
@@ -39,18 +53,30 @@ export class ViewPostDetailsComponent implements OnInit {
         this.populateTableData();
       } else {
         this.toastService.toastError('An error occured while processing');
-        // this.toastService.toastError(response.message);
       }
     });
   }
-
 
   private populateTableData(): void {
     this.postData = [
       { title: 'Title', value: this.post?.post_title || '' },
       { title: 'Description', value: this.post?.post_description || '' },
-      { title: 'Image', value: this.post?.post_filepath || '', isImage: true }
     ];
+
+    const filePaths: string[] = this.post?.post_filepath || [];
+
+    filePaths.forEach((filePath: string, index: number) => {
+      const ext = filePath.split('.').pop()?.toLowerCase();
+      const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(ext!);
+      const isPdf = ext === 'pdf';
+
+      this.postData.push({
+        title: `File ${index + 1}`,
+        value: filePath,
+        isImage,
+        isPdf,
+      });
+    });
   }
 
   public isImage(filePath: string): boolean {

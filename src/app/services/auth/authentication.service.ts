@@ -63,7 +63,7 @@ export class AuthenticationService {
     return this.httpClient.put<any>(`${this.apiUrl}userAccounts/${id}`, data);
   }
 
-  public findUserById( id: number): Observable<any> {
+  public findUserById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}userAccounts/${id}`);
   }
 
@@ -83,7 +83,7 @@ export class AuthenticationService {
   }
 
   changePassword(data: any) {
-    return this.httpClient.post<any>(`${this.apiUrl}changePassword`,data);
+    return this.httpClient.post<any>(`${this.apiUrl}changePassword`, data);
   }
 
   public setRoles(roles: any[]) {
@@ -110,5 +110,11 @@ export class AuthenticationService {
     return isMatch;
   }
 
+  public setPermissions(permissions: []) {
+    localStorage.setItem('permissions', JSON.stringify(permissions));
+  }
 
+  public getPermissions(): [] {
+    return JSON.parse(localStorage.getItem('permissions')!);
+  }
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-ministry-system',
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class MinistrySystemComponent implements OnInit {
  
   ministrySystems: any[] = []; 
+  imageBaseUrl = environment.imageUrl;
   constructor(private ministrySystemService: MinistrySystemService) {}
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class MinistrySystemComponent implements OnInit {
 
   // Fetch all ministry systems excluding deleted ones
   getAllMinistrySystem(): void {
-    this.ministrySystemService.getAllMinistrySystem().subscribe(
+    this.ministrySystemService.getPublicAllMinistrySystem().subscribe(
       (response) => {
         if (response?.data) {
           // Filter out deleted records (assuming deleted records have a 'deleted_at' property)

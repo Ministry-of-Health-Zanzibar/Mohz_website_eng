@@ -1,44 +1,26 @@
-.container {
-    max-width: 900px;
-    margin-top: 50px;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  ul li {
-    margin-bottom: 8px;
-  }
-  
-  ul li strong {
-    color: #007bff;
-  }
-  
-  .mb-4 {
-    margin-bottom: 30px;
-  }
-  
-  .mt-4 {
-    margin-top: 30px;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+ul.list-unstyled li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.lead {
+  font-size: 1.2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+h1.display-5 {
+  font-size: 2.5rem;
+}
+
+.container-fluid {
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}

@@ -13,13 +13,21 @@ private apiUrl = environment.baseUrl;
 
   public createDepartmentProgram(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}dp/create-dp`,
+      `${this.apiUrl}dp`,
       data
     );
   }
 
   public getAllDepartmentPrograms(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}dp/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}dp`);
+  }
+
+   public getPublicAllDepartmentPrograms(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/dp`);
+  }
+
+   public findPublicDepartmentProgramById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/dp/${id}`);
   }
 
   public findDepartmentProgramById(id: number): Observable<any> {
@@ -27,11 +35,11 @@ private apiUrl = environment.baseUrl;
   }
 
   public updateDepartmentProgram(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}dp/update/${id}`, data);
+    return this.httpClient.put<any>(`${this.apiUrl}dp/${id}`, data);
   }
 
   public deleteDepartmentProgram(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}dp/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}dp/${id}`);
   }
 
 

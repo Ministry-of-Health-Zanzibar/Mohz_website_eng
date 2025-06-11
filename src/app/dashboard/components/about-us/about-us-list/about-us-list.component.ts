@@ -14,8 +14,6 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { BannerFormComponent } from '../../banners/banner-form/banner-form.component';
-import { DisplayBennerImageComponent } from '../../banners/display-benner-image/display-benner-image.component';
 import { AboutUsService } from '../../../../about-us/about-us.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +23,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AboutUsFormComponent } from '../about-us-form/about-us-form.component';
 import { DisplayAboutUsImageComponent } from '../display-about-us-image/display-about-us-image.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-about-us-list',
@@ -46,6 +46,7 @@ import { DisplayAboutUsImageComponent } from '../display-about-us-image/display-
 })
 export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public aboutImageUrl = environment.imageUrl + 'aboutImages/';
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -57,6 +58,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     private dialog: MatDialog,
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
+    public permission: PermissionService,
     private router: Router
   ) {}
 
@@ -83,17 +85,17 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getAllAboutUsData();
+    this.getAllAboutUsInfo();
   }
 
   onRefresh() {
-    this.getAllAboutUsData();
+    this.getAllAboutUsInfo();
   }
 
-  public getAllAboutUsData(): void {
+  public getAllAboutUsInfo(): void {
     this.refreshing = true;
     this.aboutUsService
-      .getAllAboutUsData()
+      .getAllAboutUsInfo()
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {
@@ -148,7 +150,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const sub = dialogRef.componentInstance.onAddAboutUsEventEmitter.subscribe(
       () => {
-        this.getAllAboutUsData();
+        this.getAllAboutUsInfo();
       }
     );
   }
@@ -171,7 +173,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const sub = dialogRef.componentInstance.onEditAboutUsEventEmitter.subscribe(
       () => {
-        this.getAllAboutUsData();
+        this.getAllAboutUsInfo();
       }
     );
   }
@@ -193,7 +195,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     const sub =
       dialogRef.componentInstance.onDisplayAboutImageEventEmitter.subscribe(
         () => {
-          this.getAllAboutUsData();
+          this.getAllAboutUsInfo();
         }
       );
   }
@@ -204,7 +206,7 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.aboutUsService.deleteAboutUs(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          this.getAllAboutUsData();
+          this.getAllAboutUsInfo();
           this.toastService.toastSuccess(response.message);
         } else {
           this.toastService.toastError(response.message);
@@ -220,26 +222,26 @@ export class AboutUsListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Restore
-    // Delete
-    public restoreMinistrySystem(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.aboutUsService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllAboutUsData();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  // Delete
+  public restoreMinistrySystem(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.aboutUsService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllAboutUsInfo();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   // View
   public navigateToAboutDetails(data: any): void {

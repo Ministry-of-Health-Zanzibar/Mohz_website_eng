@@ -5,6 +5,7 @@ import { AnnouncementService } from '../../../../services/announcements/announce
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-more-annoucement',
@@ -14,20 +15,19 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './more-annoucement.component.html',
-  styleUrl: './more-annoucement.component.css'
+  styleUrl: './more-annoucement.component.css',
 })
-export class MoreAnnoucementComponent  implements OnInit{
-  announcements : any;
+export class MoreAnnoucementComponent implements OnInit {
+  public documentUrl = environment.imageUrl + 'announcementDocs/';
+  announcements: any;
   public isLoading!: boolean;
-  constructor(private annoucementService:AnnouncementService){}
+  constructor(private annoucementService: AnnouncementService) {}
   ngOnInit(): void {
     this.getAllAnnouncements();
-    
   }
-
 
   //  public getAllAnnouncements(): void {
   //     this.annoucementService.getAllAnnouncements().subscribe((response: any) => {
@@ -40,35 +40,34 @@ export class MoreAnnoucementComponent  implements OnInit{
   //     );
   //   }
 
-
-
-    public getAllAnnouncements(): void {
-      this.isLoading = true;
-      this.annoucementService.getAllAnnouncements().subscribe(
-        (response: any) => {
-          if (response?.data) {
-            // Chuja matangazo yaliyofutwa
-            this.announcements = response.data
-              .filter((announcement: any) => !announcement.deleted_at)
-              .map((announcement: any) => ({
-                ...announcement,
-                document_urls: Array.isArray(announcement.document_urls)
-                  ? announcement.document_urls.map((url: string) => ({
-                      url,
-                      name: url.split('/').pop() || 'Unknown File'
-                    }))
-                  : []
-              }));
-            console.log('Matangazo yaliyofanyiwa uchujaji:', this.announcements);
-          }
-          this.isLoading = false;
-        },
-        (errorResponse: HttpErrorResponse) => {
-          this.isLoading = false;
-          console.error('Hitilafu katika kupakia matangazo:', errorResponse.error.message);
+  public getAllAnnouncements(): void {
+    this.isLoading = true;
+    this.annoucementService.getAllPublicAnnouncements().subscribe(
+      (response: any) => {
+        if (response?.data) {
+          // Chuja matangazo yaliyofutwa
+          this.announcements = response.data
+            .filter((announcement: any) => !announcement.deleted_at)
+            .map((announcement: any) => ({
+              ...announcement,
+              document_urls: Array.isArray(announcement.document_urls)
+                ? announcement.document_urls.map((url: string) => ({
+                    url,
+                    name: url.split('/').pop() || 'Unknown File',
+                  }))
+                : [],
+            }));
+          console.log('Matangazo yaliyofanyiwa uchujaji:', this.announcements);
         }
-      );
-    }
-  
-
+        this.isLoading = false;
+      },
+      (errorResponse: HttpErrorResponse) => {
+        this.isLoading = false;
+        console.error(
+          'Hitilafu katika kupakia matangazo:',
+          errorResponse.error.message
+        );
+      }
+    );
+  }
 }

@@ -1,28 +1,64 @@
-<div class="container mt-5">
-  <div class="card">
-    <div class="card-header text-center fw-bold">
-      Projects
-    </div>
-    <div class="card-body">
-      
-        
-          <div class="section-header">
-            <h3>New projects</h3>
-          </div>
-          <ol>
-            <li *ngFor="let project of projects" class="mt-4">
-              <span class="new-icon text-danger fw-bold me-2">🌟 NEW</span>
-              {{ project.post_title }}
-              <span  (click)="previewPost(project.post_filepath)" class="badge bg-primary mx-4" style="cursor: pointer;;">Preview</span>
-              
-            </li>
-          </ol>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <!-- Project List -->
+    <div class="col-md-4">
+      <div class="card shadow-lg border-0">
+        <div class="card-header text-primary text-center">
+          <h5 class="mb-0">Projects</h5>
         </div>
-  
+        <div class="card-body p-3">
+          <ul class="list-group list-group-flush cursor-pointer">
+            <li
+              *ngFor="let project of paginatedProjects"
+              class="list-group-item list-group-item-action"
+              [class.active]="project === selectedProject"
+              (click)="selectProject(project)"
+            >
+              {{ project.post_title }}
+            </li>
+          </ul>
+
+          <mat-paginator
+            [length]="projects.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[3, 5, 10]"
+            (page)="onPageChange($event)"
+            showFirstLastButtons
+            class="pt-3"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Details -->
+    <div class="col-md-8">
+      <div
+        *ngIf="!selectedProject"
+        class="alert alert-info text-center mt-3"
+      >
+        Please select a project to view the details.
+      </div>
+      <div *ngIf="selectedProject" class="card shadow-lg border-0">
+        <div class="card-body">
+          <h4 class="card-title text-primary text-center">
+            {{ selectedProject.post_title }}
+          </h4>
+          <hr />
+          <p class="card-text text-muted">
+            {{ selectedProject.post_description }}
+          </p>
+          <div class="text-center mt-3">
+            <a
+              [href]="documentUrl + selectedProject.post_filepath"
+              target="_blank"
+              class="btn btn-outline-primary"
+            >
+              📄 View PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  
 </div>
-
-
-

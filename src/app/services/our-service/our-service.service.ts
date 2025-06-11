@@ -4,22 +4,27 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OurServiceService {
- private apiUrl = environment.baseUrl;
+  private apiUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   public createOurService(data: any): Observable<any> {
-    return this.httpClient.post<any>(
-      `${this.apiUrl}our_services/create`,
-      data
-    );
+    return this.httpClient.post<any>(`${this.apiUrl}our_services`, data);
   }
 
   public getAllOurServices(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}our_services/all`);
+    return this.httpClient.get<any>(`${this.apiUrl}our_services`);
+  }
+
+   public getAllPublicOurServices(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/our_services`);
+  }
+
+    public findPublicOurServiceById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/our_services/${id}`);
   }
 
   public findOurServiceById(id: number): Observable<any> {
@@ -27,15 +32,18 @@ export class OurServiceService {
   }
 
   public updateOurService(data: any, id: number): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiUrl}our_services/update/${id}`, data);
+    return this.httpClient.put<any>(`${this.apiUrl}our_services/${id}`, data);
   }
 
-  public deleteOurService(data:any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}our_services/delete/${id}`);
+  public deleteOurService(data: any, id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiUrl}our_services/${id}`);
   }
 
-   // Restore
-   public restore(data: any, id: number): Observable<any> {
-    return this.httpClient.patch(`${this.apiUrl}our_services/restore/${id}`, data);
+  // Restore
+  public restore(data: any, id: number): Observable<any> {
+    return this.httpClient.patch(
+      `${this.apiUrl}our_services/restore/${id}`,
+      data
+    );
   }
 }

@@ -24,16 +24,22 @@
                     <span class="badge bg-danger blinking ms-2">NEW</span>
                   </h4>
                   
-                  
-                  
                   <p class="mb-4">{{ truncateDescription(announcement?.announcement_content, 20) }}</p>
 
                   <div class="d-flex justify-content-center">
-                    <ul *ngIf="announcement?.document_urls?.length > 0; else noFiles" class="list-unstyled text-center">
-                      <li *ngFor="let file of announcement?.document_urls">
-                        <a [href]="file.url" target="_blank" class="d-flex align-items-center justify-content-center">
+                    <ul *ngIf="announcement?.document_names?.length > 0; else noFiles" class="list-unstyled text-center">
+                      <li *ngFor="let fileName of announcement?.document_names;">
+                        <!-- <a [href]="file.url" target="_blank" class="d-flex align-items-center justify-content-center">
                           <i class="fa-solid fa-file-pdf fa-lg text-danger me-2"></i> <span class="fw-bold">Download File</span>
-                        </a>
+                        </a> -->
+                         <!-- <a 
+            [href]="
+              'http://localhost:8000/uploads/announcementDocs/' + fileName
+            "
+            target="_blank"
+          >
+            File {{ i + 1 }}
+          </a> -->
                       </li>
                     </ul>
                   </div>

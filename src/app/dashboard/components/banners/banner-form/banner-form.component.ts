@@ -11,9 +11,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { NewsService } from '../../../../services/news/news.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { CommonModule } from '@angular/common';
@@ -22,7 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BannerService } from '../../../../services/banners/banner.service';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-banner-form',
@@ -55,13 +53,12 @@ export class BannerFormComponent implements OnInit {
     private bannerService: BannerService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     private toastService: ToastService,
-    private authService: AuthenticationService,
-    private router: Router
+    public permission: PermissionService
   ) {
     this.bannerForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      image: ['', ],
+      image: [''],
       // image: ['', Validators.required],
     });
   }
@@ -101,7 +98,10 @@ export class BannerFormComponent implements OnInit {
     if (this.bannerForm.valid) {
       const formData = new FormData();
       formData.append('banner_title', this.bannerForm.get('title')?.value);
-      formData.append('banner_descriptions', this.bannerForm.get('description')?.value);
+      formData.append(
+        'banner_descriptions',
+        this.bannerForm.get('description')?.value
+      );
       formData.append('banner_image', this.bannerForm.get('image')?.value);
 
       this.bannerService.createBanner(formData).subscribe(
@@ -130,29 +130,33 @@ export class BannerFormComponent implements OnInit {
       const formData = new FormData();
       formData.append('id', this.dialogData.data.id);
       formData.append('banner_title', this.bannerForm.get('title')?.value);
-      formData.append('banner_descriptions', this.bannerForm.get('description')?.value);
+      formData.append(
+        'banner_descriptions',
+        this.bannerForm.get('description')?.value
+      );
       formData.append('banner_image', this.bannerForm.get('image')?.value);
 
-      this.bannerService.updateBanner(formData).subscribe(
-        (response: any) => {
-          this.dialogRef.close();
-          this.onEditNewsEventEmitter.emit();
-          if (response.statusCode === 201) {
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
+      this.bannerService
+        .updateBanner(formData, this.dialogData.data.id)
+        .subscribe(
+          (response: any) => {
+            this.dialogRef.close();
+            this.onEditNewsEventEmitter.emit();
+            if (response.statusCode === 200) {
+              this.toastService.toastSuccess(response.message);
+            } else {
+              this.toastService.toastError(response.message);
+            }
+          },
+          (errorResponse: HttpErrorResponse) => {
+            if (errorResponse) {
+              this.toastService.toastError(errorResponse.error.message);
+            }
           }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
-        }
-      );
+        );
     }
   }
 
-  
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
@@ -183,7 +187,6 @@ export class BannerFormComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
 
   ngOnDestroy(): void {
     this.onDestroy.next();

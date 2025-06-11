@@ -1,0 +1,46 @@
+<div class="container my-5">
+  <div class="p-4 border rounded shadow-sm bg-light">
+    <p class="h3 text-secondary">Photo Gallery</p>
+    <hr />
+
+    <div class="row g-4">
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let item of paginatedGallery">
+        <div class="card border-0 shadow-sm h-100">
+          <img
+            [src]="imageUrl + item.gallery_photo"
+            class="card-img-top"
+            [alt]="item.title"
+            style="height: 200px; width: 100%; object-fit: cover; border-radius: 0"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="mt-4 d-flex justify-content-center">
+      <nav>
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+          </li>
+          <li
+            class="page-item"
+            *ngFor="let page of [].constructor(totalPages()); let i = index"
+            [class.active]="i + 1 === currentPage"
+          >
+            <button class="page-link" (click)="changePage(i + 1)">
+              {{ i + 1 }}
+            </button>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages()">
+            <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

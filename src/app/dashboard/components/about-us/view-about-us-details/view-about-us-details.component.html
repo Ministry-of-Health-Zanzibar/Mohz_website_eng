@@ -1,4 +1,9 @@
-<table mat-table [dataSource]="aboutUsData" class="mat-elevation-z8">
+<table
+  *ngIf="permission.parmissionMatched(['View AboutUs'])"
+  mat-table
+  [dataSource]="aboutUsData"
+  class="mat-elevation-z8"
+>
   <!-- Title Column -->
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef class="mat-column-title">Title</th>
@@ -14,7 +19,7 @@
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.isImage; else textValue">
         <img
-          [src]="element.value"
+          [src]="aboutImageUrl + element.value"
           class="img-thumbnail w-50 my-4"
           alt="Post File"
         />

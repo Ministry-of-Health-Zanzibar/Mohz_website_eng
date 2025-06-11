@@ -1,66 +1,70 @@
-<div class="container-fluid">
-    <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} Announcement</h5> -->
-    <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
-      Create New Service
-    </h5>
-    <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">Update Service</h5>
-    <form [formGroup]="serviceForm">
-      <div class="row">
-        <!-- Title -->
-        <mat-form-field appearance="outline" class="col-md-12 mt-3">
-          <mat-label>Service Title</mat-label>
-          <input
-            type="text"
-            formControlName="title"
-            matInput
-            class="text-black"
-          />
-          <mat-error
-            *ngIf="
-              serviceForm.controls.title.touched &&
-              serviceForm.controls.title.invalid
-            "
+<div
+  *ngIf="
+    permission.parmissionMatched(['Create Our Service', 'Update Our Service'])
+  "
+  class="container-fluid"
+>
+  <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} Announcement</h5> -->
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create New Service
+  </h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Service
+  </h5>
+  <form [formGroup]="serviceForm">
+    <div class="row">
+      <!-- Title -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Service Title</mat-label>
+        <input
+          type="text"
+          formControlName="title"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            serviceForm.controls.title.touched &&
+            serviceForm.controls.title.invalid
+          "
+        >
+          <span *ngIf="serviceForm.controls.title.errors.required"
+            >This field is mandatory</span
           >
-            <span
-              *ngIf="serviceForm.controls.title.errors.required"
-              >This field is mandatory</span
-            >
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="col-md-12 mt-4">
-          <mat-label>Service Description</mat-label>
-          <textarea
-            formControlName="description"
-            matInput
-            rows="13"
-            class="text-black"
-          ></textarea>
-          <mat-error
-            *ngIf="
-              serviceForm.controls.description.touched &&
-              serviceForm.controls.description.invalid
-            "
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Service Description</mat-label>
+        <textarea
+          formControlName="description"
+          matInput
+          rows="13"
+          class="text-black"
+        ></textarea>
+        <mat-error
+          *ngIf="
+            serviceForm.controls.description.touched &&
+            serviceForm.controls.description.invalid
+          "
+        >
+          <span *ngIf="serviceForm.controls.description.errors?.required"
+            >This field is mandatory</span
           >
-            <span *ngIf="serviceForm.controls.description.errors?.required"
-              >This field is mandatory</span
-            >
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </form>
-  
-    <mat-dialog-actions align="end">
-      <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
-      <button
-        mat-flat-button
-        color="primary"
-        [disabled]="!(serviceForm.valid && serviceForm.dirty)"
-        (click)="handleOurServiceSubmit()"
-      >
-        {{ action }} Data
-      </button>
-    </mat-dialog-actions>
-  </div>
-  
-  
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(serviceForm.valid && serviceForm.dirty)"
+      (click)="handleOurServiceSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
+</div>

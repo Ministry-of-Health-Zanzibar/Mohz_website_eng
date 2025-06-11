@@ -19,12 +19,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { BannerFormComponent } from '../../banners/banner-form/banner-form.component';
 import { DisplayBennerImageComponent } from '../../banners/display-benner-image/display-benner-image.component';
 import { PartnerService } from '../../../../services/partners/partner.service';
 import { PartnerFormComponent } from '../partner-form/partner-form.component';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-partner-list',
@@ -46,6 +45,7 @@ import { PartnerFormComponent } from '../partner-form/partner-form.component';
 })
 export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public partnerLogoUrl = environment.imageUrl + 'partnerLogos/';
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -66,7 +66,6 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
     'partnerEmail',
     'partnerPhone',
     'partnerWebsite',
-    'partnerDescription',
     'partnerLogo',
     'action',
   ];
@@ -217,13 +216,6 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
     );
-  }
-
-  
-
-  // View
-  public navigateToPartnerDetails(data: any): void {
-    this.router.navigate(['/dashboard/partner-details', data.id]);
   }
 
   ngOnDestroy(): void {

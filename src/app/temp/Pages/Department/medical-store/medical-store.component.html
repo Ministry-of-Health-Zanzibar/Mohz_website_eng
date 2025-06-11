@@ -1,43 +1,129 @@
-<!-- medical-store.component.html -->
 <div class="container mt-5">
-    <!-- Introduction Section -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <h2 class="text-center">Medical Store - Zanzibar</h2>
-        <p class="lead">
-          Medical Store is one of the institutions of the Ministry of Health Zanzibar responsible for promoting health care delivery by ensuring access to essential medicines and quality medical supplies. Before 2011, it was a unit under the Chief Pharmacist. In 2011, it was upgraded to a Department with warehouses in Maruhubi (Unguja) and Micheweni (Pemba).
+  <header class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Medical Store - Zanzibar</h1>
+    <p class="lead text-muted mx-auto" style="max-width: 700px;">
+      Promoting health care delivery through access to essential medicines and quality medical supplies.
+    </p>
+  </header>
+
+  <!-- Overview Card -->
+  <section class="mb-5">
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body bg-light p-4">
+        <h2 class="h4 text-primary mb-3 border-bottom border-3 border-primary pb-2">Overview</h2>
+        <p class="lead mb-3">
+          Upgraded to a Department in 2011, the Medical Store operates warehouses in <strong>Maruhubi (Unguja)</strong> and <strong>Micheweni (Pemba)</strong>.
         </p>
-        <p class="lead">
-          Currently, the Medical Store handles the receipt, storage, and distribution of essential drugs, medical devices, diagnostic equipment, and provides various information to help the Government make informed decisions.
+        <p class="lead mb-0">
+          It manages the receipt, storage, and distribution of essential medicines, devices, and diagnostic equipment supporting government health decisions.
         </p>
       </div>
     </div>
-  
-    <!-- Divisions Section -->
-    <div class="row">
-      <div class="col-12">
-        <h4 class="text-primary">Medical Store Divisions</h4>
-        <ul>
-          <li><strong>Customer Service Division:</strong> Ensures customer satisfaction and handles inquiries.</li>
-          <li><strong>Quality Control Division (Quality Assurance):</strong> Ensures the quality of medicines and supplies.</li>
-          <li><strong>Procurement and Medication Management Division:</strong> Manages the procurement of medicines and medical supplies.</li>
-          <li><strong>Division of Administration and Finance:</strong> Manages the financial operations and administration of the Medical Store.</li>
-        </ul>
+  </section>
+
+  <!-- Divisions Cards -->
+  <section class="mb-5">
+    <h2 class="h4 text-primary mb-4 border-bottom border-3 border-primary pb-2">Medical Store Divisions</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 rounded-3">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary">Customer Service</h5>
+            <p class="card-text small text-muted">
+              Ensures customer satisfaction and handles inquiries efficiently.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 rounded-3">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary">Quality Control</h5>
+            <p class="card-text small text-muted">
+              Maintains the quality standards of medicines and supplies.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 rounded-3">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary">Procurement & Management</h5>
+            <p class="card-text small text-muted">
+              Oversees procurement and medication stock control.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 rounded-3">
+          <div class="card-body text-center">
+            <h5 class="card-title text-primary">Admin & Finance</h5>
+            <p class="card-text small text-muted">
+              Handles financial operations and administration.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  
-    <!-- Services Section -->
-    <div class="row mt-4">
-      <div class="col-12">
-        <h4 class="text-primary">Services Provided by Medical Store</h4>
-        <ul>
-          <li><strong>Receiving Medicines and Medical Supplies:</strong> The Medical Store is responsible for receiving medicines and supplies purchased by the government and partners.</li>
-          <li><strong>Storage and Handling:</strong> It supervises the proper storage and handling of medicines and supplies.</li>
-          <li><strong>Distribution:</strong> Distribution of medicines and supplies to all health centers and hospitals in Unguja and Pemba, currently serving 190 government and defense centers.</li>
-          <li><strong>Supervision:</strong> It supervises the practice of medicine and supplies in health centers and hospitals.</li>
-          <li><strong>Training and Guidance:</strong> Provides training and guidance to pharmacists and storekeepers in health centers and hospitals regarding proper storage and handling.</li>
-        </ul>
+  </section>
+
+  <!-- Services Cards -->
+  <section class="mb-5">
+    <h2 class="h4 text-primary mb-4 border-bottom border-3 border-primary pb-2">Services Provided</h2>
+    <div class="list-group list-group-flush">
+      <div class="list-group-item px-0 py-3 border-0 d-flex align-items-start gap-3">
+        <div class="text-primary fs-3">
+          <i class="bi bi-box-arrow-in-down"></i>
+        </div>
+        <div>
+          <h5 class="mb-1 fw-bold">Receiving Medicines & Supplies</h5>
+          <p class="small text-muted mb-0">Responsible for accepting medical stock from the government and partners.</p>
+        </div>
+      </div>
+
+      <div class="list-group-item px-0 py-3 border-0 d-flex align-items-start gap-3">
+        <div class="text-primary fs-3">
+          <i class="bi bi-archive"></i>
+        </div>
+        <div>
+          <h5 class="mb-1 fw-bold">Storage & Handling</h5>
+          <p class="small text-muted mb-0">Supervises the proper storage and handling of medicines and supplies.</p>
+        </div>
+      </div>
+
+      <div class="list-group-item px-0 py-3 border-0 d-flex align-items-start gap-3">
+        <div class="text-primary fs-3">
+          <i class="bi bi-truck"></i>
+        </div>
+        <div>
+          <h5 class="mb-1 fw-bold">Distribution</h5>
+          <p class="small text-muted mb-0">Distributes medicines and supplies to 190+ health centers across Unguja and Pemba.</p>
+        </div>
+      </div>
+
+      <div class="list-group-item px-0 py-3 border-0 d-flex align-items-start gap-3">
+        <div class="text-primary fs-3">
+          <i class="bi bi-eye"></i>
+        </div>
+        <div>
+          <h5 class="mb-1 fw-bold">Supervision</h5>
+          <p class="small text-muted mb-0">Supervises proper use of medicines and supplies at health facilities.</p>
+        </div>
+      </div>
+
+      <div class="list-group-item px-0 py-3 border-0 d-flex align-items-start gap-3">
+        <div class="text-primary fs-3">
+          <i class="bi bi-book"></i>
+        </div>
+        <div>
+          <h5 class="mb-1 fw-bold">Training & Guidance</h5>
+          <p class="small text-muted mb-0">Trains pharmacists and storekeepers on proper storage and handling.</p>
+        </div>
       </div>
     </div>
-  </div>
-  
+  </section>
+</div>

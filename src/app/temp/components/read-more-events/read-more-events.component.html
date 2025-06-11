@@ -1,27 +1,58 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Left Column: Main Event -->
+    <div class="col-md-8">
+      <div class="card p-3 shadow">
+        <div class="card-body">
+          <!-- Carousel -->
+          <div *ngIf="events?.post_filepath?.length" id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let image of events.post_filepath; let i = index"
+                   class="carousel-item"
+                   [ngClass]="{ 'active': i === 0 }">
+                <img class="d-block w-100 rounded" 
+                     [src]="imageBaseUrl + 'posts/images/' + image" 
+                     alt="Event Image">
+              </div>
+            </div>
+          </div>
 
-<div class="container-sm justify-content-center mt-4">
-  <div class="card w-75 mx-auto p-3 shadow">
-    <div class="card-body">
-      <!-- Bootstrap Carousel -->
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div *ngFor="let imageUrl of events?.post_filepath; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
-            <img class="d-block w-100 rounded" [src]="imageUrl" alt="News Image">
+          <!-- Event Details -->
+          <div class="mt-4">
+            <h3 class="fw-bold">{{ events?.post_title }}</h3>
+            <p class="text-secondary">{{ events?.post_description }}</p>
+            <p class="text-muted">
+              <span class="fw-bold">Posted date:</span> 
+              {{ events?.created_at | date:'medium' }}
+            </p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- News Details -->
-      <div class="mt-4">
-        <h3 class="fw-bold">{{ events?.post_title}}</h3>
-      <p class="text-secondary">{{ events?.post_description}}</p>
-      <p class="text-muted"> <span class="fw-bold">Posted date:</span> {{ events?.created_at | date:'medium' }}</p>
+    <!-- Right Column: Recent Events -->
+    <div class="col-md-4">
+      <h5 class="fw-bold mb-3">EVENT UPDATES</h5>
+
+      <div *ngFor="let item of recentEventsList"
+           class="d-flex mb-3 border-bottom pb-2 p-2 rounded"
+           [class.bg-light]="item.id === currentEventId">
+        <img [src]="imageBaseUrl + 'posts/images/' + item.post_filepath?.[0]"
+             class="me-2"
+             style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;"
+             alt="Update">
+        <div>
+          <small class="fw-bold d-block">
+            {{ item.post_title | slice:0:60 }}...
+          </small>
+          <span
+            (click)="findEventById(item.post_id)"
+            class="text-primary readMore"
+            style="cursor: pointer;">
+            {{ readMore }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
-
-  <button mat-raised-button color="warn" class="mb-2" routerLink="/temp/main">
-    <mat-icon>arrow_back</mat-icon>
-    back</button>
 </div>
-

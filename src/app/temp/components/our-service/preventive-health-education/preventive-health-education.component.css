@@ -1,44 +1,28 @@
-.container {
-    max-width: 900px;
-    margin-top: 50px;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  ul li {
-    margin-bottom: 8px;
-  }
-  
-  ul li strong {
-    color: #007bff;
-  }
-  
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  .mb-4 {
-    margin-bottom: 30px;
-  }
-  
-  .mt-5 {
-    margin-top: 50px;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
+.card-body h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+ul li {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.card {
+  transition: transform 0.3s ease;
+  border-radius: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 123, 255, 0.2);
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: #555;
+}
+
+h2 {
+  font-size: 2.2rem;
+}

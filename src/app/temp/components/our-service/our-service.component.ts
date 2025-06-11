@@ -3,11 +3,16 @@ import { Router, RouterModule } from '@angular/router';
 import { OurServiceService } from '../../../services/our-service/our-service.service';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-our-service',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    MatButtonModule
+  ],
   templateUrl: './our-service.component.html',
   styleUrl: './our-service.component.css'
 })
@@ -23,7 +28,7 @@ export class OurServiceComponent implements OnInit{
 
   
   getOurServiceData(): void {
-    this.ourService.getAllOurServices().subscribe(
+    this.ourService.getAllPublicOurServices().subscribe(
       (response: any) => {
         this.ourServiceData = response.data; 
         console.log("OurserviceData", response)
@@ -45,12 +50,12 @@ export class OurServiceComponent implements OnInit{
 
 
   // Get news by Id
-      public findServiceById(id: any): void {
-        this.ourService.findOurServiceById(id).subscribe(
+      public findServiceById(id: number): void {
+        this.ourService.findPublicOurServiceById(id).subscribe(
           (response: any) => {
             // id = 'page';
             this.router.navigate(['/temp/main/read-our-service', id]);
-            // console.log('Service: ', response.data);
+            console.log('Service: ', response.data);
           },
           (errorResponse: HttpErrorResponse) => {
             console.log(errorResponse.error.message);

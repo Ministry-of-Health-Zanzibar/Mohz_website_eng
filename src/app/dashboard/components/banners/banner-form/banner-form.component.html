@@ -1,9 +1,14 @@
-<div class="container-fluid">
+<div
+  *ngIf="permission.parmissionMatched(['Create Banner', 'Update Banner'])"
+  class="container-fluid"
+>
   <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} News</h5> -->
   <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
     Create New Banner
   </h5>
-  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">Update Banner</h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Banner
+  </h5>
   <form [formGroup]="bannerForm">
     <div class="row">
       <mat-form-field appearance="outline" class="col-md-12 mt-3">
@@ -50,13 +55,17 @@
       <!-- Image -->
       <div class="col-md-12 mt-2 mb-3">
         <div class="mb-2">
-            <mat-label>Image</mat-label>
+          <mat-label>Image</mat-label>
         </div>
-        <input type="file" (change)="onFileSelected($event)"
-        accept="image/*" class="form-control"/>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          class="form-control"
+        />
         <mat-error *ngIf="fileError">
-            {{ fileError }}
-          </mat-error>
+          {{ fileError }}
+        </mat-error>
       </div>
       <div *ngIf="previewImage" class="mt-3">
         <img

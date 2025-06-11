@@ -1,71 +1,98 @@
-<div class="container mt-2">
+<div
+  *ngIf="permission.parmissionMatched(['Create User', 'Update User'])"
+  class="container mt-2"
+>
   <mat-card class="p-4 shadow-lg">
-    <h5 class="fw-bold mt-2">
-      Create User
-    </h5>
+    <h5 class="fw-bold mb-4">Create User</h5>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      
-      <div class="row">
-        <div class="col-md-12">
+      <div class="row mb-3">
+        <div class="col-md-4">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>First Name</mat-label>
-            <input matInput formControlName="first_name" placeholder="Enter first name">
-            <mat-error *ngIf="signupForm.get('first_name')?.invalid">First Name is required</mat-error>
+            <input
+              matInput
+              formControlName="first_name"
+              placeholder="Enter first name"
+            />
+            <mat-error *ngIf="signupForm.get('first_name')?.invalid"
+              >First Name is required</mat-error
+            >
           </mat-form-field>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Middle Name</mat-label>
-            <input matInput formControlName="middle_name" placeholder="Enter middle name">
-          </mat-form-field>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="last_name" placeholder="Enter last name">
-            <mat-error *ngIf="signupForm.get('last_name')?.invalid">Last Name is required</mat-error>
+            <input
+              matInput
+              formControlName="last_name"
+              placeholder="Enter last name"
+            />
+            <mat-error *ngIf="signupForm.get('last_name')?.invalid"
+              >Last Name is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Middle Name</mat-label>
+            <input
+              matInput
+              formControlName="middle_name"
+              placeholder="Enter middle name"
+            />
           </mat-form-field>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
+      <div class="row mb-3">
+        <div class="col-md-12 mb-2">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Address</mat-label>
-            <input matInput formControlName="address" placeholder="Enter address">
-            <mat-error *ngIf="signupForm.get('address')?.invalid">Address is required</mat-error>
+            <input
+              matInput
+              formControlName="address"
+              placeholder="Enter address"
+            />
+            <mat-error *ngIf="signupForm.get('address')?.invalid"
+              >Address is required</mat-error
+            >
           </mat-form-field>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" type="email" placeholder="Enter email">
-            <mat-error *ngIf="signupForm.get('email')?.invalid">Valid Email is required</mat-error>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              placeholder="Enter email"
+            />
+            <mat-error *ngIf="signupForm.get('email')?.invalid"
+              >Valid Email is required</mat-error
+            >
           </mat-form-field>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Phone Number</mat-label>
-            <input matInput formControlName="phone_no" type="tel" placeholder="Enter phone number">
-            <mat-error *ngIf="signupForm.get('phone_no')?.invalid">Valid Phone Number is required</mat-error>
+            <input
+              matInput
+              formControlName="phone_no"
+              type="tel"
+              placeholder="Enter phone number"
+            />
+            <mat-error *ngIf="signupForm.get('phone_no')?.invalid"
+              >Valid Phone Number is required</mat-error
+            >
           </mat-form-field>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
+      <div class="row mb-3">
+        <div class="col-md-12 mb-3">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Gender</mat-label>
             <mat-select formControlName="gender">
@@ -74,24 +101,21 @@
             </mat-select>
           </mat-form-field>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Date of Birth</mat-label>
-            <input matInput formControlName="date_of_birth" type="date">
+            <input matInput formControlName="date_of_birth" type="date" />
           </mat-form-field>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Role</mat-label>
             <mat-select formControlName="role">
-              <mat-option value="ROLE ADMIN">Admin</mat-option>
-              <mat-option value="ROLE NATIONAL">Journalist</mat-option>
+              <mat-option *ngFor="let role of roles" [value]="role.name">
+                {{ role.name }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -103,7 +127,6 @@
           Create
         </button>
       </div>
-      
     </form>
   </mat-card>
 </div>

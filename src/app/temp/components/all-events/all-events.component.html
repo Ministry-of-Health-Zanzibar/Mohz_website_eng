@@ -1,0 +1,52 @@
+<div class="container-fluid service mt-2">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px">
+      <h1 class="text-capitalize" style="color: #14497d">Get Latest Events</h1>
+      <p class="mb-0">
+        Stay updated with the latest events from the Ministry of Health, Zanzibar.
+      </p>
+    </div>
+
+    <span *ngIf="isEventLoading" class="loading-spinner">
+      <span>Loading...</span>
+    </span>
+
+    <div class="row" *ngIf="!isEventLoading">
+      <div class="col-md-6" *ngFor="let event of paginatedEvents; let i = index">
+        <div class="row mb-4 mt-2 wow fadeInUp" [attr.data-wow-delay]="(i % 2 === 0 ? '0.2s' : '0.4s')">
+          <div class="col-md-6">
+            <img
+              *ngIf="event.post_filepath?.length"
+              [src]="imageBaseUrl + '/posts/images/' + event.post_filepath[0]"
+              class="img-fluid rounded w-100 h-100"
+              alt="Event Image"
+            />
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-uppercase fw-bold" style="color: #14497d">
+              {{ truncateEventTitle(event.post_title, 5) }}
+            </h5>
+            <div>
+              <i class="fa-solid fa-calendar-days"></i>
+              {{ event.created_at | date: 'mediumDate' }}
+            </div>
+            <div>
+              {{ truncateEventDescription(event.post_description, 20) }}
+              <span (click)="findEventById(event.post_id)" class="text-primary readMore">{{ readMore }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="d-flex justify-content-center mt-4">
+      <mat-paginator
+        [length]="totalEvents"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[6, 8, 10, 12]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

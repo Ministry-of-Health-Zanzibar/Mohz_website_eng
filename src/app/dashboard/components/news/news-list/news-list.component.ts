@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit,
@@ -18,12 +17,14 @@ import { NewsFormComponent } from '../news-form/news-form.component';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChangeDetectorRef } from '@angular/core';
 import { DisplayNewsImageComponent } from '../display-news-image/display-news-image.component';
+import { PermissionService } from '../../../../services/auth/permission.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 interface News {
   id: string;
@@ -53,6 +54,8 @@ interface News {
 })
 export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
   public readonly onDestroy = new Subject<void>();
+  public newsImageUrl = environment.imageUrl + 'newsPhotos/';
+
   public isLoading: boolean = false;
   public refreshing!: boolean;
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -64,6 +67,7 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     private dialog: MatDialog,
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
+    public permission: PermissionService,
     private router: Router
   ) {}
 
@@ -71,6 +75,7 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     'id',
     'newsTitle',
     'newsDescription',
+    'endDate',
     'image',
     'action',
   ];
@@ -206,9 +211,8 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.router.navigate(['/dashboard/news-details', data.id]);
   }
 
-
-   // Delete
-   public deleteNews(data: any): void {
+  // Delete
+  public deleteNews(data: any): void {
     console.log(data);
     this.newsService.deleteNews(data, data.id).subscribe(
       (response: any) => {
@@ -228,27 +232,26 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
   // Restore
-    // Delete
-    public restoreNews(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.newsService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllNews();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  // Delete
+  public restoreNews(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.newsService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllNews();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
-
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   ngOnDestroy(): void {
     this.onDestroy.next();

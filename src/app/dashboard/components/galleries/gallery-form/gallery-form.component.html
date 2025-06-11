@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create Gallery
+  </h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Gallery
+  </h5>
+  <form [formGroup]="galleryForm">
+    <div class="row">
+      <!-- Title Name -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Title</mat-label>
+        <input
+          type="text"
+          formControlName="title"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            galleryForm.controls.title.touched &&
+            galleryForm.controls.title.invalid
+          "
+        >
+          <span *ngIf="galleryForm.controls.title.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- description -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>description</mat-label>
+        <input
+          formControlName="description"
+          matInput
+          rows="11"
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            galleryForm.controls.description.touched &&
+            galleryForm.controls.description.invalid
+          "
+        >
+          <span *ngIf="galleryForm.controls.description.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- typeId -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Select Gallery Type</mat-label>
+        <mat-select formControlName="typeId">
+          <mat-option *ngFor="let type of galleryTypes" [value]="type.id">
+            {{ type.gallery_types_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            galleryForm.controls.typeId.touched &&
+            galleryForm.controls.typeId.invalid
+          "
+        >
+          <span *ngIf="galleryForm.controls.typeId.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Link -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Vieo Link</mat-label>
+        <input formControlName="link" matInput rows="11" class="text-black" />
+        <mat-error
+          *ngIf="
+            galleryForm.controls.link.touched &&
+            galleryForm.controls.link.invalid
+          "
+        >
+          <span *ngIf="galleryForm.controls.link.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- picture -->
+      <div class="col-md-12 mt-2 mb-3">
+        <div class="mb-2">
+          <mat-label>Gallery Photo</mat-label>
+        </div>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          class="form-control"
+        />
+        <mat-error *ngIf="fileError">
+          {{ fileError }}
+        </mat-error>
+      </div>
+      <div *ngIf="previewImage" class="mt-3">
+        <img
+          [src]="previewImage"
+          alt="Preview"
+          class="img-fluid"
+          style="max-height: 200px"
+        />
+      </div>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(galleryForm.valid && galleryForm.dirty)"
+      (click)="handleOrgStructureSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
+</div>

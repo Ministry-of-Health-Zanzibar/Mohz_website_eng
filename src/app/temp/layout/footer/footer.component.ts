@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent implements OnInit{
-  siteLink: any[] = []
+  siteLink: any
+i: any;
 
   constructor(private siteLinkService:SiteLinkService, private toastService: ToastService){}
 
@@ -24,7 +25,7 @@ export class FooterComponent implements OnInit{
 
 
      public getAllSiteLinks(): void {
-        this.siteLinkService.getAllSitelinks().subscribe((response: any) => {
+        this.siteLinkService.getPublicAllSitelinks().subscribe((response: any) => {
             this.siteLink = response.data;
             console.log(response.data);
           },

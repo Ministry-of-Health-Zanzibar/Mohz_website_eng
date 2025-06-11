@@ -34,7 +34,7 @@ export class AnnoucentComponent implements OnInit {
 
   public getAllAnnouncements(): void {
     this.isLoading = true;
-    this.annoucementService.getAllAnnouncements().subscribe(
+    this.annoucementService.getAllPublicAnnouncements().subscribe(
       (response: any) => {
         if (response?.data) {
           // Chuja matangazo yaliyofutwa
@@ -49,7 +49,7 @@ export class AnnoucentComponent implements OnInit {
                   }))
                 : []
             }));
-          console.log('Matangazo yaliyofanyiwa uchujaji:', this.announcements);
+          // console.log('Matangazo yaliyofanyiwa uchujaji:', this.announcements);
         }
         this.isLoading = false;
       },

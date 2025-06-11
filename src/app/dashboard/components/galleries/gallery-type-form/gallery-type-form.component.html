@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create Gallery Type
+  </h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Gallery Type
+  </h5>
+  <form [formGroup]="galleryTypeForm">
+    <div class="row">
+      <!-- Type Name -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Gallery Type Name</mat-label>
+        <input
+          type="text"
+          formControlName="typeName"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            galleryTypeForm.controls.typeName.touched &&
+            galleryTypeForm.controls.typeName.invalid
+          "
+        >
+          <span *ngIf="galleryTypeForm.controls.typeName.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(galleryTypeForm.valid && galleryTypeForm.dirty)"
+      (click)="handlGalleryTypeSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
+</div>

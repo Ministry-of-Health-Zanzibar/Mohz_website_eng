@@ -1,81 +1,87 @@
-<div class="container-fluid">
-    <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} News</h5> -->
-    <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">Create New SiteLink</h5>
-    <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">Update SiteLink</h5>
-    <form [formGroup]="siteLinkForm">
-      <div class="row">
-        <mat-form-field appearance="outline" class="col-md-12 mt-3">
-          <mat-label>SiteLink Name</mat-label>
-          <input
-            type="text"
-            formControlName="sitelinkName"
-            matInput
-            class="text-black"
-          />
-          <mat-error
-            *ngIf="
-              siteLinkForm.controls.sitelinkName.touched &&
-              siteLinkForm.controls.sitelinkName.invalid
-            "
+<div
+  *ngIf="permission.parmissionMatched(['Create Sitelink', 'Update Sitelink'])"
+  class="container-fluid"
+>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create New SiteLink
+  </h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update SiteLink
+  </h5>
+  <form [formGroup]="siteLinkForm">
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>SiteLink Name</mat-label>
+        <input
+          type="text"
+          formControlName="sitelinkName"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            siteLinkForm.controls.sitelinkName.touched &&
+            siteLinkForm.controls.sitelinkName.invalid
+          "
+        >
+          <span *ngIf="siteLinkForm.controls.sitelinkName.errors.required"
+            >This field is mandatory</span
           >
-            <span *ngIf="siteLinkForm.controls.sitelinkName.errors.required"
-              >This field is mandatory</span
-            >
-          </mat-error>
-        </mat-form-field>
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-md-12 mt-4">
-            <mat-label>SiteLink Url</mat-label>
-            <textarea
-              formControlName="sitelinkUrl"
-              matInput
-              rows="5"
-              class="text-black"
-            ></textarea>
-            <mat-error
-              *ngIf="
-                siteLinkForm.controls.sitelinkUrl.touched &&
-                siteLinkForm.controls.sitelinkUrl.invalid
-              "
-            >
-              <span *ngIf="siteLinkForm.controls.sitelinkUrl.errors?.required"
-                >This field is mandatory</span
-              >
-            </mat-error>
-          </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="col-md-12 mt-4">
-          <mat-label>SiteLink Description</mat-label>
-          <textarea
-            formControlName="sitelinkDescription"
-            matInput
-            rows="11"
-            class="text-black"
-          ></textarea>
-          <mat-error
-            *ngIf="
-              siteLinkForm.controls.sitelinkDescription.touched &&
-              siteLinkForm.controls.sitelinkDescription.invalid
-            "
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>SiteLink Url</mat-label>
+        <textarea
+          formControlName="sitelinkUrl"
+          matInput
+          rows="5"
+          class="text-black"
+        ></textarea>
+        <mat-error
+          *ngIf="
+            siteLinkForm.controls.sitelinkUrl.touched &&
+            siteLinkForm.controls.sitelinkUrl.invalid
+          "
+        >
+          <span *ngIf="siteLinkForm.controls.sitelinkUrl.errors?.required"
+            >This field is mandatory</span
           >
-            <span *ngIf="siteLinkForm.controls.sitelinkDescription.errors?.required"
-              >This field is mandatory</span
-            >
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </form>
-  
-    <mat-dialog-actions align="end">
-      <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
-      <button
-        mat-flat-button
-        color="primary"
-        [disabled]="!(siteLinkForm.valid && siteLinkForm.dirty)"
-        (click)="handleNewsSubmit()"
-      >
-        {{ action }} Data
-      </button>
-    </mat-dialog-actions>
-  </div>
-  
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>SiteLink Description</mat-label>
+        <textarea
+          formControlName="sitelinkDescription"
+          matInput
+          rows="11"
+          class="text-black"
+        ></textarea>
+        <mat-error
+          *ngIf="
+            siteLinkForm.controls.sitelinkDescription.touched &&
+            siteLinkForm.controls.sitelinkDescription.invalid
+          "
+        >
+          <span
+            *ngIf="siteLinkForm.controls.sitelinkDescription.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(siteLinkForm.valid && siteLinkForm.dirty)"
+      (click)="handleNewsSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
+</div>

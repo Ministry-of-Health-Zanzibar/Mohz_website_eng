@@ -1,7 +1,7 @@
 <div *ngIf="isLoading" class="loading-spinner">
   <span>Loading...</span>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading && permission.parmissionMatched(['View Banner'])">
   <div class="container-fluid">
     <div class="card">
       <h5 class="pt-4 ps-4">Banners</h5>
@@ -65,19 +65,15 @@
         <ng-container matColumnDef="image">
           <th mat-header-cell *matHeaderCellDef class="fw-bold">Image</th>
           <td mat-cell *matCellDef="let element">
-            <span
-              type="button"
-              (click)="handleOpenDisplayDialogImage(element)"
-            >
+            <span type="button" (click)="handleOpenDisplayDialogImage(element)">
               <img
-                [src]="element?.banner_image"
+                [src]="bannerImageUrl + element?.banner_image"
                 class="rounded-circle"
                 width="40"
                 height="40"
                 alt="Banner Image"
               />
             </span>
-            
           </td>
           <!-- <img src="" alt=""> -->
         </ng-container>
@@ -98,40 +94,40 @@
               <mat-icon class="font-icon">edit_square</mat-icon>
             </button>
             <!-- Delete -->
-          <span *ngIf="element.deleted_at === null">
-            <button
-              (click)="deleteBarnner(element)"
-              mat-mini-fab
-              color="accent"
-              matTooltip="Delete"
-              class="mt-2 mb-2 me-2"
-            >
-              <mat-icon class="font-icon">delete</mat-icon>
-            </button>
-          </span>
+            <span *ngIf="element.deleted_at === null">
+              <button
+                (click)="deleteBarnner(element)"
+                mat-mini-fab
+                color="accent"
+                matTooltip="Delete"
+                class="mt-2 mb-2 me-2"
+              >
+                <mat-icon class="font-icon">delete</mat-icon>
+              </button>
+            </span>
 
-          <!-- Restore -->
-        <span *ngIf="element.deleted_at !== null">
-          <button
-          (click)="restoreBanner(element)"
-            mat-mini-fab
-            color="info"
-            matTooltip="Restore"
-            class="mt-2 mb-2 me-2"
-          >
-          <mat-icon>restore_from_trash</mat-icon>
-          </button>
-        </span>
+            <!-- Restore -->
+            <span *ngIf="element.deleted_at !== null">
+              <button
+                (click)="restoreBanner(element)"
+                mat-mini-fab
+                color="info"
+                matTooltip="Restore"
+                class="mt-2 mb-2 me-2"
+              >
+                <mat-icon>restore_from_trash</mat-icon>
+              </button>
+            </span>
 
             <!-- View -->
             <button
-            (click)="navigateToBannerDetails(element)"
-            mat-mini-fab
-            color="primary"
-            matTooltip="View"
-          >
-            <mat-icon class="font-icon">visibility</mat-icon>
-          </button>
+              (click)="navigateToBannerDetails(element)"
+              mat-mini-fab
+              color="primary"
+              matTooltip="View"
+            >
+              <mat-icon class="font-icon">visibility</mat-icon>
+            </button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -154,4 +150,3 @@
     </div>
   </div>
 </div>
-

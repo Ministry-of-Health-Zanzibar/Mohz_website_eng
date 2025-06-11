@@ -3,29 +3,58 @@
     <!-- Left Column for Image Frames -->
     <div class="col-md-3 d-flex flex-column align-items-center">
       <div class="custom-image-frame mt-2" *ngFor="let member of leftColumn">
-        <img [src]="member?.team_photo" alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
+        <img
+          [src]="
+            imageBaseUrl + 'team_photos/' + getPhotoFilename(member?.team_photo)
+          "
+          alt="{{ member?.first_name }} {{ member?.last_name }}"
+          class="img-fluid"
+        />
         <div class="custom-caption">
-          <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
+          <p class="name">
+            {{ member?.first_name }} {{ member?.middle_name }}
+            {{ member?.last_name }}
+          </p>
           <p class="profession">{{ member?.professional }}</p>
         </div>
       </div>
     </div>
 
     <!-- Center Column for Carousel -->
-    <div class="col-md-6">
-      <span *ngIf="banners.length === 0" class="alert alert-dark">No data available.</span>
-      <div *ngIf="banners.length !== 0" id="customCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
+    <div class="col-md-6 mt-2">
+      <span *ngIf="banners.length === 0" class="alert alert-dark"
+        >No data available.</span
+      >
+      <div
+        *ngIf="banners.length !== 0"
+        id="customCarousel"
+        class="carousel slide custom-carousel"
+        data-bs-ride="carousel"
+      >
         <!-- Indicators -->
         <div class="carousel-indicators">
-          <button *ngFor="let banner of banners; let i = index" type="button" data-bs-target="#customCarousel"
-            [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
+          <button
+            *ngFor="let banner of banners; let i = index"
+            type="button"
+            data-bs-target="#customCarousel"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+          ></button>
         </div>
 
         <!-- Carousel Items -->
         <div class="carousel-inner">
-          <div *ngFor="let banner of banners; let i = index" class="carousel-item" [class.active]="i === 0">
+          <div
+            *ngFor="let banner of banners; let i = index"
+            class="carousel-item"
+            [class.active]="i === 0"
+          >
             <div class="carousel-frame">
-              <img [src]="banner.banner_image" class="d-block w-100" [alt]="'Banner ' + (i + 1)">
+              <img
+                [src]="imageBaseUrl + 'bannerImages/' + banner.banner_image"
+                class="d-block w-100"
+                [alt]="'Banner ' + (i + 1)"
+              />
             </div>
             <div class="carousel-caption">
               <h5>{{ banner.banner_title }}</h5>
@@ -35,10 +64,20 @@
         </div>
 
         <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#customCarousel"
+          data-bs-slide="prev"
+        >
           <span class="carousel-control-prev-icon"></span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#customCarousel"
+          data-bs-slide="next"
+        >
           <span class="carousel-control-next-icon"></span>
         </button>
       </div>
@@ -47,9 +86,18 @@
     <!-- Right Column for Image Frames -->
     <div class="col-md-3 d-flex flex-column align-items-center">
       <div class="custom-image-frame mt-2" *ngFor="let member of rightColumn">
-        <img [src]="member?.team_photo" alt="{{ member?.first_name }} {{ member?.last_name }}" class="img-fluid">
+        <img
+          [src]="
+            imageBaseUrl + 'team_photos/' + getPhotoFilename(member?.team_photo)
+          "
+          alt="{{ member?.first_name }} {{ member?.last_name }}"
+          class="img-fluid"
+        />
         <div class="custom-caption">
-          <p class="name">{{ member?.first_name }} {{ member?.middle_name }} {{ member?.last_name }}</p>
+          <p class="name">
+            {{ member?.first_name }} {{ member?.middle_name }}
+            {{ member?.last_name }}
+          </p>
           <p class="profession">{{ member?.professional }}</p>
         </div>
       </div>

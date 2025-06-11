@@ -1,63 +1,72 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../../services/events/event.service';
 import { PostService } from '../../../services/posts/post.service';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-read-more-events',
   standalone: true,
-  imports: [
-    CommonModule,
-        RouterModule,
-        MatButtonModule, MatIconModule
-  ],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule],
   templateUrl: './read-more-events.component.html',
-  styleUrl: './read-more-events.component.css'
+  styleUrl: './read-more-events.component.css',
 })
 export class ReadMoreEventsComponent implements OnInit {
   public events: any;
-
+  public recentEventsList: any[] = [];
+  public currentEventId: any = null;
+  public readMore = 'Read More';
+  imageBaseUrl = environment.imageUrl;
 
   constructor(
-     private eventService: PostService, 
-        private activateRoute: ActivatedRoute,
-        private router: Router
+    private postService: PostService,
+    private activateRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
-   )
-   {}
   ngOnInit(): void {
-    this.getEventData();
-    
+    this.activateRoute.params.subscribe(params => {
+      const eventId = params['id'];
+      if (eventId) {
+        this.currentEventId = eventId;
+        this.getEventData(eventId);
+      }
+    });
+    this.getAllEvents();
   }
 
-
-
-   public getEventData(): void {
-      const eventId = this.activateRoute.snapshot.params['id'];
-      this.eventService.findPostById(eventId).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            console.log('EVENT DATA: ', response.data);
-            this.events = response.data;
-          } else {
-            console.log(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse.error.message);
+  public getEventData(id: any): void {
+    this.postService.findPostById(id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.events = response.data;
+        } else {
+          console.log(response.message);
         }
-      );
-    }
-  
-  
-    public backToHomePage(): void {
-      this.router.navigateByUrl('/temp/main');
-    }
+      },
+      (error: HttpErrorResponse) => console.error(error.error.message)
+    );
+  }
 
+  public getAllEvents(): void {
+    this.postService.getPublcEventsPosts().subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.recentEventsList = response.data;
+        }
+      },
+      (error: HttpErrorResponse) => console.error(error)
+    );
+  }
 
+  public findEventById(id: any): void {
+    this.getEventData(id);
+    this.currentEventId = id;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
+ 
 }

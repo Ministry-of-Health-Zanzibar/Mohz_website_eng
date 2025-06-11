@@ -11,19 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+  imports: [FormsModule, CommonModule, MatIconModule, MatButtonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   public showLoading!: boolean;
   public passwordVisible: boolean = false;
-   
 
   constructor(
     private authService: AuthenticationService,
@@ -37,15 +31,14 @@ export class LoginComponent {
     }
   }
 
-   // Function to toggle password visibility
-   togglePasswordVisibility(): void {
+  // Function to toggle password visibility
+  togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
 
   public login(user: any): void {
     this.showLoading = true;
     this.authService.login(user.email, user.password).subscribe(
-      
       (response: any) => {
         if (
           response?.messageresponse?.statusCode !== 401 &&
@@ -53,9 +46,10 @@ export class LoginComponent {
         ) {
           const token = response.data.token;
           this.authService.saveToken(token!);
-        
+
           if (response.data.login_status === '1') {
             this.authService.addUserToLocalStorage(response.data);
+            this.authService.setPermissions(response.data.permissions);
             this.toastService.toastSuccess('You have been login successfully.');
             this.router.navigateByUrl('/dashboard/home');
             this.showLoading = false;
@@ -70,8 +64,6 @@ export class LoginComponent {
           this.toastService.toastError(response?.message || 'Login failed');
           this.router.navigateByUrl('/auth/login');
         }
-        
-
 
         // const token = response.data.token;
         // this.authService.saveToken(token!);

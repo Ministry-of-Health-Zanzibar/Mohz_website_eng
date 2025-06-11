@@ -5,6 +5,7 @@ import { PartnerService } from '../../../../services/partners/partner.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-team-leader',
@@ -23,6 +24,8 @@ export class TeamLeaderComponent implements OnInit {
   partners! : any [];
   public isLoading!: boolean;
   isAllPartnersPage: boolean = false;
+  imageBaseUrl = environment.imageUrl;
+  showMarquee: boolean = false;
  
   constructor(
     private partnerService:PartnerService,
@@ -30,14 +33,18 @@ export class TeamLeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllPartners()
+    this.getAllPartners();
+    
+    setTimeout(() => {
+    this.showMarquee = true;
+  }, 3000);
    
   }
 
 
   public getAllPartners(): void {
     this.isLoading = true;
-    this.partnerService.getAllPartners().subscribe(
+    this.partnerService.getPublicAllPartners().subscribe(
       (response: any) => {
         this.partners = response.data;
         console.log('PARTNER: ', response.data);

@@ -13,10 +13,12 @@
       <!-- Marquee Section -->
       <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
         <marquee behavior="scroll" direction="left" scrollamount="3">
-          <img *ngFor="let partner of partners" 
-               [src]="partner?.partner_logo" 
-               class="rounded-circle mx-3 partner-logo">
-        </marquee>
+  <img *ngFor="let partner of partners" 
+       [src]="imageBaseUrl + 'partnerLogos/' + partner.partner_logo" 
+       class="rounded-circle mx-3 partner-logo"
+       alt="{{ partner.partner_name }} Logo">
+</marquee>
+
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { PostService } from '../../../services/posts/post.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../../environments/environment.prod';
 
 
 
@@ -29,6 +30,7 @@ export class NewsComponent implements OnInit {
   public isEventLoading!: boolean;
   public readMore = 'Read More';
   postData: any;
+  imageBaseUrl = environment.imageUrl;
 
   constructor(
     private newsService: NewsService, 
@@ -43,8 +45,9 @@ export class NewsComponent implements OnInit {
     console.log("Event Data:", this.events);
   }
 
+  //Get All News
 public getAllNeews(): void {
-  this.newsService.getAllNews().subscribe(
+  this.newsService.getAllPublicNews().subscribe(
     (response) => {
       if (response?.data) {
         // Filter out deleted records (assuming deleted records have a 'deleted_at' property)
@@ -74,9 +77,9 @@ public getAllNeews(): void {
 
     // Get news by Id
     public findNewsById(id: any): void {
-      this.newsService.findNewsById(id).subscribe(
+      this.newsService.findPublicNewsById(id).subscribe(
         (response: any) => {
-          // id = 'page';
+          
           this.router.navigate(['/temp/main/news', id]);
           // console.log('NEWS: ', response.data);
         },
@@ -86,9 +89,11 @@ public getAllNeews(): void {
       );
     }
 
-     // Get news by Id
+    
+    //  Get news by Id
      public findEventById(id: any): void {
-      this.postService.findPostById(id).subscribe(
+      console.log("ID: ", id)
+      this.postService.getPublicPostsByTypeId(id).subscribe(
         (response: any) => {
           // id = 'page';
           this.router.navigate(['/temp/main/read-events', id]);
@@ -99,34 +104,10 @@ public getAllNeews(): void {
         }
       );}
 
-      // fetchPost(id: any) {
-      //   this.postService.findPostById(id).subscribe(
-      //     data => {
-      //       this.postData = data;
-      //       console.log('Data:', data);
-      //     },
-      //     error => {
-      //       console.error('Error:', error);
-      //     }
-      //   );
-      // }
-    
-
-    
-
-   
-
-    
-
-    
-    
-
- 
-
     // Fetch events
     public getEventPosts(): void {
       this.isEventLoading = true;
-      this.postService.getEventPosts().subscribe(
+      this.postService.getPublcEventsPosts().subscribe(
         (response: any) => {
           this.events = response.data;
           // console.log('EVENTS: ', response.data);
@@ -140,10 +121,9 @@ public getAllNeews(): void {
     }
 
     // View
-  public navigateToPostDetails(data: any): void {
-    this.router.navigate(['/temp/main/read-events', data.post_id]);
-  }
-
+  // public navigateToPostDetails(data: any): void {
+  //   this.router.navigate(['/temp/main/read-events', data.post_id]);
+  // }
 
     // Kupunguza ukubwa wa text
     public truncateEventTitle(description: string, words: number): string {

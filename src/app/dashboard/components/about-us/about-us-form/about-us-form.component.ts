@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,13 +22,11 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
-import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { AboutUsService } from '../../../../about-us/about-us.service';
+import { PermissionService } from '../../../../services/auth/permission.service';
 
 @Component({
   selector: 'app-about-us-form',
@@ -55,8 +59,7 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
     private aboutUsService: AboutUsService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     private toastService: ToastService,
-    private authService: AuthenticationService,
-    private router: Router
+    public permission: PermissionService
   ) {
     this.aboutUsForm = this.formBuilder.group({
       vision: ['', Validators.required],
@@ -68,8 +71,26 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  // ngOnInit(): void {
+  //   this.getAboutUsData();
+  // }
+
   ngOnInit(): void {
-    this.getAboutUsData();
+    if (this.dialogData.action === 'EDIT') {
+      this.dialogAction = 'EDIT';
+      this.action = 'Update';
+      this.aboutUsForm.patchValue({
+        vision: this.dialogData.data.vision,
+        mission: this.dialogData.data.mission,
+        email: this.dialogData.data.contact_email,
+        phoneNumber: this.dialogData.data.contact_phone,
+        description: this.dialogData.data.descriptions,
+        image: this.dialogData.data.images,
+      });
+    } else {
+      this.dialogAction = 'CREATE NEW';
+      this.action = 'Save';
+    }
   }
 
   private getAboutUsData(): void {
@@ -96,7 +117,7 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  public handleBannerSubmit(): void {
+  public handleAboutUsSubmit(): void {
     if (this.dialogAction === 'EDIT') {
       this.onUpdateAboutUs();
     } else {
@@ -111,8 +132,14 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
       formData.append('vision', this.aboutUsForm.get('vision')?.value);
       formData.append('mission', this.aboutUsForm.get('mission')?.value);
       formData.append('contact_email', this.aboutUsForm.get('email')?.value);
-      formData.append('contact_phone', this.aboutUsForm.get('phoneNumber')?.value);
-      formData.append('descriptions', this.aboutUsForm.get('description')?.value);
+      formData.append(
+        'contact_phone',
+        this.aboutUsForm.get('phoneNumber')?.value
+      );
+      formData.append(
+        'descriptions',
+        this.aboutUsForm.get('description')?.value
+      );
       formData.append('images', this.aboutUsForm.get('image')?.value);
 
       this.aboutUsService.createAboutUs(formData).subscribe(
@@ -143,26 +170,34 @@ export class AboutUsFormComponent implements OnInit, OnDestroy {
       formData.append('vision', this.aboutUsForm.get('vision')?.value);
       formData.append('mission', this.aboutUsForm.get('mission')?.value);
       formData.append('contact_email', this.aboutUsForm.get('email')?.value);
-      formData.append('contact_phone', this.aboutUsForm.get('phoneNumber')?.value);
-      formData.append('descriptions', this.aboutUsForm.get('description')?.value);
+      formData.append(
+        'contact_phone',
+        this.aboutUsForm.get('phoneNumber')?.value
+      );
+      formData.append(
+        'descriptions',
+        this.aboutUsForm.get('description')?.value
+      );
       formData.append('images', this.aboutUsForm.get('image')?.value);
 
-      this.aboutUsService.updateAboutUs(formData).subscribe(
-        (response: any) => {
-          this.dialogRef.close();
-          this.onEditAboutUsEventEmitter.emit();
-          if (response.statusCode === 200) {
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
+      this.aboutUsService
+        .updateAboutUs(formData, this.dialogData.data.id)
+        .subscribe(
+          (response: any) => {
+            this.dialogRef.close();
+            this.onEditAboutUsEventEmitter.emit();
+            if (response.statusCode === 200) {
+              this.toastService.toastSuccess(response.message);
+            } else {
+              this.toastService.toastError(response.message);
+            }
+          },
+          (errorResponse: HttpErrorResponse) => {
+            if (errorResponse) {
+              this.toastService.toastError(errorResponse.error.message);
+            }
           }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
-        }
-      );
+        );
     }
   }
 

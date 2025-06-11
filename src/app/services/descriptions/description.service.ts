@@ -13,7 +13,7 @@ private apiUrl = environment.baseUrl;
 
   public createDescription(data: any): Observable<any> {
     return this.httpClient.post<any>(
-      `${this.apiUrl}descriptions/create-description`,
+      `${this.apiUrl}descriptions`,
       data
     );
   }
@@ -21,21 +21,28 @@ private apiUrl = environment.baseUrl;
   public getAllDescriptions(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}descriptions`);
   }
+   public getPublicAllDescriptions(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/descriptions`);
+  }
+
+    public findPublicDescriptionById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/descriptions/${id}`);
+  }
 
   public findDescriptionById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}descriptions/${id}`);
   }
 
   public updateDescription(data: any, id: number): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}descriptions/update-descriptions/${id}`, data);
+    return this.httpClient.post<any>(`${this.apiUrl}descriptions/${id}`, data);
   }
 
   public deleteDescription(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}descriptions/delete-descriptions/${id}`);
+    return this.httpClient.delete<any>(`${this.apiUrl}descriptions/${id}`);
   }
 
 
-  public restoreDeletedDescription(data: any): Observable<any> {
-    return this.httpClient.patch<any>(`${this.apiUrl}dp/descriptions/restore-descriptions/{id}`, data);
-  }
+  // public restoreDeletedDescription(data: any): Observable<any> {
+  //   return this.httpClient.patch<any>(`${this.apiUrl}dp/descriptions/restore-descriptions/{id}`, data);
+  // }
 }

@@ -1,104 +1,61 @@
 <!-- Services Start -->
 <div class="container-fluid service mt-2">
   <div class="container">
-    <div
-      class="text-center mx-auto pb-5 wow fadeInUp"
-      data-wow-delay="0.2s"
-      style="max-width: 800px"
-    >
-      <h1 class="text-capitalize" style="color: #14497d;">get lates news & events</h1>
+    <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px">
+      <h1 class="text-capitalize" style="color: #14497d;">get latest news & events</h1>
       <p class="mb-0">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-        adipisci facilis cupiditate recusandae aperiam temporibus corporis
-        itaque quis facere, numquam, ad culpa deserunt sint dolorem autem
-        obcaecati, ipsam mollitia hic.
+        Stay updated with the latest news and events from the Ministry of Health, Zanzibar.
       </p>
     </div>
-  
+
     <div class="row">
-      <span *ngIf="isLoading" class="loading-spinner">
-        <span>Loading...</span>
-      </span>
-      <div
-        *ngIf="!isLoading"
-        class="col-md-6 wow fadeInLeft"
-        data-wow-delay="0.2s"
-      >
-        <div class="row">
-          <h5 class="fw-bold text-uppercase" style="color: #14497d;">Lates News</h5>
-          <div class="col-md-12" *ngFor="let news of newses">
+      <!-- News Section -->
+      <div class="col-md-6 wow fadeInLeft" data-wow-delay="0.2s">
+        <h5 class="fw-bold text-uppercase" style="color: #14497d;">Latest News</h5>
+        <div *ngIf="isLoading">Loading...</div>
+        <div *ngIf="!isLoading">
+          <div class="col-md-12" *ngFor="let news of paginatedNews">
             <div class="row mb-4 mt-2">
               <div class="col-md-6">
-                <div class="service-img">
-                  <img
-                    [src]="news?.image_urls[0]"
-                    class="img-fluid rounded-top rounded-bottom w-100 h-100"
-                    alt="Image"
-                  />
-                </div>
+                <img [src]="imageBaseUrl + 'newsPhotos/' + news?.image_names[0]" class="img-fluid rounded w-100 h-100" alt="Image" />
               </div>
               <div class="col-md-6">
-                <h5 class="text-uppercase fw-bold" style="color: #14497d;">
-                  {{ truncateTitle(news?.news_title, 5) }}
-                </h5>
+                <h5 class="text-uppercase fw-bold" style="color: #14497d;">{{ truncateTitle(news?.news_title, 5) }}</h5>
+                <div><i class="fa-solid fa-calendar-days"></i> Posted On: {{ news?.created_at | date: "mediumDate" }}</div>
                 <div>
-                  <i class="fa-solid fa-calendar-days"></i>
-                  Posted On: {{ news?.created_at | date : "mediumDate" }}
-                </div>
-                <div class="">
-                  {{ truncateNewsDescription(news?.news_descriptions, 20) }}<span (click)="findNewsById(news?.id)" class="text-primary readMore">{{ readMore }}</span>
+                  {{ truncateNewsDescription(news?.news_descriptions, 20) }}
+                  <span (click)="findNewsById(news?.id)" class="text-primary readMore">{{ readMore }}</span>
                 </div>
               </div>
             </div>
           </div>
+          <mat-paginator [length]="newses.length" [pageSize]="5" (page)="onNewsPageChange($event)"></mat-paginator>
         </div>
-       
       </div>
 
-      <!-- EVENTS -->
-      <span *ngIf="isEventLoading" class="loading-spinner">
-        <span>Loading...</span>
-      </span>
-      <div
-        *ngIf="!isEventLoading"
-        class="col-md-6 wow fadeInRight"
-        data-wow-delay="0.2s"
-      >
-        <div class="row">
-          <h5 class="fw-bold  text-uppercase" style="color: #14497d;">Lates Events</h5>
-          <!-- <hr /> -->
-          <div class="col-md-12" *ngFor="let event of events">
-            <div class="row mb-4 mt-2" >
+      <!-- Events Section -->
+      <div class="col-md-6 wow fadeInRight" data-wow-delay="0.2s">
+        <h5 class="fw-bold text-uppercase" style="color: #14497d;">Latest Events</h5>
+        <div *ngIf="isEventLoading">Loading...</div>
+        <div *ngIf="!isEventLoading">
+          <div class="col-md-12" *ngFor="let event of paginatedEvents">
+            <div class="row mb-4 mt-2">
               <div class="col-md-6">
-                <div class="service-img">
-                  <img
-                    [src]="
-                      event?.post_filepath ||
-                      '../../../../assets/img/no-image.jpg'
-                    "
-                    class="img-fluid rounded-top rounded-bottom w-100 h-100"
-                    alt="Image"
-                  />
-                </div>
+                <img *ngIf="event.post_filepath?.length" [src]="imageBaseUrl + 'posts/images/' + event.post_filepath[0]" class="img-fluid rounded w-100 h-100" alt="Image" />
               </div>
               <div class="col-md-6">
-                <h5 class="text-uppercase  fw-bold" style="color: #14497d;">
-                  {{ truncateTitle(event?.post_title, 5) }}
-                </h5>
+                <h5 class="text-uppercase fw-bold" style="color: #14497d;">{{ truncateTitle(event?.post_title, 5) }}</h5>
+                <div><i class="fa-solid fa-calendar-days"></i> Posted On: {{ event?.created_at | date: "mediumDate" }}</div>
                 <div>
-                  <i class="fa-solid fa-calendar-days"></i>
-                  Posted On: {{ event?.created_at | date : "mediumDate" }}
-                </div>
-                <div class="">
                   {{ truncateEventDescription(event?.post_description, 20) }}
+                  <span (click)="navigateToPostDetails(event)" class="text-primary readMore">{{ readMore }}</span>
                 </div>
               </div>
             </div>
           </div>
+          <mat-paginator [length]="events.length" [pageSize]="5" (page)="onEventPageChange($event)"></mat-paginator>
         </div>
-        
       </div>
     </div>
   </div>
 </div>
-

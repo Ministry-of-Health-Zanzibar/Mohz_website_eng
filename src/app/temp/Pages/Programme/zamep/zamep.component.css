@@ -1,55 +1,84 @@
-.container {
-    max-width: 900px;
-    margin-top: 50px;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-  }
-  
-  h4 {
-    margin-bottom: 15px;
-  }
-  
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  ul li {
-    margin-bottom: 8px;
-  }
-  
-  ul li::before {
-    content: '•';
-    color: #007bff;
-    margin-right: 10px;
-  }
-  
-  .mt-4 {
-    margin-top: 40px;
-  }
-  
-  .btn-info {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
-  .btn-info:hover {
-    background-color: #0056b3;
-  }
-  
+/* Container Styling */
+.zamep-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #fdfdfd;
+}
+
+/* Headings */
+.zamep-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #264653;
+}
+
+.zamep-subtitle {
+  font-size: 1.1rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Section Cards */
+.zamep-card {
+  background: #ffffff;
+  border-left: 5px solid #007bff;
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.08);
+}
+
+/* Section Headings */
+.zamep-section {
+  font-size: 1.3rem;
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.zamep-section i {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+/* List Styling */
+.zamep-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.zamep-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+.zamep-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Button Styling */
+.zamep-button {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  padding: 10px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.zamep-button:hover {
+  background: linear-gradient(135deg, #0056b3, #00aaff);
+  transform: translateY(-2px);
+}

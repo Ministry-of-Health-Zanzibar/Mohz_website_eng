@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { TeamService } from '../../../services/teams/team.service';
 import { Team } from '../../../Model/Team';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-carousel',
@@ -17,10 +18,14 @@ import { Team } from '../../../Model/Team';
   styleUrl: './carousel.component.css',
 })
 export class CarouselComponent implements OnInit {
-  public banners!: any;
-teams: any;
+public banners!: any;
+ public teams: any
 public leftColumn: any[] = [];
 public rightColumn: any[] = [];
+public bannerImageUrl!: string;
+ministrySystems: any;
+imageBaseUrl = environment.imageUrl;
+
 
 
   constructor(private bannerService: BannerService, private teamService:TeamService) {}
@@ -30,10 +35,13 @@ public rightColumn: any[] = [];
     this.getAllTeams();
   }
 
-
-  // Fetch all ministry systems excluding deleted ones
+  getPhotoFilename(fullPath: string | null | undefined): string {
+  if (!fullPath) return '';
+  return fullPath.split('/').pop() || '';
+}
+  // Fetch all 
   getAllBanners(): void {
-    this.bannerService.getAllBanners().subscribe(
+    this.bannerService.getBanners().subscribe(
       (response) => {
         if (response?.data) {
           // Filter out deleted records (assuming deleted records have a 'deleted_at' property)
@@ -46,7 +54,7 @@ public rightColumn: any[] = [];
   }
 
   public getAllTeams() {
-    this.teamService.getAllTeams().subscribe((response: { data: Team[] }) => {
+    this.teamService.getAllPublicTeams().subscribe((response: { data: Team[] }) => {
       const allTeams: Team[] = response.data;
   
       // Find specific positions accurately

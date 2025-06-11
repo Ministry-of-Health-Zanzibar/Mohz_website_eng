@@ -53,9 +53,9 @@ const routes: Routes = [
         path: 'view-user-details/:id',
         title: '',
         loadComponent: () =>
-          import('./components/users/view-user-details/view-user-details.component').then(
-            (c) => c.ViewUserDetailsComponent
-          ),
+          import(
+            './components/users/view-user-details/view-user-details.component'
+          ).then((c) => c.ViewUserDetailsComponent),
       },
 
       {
@@ -98,22 +98,7 @@ const routes: Routes = [
             (c) => c.NewsFormComponent
           ),
       },
-      {
-        path: 'comment-list',
-        title: '',
-        loadComponent: () =>
-          import(
-            './components/comments/coment-list/coment-list.component'
-          ).then((c) => c.ComentListComponent),
-      },
-      {
-        path: 'comment-form',
-        title: '',
-        loadComponent: () =>
-          import(
-            './components/comments/coment-form/coment-form.component'
-          ).then((c) => c.ComentFormComponent),
-      },
+
       {
         path: 'banner-list',
         title: '',
@@ -242,14 +227,7 @@ const routes: Routes = [
             (c) => c.TenderListComponent
           ),
       },
-      {
-        path: 'tender-form',
-        title: '',
-        loadComponent: () =>
-          import('./components/tenders/tender-form/tender-form.component').then(
-            (c) => c.TenderFormComponent
-          ),
-      },
+
       {
         path: 'publication-list',
         title: '',
@@ -322,14 +300,7 @@ const routes: Routes = [
             './components/partners/partner-form/partner-form.component'
           ).then((c) => c.PartnerFormComponent),
       },
-      {
-        path: 'partner-details/:id',
-        title: '',
-        loadComponent: () =>
-          import(
-            './components/partners/view-partner-datails/view-partner-datails.component'
-          ).then((c) => c.ViewPartnerDatailsComponent),
-      },
+
       {
         path: 'dp-program-list',
         title: '',
@@ -371,19 +342,48 @@ const routes: Routes = [
             './components/Ministry-system/ministry-system-list/ministry-system-list.component'
           ).then((c) => c.MinistrySystemListComponent),
       },
-
+      {
+        path: 'ministry-system-details/:id',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/Ministry-system/ministry-system-detail/ministry-system-detail.component'
+          ).then((c) => c.MinistrySystemDetailComponent),
+      },
 
       {
         path: 'role-list',
         title: '',
         loadComponent: () =>
           import(
-            './components/roles/role-list/role-list.component'
-          ).then((c) => c.RoleListComponent),
+            './components/role-permission/role-permission-board/role-permission-board.component'
+          ).then((c) => c.RolePermissionBoardComponent),
       },
 
-
-
+      {
+        path: 'org-structure-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/organization-structure/organization-structure-list/organization-structure-list.component'
+          ).then((c) => c.OrganizationStructureListComponent),
+      },
+      {
+        path: 'gallery-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/galleries/gallery-list/gallery-list.component'
+          ).then((c) => c.GalleryListComponent),
+      },
+      {
+        path: 'gallery-type-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/galleries/gallery-type-list/gallery-type-list.component'
+          ).then((c) => c.GalleryTypeListComponent),
+      },
     ],
   },
 ];
