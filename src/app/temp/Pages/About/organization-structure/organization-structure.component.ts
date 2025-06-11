@@ -33,12 +33,14 @@ import { environment } from '../../../../../environments/environment.prod';
     MatButtonModule
   ],
   templateUrl: './organization-structure.component.html',
-  styleUrl: './organization-structure.component.css',
+  styleUrls: ['./organization-structure.component.css'],
 })
 export class OrganizationStructureComponent implements OnInit {
   level1Leader: any = null;
   level2Leaders: any[] = [];
   level3Leaders: any[] = [];
+  level4Leaders: any[] = [];
+  level5Leaders: any[] = [];
 
   public imageUrl = environment.imageUrl + 'organization/';
 
@@ -51,6 +53,10 @@ export class OrganizationStructureComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLevel1();
+    this.loadLevel2();
+    this.loadLevel3();
+    this.loadLevel4();
+    this.loadLevel5();
   }
 
   loadLevel1() {
@@ -58,11 +64,9 @@ export class OrganizationStructureComponent implements OnInit {
       next: (response) => {
         if (response && response.data) {
           this.level1Leader = response.data;
-          this.loadLevel2();
-          this.loadLevel3();
         }
       },
-      error: (err) => {
+      error: () => {
         this.toastService.showError('Failed to load level 1 leader');
       },
     });
@@ -90,6 +94,32 @@ export class OrganizationStructureComponent implements OnInit {
       },
       error: () => {
         this.toastService.showError('Failed to load level 3 leaders');
+      },
+    });
+  }
+
+  loadLevel4() {
+    this.orgStructureService.getPublicOrganizationStructureByLevelId(4).subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.level4Leaders = response.data;
+        }
+      },
+      error: () => {
+        this.toastService.showError('Failed to load level 4 leaders');
+      },
+    });
+  }
+
+  loadLevel5() {
+    this.orgStructureService.getPublicOrganizationStructureByLevelId(5).subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.level5Leaders = response.data;
+        }
+      },
+      error: () => {
+        this.toastService.showError('Failed to load level 5 leaders');
       },
     });
   }

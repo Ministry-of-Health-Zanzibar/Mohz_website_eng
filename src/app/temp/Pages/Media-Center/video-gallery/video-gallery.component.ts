@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { GalleryService } from '../../../../services/gallery.service';
 
 @Component({
@@ -7,36 +8,34 @@ import { GalleryService } from '../../../../services/gallery.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './video-gallery.component.html',
-  styleUrl: './video-gallery.component.css'
+  styleUrls: ['./video-gallery.component.css']
 })
 export class VideoGalleryComponent implements OnInit {
   gallery: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
-  constructor(private galleryService: GalleryService) {}
+  constructor(
+    private galleryService: GalleryService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.getVideoGallery();
   }
-getVideoGallery(): void {
-  this.galleryService.getAllGalleries() .subscribe((response: any) => {
-    console.log('Raw response:', response);
-    const items = Array.isArray(response.data) ? response.data : [];
-    console.log('All items:', items);
 
-    const validTypes = ['video', 'press release', 'conference release'];
-    this.gallery = items.filter((item: any) => {
-      const t = (item.type_name || '').trim().toLowerCase();
-      const match = validTypes.includes(t);
-      console.log(`Item "${item.title}" type_name="${t}" match=${match}`);
-      return match;
-    });
+  getVideoGallery(): void {
+    this.galleryService.getAllPublicGalleriesByConferenceReleaseType()
+      .subscribe((response: any) => {
+        const items = Array.isArray(response?.data) ? response.data : (Array.isArray(response) ? response : []);
+        const validTypes = ['video', 'press release', 'conference release'];
 
-    console.log('Filtered gallery:', this.gallery);
-  });
-}
-
+        this.gallery = items.filter((item: any) => {
+          const t = (item.type_name || '').trim().toLowerCase();
+          return validTypes.includes(t);
+        });
+      });
+  }
 
   get paginatedGallery(): any[] {
     const start = (this.currentPage - 1) * this.itemsPerPage;
@@ -57,5 +56,9 @@ getVideoGallery(): void {
     const regExp = /(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regExp);
     return match ? match[1] : '';
+  }
+
+  getSafeUrl(videoId: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
   }
 }
