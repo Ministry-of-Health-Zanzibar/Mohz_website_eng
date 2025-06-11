@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -32,16 +30,18 @@ import { environment } from '../../../../../environments/environment.prod';
     MatTooltipModule,
     MatSlideToggleModule,
     FormsModule,
-    MatButtonModule,
-    MatButtonModule,
+    MatButtonModule
   ],
   templateUrl: './organization-structure.component.html',
   styleUrl: './organization-structure.component.css',
 })
 export class OrganizationStructureComponent implements OnInit {
-  organizationStructures: any[] = [];
+  level1Leader: any = null;
+  level2Leaders: any[] = [];
+  level3Leaders: any[] = [];
+
   public imageUrl = environment.imageUrl + 'organization/';
-  organization: any;
+
   constructor(
     private orgStructureService: OrganizationStructureService,
     private toastService: ToastService,
@@ -50,24 +50,47 @@ export class OrganizationStructureComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getAllOrganizations();
+    this.loadLevel1();
   }
 
-  // public getAllOrganizations(): void {
-  //   this.orgStructureService.getPublicAllOrganizations().subscribe({
-  //     next: (response) => {
-  //       if (response && response.data && response.data.length > 0) {
-  //         this.organization = response.data[0]; 
-  //         console.log('Loaded organization:', this.organization);
-  //       } else {
-  //         console.warn('No organization data found.');
-  //       }
-  //       this.cdr.detectChanges();
-  //     },
-  //     error: (err) => {
-  //       console.error('Failed to fetch organization structures', err);
-  //       this.toastService.toastError('Failed to load organization structures.');
-  //     },
-  //   });
-  // }
+  loadLevel1() {
+    this.orgStructureService.getPublicOrgStuctureByLevel1().subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.level1Leader = response.data;
+          this.loadLevel2();
+          this.loadLevel3();
+        }
+      },
+      error: (err) => {
+        this.toastService.showError('Failed to load level 1 leader');
+      },
+    });
+  }
+
+  loadLevel2() {
+    this.orgStructureService.getPublicOrganizationStructureByLevelId(2).subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.level2Leaders = response.data;
+        }
+      },
+      error: () => {
+        this.toastService.showError('Failed to load level 2 leaders');
+      },
+    });
+  }
+
+  loadLevel3() {
+    this.orgStructureService.getPublicOrganizationStructureByLevelId(3).subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.level3Leaders = response.data;
+        }
+      },
+      error: () => {
+        this.toastService.showError('Failed to load level 3 leaders');
+      },
+    });
+  }
 }

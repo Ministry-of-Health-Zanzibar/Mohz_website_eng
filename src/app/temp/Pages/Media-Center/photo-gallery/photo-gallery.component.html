@@ -1,81 +1,46 @@
 <div class="container my-5">
   <div class="p-4 border rounded shadow-sm bg-light">
     <p class="h3 text-secondary">Photo Gallery</p>
-    <hr>
+    <hr />
 
-    <!-- Section Header -->
-    <!-- <div class="text-center mb-4">
-      <h2 class="text-uppercase fw-bold text-primary">Maktaba ya Picha</h2>
-      <hr class="w-25 mx-auto border-primary" />
-      <p class="text-muted">Picha mbalimbali za matukio rasmi</p>
-    </div> -->
-
-    <!-- Gallery Grid -->
     <div class="row g-4">
-      <!-- Image Card 1 -->
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card border-0 shadow-sm">
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let item of paginatedGallery">
+        <div class="card border-0 shadow-sm h-100">
           <img
-            src="../../../../../assets/img/carousel-1.jpg"
-            class="card-img-top img-thumbnail"
-            alt="Picha 1"
-            style="height: 250px; object-fit: cover"
+            [src]="imageUrl + item.gallery_photo"
+            class="card-img-top"
+            [alt]="item.title"
+            style="height: 200px; width: 100%; object-fit: cover; border-radius: 0"
           />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+          </div>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit
-        </p>
       </div>
+    </div>
 
-      <!-- Image Card 2 -->
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card border-0 shadow-sm">
-          <img
-            src="../../../../../assets/img/carousel-2.jpg"
-            class="card-img-top img-thumbnail"
-            alt="Picha 2"
-            style="height: 250px; object-fit: cover"
-          />
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit
-        </p>
-      </div>
-
-      <!-- Image Card 3 -->
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card border-0 shadow-sm">
-          <img
-            src="../../../../../assets/img/hospital ya lumumba.jpg"
-            class="card-img-top img-thumbnail"
-            alt="Picha 3"
-            style="height: 250px; object-fit: cover"
-          />
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit
-        </p>
-      </div>
-
-      <!-- Image Card 4 -->
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card border-0 shadow-sm">
-          <img
-            src="../../../../../assets/img/offer-1.jpg"
-            class="card-img-top img-thumbnail"
-            alt="Picha 4"
-            style="height: 250px; object-fit: cover"
-          />
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit
-        </p>
-      </div>
-      
+    <!-- Pagination Controls -->
+    <div class="mt-4 d-flex justify-content-center">
+      <nav>
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+          </li>
+          <li
+            class="page-item"
+            *ngFor="let page of [].constructor(totalPages()); let i = index"
+            [class.active]="i + 1 === currentPage"
+          >
+            <button class="page-link" (click)="changePage(i + 1)">
+              {{ i + 1 }}
+            </button>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages()">
+            <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

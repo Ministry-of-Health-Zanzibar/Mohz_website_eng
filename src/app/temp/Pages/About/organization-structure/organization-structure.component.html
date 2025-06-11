@@ -1,95 +1,73 @@
-<div class="container my-5">
-  <!-- Kichwa cha ukurasa -->
+<div class="container my-5 p-4 border border-secondary rounded shadow-lg bg-light">
+  <!-- Page Header -->
   <div class="text-center mb-5">
     <h2 class="text-uppercase fw-bold text-primary">Organization Structure</h2>
-    <hr class="w-25 mx-auto border-primary">
+    <hr class="w-25 mx-auto border-primary" />
   </div>
 
-  <!-- Kiongozi Mkuu -->
-  <div class="text-center mb-5">
-    <img src="../../../../../assets/img/team-1.jpg"
-         class="img-thumbnail shadow mb-3"
-         style="width: 280x280 px; height: 280x280 px; object-fit: cover;"
-         alt="Waziri wa Afya">
-    <h4 class="fw-bold text-dark">Waziri wa Afya</h4>
-    <p class="text-muted">Kiongozi Mkuu</p>
+  <!-- Level 1 Leader -->
+  <div *ngIf="level1Leader" class="text-center mb-5">
+    <img
+      [src]="imageUrl + level1Leader.picture"
+      class="img-thumbnail shadow mb-3"
+      style="width: 280px; height: 280px; object-fit: cover;"
+      [alt]="level1Leader.full_name"
+    />
+    <h4 class="fw-bold text-dark">{{ level1Leader.full_name }}</h4>
+    <p class="text-muted">{{ level1Leader.position }}</p>
   </div>
-  
-  <!-- Ngazi ya pili -->
+
+  <!-- Level 2 Leaders -->
   <div class="row text-center justify-content-center mb-5 g-4">
-    <div class="col-md-4">
+    <div class="col-md-4" *ngFor="let leader of level2Leaders">
       <div class="card border-0 shadow-sm">
         <div class="card-body">
-          <img src="../../../../../assets/img/team-2.jpg"
-               class="img-thumbnail shadow mb-3"
-               style="width: 280x280px; height: 280x280 px; object-fit: cover;"
-               alt="Naibu Waziri">
-          <h5 class="card-title fw-semibold">Naibu Waziri</h5>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <img src="../../../../../assets/img/team-2.jpg"
-               class="img-thumbnail shadow mb-3"
-               style="width: 280x280 px; height: 280x280 px; object-fit: cover;"
-               alt="Katibu Mkuu">
-          <h5 class="card-title fw-semibold">Katibu Mkuu</h5>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <img src="../../../../../assets/img/team-3.jpg"
-               class="img-thumbnail shadow mb-3"
-               style="width: 280x280 px; height: 280x280 px; object-fit: cover;"
-               alt="Mkurugenzi Mkuu">
-          <h5 class="card-title fw-semibold">Mkurugenzi Mkuu</h5>
+          <img
+            [src]="imageUrl + leader.picture"
+            class="img-thumbnail shadow mb-3"
+            style="width: 280px; height: 280px; object-fit: cover;"
+            [alt]="leader.full_name"
+          />
+          <h5 class="card-title fw-semibold">{{ leader.full_name }}</h5>
+          <p class="card-text">{{ leader.position }}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Ngazi ya tatu -->
-  <div class="row text-center justify-content-center g-4">
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm">
+  <!-- Level 3 Leaders -->
+  <div class="row text-center justify-content-center g-4 mb-5">
+    <div class="col-md-3 col-sm-6" *ngFor="let leader of level3Leaders">
+      <div class="card border-0 shadow-sm h-100">
         <div class="card-body">
-          <img src="../../../../../assets/img/team-2.jpg"
-               class="img-thumbnail shadow mb-3"
-               style="width: 280x280 px; height: 280x280 px; object-fit: cover;"
-               alt="Afisa wa Afya 1">
-          <h6 class="card-title fw-semibold">Afisa wa Afya 1</h6>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <img src="../../../../../assets/img/team-2.jpg"
-               class="img-thumbnail shadow mb-3"
-               style="width: 280x280 px; height: 280x280 px; object-fit: cover;"
-               alt="Afisa wa Afya 2">
-          <h6 class="card-title fw-semibold">Afisa wa Afya 2</h6>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <img src="../../../../../assets/img/team-3.jpg"
-               class="img-thumbnail shadow mb-3"
-               style="width: 280x280 px; height: 280x280 px; object-fit: cover;"
-               alt="Afisa wa Afya 3">
-          <h6 class="card-title fw-semibold">Afisa wa Afya 3</h6>
+          <img
+            [src]="imageUrl + leader.picture"
+            class="img-thumbnail shadow mb-3"
+            style="width: 100%; height: 220px; object-fit: cover;"
+            [alt]="leader.full_name"
+          />
+          <h6 class="card-title fw-semibold">{{ leader.full_name }}</h6>
+          <p class="card-text">{{ leader.position }}</p>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Level 4 Leaders -->
+  <!-- <div class="row text-center justify-content-center g-4">
+    <div class="col-md-3 col-sm-6" *ngFor="let leader of level3Leaders">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <img
+            [src]="imageUrl + leader.picture"
+            class="img-thumbnail shadow mb-3"
+            style="width: 100%; height: 220px; object-fit: cover;"
+            [alt]="leader.full_name"
+          />
+          <h6 class="card-title fw-semibold">{{ leader.full_name }}</h6>
+          <p class="card-text">{{ leader.position }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </div>
