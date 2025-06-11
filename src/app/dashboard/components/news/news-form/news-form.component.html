@@ -48,6 +48,27 @@
         </mat-error>
       </mat-form-field>
 
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>End Date</mat-label>
+        <input
+          type="text"
+          formControlName="endDate"
+          matInput
+          placeholder="2025/06/25"
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            newsForm.controls.endDate.touched &&
+            newsForm.controls.endDate.invalid
+          "
+        >
+          <span *ngIf="newsForm.controls.endDate.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+
       <!-- Image Upload -->
       <div class="col-md-12 mt-2 mb-3">
         <div class="mb-2">

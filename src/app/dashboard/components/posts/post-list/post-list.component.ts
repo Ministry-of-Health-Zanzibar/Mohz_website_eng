@@ -64,16 +64,15 @@ export class PostListComponent implements OnInit, AfterViewInit {
     'typeName',
     'postTitle',
     'postDescription',
+    'endDate',
     'action',
   ];
 
-  // public dataSource: MatTableDataSource<any> = new MatTableDataSource();
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit(): void {
-    // console.log('PAGINATOR: ', this.paginator);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -198,27 +197,25 @@ export class PostListComponent implements OnInit, AfterViewInit {
     );
   }
 
-
-    
-    public restorePost(data: any): void {
-      console.log(data);
-      console.log(data.id);
-      this.postService.restore(data, data.id).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.getAllPosts();
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
-          }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
+  public restorePost(data: any): void {
+    console.log(data);
+    console.log(data.id);
+    this.postService.restore(data, data.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllPosts();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
-      );
-    }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
 
   // View
   public navigateToPostDetails(data: any): void {

@@ -59,6 +59,7 @@ export class NewsFormComponent {
     this.newsForm = this.formBuilder.group({
       newsTitle: ['', Validators.required],
       newsDescription: ['', Validators.required],
+      endDate: ['', Validators.required],
       newsPhotos: [''],
     });
   }
@@ -71,6 +72,7 @@ export class NewsFormComponent {
     this.newsForm.patchValue({
       newsTitle: this.dialogData.data.news_title,
       newsDescription: this.dialogData.data.news_descriptions,
+      endDate: this.dialogData.data.end_date,
     });
 
     if (this.dialogData.action === 'EDIT') {
@@ -98,6 +100,7 @@ export class NewsFormComponent {
       'news_descriptions',
       this.newsForm.get('newsDescription')?.value
     );
+    formData.append('end_date', this.newsForm.get('endDate')?.value);
 
     const files = this.newsForm.get('newsPhotos')?.value;
     if (files && files.length > 0) {
@@ -132,6 +135,7 @@ export class NewsFormComponent {
       'news_descriptions',
       this.newsForm.get('newsDescription')?.value
     );
+    formData.append('end_date', this.newsForm.get('endDate')?.value);
 
     const files = this.newsForm.get('newsPhotos')?.value;
     if (files && files.length > 0) {
