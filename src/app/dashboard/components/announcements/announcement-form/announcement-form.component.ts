@@ -10,23 +10,18 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AnnouncementService } from '../../../../services/announcements/announcement.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatButton } from '@angular/material/button';
-import {
-  MatFormField,
-  MatLabel,
-  MatError,
-  MatFormFieldModule,
-} from '@angular/material/form-field';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatInput, MatInputModule } from '@angular/material/input';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { PermissionService } from '../../../../services/auth/permission.service';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-announcement-form',
@@ -39,6 +34,8 @@ import { PermissionService } from '../../../../services/auth/permission.service'
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   templateUrl: './announcement-form.component.html',
   styleUrl: './announcement-form.component.css',
@@ -59,12 +56,12 @@ export class AnnouncementFormComponent implements OnInit {
     private announcementService: AnnouncementService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
     public permission: PermissionService,
-    private toastService: ToastService,
-    private router: Router
+    private toastService: ToastService
   ) {
     this.announcementForm = this.formBuilder.group({
       announcementTitle: ['', Validators.required],
       announcementContent: ['', Validators.required],
+      endDate: ['', Validators.required],
       document: [''],
     });
   }
@@ -77,6 +74,7 @@ export class AnnouncementFormComponent implements OnInit {
     this.announcementForm.patchValue({
       announcementTitle: this.dialogData.data.announcement_title,
       announcementContent: this.dialogData.data.announcement_content,
+      endDate: this.dialogData.data.end_date,
       document: this.dialogData.data.announcement_document,
     });
 
@@ -86,6 +84,7 @@ export class AnnouncementFormComponent implements OnInit {
       this.announcementForm.patchValue({
         announcementTitle: this.dialogData.data.announcement_title,
         announcementContent: this.dialogData.data.announcement_content,
+        endDate: this.dialogData.data.end_date,
         document: this.dialogData.data.announcement_document,
       });
     }
@@ -109,6 +108,7 @@ export class AnnouncementFormComponent implements OnInit {
       'announcement_content',
       this.announcementForm.get('announcementContent')?.value
     );
+    formData.append('end_date', this.announcementForm.get('endDate')?.value);
 
     const files = this.announcementForm.get('document')?.value;
     if (files && files.length > 0) {
@@ -144,9 +144,8 @@ export class AnnouncementFormComponent implements OnInit {
       'announcement_content',
       this.announcementForm.get('announcementContent')?.value
     );
+    formData.append('end_date', this.announcementForm.get('endDate')?.value);
 
-    // const file = this.announcementForm.get('document')?.value;
-    // if (file) {
     formData.append(
       'announcement_document[]',
       this.announcementForm.get('document')?.value
@@ -175,37 +174,6 @@ export class AnnouncementFormComponent implements OnInit {
         }
       );
   }
-
-  // public onFileSelected(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input?.files?.length) {
-  //     const file = input.files[0];
-
-  //     // Validate file type
-  //     if (!file.type.startsWith('pdf/')) {
-  //       this.fileError = 'Please select a valid file type.';
-  //       return;
-  //     }
-
-  //     // Validate file size
-  //     if (file.size > 5 * 1024 * 1024) {
-  //       // 5 MB size limit
-  //       this.fileError = 'Document size should not exceed 5MB.';
-  //       return;
-  //     }
-
-  //     // Clear error and set file in form
-  //     this.fileError = null;
-  //     this.announcementForm.get('document')?.setValue(file);
-
-  //     // Create a preview
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       this.previewImage = reader.result;
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
 
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

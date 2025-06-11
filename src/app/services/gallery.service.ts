@@ -37,4 +37,25 @@ export class GalleryService {
       {}
     );
   }
+
+  // Public
+  public getAllPublicGalleries(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/galleries`);
+  }
+
+  public getAllPublicGalleriesByTypeImage(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/galleries/Image`);
+  }
+
+  public getAllPublicGalleriesByPressConferenceType(): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.apiUrl}public/galleries/Press Conference`
+    );
+  }
+
+  public getAllPublicGalleriesByConferenceReleaseType(): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.apiUrl}public/galleries/Conference Release`
+    );
+  }
 }

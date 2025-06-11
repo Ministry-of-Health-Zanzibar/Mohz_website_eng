@@ -11,12 +11,9 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthenticationService } from '../../../../services/auth/authentication.service';
-import { BannerService } from '../../../../services/banners/banner.service';
 import { ToastService } from '../../../../services/toast/toast.service';
-import { AnnouncementFormComponent } from '../../announcements/announcement-form/announcement-form.component';
 import { PostService } from '../../../../services/posts/post.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,8 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { PostTypeService } from '../../../../services/types/type.service';
-import {MatSelectModule} from '@angular/material/select';
-import { TenderService } from '../../../../services/tenders/tender.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-post-form',
@@ -39,7 +35,7 @@ import { TenderService } from '../../../../services/tenders/tender.service';
     MatFormFieldModule,
     MatIconModule,
     MatSelectModule,
-    RouterModule  
+    RouterModule,
   ],
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css',
@@ -53,8 +49,8 @@ export class PostFormComponent implements OnInit {
   public action: any = 'Save';
   public previewImage: string | ArrayBuffer | null = null;
   public fileError: string | null = null;
-  postTypes: any;
-  postTypeId: any;
+  public postTypes: any;
+  public postTypeId: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
@@ -62,15 +58,15 @@ export class PostFormComponent implements OnInit {
     private postService: PostService,
     private typeService: PostTypeService,
     private dialogRef: MatDialogRef<PostFormComponent>,
-    private toastService: ToastService,
-
+    private toastService: ToastService
   ) {
     this.postForm = this.formBuilder.group({
       postTitle: ['', Validators.required],
       postDescription: ['', Validators.required],
-      postFilepath: ['', ],
+      postFilepath: [''],
       postTypeId: ['', Validators.required],
-      typeName: [''], 
+      typeName: [''],
+      endDate: ['', Validators.required],
     });
   }
 
@@ -85,18 +81,21 @@ export class PostFormComponent implements OnInit {
       postDescription: this.dialogData.data.post_description,
       postFilepath: this.dialogData.data.post_filepath,
       postTypeId: this.dialogData.data.type_id,
-      typeName: this.dialogData.data.type_name, 
+      typeName: this.dialogData.data.type_name,
+      endDate: this.dialogData.data.end_date,
     });
 
-     // Listen for changes in postTypeId and update typeName dynamically
-     this.postForm.get('postTypeId')?.valueChanges.subscribe((selectedId: any) => {
-      const selectedType = this.postTypes.find(
-        (type: { id: any; }) => type.id === selectedId
-      );
-      if (selectedType) {
-        this.postForm.patchValue({ typeName: selectedType.type_name });
-      }
-    });
+    // Listen for changes in postTypeId and update typeName dynamically
+    this.postForm
+      .get('postTypeId')
+      ?.valueChanges.subscribe((selectedId: any) => {
+        const selectedType = this.postTypes.find(
+          (type: { id: any }) => type.id === selectedId
+        );
+        if (selectedType) {
+          this.postForm.patchValue({ typeName: selectedType.type_name });
+        }
+      });
 
     if (this.dialogData.action === 'EDIT') {
       this.dialogAction = 'EDIT';
@@ -106,7 +105,7 @@ export class PostFormComponent implements OnInit {
         postDescription: this.dialogData.data.post_description,
         postFilepath: this.dialogData.data.post_filepath,
         postTypeId: this.dialogData.data.type_id,
-        typeName: this.dialogData.data.type_name, 
+        typeName: this.dialogData.data.type_name,
       });
     }
   }
@@ -149,15 +148,13 @@ export class PostFormComponent implements OnInit {
         'post_filepath',
         this.postForm.get('postFilepath')?.value
       );
-      formData.append(
-        'type_id',
-        this.postForm.get('postTypeId')?.value
-      );
+      formData.append('type_id', this.postForm.get('postTypeId')?.value);
+      formData.append('end_date', this.postForm.get('endDate')?.value);
 
       this.postService.createPost(formData).subscribe(
         (response: any) => {
           // console.log(response);
-         
+
           this.dialogRef.close();
           this.onAddPostEventEmitter.emit();
           if (response.statusCode === 201) {
@@ -189,10 +186,8 @@ export class PostFormComponent implements OnInit {
         'post_filepath',
         this.postForm.get('postFilepath')?.value
       );
-      formData.append(
-        'type_id',
-        this.postForm.get('postTypeId')?.value
-      );
+      formData.append('type_id', this.postForm.get('postTypeId')?.value);
+      formData.append('end_date', this.postForm.get('endDate')?.value);
 
       this.postService.updatePost(formData).subscribe(
         (response: any) => {
@@ -218,7 +213,6 @@ export class PostFormComponent implements OnInit {
     if (input?.files?.length) {
       const file = input.files[0];
 
-     
       // Validate file size
       if (file.size > 5 * 1024 * 1024) {
         // 5 MB size limit

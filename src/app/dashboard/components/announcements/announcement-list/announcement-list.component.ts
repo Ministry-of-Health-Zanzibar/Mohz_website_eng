@@ -63,6 +63,7 @@ export class AnnouncementListComponent
     'id',
     'announcementTitle',
     'announcementContent',
+    'endDate',
     'action',
   ];
 

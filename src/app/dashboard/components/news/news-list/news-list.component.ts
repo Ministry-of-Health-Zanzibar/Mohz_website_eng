@@ -75,6 +75,7 @@ export class NewsListComponent implements OnInit, OnDestroy, AfterViewInit {
     'id',
     'newsTitle',
     'newsDescription',
+    'endDate',
     'image',
     'action',
   ];
