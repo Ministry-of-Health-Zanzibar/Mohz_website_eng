@@ -43,3 +43,7 @@ h2, h4, h5 {
   background-color: #0056b3;
   color: #fff;
 }
+
+.container-fluid{
+  max-width: 1400px;
+}

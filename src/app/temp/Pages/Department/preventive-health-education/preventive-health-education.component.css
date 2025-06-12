@@ -36,4 +36,8 @@
     color: #007bff;
     margin-right: 10px;
   }
+
+  .container-fluid{
+    max-width: 1400px;
+  }
   

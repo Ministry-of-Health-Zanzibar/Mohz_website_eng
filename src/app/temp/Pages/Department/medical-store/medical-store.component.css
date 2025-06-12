@@ -43,3 +43,7 @@ h2.border-bottom {
   flex-shrink: 0;
   color: #007bff;
 }
+.container-fluid {
+  max-width: 1400px;
+}
+
