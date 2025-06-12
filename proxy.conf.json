@@ -1,0 +1,21 @@
+{
+  "/api": {
+    "target": "http://102.223.7.37:8083/api/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api":""
+    }
+  },
+  "/uploads": {
+    "target": "http://102.223.7.37:8083/uploads/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/uploads":""
+    }
+  }
+
+}
