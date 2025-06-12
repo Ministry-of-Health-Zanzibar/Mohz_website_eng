@@ -1,12 +1,11 @@
-/* Container Styling */
 .zihtlp-container {
-  max-width: 900px;
+  max-width: 1400px;
   margin: 60px auto;
-  padding: 30px;
+  padding: 0 1rem;
   background: #fdfdfd;
 }
 
-/* Title */
+
 .zihtlp-title {
   font-size: 2.3rem;
   font-weight: bold;
@@ -19,7 +18,6 @@
   font-style: italic;
 }
 
-/* Card Styling */
 .zihtlp-card {
   background: #ffffff;
   border-left: 6px solid #007bff;
@@ -29,7 +27,6 @@
   box-shadow: 0 4px 10px rgba(0, 123, 255, 0.08);
 }
 
-/* Section Headings with Icons */
 .zihtlp-card h4 {
   color: #007bff;
   font-size: 1.3rem;
@@ -44,7 +41,6 @@
   font-size: 1.4rem;
 }
 
-/* List Styling */
 .zihtlp-list {
   list-style: none;
   padding-left: 0;
@@ -65,7 +61,6 @@
   font-weight: bold;
 }
 
-/* Button Styling */
 .zihtlp-button {
   background: linear-gradient(135deg, #007bff, #00c6ff);
   color: white;
