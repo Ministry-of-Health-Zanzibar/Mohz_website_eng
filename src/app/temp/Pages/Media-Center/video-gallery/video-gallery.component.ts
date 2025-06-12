@@ -25,7 +25,7 @@ export class VideoGalleryComponent implements OnInit {
   }
 
   getVideoGallery(): void {
-    this.galleryService.getAllPublicGalleriesByConferenceReleaseType()
+    this.galleryService.getAllPublicGalleries()
       .subscribe((response: any) => {
         const items = Array.isArray(response?.data) ? response.data : (Array.isArray(response) ? response : []);
         const validTypes = ['video', 'press release', 'conference release'];
@@ -53,7 +53,7 @@ export class VideoGalleryComponent implements OnInit {
   }
 
   extractYouTubeId(url: string): string {
-    const regExp = /(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/;
+    const regExp = /(?:youtube\.com\/(?:.*v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regExp);
     return match ? match[1] : '';
   }

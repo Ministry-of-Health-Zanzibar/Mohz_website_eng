@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="org-flow-container">
-  <!-- Level 1 -->
+
   <div class="leader-box" *ngIf="level1Leader">
     <img [src]="imageUrl + level1Leader.picture" [alt]="level1Leader.full_name" />
     <h4>{{ level1Leader.full_name }}</h4>
@@ -9,7 +9,7 @@
 
   <div class="arrow-down">↓</div>
 
-  <!-- Level 2 -->
+  
   <div class="leader-box" *ngIf="level2Leaders.length > 0">
     <img [src]="imageUrl + level2Leaders[0].picture" [alt]="level2Leaders[0].full_name" />
     <h4>{{ level2Leaders[0].full_name }}</h4>
@@ -18,7 +18,6 @@
 
   <div class="arrow-down">↓</div>
 
-  <!-- Level 3 -->
   <div class="leader-box" *ngIf="level3Leaders.length > 0">
     <img [src]="imageUrl + level3Leaders[0].picture" [alt]="level3Leaders[0].full_name" />
     <h4>{{ level3Leaders[0].full_name }}</h4>
@@ -27,7 +26,7 @@
 
   <div class="arrow-down">↓</div>
 
-  <!-- Level 4 -->
+ 
   <div class="leader-box" *ngIf="level4Leaders.length > 0">
     <img [src]="imageUrl + level4Leaders[0].picture" [alt]="level4Leaders[0].full_name" />
     <h4>{{ level4Leaders[0].full_name }}</h4>
@@ -36,7 +35,6 @@
 
   <div class="arrow-down">↓</div>
 
-  <!-- Level 5: Multiple leaders in a row (5 columns) -->
   <div class="level5-row" *ngIf="level5Leaders.length > 0">
     <div class="leader-box small" *ngFor="let leader of level5Leaders">
       <img [src]="imageUrl + leader.picture" [alt]="leader.full_name" />
@@ -44,5 +42,15 @@
       <p>{{ leader.position }}</p>
     </div>
   </div>
+  </div>
+</div> -->
+
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+    <div class="text-center">
+      <h2 class="text-primary fw-bold mb-3">Coming Soon</h2>
+      <p class="lead text-muted">This page is currently under construction. Please check back later.</p>
+      <i class="bi bi-tools display-1 text-secondary mt-3"></i>
+    </div>
   </div>
 </div>

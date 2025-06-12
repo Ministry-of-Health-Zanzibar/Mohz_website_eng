@@ -1,26 +1,33 @@
 .gallery-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 20px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .video-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
   padding: 15px;
-  transition: transform 0.3s;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.video-card:hover {
-  transform: translateY(-5px);
+.video-card h4 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.video-card p {
+  color: #666;
 }
 
 .pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin: 20px 0;
+  margin-top: 20px;
+}
+
+button {
+  margin: 0 10px;
+  padding: 5px 15px;
+  font-weight: bold;
 }

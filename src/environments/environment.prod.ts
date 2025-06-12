@@ -1,5 +1,9 @@
 export const environment = {
-  production: true,
-  baseUrl: 'api/',
-  imageUrl: 'uploads/'
+  production: false,
+  // baseUrl: 'api/',
+    // imageUrl: 'uploads/'
+   baseUrl: 'http://localhost:8000/api/',
+  imageUrl: 'http://localhost:8000/uploads/',
+
+
 };
