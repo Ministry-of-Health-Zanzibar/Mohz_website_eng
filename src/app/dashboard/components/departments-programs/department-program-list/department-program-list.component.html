@@ -63,7 +63,9 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef class="fw-bold">Action</th>
           <td mat-cell *matCellDef="let element">
+            <!-- Edit -->
             <button
+              [disabled]="element.deleted_at !== null"
               (click)="handleOpenEditDialogForm(element)"
               mat-mini-fab
               color="primary"
@@ -87,20 +89,21 @@
             </span>
 
             <!-- Restore -->
-          <span *ngIf="element.deleted_at !== null">
-            <button
-            (click)="restoreDeletedDepartmentProgram(element)"
-              mat-mini-fab
-              color="info"
-              matTooltip="Restore"
-              class="mt-2 mb-2 me-2"
-            >
-            <mat-icon>restore_from_trash</mat-icon>
-            </button>
-          </span>
+            <span *ngIf="element.deleted_at !== null">
+              <button
+                (click)="restoreDeletedDepartmentProgram(element)"
+                mat-mini-fab
+                color="info"
+                matTooltip="Restore"
+                class="mt-2 mb-2 me-2"
+              >
+                <mat-icon>restore_from_trash</mat-icon>
+              </button>
+            </span>
 
             <!-- View -->
             <button
+              [disabled]="element.deleted_at !== null"
               (click)="navigateToDpProgramDetails(element)"
               mat-mini-fab
               color="primary"
@@ -108,7 +111,6 @@
             >
               <mat-icon class="font-icon">visibility</mat-icon>
             </button>
-           
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

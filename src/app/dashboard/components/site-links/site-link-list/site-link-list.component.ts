@@ -197,6 +197,24 @@ export class SiteLinkListComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
+  public unblockSitelink(data: any): void {
+    this.siteLinkService.unblockSitelink(data, data?.id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllSitelinks();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
+
   // View
   public navigateToSitelinkDetails(data: any): void {
     this.router.navigate(['/dashboard/site-link-details', data.id]);

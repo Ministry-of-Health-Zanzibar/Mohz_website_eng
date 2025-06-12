@@ -55,7 +55,9 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
   public action: any = 'Save';
   public previewImage: string | ArrayBuffer | null = null;
   public fileError: string | null = null;
+
   galleryTypes: any;
+  selectedTypeName: string = 'Image';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
@@ -69,7 +71,7 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
       title: ['', Validators.required],
       description: ['', Validators.required],
       typeId: ['', Validators.required],
-      link: ['', Validators.required],
+      link: [''],
       gallery_photo: [''],
     });
   }
@@ -108,7 +110,26 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
       .subscribe(
         (response: any) => {
           if (response) {
-            this.galleryTypes = response.data;
+            this.galleryTypes = response.data.filter(
+              (galleryType: any) => !galleryType.deleted_at
+            );
+
+            // ✅ Now that galleryTypes is ready, subscribe to typeId changes
+            this.galleryForm
+              .get('typeId')
+              ?.valueChanges.subscribe((selectedId: any) => {
+                const selectedType = this.galleryTypes.find(
+                  (type: { id: any }) => type.id == selectedId
+                );
+                this.selectedTypeName = selectedType?.gallery_types_name || '';
+
+                // Optional reset
+                if (this.selectedTypeName === 'Image') {
+                  this.galleryForm.get('link')?.reset();
+                } else {
+                  this.previewImage = null;
+                }
+              });
           } else {
             console.log('No data found.');
           }

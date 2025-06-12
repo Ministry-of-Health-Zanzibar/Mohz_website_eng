@@ -188,12 +188,9 @@ export class DepartmentProgramListComponent
     );
   }
 
-
   // Restore
   // Delete
   public restoreDeletedDepartmentProgram(data: any): void {
-    console.log(data);
-    console.log(data.id);
     this.dpService.restoreDeletedDepartmentProgram(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {

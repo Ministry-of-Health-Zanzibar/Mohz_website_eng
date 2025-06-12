@@ -191,7 +191,7 @@ export class MinistrySystemListComponent
   public restoreMinistrySystem(data: any): void {
     console.log(data);
     console.log(data.id);
-    this.ministryService.restore(data, data.id).subscribe(
+    this.ministryService.unblockMinistrySystem(data, data.id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllMinistrySystems();

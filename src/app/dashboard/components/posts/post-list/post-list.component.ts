@@ -177,9 +177,8 @@ export class PostListComponent implements OnInit, AfterViewInit {
   }
 
   // Delete
-  public deletePost(data: any): void {
-    console.log(data);
-    this.postService.deletePost(data, data.post_id).subscribe(
+  public deletePost(id: any): void {
+    this.postService.deletePost(id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllPosts();
@@ -198,9 +197,7 @@ export class PostListComponent implements OnInit, AfterViewInit {
   }
 
   public restorePost(data: any): void {
-    console.log(data);
-    console.log(data.id);
-    this.postService.restore(data, data.id).subscribe(
+    this.postService.unBlockPost(data, data.post_id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getAllPosts();

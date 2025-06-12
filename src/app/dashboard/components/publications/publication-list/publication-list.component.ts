@@ -90,7 +90,6 @@ export class PublicationListComponent
     this.getPublicationPosts();
   }
 
-
   public getPublicationPosts(): void {
     this.refreshing = true;
     this.postService
@@ -172,11 +171,10 @@ export class PublicationListComponent
   }
 
   // Delete
-  public deletePost(data: any): void {
-    // console.log(data);
-    this.postService.deletePost(data, data.id).subscribe(
+  public deletePost(id: any): void {
+    this.postService.deletePost(id).subscribe(
       (response: any) => {
-        if (response.statusCode === 204) {
+        if (response.statusCode === 200) {
           this.getPublicationPosts();
           this.toastService.toastSuccess(response.message);
         } else {
@@ -191,16 +189,34 @@ export class PublicationListComponent
     );
   }
 
-   // Kupunguza ukubwa wa text
-   public truncateDescription(description: string, words: number): string {
+  public ublockPost(data: any): void {
+    this.postService.unBlockPost(data, data?.post_id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getPublicationPosts();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
+
+  // Kupunguza ukubwa wa text
+  public truncateDescription(description: string, words: number): string {
     if (!description) return '';
     const wordArray = description.split(' ');
     if (wordArray.length <= words) return description;
     return wordArray.slice(0, words).join(' ') + '...';
   }
 
-   // View
-   public navigateToPostDetails(data: any): void {
+  // View
+  public navigateToPostDetails(data: any): void {
     this.router.navigate(['/dashboard/post-details', data.post_id]);
   }
 

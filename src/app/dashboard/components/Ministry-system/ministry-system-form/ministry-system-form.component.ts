@@ -73,7 +73,7 @@ export class MinistrySystemFormComponent implements OnInit {
   private getMinistryData(): void {
     this.ministryForm.patchValue({
       title: this.dialogData.data.system_title,
-      description: this.dialogData.data.system_link,
+      link: this.dialogData.data.system_link,
       image: this.dialogData.data.system_logo,
     });
 
@@ -82,7 +82,7 @@ export class MinistrySystemFormComponent implements OnInit {
       this.action = 'Update';
       this.ministryForm.patchValue({
         title: this.dialogData.data.system_title,
-        description: this.dialogData.data.system_link,
+        link: this.dialogData.data.system_link,
         image: this.dialogData.data.system_logo,
       });
     }

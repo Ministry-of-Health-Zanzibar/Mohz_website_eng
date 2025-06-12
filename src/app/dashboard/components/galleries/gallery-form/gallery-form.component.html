@@ -70,7 +70,11 @@
       </mat-form-field>
 
       <!-- Link -->
-      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+      <mat-form-field
+        *ngIf="selectedTypeName !== 'Image'"
+        appearance="outline"
+        class="col-md-12 mt-4"
+      >
         <mat-label>Vieo Link</mat-label>
         <input formControlName="link" matInput rows="11" class="text-black" />
         <mat-error
@@ -86,7 +90,7 @@
       </mat-form-field>
 
       <!-- picture -->
-      <div class="col-md-12 mt-2 mb-3">
+      <div *ngIf="selectedTypeName === 'Image'" class="col-md-12 mt-2 mb-3">
         <div class="mb-2">
           <mat-label>Gallery Photo</mat-label>
         </div>
@@ -100,7 +104,7 @@
           {{ fileError }}
         </mat-error>
       </div>
-      <div *ngIf="previewImage" class="mt-3">
+      <div *ngIf="previewImage && selectedTypeName === 'Image'" class="mt-3">
         <img
           [src]="previewImage"
           alt="Preview"

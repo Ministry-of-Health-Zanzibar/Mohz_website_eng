@@ -48,7 +48,6 @@ export class TenderListComponent implements OnInit, OnDestroy, AfterViewInit {
   public isLoading: boolean = false;
   public refreshing!: boolean;
   postTypes: any;
- 
 
   constructor(
     private postService: PostService,
@@ -85,7 +84,6 @@ export class TenderListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.getTenderPosts();
-    
   }
 
   onRefresh() {
@@ -178,9 +176,8 @@ export class TenderListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Delete
-  public deletePost(data: any): void {
-    console.log(data);
-    this.postService.deletePost(data, data.post_id).subscribe(
+  public deletePost(id: any): void {
+    this.postService.deletePost(id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getTenderPosts();
@@ -200,11 +197,10 @@ export class TenderListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Restore
   public restoreDeletedTenderPostType(data: any): void {
-    console.log(data.id);
-    this.postService.restore(data, data.id).subscribe(
+    this.postService.unBlockPost(data, data?.post_id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          this.getTenderPosts;
+          this.getTenderPosts();
           this.toastService.toastSuccess(response.message);
         } else {
           this.toastService.toastError(response.message);
@@ -217,7 +213,6 @@ export class TenderListComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
   }
-
 
   // View
   public navigateToPostDetails(data: any): void {

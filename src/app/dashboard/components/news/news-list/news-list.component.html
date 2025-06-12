@@ -94,8 +94,10 @@
             <!-- <mat-slide-toggle [checked]="true" color="primary">
             </mat-slide-toggle> -->
 
+            <!-- Edit -->
             <button
               (click)="handleOpenEditDialogForm(element)"
+              [disabled]="element.deleted_at !== null"
               mat-mini-fab
               color="primary"
               matTooltip="Edit"
@@ -132,6 +134,7 @@
 
             <!-- View -->
             <button
+              [disabled]="element.deleted_at !== null"
               (click)="navigateToNewsDetails(element)"
               mat-mini-fab
               color="primary"

@@ -116,7 +116,6 @@ export class ProjectListComponent implements OnInit, OnDestroy, AfterViewInit {
       );
   }
 
-
   // Kupunguza ukubwa wa text
   public truncateDescription(description: string, words: number): string {
     if (!description) return '';
@@ -124,7 +123,6 @@ export class ProjectListComponent implements OnInit, OnDestroy, AfterViewInit {
     if (wordArray.length <= words) return description;
     return wordArray.slice(0, words).join(' ') + '...';
   }
-  
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -180,9 +178,8 @@ export class ProjectListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Delete
-  public deletePost(data: any): void {
-    console.log(data);
-    this.postService.deletePost(data, data.post_id).subscribe(
+  public deletePost(id: any): void {
+    this.postService.deletePost(id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getProjectPosts();
@@ -201,9 +198,7 @@ export class ProjectListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public restorePost(data: any): void {
-    console.log(data);
-    console.log(data.id);
-    this.postService.restore(data, data.id).subscribe(
+    this.postService.unBlockPost(data, data?.post_id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.getProjectPosts();

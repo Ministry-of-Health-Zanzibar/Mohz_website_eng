@@ -71,7 +71,6 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   ngAfterViewInit(): void {
-    // console.log('PAGINATOR: ', this.paginator);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -154,7 +153,6 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Open Edit Dialog
   public handleOpenEditDialogForm(data: any): void {
-    // console.log(data);
     const config = new MatDialogConfig();
     config.data = {
       action: 'EDIT',
@@ -208,6 +206,25 @@ export class PartnerListComponent implements OnInit, OnDestroy, AfterViewInit {
         } else {
           this.toastService.toastError(response.message);
           // this.toastService.toastError('An error occured while processing');
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse) {
+          this.toastService.toastError(errorResponse.error.message);
+        }
+      }
+    );
+  }
+
+  // Unblock
+  public unblockPartner(id: any): void {
+    this.partnerService.unblockPartner(id).subscribe(
+      (response: any) => {
+        if (response.statusCode === 200) {
+          this.getAllPartners();
+          this.toastService.toastSuccess(response.message);
+        } else {
+          this.toastService.toastError(response.message);
         }
       },
       (errorResponse: HttpErrorResponse) => {

@@ -39,8 +39,6 @@ export class PostService {
     return this.httpClient.get<any>(`${this.apiUrl}posts/type/Publication`);
   }
 
-
-
   public getPostByType(typeId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}post/type/${typeId}`);
   }
@@ -57,12 +55,12 @@ export class PostService {
     return this.httpClient.post<any>(`${this.apiUrl}posts/update`, data);
   }
 
-  public deletePost(data: any, id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}posts/delete/${id}`);
+  public deletePost(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiUrl}posts/${id}`);
   }
 
   // Restore
-  public restore(data: any, id: number): Observable<any> {
+  public unBlockPost(data: any, id: number): Observable<any> {
     return this.httpClient.patch(`${this.apiUrl}posts/restore/${id}`, data);
   }
 
@@ -72,18 +70,19 @@ export class PostService {
   }
 
   public getPublciPublicationPosts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Publication`);
+    return this.httpClient.get<any>(
+      `${this.apiUrl}public/posts/type/Publication`
+    );
   }
 
-  
   public getPublcProjectPosts(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Project`);
   }
-   public getPublcTenderPosts(): Observable<any> {
+  public getPublcTenderPosts(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Tender`);
   }
 
-   public getPublcEventsPosts(): Observable<any> {
+  public getPublcEventsPosts(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Event`);
   }
 
@@ -91,7 +90,7 @@ export class PostService {
     return this.httpClient.get<any>(`${this.apiUrl}public/posts/type/Post`);
   }
 
-    getPublicPostsByTypeId(id: number): Observable<any[]> {
+  getPublicPostsByTypeId(id: number): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}public/posts/${id}`);
   }
 }

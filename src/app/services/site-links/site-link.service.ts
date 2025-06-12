@@ -19,8 +19,6 @@ export class SiteLinkService {
     return this.httpClient.get<any>(`${this.apiUrl}siteLinks`);
   }
 
-
-
   public findSitelinkById(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}siteLinks/${id}`);
   }
@@ -33,8 +31,12 @@ export class SiteLinkService {
     return this.httpClient.delete<any>(`${this.apiUrl}siteLinks/${id}`);
   }
 
+  // Restore
+  public unblockSitelink(data: any, id: number): Observable<any> {
+    return this.httpClient.patch(`${this.apiUrl}siteLinks/restore/${id}`, data);
+  }
 
-    public getPublicAllSitelinks(): Observable<any> {
+  public getPublicAllSitelinks(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}public/siteLinks`);
   }
 
