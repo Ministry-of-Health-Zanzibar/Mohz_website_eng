@@ -43,3 +43,7 @@ ul li strong {
   max-height: 280px;
   object-fit: cover;
 }
+
+.container-fluid{
+  max-width: 1400px;
+}

@@ -1,6 +1,7 @@
 .ncd-container {
-  max-width: 950px;
-  margin-top: 50px;
+  max-width: 1400px;
+  margin: 50px auto; /* Centered horizontally with top spacing */
+  padding: 0 1rem;   /* Responsive side padding */
   font-family: 'Segoe UI', sans-serif;
 }
 

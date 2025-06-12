@@ -54,8 +54,9 @@ export class GalleryService {
   }
 
   public getAllPublicGalleriesByConferenceReleaseType(): Observable<any> {
-    return this.httpClient.get<any>(
-      `${this.apiUrl}public/galleries/Conference Release`
-    );
-  }
+  return this.httpClient.get<any>(
+    `${this.apiUrl}public/galleries/by-type/conference-release`
+  );
+}
+
 }

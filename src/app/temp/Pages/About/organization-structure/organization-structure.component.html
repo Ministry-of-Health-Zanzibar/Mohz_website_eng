@@ -1,73 +1,48 @@
-<div class="container my-5 p-4 border border-secondary rounded shadow-lg bg-light">
-  <!-- Page Header -->
-  <div class="text-center mb-5">
-    <h2 class="text-uppercase fw-bold text-primary">Organization Structure</h2>
-    <hr class="w-25 mx-auto border-primary" />
+<div class="container-fluid">
+  <div class="org-flow-container">
+  <!-- Level 1 -->
+  <div class="leader-box" *ngIf="level1Leader">
+    <img [src]="imageUrl + level1Leader.picture" [alt]="level1Leader.full_name" />
+    <h4>{{ level1Leader.full_name }}</h4>
+    <p>{{ level1Leader.position }}</p>
   </div>
 
-  <!-- Level 1 Leader -->
-  <div *ngIf="level1Leader" class="text-center mb-5">
-    <img
-      [src]="imageUrl + level1Leader.picture"
-      class="img-thumbnail shadow mb-3"
-      style="width: 280px; height: 280px; object-fit: cover;"
-      [alt]="level1Leader.full_name"
-    />
-    <h4 class="fw-bold text-dark">{{ level1Leader.full_name }}</h4>
-    <p class="text-muted">{{ level1Leader.position }}</p>
+  <div class="arrow-down">↓</div>
+
+  <!-- Level 2 -->
+  <div class="leader-box" *ngIf="level2Leaders.length > 0">
+    <img [src]="imageUrl + level2Leaders[0].picture" [alt]="level2Leaders[0].full_name" />
+    <h4>{{ level2Leaders[0].full_name }}</h4>
+    <p>{{ level2Leaders[0].position }}</p>
   </div>
 
-  <!-- Level 2 Leaders -->
-  <div class="row text-center justify-content-center mb-5 g-4">
-    <div class="col-md-4" *ngFor="let leader of level2Leaders">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <img
-            [src]="imageUrl + leader.picture"
-            class="img-thumbnail shadow mb-3"
-            style="width: 280px; height: 280px; object-fit: cover;"
-            [alt]="leader.full_name"
-          />
-          <h5 class="card-title fw-semibold">{{ leader.full_name }}</h5>
-          <p class="card-text">{{ leader.position }}</p>
-        </div>
-      </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- Level 3 -->
+  <div class="leader-box" *ngIf="level3Leaders.length > 0">
+    <img [src]="imageUrl + level3Leaders[0].picture" [alt]="level3Leaders[0].full_name" />
+    <h4>{{ level3Leaders[0].full_name }}</h4>
+    <p>{{ level3Leaders[0].position }}</p>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- Level 4 -->
+  <div class="leader-box" *ngIf="level4Leaders.length > 0">
+    <img [src]="imageUrl + level4Leaders[0].picture" [alt]="level4Leaders[0].full_name" />
+    <h4>{{ level4Leaders[0].full_name }}</h4>
+    <p>{{ level4Leaders[0].position }}</p>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- Level 5: Multiple leaders in a row (5 columns) -->
+  <div class="level5-row" *ngIf="level5Leaders.length > 0">
+    <div class="leader-box small" *ngFor="let leader of level5Leaders">
+      <img [src]="imageUrl + leader.picture" [alt]="leader.full_name" />
+      <h6>{{ leader.full_name }}</h6>
+      <p>{{ leader.position }}</p>
     </div>
   </div>
-
-  <!-- Level 3 Leaders -->
-  <div class="row text-center justify-content-center g-4 mb-5">
-    <div class="col-md-3 col-sm-6" *ngFor="let leader of level3Leaders">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body">
-          <img
-            [src]="imageUrl + leader.picture"
-            class="img-thumbnail shadow mb-3"
-            style="width: 100%; height: 220px; object-fit: cover;"
-            [alt]="leader.full_name"
-          />
-          <h6 class="card-title fw-semibold">{{ leader.full_name }}</h6>
-          <p class="card-text">{{ leader.position }}</p>
-        </div>
-      </div>
-    </div>
   </div>
-
-  <!-- Level 4 Leaders -->
-  <!-- <div class="row text-center justify-content-center g-4">
-    <div class="col-md-3 col-sm-6" *ngFor="let leader of level3Leaders">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body">
-          <img
-            [src]="imageUrl + leader.picture"
-            class="img-thumbnail shadow mb-3"
-            style="width: 100%; height: 220px; object-fit: cover;"
-            [alt]="leader.full_name"
-          />
-          <h6 class="card-title fw-semibold">{{ leader.full_name }}</h6>
-          <p class="card-text">{{ leader.position }}</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </div>

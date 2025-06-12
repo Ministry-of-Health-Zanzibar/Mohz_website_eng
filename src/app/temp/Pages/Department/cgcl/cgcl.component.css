@@ -58,3 +58,6 @@ ul.list-group-item strong {
 .text-center {
   text-align: center;
 }
+.container-fluid{
+  max-width: 1300px;
+}

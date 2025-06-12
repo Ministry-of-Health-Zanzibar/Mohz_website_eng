@@ -1,4 +1,8 @@
 /* Glass Effect and Card Styling */
+.container-fluid {
+  max-width: 1600px;
+}
+
 .glass-card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(6px);
