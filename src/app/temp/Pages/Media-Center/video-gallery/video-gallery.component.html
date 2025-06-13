@@ -1,4 +1,4 @@
-<!-- <div class="gallery-container">
+<div class="gallery-container">
   <div *ngIf="paginatedGallery.length === 0" class="text-center">
     <p>No videos available.</p>
   </div>
@@ -16,19 +16,12 @@
   </div>
 </div>
 
-
 <div class="pagination-controls text-center mt-3">
-  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+    Previous
+  </button>
   <span>Page {{ currentPage }} of {{ totalPages() }}</span>
-  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages()">Next</button>
-</div> -->
-<div class="container mt-5">
-  <div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
-    <div class="text-center">
-      <h2 class="text-primary fw-bold mb-3">Coming Soon</h2>
-      <p class="lead text-muted">This page is currently under construction. Please check back later.</p>
-      <i class="bi bi-tools display-1 text-secondary mt-3"></i>
-    </div>
-  </div>
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages()">
+    Next
+  </button>
 </div>
-

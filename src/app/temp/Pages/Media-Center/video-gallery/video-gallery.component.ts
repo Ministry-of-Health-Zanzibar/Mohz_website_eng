@@ -27,12 +27,15 @@ export class VideoGalleryComponent implements OnInit {
   getVideoGallery(): void {
     this.galleryService.getAllPublicGalleries()
       .subscribe((response: any) => {
-        const items = Array.isArray(response?.data) ? response.data : (Array.isArray(response) ? response : []);
+        const items = Array.isArray(response?.data) ? response.data : [];
         const validTypes = ['video', 'press release', 'conference release'];
 
         this.gallery = items.filter((item: any) => {
           const t = (item.type_name || '').trim().toLowerCase();
-          return validTypes.includes(t);
+          const isValidType = validTypes.includes(t);
+          const hasValidYouTubeLink = this.extractYouTubeId(item.link) !== '';
+
+          return isValidType && hasValidYouTubeLink;
         });
       });
   }
