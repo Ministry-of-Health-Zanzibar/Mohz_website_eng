@@ -14,6 +14,7 @@ export class VideoGalleryComponent implements OnInit {
   gallery: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 6;
+  baseVideoUrl: string = 'http://localhost:8000/storage/videos/'; // ← customize path as needed
 
   constructor(
     private galleryService: GalleryService,
@@ -32,10 +33,7 @@ export class VideoGalleryComponent implements OnInit {
 
         this.gallery = items.filter((item: any) => {
           const t = (item.type_name || '').trim().toLowerCase();
-          const isValidType = validTypes.includes(t);
-          const hasValidYouTubeLink = this.extractYouTubeId(item.link) !== '';
-
-          return isValidType && hasValidYouTubeLink;
+          return validTypes.includes(t) && item.link; // Ensure link exists
         });
       });
   }
@@ -55,13 +53,7 @@ export class VideoGalleryComponent implements OnInit {
     }
   }
 
-  extractYouTubeId(url: string): string {
-    const regExp = /(?:youtube\.com\/(?:.*v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regExp);
-    return match ? match[1] : '';
-  }
-
-  getSafeUrl(videoId: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
+  getSafeVideoUrl(fileName: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.baseVideoUrl + fileName);
   }
 }
