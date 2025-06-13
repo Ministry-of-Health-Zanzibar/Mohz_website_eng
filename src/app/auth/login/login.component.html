@@ -20,7 +20,7 @@
                 *ngIf="passwordInput.invalid && passwordInput.touched && passwordInput.errors"> Please enter a password
             </span>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <div class="row">
                 <div class="col-md-6 div-1">
                     <input type="checkbox" class="form-check-input"> Remember me
@@ -29,7 +29,7 @@
                     <a routerLink="/forgot-password" class="pwd">Forgot Password ?</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="btn-login mt-3">
             <button [disabled]="loginForm.invalid || showLoading" class="btn btn-block col-md-12">
                 <span *ngIf="showLoading">Loading...
