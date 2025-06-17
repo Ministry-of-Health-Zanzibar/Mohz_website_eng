@@ -1,29 +1,28 @@
 <div class="container mt-5 mb-5">
-  <div class="row align-items-start bg-white p-4 rounded-4 shadow-sm mb-5">
+  <div class="row g-4">
 
-    <!-- Column 1:-->
-    <div class="col-md-4 mb-6">
+    <!-- Column 1 -->
+    <div class="col-lg-4 col-md-6 col-sm-12">
       <div class="card shadow-lg border-0 rounded-4 h-100">
         <div class="card-header text-white text-center rounded-top-4" style="background-color: #14497d;">
-          <h4 class="mb-0">Publications</h4>
+          <h4 class="mb-0">Publication Types</h4>
         </div>
         <div class="card-body p-3">
           <ul class="list-group list-group-flush">
             <li
-              *ngFor="let publication of paginatedPublications"
+              *ngFor="let type of paginatedPublications"
               class="list-group-item list-group-item-action rounded mb-1"
-              [class.active]="publication === selectedPublication"
-              (click)="selectPublication(publication)"
+              [class.active]="type === selectedPublicationType"
+              (click)="onSelectedPublicationType(type?.publication_type_name)"
               style="cursor: pointer"
             >
-              {{ publication.post_title }}
+              {{ type.publication_type_name }}
             </li>
           </ul>
-
           <mat-paginator
             [length]="publications.length"
             [pageSize]="pageSize"
-            [pageSizeOptions]="[1, 2, 3, 5, 10]"
+            [pageSizeOptions]="[5, 10, 15, 20, 30]"
             (page)="onPageChange($event)"
             showFirstLastButtons
             class="pt-3"
@@ -32,40 +31,45 @@
       </div>
     </div>
 
-    <!-- Column 2:  -->
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-lg border-0 rounded-4 h-100">
+    <!-- Column 2 -->
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card shadow-lg border-0 rounded-4">
         <div class="card-header text-white text-center rounded-top-4" style="background-color: #14497d;">
-          <h4 class="mb-0">Additional Info</h4>
+          <h4 class="mb-0">Publications</h4>
         </div>
         <div class="card-body p-3">
-          <div *ngIf="!selectedPublication" class="alert alert-info text-center">
-            Please select a publication to view the details.
-          </div>
           <div *ngIf="selectedPublication">
             <p class="text-muted">Use this section for summary, tags, or preview snippet of selected publication.</p>
           </div>
+          <ul class="list-group list-group-flush">
+            <li
+              *ngFor="let type of publications"
+              class="list-group-item list-group-item-action rounded mb-1"
+              [class.active]="type === selectedPublication"
+              (click)="getPublicPublicationById(type?.id)"
+              style="cursor: pointer"
+            >
+              {{ type.title }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <!-- Column 3: -->
-    <div class="col-md-3 mb-4">
-      <div *ngIf="selectedPublication" class="card shadow-lg border-0 rounded-4 h-100">
+    <!-- Column 3 -->
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div *ngIf="publication" class="card shadow-lg border-0 rounded-4">
         <div class="card-header text-white text-center rounded-top-4" style="background-color: #14497d;">
           <h4 class="mb-0">Details</h4>
         </div>
         <div class="card-body">
-          <h5 class="card-title text-primary text-center mb-3">
-            {{ selectedPublication.post_title }}
-          </h5>
-          <hr />
           <p class="card-text text-muted">
-            {{ selectedPublication.post_description }}
+            {{ publication.description }}
           </p>
+          <hr>
           <div class="text-center mt-3">
             <a
-              [href]="documentUrl + selectedPublication.post_filepath"
+              [href]="documentUrl + publication.document_path"
               target="_blank"
               class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2 fs-5"
             >
@@ -74,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!selectedPublication" class="alert alert-secondary text-center">
+      <div *ngIf="!publication" class="alert alert-secondary text-center">
         No publication selected.
       </div>
     </div>
