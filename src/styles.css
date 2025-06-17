@@ -208,6 +208,8 @@
         border-top: 1px solid #DDDDDD;
     }
 
+    /* navbar-nav nav-link */
+
     .navbar-light .navbar-nav .nav-link,
     .sticky-top.navbar-light .navbar-nav .nav-link {
         padding: 10px 0;
@@ -1132,7 +1134,7 @@
   
   @media (min-width: 768px) {
     .dropdown-menu-arrow::before {
-      color: white;
+      
       content: "";
       width: 13px;
       height: 13px;

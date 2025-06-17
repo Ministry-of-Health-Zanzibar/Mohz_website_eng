@@ -5,14 +5,23 @@
       <div class="card p-3 shadow">
         <div class="card-body">
           <!-- Carousel -->
-          <div *ngIf="events?.post_filepath?.length" id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <div
+            *ngIf="events?.post_filepath?.length"
+            id="carouselExampleSlidesOnly"
+            class="carousel slide"
+            data-ride="carousel"
+          >
             <div class="carousel-inner">
-              <div *ngFor="let image of events.post_filepath; let i = index"
-                   class="carousel-item"
-                   [ngClass]="{ 'active': i === 0 }">
-                <img class="d-block w-100 rounded" 
-                     [src]="imageBaseUrl + 'posts/images/' + image" 
-                     alt="Event Image">
+              <div
+                *ngFor="let imageName of events?.post_filepath; let i = index"
+                class="carousel-item"
+                [ngClass]="{ active: i === 0 }"
+              >
+                <img
+                  class="d-block w-100 rounded"
+                  [src]="imageBaseUrl + 'posts/images/' + imageName"
+                  alt="Event Image"
+                />
               </div>
             </div>
           </div>
@@ -22,8 +31,8 @@
             <h3 class="fw-bold">{{ events?.post_title }}</h3>
             <p class="text-secondary">{{ events?.post_description }}</p>
             <p class="text-muted">
-              <span class="fw-bold">Posted date:</span> 
-              {{ events?.created_at | date:'medium' }}
+              <span class="fw-bold">Posted date:</span>
+              {{ events?.created_at | date : "medium" }}
             </p>
           </div>
         </div>
@@ -34,21 +43,31 @@
     <div class="col-md-4">
       <h5 class="fw-bold mb-3">EVENT UPDATES</h5>
 
-      <div *ngFor="let item of recentEventsList"
-           class="d-flex mb-3 border-bottom pb-2 p-2 rounded"
-           [class.bg-light]="item.id === currentEventId">
-        <img [src]="imageBaseUrl + 'posts/images/' + item.post_filepath?.[0]"
-             class="me-2"
-             style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;"
-             alt="Update">
+      <div
+        *ngFor="let item of recentEventsList"
+        class="d-flex mb-3 border-bottom pb-2 p-2 rounded"
+        [class.bg-light]="item.id === currentEventId"
+      >
+        <img
+          [src]="imageBaseUrl + 'posts/images/' + item.post_filepath?.[0]"
+          class="me-2"
+          style="
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+          "
+          alt="Update"
+        />
         <div>
           <small class="fw-bold d-block">
-            {{ item.post_title | slice:0:60 }}...
+            {{ item.post_title | slice : 0 : 60 }}...
           </small>
           <span
             (click)="findEventById(item.post_id)"
             class="text-primary readMore"
-            style="cursor: pointer;">
+            style="cursor: pointer"
+          >
             {{ readMore }}
           </span>
         </div>
