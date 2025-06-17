@@ -1,79 +1,49 @@
-.zihtlp-container {
-  max-width: 1400px;
-  margin: 60px auto;
-  padding: 0 1rem;
-  background: #fdfdfd;
-}
 
+  /* Main container styling */
+  .irch-container {
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 0 1rem;
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-.zihtlp-title {
-  font-size: 2.3rem;
-  font-weight: bold;
-  color: #2c3e50;
-}
+  /* Title gradient */
+  .irch-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    background: linear-gradient(to right, #14497d, #1e5ba7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-.zihtlp-subtitle {
-  font-size: 1.1rem;
-  color: #6c757d;
-  font-style: italic;
-}
+  /* Card header gradient */
+  .bg-gradient-primary {
+    background: linear-gradient(45deg, #14497d, #1e5ba7);
+  }
 
-.zihtlp-card {
-  background: #ffffff;
-  border-left: 6px solid #007bff;
-  padding: 25px 30px;
-  margin-bottom: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.08);
-}
+  /* Icon alignment */
+  .card-header h4 i {
+    vertical-align: middle;
+  }
 
-.zihtlp-card h4 {
-  color: #007bff;
-  font-size: 1.3rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
+  /* Styled list with check icons */
+  .styled-list {
+    list-style: none;
+    padding-left: 0;
+  }
 
-.zihtlp-card h4 i {
-  margin-right: 10px;
-  font-size: 1.4rem;
-}
+  .styled-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+  }
 
-.zihtlp-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.zihtlp-list li {
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 10px;
-  font-size: 1.05rem;
-}
-
-.zihtlp-list li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #28a745;
-  font-weight: bold;
-}
-
-.zihtlp-button {
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: white;
-  padding: 10px 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.4);
-  transition: all 0.3s ease;
-}
-
-.zihtlp-button:hover {
-  background: linear-gradient(135deg, #0056b3, #00aaff);
-  transform: translateY(-2px);
-}
+  .styled-list li::before {
+    content: "\f058"; /* FontAwesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #14497d;
+  }

@@ -1,26 +1,27 @@
 .irch-container {
   max-width: 1400px;
-  margin: 60px auto; /* Centered horizontally with top spacing */
-  padding: 0 1rem; /* Responsive side padding */
+  margin: 60px auto;
+  padding: 0 1rem;
   font-family: 'Segoe UI', sans-serif;
 }
 
 .irch-title {
   font-size: 2.2rem;
   font-weight: 600;
-  background: linear-gradient(to right, #007bff, #00c6ff);
+  background: linear-gradient(to right, #14497d, #1e5ba7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .bg-gradient-primary {
-  background: linear-gradient(45deg, #007bff, #00bcd4);
+  background: linear-gradient(45deg, #14497d, #1e5ba7);
 }
 
 .card-header h4 i {
   vertical-align: middle;
 }
 
+/* styled list with check icons */
 .styled-list {
   list-style: none;
   padding-left: 0;
@@ -33,10 +34,10 @@
 }
 
 .styled-list li::before {
-  content: "\f058";
+  content: "\f058"; /* FontAwesome check icon */
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   position: absolute;
   left: 0;
-  color: #007bff;
+  color: #14497d;
 }
