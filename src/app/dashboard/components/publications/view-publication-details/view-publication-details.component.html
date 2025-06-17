@@ -14,8 +14,13 @@
     <td mat-cell *matCellDef="let element">
       <!-- If it's a PDF, show link -->
       <ng-container *ngIf="element.isPdf; else textValue">
-        <a [href]="documentUrl + element.value" target="_blank" rel="noopener">
-          View PDF
+        <a
+          [href]="documentUrl + element.value"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary btn-sm downloadButton"
+        >
+          View PDF Document
         </a>
       </ng-container>
       <!-- Else just show the plain text -->

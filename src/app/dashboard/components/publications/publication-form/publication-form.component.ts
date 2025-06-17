@@ -68,8 +68,8 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
   ) {
     this.publicationForm = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
-      apk_link: ['', Validators.required],
+      description: [''],
+      apk_link: [''],
       type_id: ['', Validators.required],
       document_path: [''],
     });

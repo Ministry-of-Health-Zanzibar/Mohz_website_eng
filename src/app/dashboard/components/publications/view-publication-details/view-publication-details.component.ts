@@ -63,18 +63,18 @@ export class ViewPublicationDetailsComponent implements OnInit {
       { title: 'Description', value: this.publication?.description || '' },
     ];
 
-    const filePaths: string[] = this.publication?.document_path || [];
+    const filePath: string = this.publication?.document_path;
 
-    filePaths.forEach((filePath: string, index: number) => {
+    if (filePath) {
       const ext = filePath.split('.').pop()?.toLowerCase();
       const isPdf = ext === 'pdf';
 
       this.publicationData.push({
-        title: `File ${index + 1}`,
+        title: 'Document',
         value: filePath,
         isPdf,
       });
-    });
+    }
   }
 
   public isPdf(filePath: string): boolean {
