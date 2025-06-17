@@ -1,0 +1,8 @@
+.mat-column-title {
+    width: 10%;
+}
+
+.downloadButton:hover {
+    background-color: blue;
+    color: white;
+}

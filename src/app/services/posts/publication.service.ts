@@ -43,7 +43,7 @@ export class PublicationService {
 
   public getPublicPublicationsByType(typeName: string): Observable<any> {
     return this.httpClient.get<any>(
-      `${this.apiUrl}/api/public/publications/type/${typeName}`
+      `${this.apiUrl}public/publications/type/${typeName}`
     );
   }
 }
