@@ -60,7 +60,12 @@ export class PublicationTypeListComponent
     private cdr: ChangeDetectorRef
   ) {}
 
-  public displayedColumns: string[] = ['id', 'publicationType', 'action'];
+  public displayedColumns: string[] = [
+    'id',
+    'publicationType',
+    'description',
+    'action',
+  ];
 
   // public dataSource: MatTableDataSource<any> = new MatTableDataSource();
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
@@ -123,7 +128,7 @@ export class PublicationTypeListComponent
     config.data = {
       action: 'CREATE NEW',
     };
-    config.width = '600px';
+    config.width = '850px';
 
     const dialogRef = this.dialog.open(PublicationTypeFormComponent, config);
     this.router.events.subscribe(() => {
@@ -146,7 +151,7 @@ export class PublicationTypeListComponent
       action: 'EDIT',
       data: data,
     };
-    config.width = '600px';
+    config.width = '850px';
 
     const dialogRef = this.dialog.open(PublicationTypeFormComponent, config);
     this.router.events.subscribe(() => {

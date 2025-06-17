@@ -60,7 +60,6 @@ export class ViewPublicationDetailsComponent implements OnInit {
     this.publicationData = [
       { title: 'Title', value: this.publication?.title || '' },
       { title: 'Apk Link', value: this.publication?.apk_link || '' },
-      { title: 'Description', value: this.publication?.description || '' },
     ];
 
     const filePath: string = this.publication?.document_path;
