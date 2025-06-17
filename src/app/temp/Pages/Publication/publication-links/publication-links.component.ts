@@ -79,7 +79,7 @@ onSelectedPublicationType(type: any): void {
 }
 
 
- public getPublicPublicationById(id: string): void {
+ public getPublicPublicationById(id: number): void {
   this.publicationService.getPublicPublicationsById(id).subscribe(
     (response) => {
       if (response && response.data) {
