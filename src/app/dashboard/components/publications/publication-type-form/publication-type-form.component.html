@@ -1,0 +1,47 @@
+<div
+  *ngIf="permission.parmissionMatched(['Create Type', 'Update Type'])"
+  class="container-fluid"
+>
+  <!-- <h5 class="font-semibold mt-4">{{ dialogData.action }} Post Type</h5> -->
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'CREATE NEW'">
+    Create New Publication Type
+  </h5>
+  <h5 class="fw-bold mt-4" *ngIf="dialogData.action === 'EDIT'">
+    Update Publication Type
+  </h5>
+  <form [formGroup]="postTypeForm">
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>Post Type Name</mat-label>
+        <input
+          type="text"
+          formControlName="typeName"
+          matInput
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            postTypeForm.controls.typeName.touched &&
+            postTypeForm.controls.typeName.invalid
+          "
+        >
+          <span *ngIf="postTypeForm.controls.typeName.errors.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!(postTypeForm.valid && postTypeForm.dirty)"
+      (click)="handlePublicationTypeSubmit()"
+    >
+      {{ action }} Data
+    </button>
+  </mat-dialog-actions>
+</div>

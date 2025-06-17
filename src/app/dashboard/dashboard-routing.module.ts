@@ -229,6 +229,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'publication-type-list',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/publications/publication-type-list/publication-type-list.component'
+          ).then((c) => c.PublicationTypeListComponent),
+      },
+      {
         path: 'publication-list',
         title: '',
         loadComponent: () =>
@@ -236,6 +244,15 @@ const routes: Routes = [
             './components/publications/publication-list/publication-list.component'
           ).then((c) => c.PublicationListComponent),
       },
+      {
+        path: 'publication-detail/:id',
+        title: '',
+        loadComponent: () =>
+          import(
+            './components/publications/view-publication-details/view-publication-details.component'
+          ).then((c) => c.ViewPublicationDetailsComponent),
+      },
+
       {
         path: 'about-us-list',
         title: '',

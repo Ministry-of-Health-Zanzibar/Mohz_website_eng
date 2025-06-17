@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../../services/posts/post.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ToastService } from '../../../../services/toast/toast.service';

@@ -23,6 +23,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { PostService } from '../../../../services/posts/post.service';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { PostFormComponent } from '../../posts/post-form/post-form.component';
+import { PublicationService } from '../../../../services/posts/publication.service';
+import { PublicationFormComponent } from '../publication-form/publication-form.component';
 
 @Component({
   selector: 'app-publication-list',
@@ -51,7 +53,7 @@ export class PublicationListComponent
   postTypes: any;
 
   constructor(
-    private postService: PostService,
+    private publicationService: PublicationService,
     private toastService: ToastService,
     private dialog: MatDialog,
     private router: Router,
@@ -60,19 +62,18 @@ export class PublicationListComponent
 
   public displayedColumns: string[] = [
     'id',
-    'typeName',
-    'postTitle',
-    'postDescription',
+    'title',
+    'description',
+    'apkLink',
+    'publicationTypeName',
     'action',
   ];
 
-  // public dataSource: MatTableDataSource<any> = new MatTableDataSource();
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit(): void {
-    // console.log('PAGINATOR: ', this.paginator);
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -83,24 +84,22 @@ export class PublicationListComponent
   }
 
   ngOnInit(): void {
-    this.getPublicationPosts();
+    this.getAllPublications();
   }
 
   onRefresh() {
-    this.getPublicationPosts();
+    this.getAllPublications();
   }
 
-  public getPublicationPosts(): void {
+  public getAllPublications(): void {
     this.refreshing = true;
-    this.postService
-      .getPublicationPosts()
+    this.publicationService
+      .getAllPublications()
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {
           if (response) {
-            // console.log(response.data);
             this.dataSource = new MatTableDataSource(response.data);
-            // this.dataSource.data = response;
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
             this.refreshing = false;
@@ -131,19 +130,18 @@ export class PublicationListComponent
       action: 'CREATE NEW',
     };
     // config.width = '600px';
-    config.width = '800px';
-    config.height = '670px';
+    config.width = '950px';
+    config.height = '780px';
 
-    const dialogRef = this.dialog.open(PostFormComponent, config);
+    const dialogRef = this.dialog.open(PublicationFormComponent, config);
     this.router.events.subscribe(() => {
       dialogRef.close();
     });
 
-    const sub = dialogRef.componentInstance.onAddPostEventEmitter.subscribe(
-      () => {
-        this.getPublicationPosts();
-      }
-    );
+    const sub =
+      dialogRef.componentInstance.onAddPublicationEventEmitter.subscribe(() => {
+        this.getAllPublications();
+      });
   }
 
   // Open Edit Dialog
@@ -155,27 +153,28 @@ export class PublicationListComponent
       data: data,
     };
     // config.width = '600px';
-    config.width = '800px';
-    config.height = '770px';
+    config.width = '950px';
+    config.height = '780px';
 
-    const dialogRef = this.dialog.open(PostFormComponent, config);
+    const dialogRef = this.dialog.open(PublicationFormComponent, config);
     this.router.events.subscribe(() => {
       dialogRef.close();
     });
 
-    const sub = dialogRef.componentInstance.onEditPostEventEmitter.subscribe(
-      () => {
-        this.getPublicationPosts();
-      }
-    );
+    const sub =
+      dialogRef.componentInstance.onEditPublicationEventEmitter.subscribe(
+        () => {
+          this.getAllPublications();
+        }
+      );
   }
 
   // Delete
-  public deletePost(id: any): void {
-    this.postService.deletePost(id).subscribe(
+  public deletePublication(id: any): void {
+    this.publicationService.deletePublication(id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          this.getPublicationPosts();
+          this.getAllPublications();
           this.toastService.toastSuccess(response.message);
         } else {
           this.toastService.toastError('An error occured while processing');
@@ -189,11 +188,11 @@ export class PublicationListComponent
     );
   }
 
-  public ublockPost(data: any): void {
-    this.postService.unBlockPost(data, data?.post_id).subscribe(
+  public unblockPublication(id: number): void {
+    this.publicationService.unblockPublication(id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          this.getPublicationPosts();
+          this.getAllPublications();
           this.toastService.toastSuccess(response.message);
         } else {
           this.toastService.toastError(response.message);
@@ -216,8 +215,8 @@ export class PublicationListComponent
   }
 
   // View
-  public navigateToPostDetails(data: any): void {
-    this.router.navigate(['/dashboard/post-details', data.post_id]);
+  public navigateToPublicationDetails(id: number): void {
+    this.router.navigate(['/dashboard/publication-detail', id]);
   }
 
   ngOnDestroy(): void {

@@ -66,7 +66,7 @@ export class PostFormComponent implements OnInit {
       postFilepath: [''],
       postTypeId: ['', Validators.required],
       typeName: [''],
-      endDate: ['', Validators.required],
+      endDate: [''],
     });
   }
 

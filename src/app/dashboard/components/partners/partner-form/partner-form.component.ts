@@ -60,9 +60,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private partnerService: PartnerService,
     private dialogRef: MatDialogRef<AnnouncementFormComponent>,
-    private toastService: ToastService,
-    private authService: AuthenticationService,
-    private router: Router
+    private toastService: ToastService
   ) {
     this.partnerForm = this.formBuilder.group({
       partnerName: ['', Validators.required],
@@ -191,22 +189,24 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
         this.partnerForm.get('partnerLogo')?.value
       );
 
-      this.partnerService.updatePartner(formData, this.dialogData.data.id).subscribe(
-        (response: any) => {
-          this.dialogRef.close();
-          this.onEditPartnerEventEmitter.emit();
-          if (response.statusCode === 201) {
-            this.toastService.toastSuccess(response.message);
-          } else {
-            this.toastService.toastError(response.message);
+      this.partnerService
+        .updatePartner(formData, this.dialogData.data.id)
+        .subscribe(
+          (response: any) => {
+            this.dialogRef.close();
+            this.onEditPartnerEventEmitter.emit();
+            if (response.statusCode === 200) {
+              this.toastService.toastSuccess(response.message);
+            } else {
+              this.toastService.toastError(response.message);
+            }
+          },
+          (errorResponse: HttpErrorResponse) => {
+            if (errorResponse) {
+              this.toastService.toastError(errorResponse.error.message);
+            }
           }
-        },
-        (errorResponse: HttpErrorResponse) => {
-          if (errorResponse) {
-            this.toastService.toastError(errorResponse.error.message);
-          }
-        }
-      );
+        );
     }
   }
 

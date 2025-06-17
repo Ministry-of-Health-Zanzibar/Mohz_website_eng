@@ -11,19 +11,6 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // public login(
-  //   email: string,
-  //   password: string
-  // ): Observable<HttpResponse<any>> {
-  //   return this.httpClient.post<any>(
-  //     `${this.apiUrl}login`,
-  //     { email, password },
-  //     {
-  //       observe: 'response',
-  //     }
-  //   );
-  // }
-
   public login(email: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}login`, {
       email,
