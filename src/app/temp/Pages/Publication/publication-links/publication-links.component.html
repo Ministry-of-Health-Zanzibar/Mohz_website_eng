@@ -10,13 +10,13 @@
         <div class="card-body p-3">
           <ul class="list-group list-group-flush">
             <li
-              *ngFor="let type of paginatedPublications"
+              *ngFor="let type of paginatedPublications; let i = index;"
               class="list-group-item list-group-item-action rounded mb-1"
               [class.active]="type === selectedPublicationType"
               (click)="onSelectedPublicationType(type?.publication_type_name)"
               style="cursor: pointer"
             >
-              {{ type.publication_type_name }}
+              <span class="fw-bold">{{ i + 1 }})</span> {{ type.publication_type_name }}
             </li>
           </ul>
           <mat-paginator
@@ -43,13 +43,13 @@
           </div>
           <ul class="list-group list-group-flush">
             <li
-              *ngFor="let type of publications"
+              *ngFor="let type of publications; let i = index;"
               class="list-group-item list-group-item-action rounded mb-1"
               [class.active]="type === selectedPublication"
               (click)="getPublicPublicationById(type?.id)"
               style="cursor: pointer"
             >
-              {{ type.title }}
+              {{ i + 1 }}) {{ type.title }}
             </li>
           </ul>
         </div>
