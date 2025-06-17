@@ -153,7 +153,7 @@ export class PublicationListComponent
     };
     // config.width = '600px';
     config.width = '950px';
-    config.height = '780px';
+    config.height = '520px';
 
     const dialogRef = this.dialog.open(PublicationFormComponent, config);
     this.router.events.subscribe(() => {
