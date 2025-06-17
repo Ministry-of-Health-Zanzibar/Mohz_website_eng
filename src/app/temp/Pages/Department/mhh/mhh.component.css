@@ -1,27 +1,36 @@
-.card-title {
-  font-size: 1.3rem;
+/* Custom Primary Color */
+.text-primary-custom {
+  color: #14497d !important;
+}
+.border-primary-custom {
+  border-color: #14497d !important;
+}
+
+/* Typography */
+h2, h5 {
   font-weight: 600;
 }
-
-ul.list-unstyled li {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
 .lead {
   font-size: 1.2rem;
+  font-weight: 400;
+  color: #444;
 }
 
+/* Card Hover */
 .card {
-  background-color: #fff;
-  border-radius: 15px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(20, 73, 125, 0.2);
 }
 
-h1.display-5 {
-  font-size: 2.5rem;
+/* Icon Size */
+.fs-2 {
+  font-size: 2rem !important;
 }
 
+/* Max Width Container */
 .container-fluid {
-  background: linear-gradient(to right, #f8f9fa, #e9ecef);
   max-width: 1400px;
 }

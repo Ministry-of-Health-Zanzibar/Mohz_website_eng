@@ -1,32 +1,15 @@
-<!-- <div class="service container-fluid feature py-5">
-    <div class="container">
-        <div class="text-center mx-auto pb-4 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-            <h1 class="text-primary">{{ ourServices?.service_title }}</h1>
-        </div>
-
-        
-                    <div class="card-body justify-content-center">
-                        <div class="feature-icon p-3 mb-3">
-                            <i class="fas fa-book fa-4x text-primary"></i>
-                        </div>
-                        <h4 class="card-title">{{ ourServices?.service_title }}</h4>
-                        <p class="card-text">{{ ourServices?.service_description }}</p>
-                    </div>
-                </div>
-
-         
-</div> -->
 <div class="container mt-4 d-flex justify-content-center">
-    <div class="card shadow-lg p-5 w-100" style="max-width: 1000px; border-radius: 15px;">
-        <div class="card-body text-center">
-            <h1 class="text-primary fw-bold text-uppercase">
-                {{ ourServices.service_title }}
-            </h1>
-            <hr class="my-3">
-            <p class="fs-5 text-secondary" style="line-height: 1.8;">
-                {{ ourServices?.service_description }}
-            </p>
-        </div>
+  <div class="card shadow-lg p-5 w-100" style="max-width: 1000px; border-radius: 15px;">
+    <div class="card-body text-center">
+      <h1 class="fw-bold text-uppercase" style="color: #14497d;">
+        {{ ourServices.service_title }}
+      </h1>
+      <hr class="my-3">
+      <div class="fs-5 text-secondary text-start" style="line-height: 1.8;">
+        <p *ngFor="let para of ourServices?.service_description?.split('\n')">
+          {{ para }}
+        </p>
+      </div>
     </div>
+  </div>
 </div>
-

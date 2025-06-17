@@ -1,11 +1,7 @@
 <div class="service container-fluid feature">
   <div class="container">
     <div class="card p-4" style="background-color: #14497d">
-      <div
-        class="text-center mx-auto pb-5 wow fadeInUp"
-        data-wow-delay="0.2s"
-        style="max-width: 800px"
-      >
+      <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px">
         <h1 class="heading text-white">Our Services</h1>
       </div>
 
@@ -16,19 +12,22 @@
           data-wow-delay="0.2s"
         >
           <div
-            class="feature-item p-4 h-100 d-flex flex-column"
+            class="feature-item p-4 w-100 d-flex flex-column"
             style="
               background: #fff;
               border-radius: 10px;
               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              min-height: 100%; /* Ensures equal height */
             "
             *ngIf="i < 3"
           >
             <div class="feature-icon p-4 mb-4 text-center">
               <i class="fas fa-clipboard-list fa-4x" style="color: #14497d"></i>
             </div>
+
             <h4 class="text-center">{{ ourService?.service_title }}</h4>
-            <p class="mb-4 flex-grow-1 text-center">
+
+            <p class="mb-4 text-center flex-grow-1">
               {{ truncateTitle(ourService?.service_description, 7) }}
             </p>
 
@@ -43,12 +42,9 @@
             </div>
           </div>
         </div>
+
         <div class="d-flex justify-content-center mt-4">
-          <button
-            mat-raised-button
-            color="primary"
-            routerLink="/temp/main/more-service"
-          >
+          <button mat-raised-button color="primary" routerLink="/temp/main/more-service">
             More Services
           </button>
         </div>

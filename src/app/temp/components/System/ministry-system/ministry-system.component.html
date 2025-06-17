@@ -1,4 +1,10 @@
-<div class="slider-track-wrapper">
+<div class="container mt-5">
+   <div class="py-2">
+      <h1 class="fw-bold" style="color: #14497d;">
+        <p class="p-2 text-center">Ministry's System</p>
+      </h1>
+    </div>
+  <div class="slider-track-wrapper">
   <div class="slider-track">
     <div class="system-card" *ngFor="let ministrySystem of ministrySystems">
       <a [href]="ministrySystem.system_link" target="_blank">
@@ -25,4 +31,6 @@
       </a>
     </div>
   </div>
+</div>
+
 </div>

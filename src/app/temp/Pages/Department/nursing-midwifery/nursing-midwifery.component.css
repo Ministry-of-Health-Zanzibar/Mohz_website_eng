@@ -1,49 +1,38 @@
-.nursing-container {
-  max-width: 960px;
-  margin: auto;
+.text-primary-custom {
+  color: #14497d !important;
 }
 
-.header-section {
-  background: linear-gradient(to right, #005792, #007bff);
+.border-primary-custom {
+  border-color: #14497d !important;
 }
 
-.card-section ul {
-  list-style: none;
-  padding-left: 0;
+.icon-blue {
+  color: #14497d !important;
 }
 
-.card-section ul li {
-  padding-left: 1.2rem;
-  position: relative;
-  margin-bottom: 8px;
-  font-size: 1rem;
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.card-section ul li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #28a745;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(20, 73, 125, 0.2);
 }
 
-.icon-card .icon {
-  font-size: 2rem;
+.fs-2 {
+  font-size: 2rem !important;
+}
+
+.container-fluid {
+  max-width: 1400px;
 }
 
 h2, h4, h5 {
   font-weight: 600;
 }
 
-.btn-lg {
-  transition: all 0.3s ease;
-}
-
-.btn-lg:hover {
-  transform: translateY(-2px);
-  background-color: #0056b3;
-  color: #fff;
-}
-
-.container-fluid{
-  max-width: 1400px;
+.lead {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #444;
 }

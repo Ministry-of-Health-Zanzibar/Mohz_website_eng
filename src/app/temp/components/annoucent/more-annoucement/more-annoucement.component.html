@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <!-- Announcements Heading with Sitari -->
-        <h1 class="text-center text-primary mb-4">Latest Announcements</h1>
+        <h1 class="text-center  mb-4" style="color: #14497d;">Latest Announcements</h1>
       </div>
       <!-- Single Announcement Card -->
       <div class="col-md-4 mt-4" *ngFor="let announcement of announcements">
@@ -30,7 +30,7 @@
                   File {{ i + 1 }}
 
                   <i class="fa-solid fa-file-pdf fa-lg text-danger me-2"></i>
-                  <span class="fw-bold">Download File</span>
+                  <span class="fw-bold" style="color: #14497d;">Download File</span>
                 </a>
               </li>
             </ul>
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <button
+  <!-- <button
     mat-raised-button
     color="accent"
     class="mx-4 mb-2"
@@ -52,5 +52,5 @@
   >
     <mat-icon>arrow_back</mat-icon>
     back
-  </button>
+  </button> -->
 </div>

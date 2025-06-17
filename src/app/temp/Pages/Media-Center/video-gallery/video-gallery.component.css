@@ -6,21 +6,18 @@
 }
 
 .video-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+  border-radius: 8px;
   padding: 15px;
-  transition: transform 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-.video-card:hover {
-  transform: translateY(-5px);
+iframe {
+  border-radius: 8px;
 }
 
-.pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin: 20px 0;
+.pagination-controls button {
+  margin: 0 10px;
+  padding: 5px 15px;
 }

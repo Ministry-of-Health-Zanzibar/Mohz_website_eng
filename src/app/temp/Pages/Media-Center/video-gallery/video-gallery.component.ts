@@ -14,6 +14,7 @@ export class VideoGalleryComponent implements OnInit {
   gallery: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 6;
+  baseVideoUrl: string = 'http://localhost:8000/storage/videos/'; // ← customize path as needed
 
   constructor(
     private galleryService: GalleryService,
@@ -25,14 +26,14 @@ export class VideoGalleryComponent implements OnInit {
   }
 
   getVideoGallery(): void {
-    this.galleryService.getAllPublicGalleriesByConferenceReleaseType()
+    this.galleryService.getAllPublicGalleries()
       .subscribe((response: any) => {
-        const items = Array.isArray(response?.data) ? response.data : (Array.isArray(response) ? response : []);
+        const items = Array.isArray(response?.data) ? response.data : [];
         const validTypes = ['video', 'press release', 'conference release'];
 
         this.gallery = items.filter((item: any) => {
           const t = (item.type_name || '').trim().toLowerCase();
-          return validTypes.includes(t);
+          return validTypes.includes(t) && item.link; // Ensure link exists
         });
       });
   }
@@ -52,13 +53,7 @@ export class VideoGalleryComponent implements OnInit {
     }
   }
 
-  extractYouTubeId(url: string): string {
-    const regExp = /(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regExp);
-    return match ? match[1] : '';
-  }
-
-  getSafeUrl(videoId: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
+  getSafeVideoUrl(fileName: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.baseVideoUrl + fileName);
   }
 }

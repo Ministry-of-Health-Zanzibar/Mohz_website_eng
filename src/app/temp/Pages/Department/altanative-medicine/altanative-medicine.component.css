@@ -1,36 +1,32 @@
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 1rem;
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease-in-out;
+.text-primary-custom {
+  color: #14497d !important;
 }
 
-.glass-card:hover {
-  transform: translateY(-5px);
+.border-primary-custom {
+  border-color: #14497d !important;
 }
 
-.text-gradient {
-  background: linear-gradient(90deg, #20c997, #0d6efd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-h4 {
-  font-size: 1.6rem;
+h2, h5 {
   font-weight: 600;
 }
 
-p, .lead {
-  font-size: 1.1rem;
+.lead {
+  font-size: 1.2rem;
+  font-weight: 400;
   color: #444;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 1rem;
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(20, 73, 125, 0.2);
+}
+
+.fs-2 {
+  font-size: 2rem !important;
 }
 
 .container-fluid {

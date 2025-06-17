@@ -12,41 +12,49 @@
       <div class="col-md-6 col-lg-6 col-xl-3">
         <div class="footer-item">
           <h4 class="text-white mb-4">Publications</h4>
-          <a href="#" style="color: white"
+          <a routerLink="/temp/main/publications" style="color: white"
             ><i class="fas fa-angle-right me-2"></i> Majarida ya Afya</a
           >
-          <a href="#" style="color: white"
+          <a routerLink="/temp/main/publications" style="color: white"
             ><i class="fas fa-angle-right me-2"></i> Miongozo/Sera</a
           >
-          <a href="#" style="color: white"
+          <a routerLink="/temp/main/publications" style="color: white"
             ><i class="fas fa-angle-right me-2"></i> Ripoti</a
           >
-          <a href="#" style="color: white"
+          <a routerLink="/temp/main/publications" style="color: white"
             ><i class="fas fa-angle-right me-2"></i> Hati za Kimataifa</a
           >
-          <a href="#" style="color: white"
+          <a routerLink="temp/main/publications" style="color: white"
             ><i class="fas fa-angle-right me-2"></i> Health Bulletins</a
           >
-          <a href="#" style="color: white"
+          <a routerLink="/temp/main/publications" style="color: white"
             ><i class="fas fa-angle-right me-2"></i> Bajeti ya Wizara ya Afya
             2018-2019</a
           >
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-6 col-xl-3">
-        <div class="footer-item">
-          <h4 class="text-white mb-4">Useful Links</h4>
 
-          <a
-            *ngFor="let site of siteLink.slice(0, 6); let i = index"
-            [href]="site?.sitelinks_url"
-            style="color: white"
+             <a routerLink="/temp/main/publications" style="color: white"
+            ><i class="fas fa-angle-right me-2"></i> Others Publications.....
+            </a
           >
-            <i class="fas fa-angle-right me-2"></i>
-            {{ site?.sitelinks_name }} {{ site?.sitelinks_url }}
-          </a>
         </div>
       </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+  <div class="footer-item">
+    <h4 class="text-white mb-4">Useful Links</h4>
+
+    <a
+      *ngFor="let site of siteLink.slice(0, 6); let i = index"
+      [href]="site?.sitelinks_url"
+      target="_blank"
+      rel="noopener"
+      style="color: white; display: block; margin-bottom: 8px;"
+    >
+      <i class="fas fa-angle-right me-2"></i>
+      {{ site?.sitelinks_name }}
+    </a>
+  </div>
+</div>
+
       <div class="col-md-6 col-lg-6 col-xl-3">
         <div class="footer-item">
           <h4 class="text-white mb-4">Support</h4>

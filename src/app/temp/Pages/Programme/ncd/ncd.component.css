@@ -1,22 +1,22 @@
 .ncd-container {
   max-width: 1400px;
-  margin: 50px auto; /* Centered horizontally with top spacing */
-  padding: 0 1rem;   /* Responsive side padding */
+  margin: 50px auto; /* center horizontally with top spacing */
+  padding: 0 1rem;
   font-family: 'Segoe UI', sans-serif;
 }
 
 .ncd-title {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #007bff;
+  color: #14497d; /* changed from #007bff */
 }
 
 .bg-gradient-ncd {
-  background: linear-gradient(90deg, #007bff, #00c6ff);
+  background: linear-gradient(90deg, #14497d, #1e5ba7); /* your custom blue gradient */
 }
 
 .bg-gradient-danger {
-  background: linear-gradient(90deg, #dc3545, #ff6b6b);
+  background: linear-gradient(90deg, #dc3545, #ff6b6b); /* keep red for Challenges */
 }
 
 .card {
@@ -46,10 +46,10 @@
 }
 
 .styled-list li::before {
-  content: "\f26e";
+  content: "\f26e"; /* Bootstrap-icons checkmark */
   font-family: "Bootstrap-icons";
   position: absolute;
   left: 0;
-  color: #007bff;
+  color: #14497d; /* changed from #007bff */
   font-weight: bold;
 }
