@@ -1,49 +1,27 @@
-.container {
-  max-width: 960px;
-}
 
-h2 {
-  font-weight: 600;
-}
+  .text-primary-custom {
+    color: #14497d !important;
+  }
 
-h4 {
-  font-size: 1.4rem;
-  font-weight: 500;
-}
+  .border-primary-custom {
+    border-color: #14497d !important;
+  }
 
-ul {
-  padding-left: 1rem;
-}
+  .lead {
+    font-size: 1.2rem;
+    color: #444;
+  }
 
-ul li {
-  margin-bottom: 10px;
-  font-size: 1rem;
-}
+  .card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
 
-ul li strong {
-  color: #007bff;
-}
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(20, 73, 125, 0.2);
+  }
 
-.card {
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
+  .container-fluid {
+    max-width: 1400px;
+  }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 123, 255, 0.1);
-}
-
-.material-icons {
-  font-size: 1.2rem;
-  margin-right: 6px;
-  color: #007bff;
-}
-
-.img-fluid {
-  max-height: 280px;
-  object-fit: cover;
-}
-
-.container-fluid{
-  max-width: 1400px;
-}

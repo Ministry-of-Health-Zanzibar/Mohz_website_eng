@@ -1,41 +1,40 @@
-/* Glass Effect and Card Styling */
 .container-fluid {
-  max-width: 1600px;
+  max-width: 1400px;
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 1rem;
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+.text-custom {
+  color: #14497d !important;
 }
 
-.glass-card:hover {
-  transform: translateY(-5px);
+.border-custom {
+  border-color: #14497d !important;
 }
 
-/* Gradient Title */
-.text-gradient {
-  background: linear-gradient(90deg, #0d6efd, #6610f2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Typography */
-.glass-card h2 {
-  font-weight: 800;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(20, 73, 125, 0.2);
 }
 
-.glass-card h4 {
-  font-weight: 700;
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.glass-card ul li strong {
-  color: #0d6efd;
+.card-text {
+  font-size: 0.95rem;
+  color: #666;
 }
 
-.glass-card ul li {
+h2, h5 {
+  font-weight: 600;
+}
+
+.lead {
+  font-size: 1.1rem;
+  font-weight: 400;
   color: #444;
 }

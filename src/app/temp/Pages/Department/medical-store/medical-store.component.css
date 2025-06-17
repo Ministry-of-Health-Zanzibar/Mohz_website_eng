@@ -1,18 +1,15 @@
-.container {
-  max-width: 900px;
-  margin-top: 50px;
+/* Custom Primary Color */
+.text-primary-custom {
+  color: #14497d !important;
 }
 
-.text-primary {
-  color: #007bff !important;
+.border-primary-custom {
+  border-color: #14497d !important;
 }
 
+/* Typography */
 h2, h5 {
   font-weight: 600;
-}
-
-h2.border-bottom {
-  border-color: #007bff !important;
 }
 
 .lead {
@@ -21,29 +18,22 @@ h2.border-bottom {
   color: #444;
 }
 
+/* Card Hover */
 .card {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+  box-shadow: 0 10px 20px rgba(20, 73, 125, 0.2); /* subtle hover shadow in your theme */
 }
 
-.list-group-item {
-  border-bottom: 1px solid #eaeaea;
+/* Icon Size */
+.fs-2 {
+  font-size: 2rem !important;
 }
 
-.list-group-item:last-child {
-  border-bottom: none;
-}
-
-.fs-3 {
-  font-size: 1.75rem !important;
-  flex-shrink: 0;
-  color: #007bff;
-}
+/* Container width */
 .container-fluid {
   max-width: 1400px;
 }
-
