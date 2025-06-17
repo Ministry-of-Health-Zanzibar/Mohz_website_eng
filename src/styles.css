@@ -212,11 +212,14 @@
     .sticky-top.navbar-light .navbar-nav .nav-link {
         padding: 10px 0;
         margin-left: 0;
-        color: var(--bs-dark);
+        /* color: var(--bs-dark); */
+        color: white;
     }
 
     .navbar-light .navbar-nav .nav-item .nav-link {
-        color: var(--bs-dark);
+        /* color: var(--bs-dark); */
+        color: white;
+
     }
 
     .navbar-light .navbar-brand img {
