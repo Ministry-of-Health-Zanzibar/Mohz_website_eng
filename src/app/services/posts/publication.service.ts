@@ -46,4 +46,8 @@ export class PublicationService {
       `${this.apiUrl}public/publications/type/${typeName}`
     );
   }
+
+  public getPublicPublicationsById(id: string): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/publications/${id}`);
+  }
 }
