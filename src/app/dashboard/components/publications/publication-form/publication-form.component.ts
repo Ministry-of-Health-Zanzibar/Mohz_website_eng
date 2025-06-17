@@ -68,7 +68,6 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
   ) {
     this.publicationForm = this.formBuilder.group({
       title: ['', Validators.required],
-      description: [''],
       apk_link: [''],
       type_id: ['', Validators.required],
       document_path: [''],
@@ -83,7 +82,6 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
   private getPublicationData(): void {
     this.publicationForm.patchValue({
       title: this.dialogData.data.title,
-      description: this.dialogData.data.description,
       apk_link: this.dialogData.data.apk_link,
       type_id: this.dialogData.data.type_id,
       document_path: this.dialogData.data.document_path,
@@ -94,7 +92,6 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
       this.action = 'Update';
       this.publicationForm.patchValue({
         title: this.dialogData.data.title,
-        description: this.dialogData.data.description,
         apk_link: this.dialogData.data.apk_link,
         type_id: this.dialogData.data.type_id,
         document_path: this.dialogData.data.document_path,
@@ -115,10 +112,6 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
     if (this.publicationForm.valid) {
       const formData = new FormData();
       formData.append('title', this.publicationForm.get('title')?.value);
-      formData.append(
-        'description',
-        this.publicationForm.get('description')?.value
-      );
       formData.append('apk_link', this.publicationForm.get('apk_link')?.value);
 
       formData.append('type_id', this.publicationForm.get('type_id')?.value);
@@ -152,10 +145,6 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
       const formData = new FormData();
       formData.append('id', this.dialogData.data.id);
       formData.append('title', this.publicationForm.get('title')?.value);
-      formData.append(
-        'description',
-        this.publicationForm.get('description')?.value
-      );
       formData.append('apk_link', this.publicationForm.get('apk_link')?.value);
       formData.append('type_id', this.publicationForm.get('type_id')?.value);
       formData.append(

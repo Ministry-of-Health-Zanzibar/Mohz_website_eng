@@ -62,6 +62,7 @@ export class PublicationTypeFormComponent implements OnInit, OnDestroy {
   ) {
     this.postTypeForm = this.formBuilder.group({
       typeName: ['', Validators.required],
+      description: [''],
     });
   }
 
@@ -72,6 +73,7 @@ export class PublicationTypeFormComponent implements OnInit, OnDestroy {
   private getPublicationTypeData(): void {
     this.postTypeForm.patchValue({
       typeName: this.dialogData.data.publication_type_name,
+      description: this.dialogData.data.description,
     });
 
     if (this.dialogData.action === 'EDIT') {
@@ -79,6 +81,7 @@ export class PublicationTypeFormComponent implements OnInit, OnDestroy {
       this.action = 'Update';
       this.postTypeForm.patchValue({
         typeName: this.dialogData.data.publication_type_name,
+        description: this.dialogData.data.description,
       });
     }
   }
@@ -96,6 +99,7 @@ export class PublicationTypeFormComponent implements OnInit, OnDestroy {
     var formData = this.postTypeForm.value;
     var data = {
       publication_type_name: formData.typeName,
+      description: formData.description,
     };
 
     this.typeService.createPublicationType(data).subscribe(
@@ -121,6 +125,7 @@ export class PublicationTypeFormComponent implements OnInit, OnDestroy {
     var formData = this.postTypeForm.value;
     var data = {
       publication_type_name: formData.typeName,
+      description: formData.description,
     };
     this.typeService
       .updatePublicationType(data, this.dialogData.data.id)

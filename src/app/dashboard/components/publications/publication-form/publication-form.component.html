@@ -28,27 +28,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Desc -->
-      <mat-form-field appearance="outline" class="col-md-12 mt-4">
-        <mat-label>Description</mat-label>
-        <textarea
-          formControlName="description"
-          matInput
-          rows="8"
-          class="text-black"
-        ></textarea>
-        <mat-error
-          *ngIf="
-            publicationForm.controls.description.touched &&
-            publicationForm.controls.description.invalid
-          "
-        >
-          <span *ngIf="publicationForm.controls.description.errors?.required"
-            >This field is mandatory</span
-          >
-        </mat-error>
-      </mat-form-field>
-
       <!-- apk_link -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>Apk Link</mat-label>
@@ -72,7 +51,7 @@
 
       <!-- typeId -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
-        <mat-label>Select Gallery Type</mat-label>
+        <mat-label>Select Publication Type</mat-label>
         <mat-select formControlName="type_id">
           <mat-option *ngFor="let type of publicationTypes" [value]="type.id">
             {{ type.publication_type_name }}
