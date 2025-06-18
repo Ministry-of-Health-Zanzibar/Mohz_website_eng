@@ -25,7 +25,7 @@ export class ReadMoreServicesComponent implements OnInit {
       this.ourService.findPublicOurServiceById(newsId).subscribe(
         (response: any) => {
           if (response.statusCode === 200) {
-            console.log('NEWS DATA: ', response.data);
+            // console.log('NEWS DATA: ', response.data);
             this.ourServices = response.data;
           } else {
             console.log(response.message);

@@ -34,9 +34,7 @@ export class TenderComponent implements OnInit {
         this.tenders = response?.data || [];
         this.updatePaginatedData();
       },
-      (error) => {
-        console.error('Error fetching tenders:', error);
-      }
+     
     );
   }
 

@@ -31,7 +31,7 @@ i: any;
      public getAllSiteLinks(): void {
         this.siteLinkService.getPublicAllSitelinks().subscribe((response: any) => {
             this.siteLink = response.data;
-            console.log(response.data);
+           
           },
           (errorResponse: HttpErrorResponse) => {
             console.log(errorResponse.error.message);

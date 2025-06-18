@@ -29,7 +29,10 @@ export class PublicationLinksComponent implements OnInit {
   publicationTypes: any;
   publication: any;
 
-  constructor(private publicationService: PublicationService, private publicationTypeService:PublicationTypeService) {}
+  constructor(
+    private publicationService: PublicationService, 
+    private publicationTypeService:PublicationTypeService
+  ) {}
 
   ngOnInit(): void {
     this.getAllPublicationTypes();
@@ -43,17 +46,15 @@ public getPublicPublicationsByType(typeName: string): void {
         this.publications = response.data.filter(
           (publication: any) => !publication.deleted_at,
         );
-      } else {
-        this.publications = [];
-      }
+      } 
     },
-    (error) => console.error('Error fetching publications:', error)
+    
   );
 }
 
 
 public getAllPublicationTypes(): void {
-  this.publicationTypeService.getAllPublicationTypes().subscribe(
+  this.publicationTypeService.getAllPublicPublicationTypes().subscribe(
     (response) => {
       if (response && response.data && Array.isArray(response.data)) {
         // Filter out deleted publications
@@ -65,7 +66,7 @@ public getAllPublicationTypes(): void {
         this.publications = [];
       }
     },
-    (error) => console.error('Error fetching publications:', error)
+   
   );
 }
 
@@ -84,15 +85,11 @@ onSelectedPublicationType(type: any): void {
     (response) => {
       if (response && response.data) {
         this.publication = response.data; 
-        console.log('AAA: ', this.publication)
       } else {
         this.publication = null;
       }
     },
-    (error) => {
-      console.error('Error fetching posts by type:', error);
-      this.publications = [];
-    }
+   
   );
 }
 

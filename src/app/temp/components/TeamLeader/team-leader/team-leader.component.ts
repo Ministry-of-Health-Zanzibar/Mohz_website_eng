@@ -47,7 +47,6 @@ export class TeamLeaderComponent implements OnInit {
     this.partnerService.getPublicAllPartners().subscribe(
       (response: any) => {
         this.partners = response.data;
-        console.log('PARTNER: ', response.data);
         this.isLoading = false;
       },
       (errorResponse: HttpErrorResponse) => {

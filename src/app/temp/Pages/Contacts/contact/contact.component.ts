@@ -45,19 +45,13 @@ constructor(
     if (this.feedBackForm.valid) {
       this.contactService.registerTeamMember(this.feedBackForm.value).subscribe({
         next: (data) => {
-          console.log('Response:', data);
+          // console.log('Response:', data);
           this.toastService.toastSuccess('successfully submited.');
           this.feedBackForm.reset();
         },
-        error: (error) => {
-          console.error('Error:', error);
-          alert('Form submission failed. Please try again.');
-      
-        }
+        
       });
-    } else {
-      alert('Please fill all required fields correctly.');
-    }
+    } 
   }
 
 

@@ -52,10 +52,10 @@ public getAllNeews(): void {
       if (response?.data) {
         // Filter out deleted records (assuming deleted records have a 'deleted_at' property)
         this.newses = response.data.filter((news: any) => !news.deleted_at);
-        console.log('Filtered systems:', this.newses);
+       
       }
     },
-    (error) => console.error('Error fetching ministry systems:', error)
+    
   );
 }
 
@@ -81,11 +81,9 @@ public getAllNeews(): void {
         (response: any) => {
           
           this.router.navigate(['/temp/main/news', id]);
-          // console.log('NEWS: ', response.data);
+          
         },
-        (errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse.error.message);
-        }
+    
       );
     }
 
@@ -97,7 +95,7 @@ public getAllNeews(): void {
         (response: any) => {
           // id = 'page';
           this.router.navigate(['/temp/main/read-events', id]);
-          // console.log('NEWS: ', response.data);
+          
         },
         (errorResponse: HttpErrorResponse) => {
           console.log(errorResponse.error.message);
@@ -110,20 +108,17 @@ public getAllNeews(): void {
       this.postService.getPublcEventsPosts().subscribe(
         (response: any) => {
           this.events = response.data;
-          // console.log('EVENTS: ', response.data);
+          
           this.isEventLoading = false;
         },
         (errorResponse: HttpErrorResponse) => {
           this.isEventLoading = false;
-          console.log(errorResponse.error.message);
+          // console.log(errorResponse.error.message);
         }
       );
     }
 
-    // View
-  // public navigateToPostDetails(data: any): void {
-  //   this.router.navigate(['/temp/main/read-events', data.post_id]);
-  // }
+  
 
     // Kupunguza ukubwa wa text
     public truncateEventTitle(description: string, words: number): string {

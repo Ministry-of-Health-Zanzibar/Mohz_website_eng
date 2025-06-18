@@ -40,4 +40,10 @@ export class PublicationTypeService {
       {}
     );
   }
+
+  public getAllPublicPublicationTypes(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}public/publicationTypes`);
+  }
+
+  
 }

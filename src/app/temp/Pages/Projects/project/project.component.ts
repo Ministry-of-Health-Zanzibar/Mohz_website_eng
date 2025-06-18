@@ -34,9 +34,7 @@ export class ProjectComponent implements OnInit {
         this.projects = response?.data || [];
         this.updatePaginatedData();
       },
-      (error) => {
-        console.error('Error fetching projects:', error);
-      }
+     
     );
   }
 

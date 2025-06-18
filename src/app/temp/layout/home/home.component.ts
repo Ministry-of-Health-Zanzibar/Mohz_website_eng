@@ -24,36 +24,13 @@ interface News {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
   latestNews: string[] = [];
 
   constructor(
-    private wowService: NgwWowService,
-    private newsService: NewsService
+  
   ) {}
 
-  ngOnInit(): void {
-    this.wowService.init();
-    this.fetchLatestNews();
-  }
-
-  fetchLatestNews() {
-    this.newsService.getAllNews().pipe(
-      map((newsArray: News[]) => {
-        console.log("Fetched News Data:", newsArray); 
   
-        return newsArray.filter((news: News) => {
-          const newsDate = new Date(news.date);
-          const today = new Date();
-          const fourDaysAgo = new Date();
-          
-          return newsDate >= fourDaysAgo;
-        });
-      })
-    ).subscribe(filteredNews => {
-      console.log("Filtered News Data:", filteredNews); 
-      this.latestNews = filteredNews.map((news: News) => news.title);
-    });
-  }
   
 }

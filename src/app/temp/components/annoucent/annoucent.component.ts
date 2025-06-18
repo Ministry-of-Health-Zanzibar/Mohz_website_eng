@@ -49,7 +49,7 @@ export class AnnoucentComponent implements OnInit {
                   }))
                 : []
             }));
-          // console.log('Matangazo yaliyofanyiwa uchujaji:', this.announcements);
+        
         }
         this.isLoading = false;
       },

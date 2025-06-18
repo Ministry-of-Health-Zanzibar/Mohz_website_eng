@@ -46,10 +46,10 @@ imageBaseUrl = environment.imageUrl;
         if (response?.data) {
           // Filter out deleted records (assuming deleted records have a 'deleted_at' property)
           this.banners = response.data.filter((banner: any) => !banner.deleted_at);
-          // console.log('Filtered systems:', this.banners);
+       
         }
       },
-      (error) => console.error('Error fetching ministry systems:', error)
+      
     );
   }
 
@@ -80,7 +80,7 @@ imageBaseUrl = environment.imageUrl;
       this.rightColumn = [katibuMkuu, mkurugenzi, ...otherMembers].filter(Boolean).slice(0, 2);
   
     }, (error) => {
-      console.error("Error fetching teams:", error);
+     
     });
   }
   

@@ -41,7 +41,7 @@ export class MinistrySystemComponent implements OnInit {
           );
         }
       },
-      (error) => console.error('Error fetching ministry systems:', error)
+      
     );
   }
 }

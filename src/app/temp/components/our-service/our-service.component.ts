@@ -31,11 +31,11 @@ export class OurServiceComponent implements OnInit{
     this.ourService.getAllPublicOurServices().subscribe(
       (response: any) => {
         this.ourServiceData = response.data; 
-        console.log("OurserviceData", response)
+        
       },
      
       (error: any) => {
-        console.error('Error fetching Our Service data:', error);
+        // console.error('Error fetching Our Service data:', error);
       }
     );
   
@@ -55,7 +55,7 @@ export class OurServiceComponent implements OnInit{
           (response: any) => {
             // id = 'page';
             this.router.navigate(['/temp/main/read-our-service', id]);
-            console.log('Service: ', response.data);
+          
           },
           (errorResponse: HttpErrorResponse) => {
             console.log(errorResponse.error.message);

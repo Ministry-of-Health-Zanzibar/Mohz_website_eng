@@ -25,7 +25,6 @@ export class PhotoGalleryComponent implements OnInit {
 
 getPublicPhotoGallery() {
   this.galleryService.getAllPublicGalleries().subscribe(data => {
-    console.log('Gallery data:', data); 
     this.gallery = Array.isArray(data.data) ? data.data : [];
   });
 }

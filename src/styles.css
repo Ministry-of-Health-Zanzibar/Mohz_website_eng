@@ -1055,7 +1055,7 @@
     right: 15px;
     bottom: 15px;
     z-index: 99999;
-    background: #4154f1;
+    background: #14497d;
     width: 40px;
     height: 40px;
     border-radius: 4px;
@@ -1069,7 +1069,7 @@
   }
   
   .back-to-top:hover {
-    background: #6776f4;
+    background: #14497d;
     color: #fff;
   }
   
@@ -1342,7 +1342,7 @@
   .logo span {
     font-size: 26px;
     font-weight: 700;
-    color: #012970;
+    color: #14497d;
     font-family: "Nunito", sans-serif;
   }
   
@@ -1361,7 +1361,7 @@
     font-size: 32px;
     padding-left: 10px;
     cursor: pointer;
-    color: #012970;
+    color: #14497d;
   }
   
   .header .search-bar {
@@ -1421,7 +1421,7 @@
   }
   
   .header .search-form button i {
-    color: #012970;
+    color: #14497d;
   }
   
   /*--------------------------------------------------------------
@@ -1654,7 +1654,7 @@
     align-items: center;
     font-size: 15px;
     font-weight: 600;
-    color: #4154f1;
+    color: #14497d;
     transition: 0.3;
     background: #f6f9ff;
     padding: 10px 15px;
@@ -1664,7 +1664,7 @@
   .sidebar-nav .nav-link i {
     font-size: 16px;
     margin-right: 10px;
-    color: #4154f1;
+    color: #14497d;
   }
   
   .sidebar-nav .nav-link.collapsed {
@@ -1677,12 +1677,12 @@
   }
   
   .sidebar-nav .nav-link:hover {
-    color: #4154f1;
+    color: #14497d;
     background: #f6f9ff;
   }
   
   .sidebar-nav .nav-link:hover i {
-    color: #4154f1;
+    color: #14497d;
   }
   
   .sidebar-nav .nav-link .bi-chevron-down {
@@ -1720,11 +1720,11 @@
   
   .sidebar-nav .nav-content a:hover,
   .sidebar-nav .nav-content a.active {
-    color: #4154f1;
+    color: #14497d;
   }
   
   .sidebar-nav .nav-content a.active i {
-    background-color: #4154f1;
+    background-color: #14497d;
   }
   
   /*--------------------------------------------------------------
@@ -1747,7 +1747,7 @@
   
   .dashboard .filter .icon:hover,
   .dashboard .filter .icon:focus {
-    color: #4154f1;
+    color: #14497d;
   }
   
   .dashboard .filter .dropdown-header {
@@ -1791,7 +1791,7 @@
   }
   
   .dashboard .sales-card .card-icon {
-    color: #4154f1;
+    color: #14497d;
     background: #f6f6fe;
   }
   
