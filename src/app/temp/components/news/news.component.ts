@@ -59,6 +59,27 @@ public getAllNeews(): void {
   );
 }
 
+public getEventPosts(): void {
+  this.isEventLoading = true;
+  this.postService.getPublcEventsPosts().subscribe(
+    (response) => {
+      if (response?.data) {
+        
+        this.events = response.data.filter((event: any) => !event.deleted_at);
+      } else {
+        this.events = [];
+      }
+      this.isEventLoading = false;
+    },
+    (error: HttpErrorResponse) => {
+      this.isEventLoading = false;
+      // Optionally handle error
+      console.error('Error fetching event posts:', error);
+    }
+  );
+}
+
+
     // Kupunguza ukubwa wa text
     public truncateNewsDescription(description: string, words: number): string {
       if (!description) return '';
@@ -103,20 +124,20 @@ public getAllNeews(): void {
       );}
 
     // Fetch events
-    public getEventPosts(): void {
-      this.isEventLoading = true;
-      this.postService.getPublcEventsPosts().subscribe(
-        (response: any) => {
-          this.events = response.data;
+    // public getEventPosts(): void {
+    //   this.isEventLoading = true;
+    //   this.postService.getPublcEventsPosts().subscribe(
+    //     (response: any) => {
+    //       this.events = response.data;
           
-          this.isEventLoading = false;
-        },
-        (errorResponse: HttpErrorResponse) => {
-          this.isEventLoading = false;
-          // console.log(errorResponse.error.message);
-        }
-      );
-    }
+    //       this.isEventLoading = false;
+    //     },
+    //     (errorResponse: HttpErrorResponse) => {
+    //       this.isEventLoading = false;
+    //       // console.log(errorResponse.error.message);
+    //     }
+    //   );
+    // }
 
   
 

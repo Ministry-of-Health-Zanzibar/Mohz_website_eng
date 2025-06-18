@@ -42,19 +42,24 @@ export class TeamLeaderComponent implements OnInit {
   }
 
 
-  public getAllPartners(): void {
-    this.isLoading = true;
-    this.partnerService.getPublicAllPartners().subscribe(
-      (response: any) => {
-        this.partners = response.data;
-        this.isLoading = false;
-      },
-      (errorResponse: HttpErrorResponse) => {
-        this.isLoading = false;
-        console.log(errorResponse.error.message);
+public getAllPartners(): void {
+  this.isLoading = true;
+  this.partnerService.getPublicAllPartners().subscribe(
+    (response) => {
+      if (response?.data) {
+        // Filter out deleted partners if 'deleted_at' is present
+        this.partners = response.data.filter((partner: any) => !partner.deleted_at);
+      } else {
+        this.partners = [];
       }
-    );
-  }
+      this.isLoading = false;
+    },
+    (error: HttpErrorResponse) => {
+      this.isLoading = false;
+      
+    }
+  );
+}
 
   moreDetails(){
     this.router.navigate(['/temp/main/partners'])
