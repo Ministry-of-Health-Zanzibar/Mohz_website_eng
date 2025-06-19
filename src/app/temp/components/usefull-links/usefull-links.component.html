@@ -1,21 +1,22 @@
-<div class="footer-item" *ngIf="siteLink.length > 0">
-  <h4 class="text-white mb-3">Useful Links</h4>
-  <ul class="list-unstyled">
-    <li *ngFor="let site of siteLink" class="mb-2">
-      <a
-        [href]="site.sitelinks_url"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="useful-link"
-      >
-        <i class="fas fa-external-link-alt me-2"></i>
-        {{ site.sitelinks_name }}
-      </a>
-    </li>
-  </ul>
+<div class="container mx-4 mt-4">
+  <h2 class="text-dark mb-3">Useful Links</h2>
+
+<ul class="list-unstyled">
+  <li *ngFor="let site of siteLinks" class="mb-2">
+    <a
+      [href]="site.sitelinks_url"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-primary useful-link"
+    >
+      <i class="fas fa-external-link-alt me-2"></i>
+      {{ site.sitelinks_name }}
+    </a>
+  </li>
+</ul>
+
+<div *ngIf="siteLinks.length === 0" class="text-muted">
+  No links available.
 </div>
 
-<!-- Optional fallback -->
-<div *ngIf="siteLink.length === 0" class="text-white">
-  No links available.
 </div>

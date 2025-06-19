@@ -43,7 +43,7 @@
     <h4 class="text-white mb-4">Useful Links</h4>
 
     <a
-      *ngFor="let site of siteLink.slice(0, 6); let i = index"
+      *ngFor="let site of siteLink.slice(0, 5); let i = index"
       [href]="site?.sitelinks_url"
       target="_blank"
       rel="noopener"
@@ -52,6 +52,9 @@
       <i class="fas fa-angle-right me-2"></i>
       {{ site?.sitelinks_name }}
     </a>
+   <a routerLink="/temp/main/use-full-links" class="custom-link">
+    <i class="fas fa-angle-right me-2"></i>
+    Other Links...</a>
   </div>
 </div>
 

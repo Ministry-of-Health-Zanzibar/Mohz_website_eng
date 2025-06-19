@@ -1,38 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteLinkService } from '../../../services/site-links/site-link.service';
-import { ToastService } from '../../../services/toast/toast.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { SiteLinkService } from '../../../services/site-links/site-link.service';
+
 
 @Component({
   selector: 'app-usefull-links',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './usefull-links.component.html',
   styleUrls: ['./usefull-links.component.css'],
 })
 export class UsefullLinksComponent implements OnInit {
-  siteLink: any[] = [];
+  siteLinks: any[] = [];
 
-  constructor(
-    private siteLinkService: SiteLinkService,
-    private toastService: ToastService
-  ) {}
+  constructor(private siteLinkService: SiteLinkService) {}
 
   ngOnInit(): void {
-    this.getAllSiteLinks();
+    this.fetchLinks();
   }
 
-  public getAllSiteLinks(): void {
-    this.siteLinkService.getPublicAllSitelinks().subscribe(
-      (response: any) => {
-        console.log('Site links received:', response);
-        this.siteLink = Array.isArray(response?.data) ? response.data : [];
+  fetchLinks(): void {
+    this.siteLinkService.getPublicAllSitelinks().subscribe({
+      next: (res) => {
+        this.siteLinks = res?.data || [];
+       
       },
-      (errorResponse: HttpErrorResponse) => {
-        console.error('Error fetching site links:', errorResponse.message);
-      }
-    );
+     
+    });
   }
 }

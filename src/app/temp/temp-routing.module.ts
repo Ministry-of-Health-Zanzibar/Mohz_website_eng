@@ -340,6 +340,14 @@ const routes: Routes = [
             (c) => c.VideoGalleryComponent
           ),
       },
+
+        {
+        path: 'use-full-links',
+        loadComponent: () =>
+          import('./components/usefull-links/usefull-links.component').then(
+            (c) => c.UsefullLinksComponent
+          ),
+      },
     ],
   },
 ];

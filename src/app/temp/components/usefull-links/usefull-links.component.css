@@ -1,15 +1,7 @@
 .useful-link {
-  color: #ffffff;
   text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
 }
 
 .useful-link:hover {
-  color: #ffc107; /* or any accent color */
-  text-decoration: underline;
-}
-
-.footer-item {
-  padding: 10px;
+  text-decoration: underline; /* Optional: show underline on hover */
 }
