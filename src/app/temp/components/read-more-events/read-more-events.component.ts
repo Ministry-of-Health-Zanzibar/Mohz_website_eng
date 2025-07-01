@@ -39,7 +39,7 @@ export class ReadMoreEventsComponent implements OnInit {
   }
 
   public getEventData(id: any): void {
-    this.postService.findPostById(id).subscribe(
+    this.postService.getPublicPostsByTypeId(id).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
           this.events = response.data;
