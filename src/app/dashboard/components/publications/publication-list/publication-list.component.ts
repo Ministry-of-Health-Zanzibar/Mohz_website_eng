@@ -50,7 +50,8 @@ export class PublicationListComponent
   public readonly onDestroy = new Subject<void>();
   public isLoading: boolean = false;
   public refreshing!: boolean;
-  postTypes: any;
+  public postTypes: any;
+  public googleDriveLink: string = 'https://drive.google.com/';
 
   constructor(
     private publicationService: PublicationService,
@@ -130,7 +131,7 @@ export class PublicationListComponent
     };
     // config.width = '600px';
     config.width = '950px';
-    config.height = '520px';
+    config.height = '620px';
 
     const dialogRef = this.dialog.open(PublicationFormComponent, config);
     this.router.events.subscribe(() => {
@@ -153,7 +154,7 @@ export class PublicationListComponent
     };
     // config.width = '600px';
     config.width = '950px';
-    config.height = '520px';
+    config.height = '620px';
 
     const dialogRef = this.dialog.open(PublicationFormComponent, config);
     this.router.events.subscribe(() => {

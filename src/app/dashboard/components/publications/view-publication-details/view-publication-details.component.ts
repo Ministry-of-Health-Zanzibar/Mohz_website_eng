@@ -64,6 +64,12 @@ export class ViewPublicationDetailsComponent implements OnInit {
         title: 'Publication Type',
         value: this.publication?.publication_type_name || '',
       },
+      {
+        title: 'Google Drive Link',
+        value: this.publication?.pdf_link || '',
+        // isPdf:
+        //   this.publication?.pdf_link?.includes('drive.google.com') || false,
+      },
     ];
 
     const filePath: string = this.publication?.document_path;

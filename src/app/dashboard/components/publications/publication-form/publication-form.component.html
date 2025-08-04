@@ -83,6 +83,27 @@
           {{ fileError }}
         </mat-error>
       </div>
+
+      <!-- pdf_link -->
+      <mat-form-field appearance="outline" class="col-md-12 mt-4">
+        <mat-label>Attach Goodle Drive Link (PDF Link)</mat-label>
+        <input
+          formControlName="pdf_link"
+          matInput
+          rows="11"
+          class="text-black"
+        />
+        <mat-error
+          *ngIf="
+            publicationForm.controls.pdf_link.touched &&
+            publicationForm.controls.pdf_link.invalid
+          "
+        >
+          <span *ngIf="publicationForm.controls.pdf_link.errors?.required"
+            >This field is mandatory</span
+          >
+        </mat-error>
+      </mat-form-field>
     </div>
   </form>
 

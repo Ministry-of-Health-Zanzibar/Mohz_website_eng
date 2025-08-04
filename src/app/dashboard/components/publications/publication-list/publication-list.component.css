@@ -1,0 +1,20 @@
+.visibilityData {
+    color: rgb(41, 126, 33);
+}
+
+.edit_squareData {
+    color: rgb(50, 98, 161);
+}
+
+.deleteData {
+    color: rgb(192, 33, 27);
+}
+
+.viewPDF {
+    background-color: rgb(41, 126, 33);
+}
+
+.viewPDF:hover {
+    background-color: rgb(41, 126, 33);
+    color: white;
+}
