@@ -1,36 +1,37 @@
-<div class="container mt-5 mb-5">
-   <div class="py-2">
-      <h1 class="fw-bold" style="color: #14497d;">
-        <p class="p-2 text-center">Ministry's System</p>
-      </h1>
-    </div>
+<div class="container mt-5">
+  <div class="py-2">
+    <h1 class="fw-bold" style="color: #14497d">
+      <p class="p-2 text-center">Ministry's System</p>
+    </h1>
+  </div>
   <div class="slider-track-wrapper">
-  <div class="slider-track">
-    <div class="system-card" *ngFor="let ministrySystem of ministrySystems">
-      <a [href]="ministrySystem.system_link" target="_blank">
-        <img
-          [src]="imageBaseUrl + 'systemLogo/' + ministrySystem.system_logo"
-          alt="System Logo"
-        />
-        <p class="h6 system-link">
-          {{ ministrySystem.system_title }}
-        </p>
-      </a>
-    </div>
+    <div class="slider-track">
+      <div class="system-card" *ngFor="let ministrySystem of ministrySystems">
+        <a [href]="ministrySystem.system_link" target="_blank">
+          <img
+            [src]="imageBaseUrl + 'systemLogo/' + ministrySystem.system_logo"
+            alt="System Logo"
+            class="mb-3"
+          />
+          <p class="h6 system-link">
+            {{ ministrySystem.system_title }}
+          </p>
+        </a>
+      </div>
 
-    <!-- Duplicate for infinite loop -->
-    <div class="system-card" *ngFor="let ministrySystem of ministrySystems">
-      <a [href]="ministrySystem.system_link" target="_blank">
-        <img
-          [src]="imageBaseUrl + 'systemLogo/' + ministrySystem.system_logo"
-          alt="System Logo"
-        />
-        <p class="h6 system-link">
-          {{ ministrySystem.system_title }}
-        </p>
-      </a>
+      <!-- Duplicate for infinite loop -->
+      <div class="system-card" *ngFor="let ministrySystem of ministrySystems">
+        <a [href]="ministrySystem.system_link" target="_blank">
+          <img
+            [src]="imageBaseUrl + 'systemLogo/' + ministrySystem.system_logo"
+            alt="System Logo"
+            class="mb-3"
+          />
+          <p class="h6 system-link">
+            {{ ministrySystem.system_title }}
+          </p>
+        </a>
+      </div>
     </div>
   </div>
-</div>
-
 </div>
