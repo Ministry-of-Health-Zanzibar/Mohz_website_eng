@@ -118,10 +118,23 @@
               (click)="navigateToPublicationDetails(element?.id)"
               mat-mini-fab
               color="primary"
+              class="me-2"
               matTooltip="View"
             >
               <mat-icon class="font-icon">visibility</mat-icon>
             </button>
+
+            <!-- View Google Drive Link -->
+            <a
+              [disabled]="element.pdf_link === null"
+              [href]="element.pdf_link"
+              target="_blank"
+              mat-mini-fab
+              matTooltip="View Google Drive Link"
+              class="viewPDF"
+            >
+              <mat-icon class="font-icon">visibility</mat-icon>
+            </a>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

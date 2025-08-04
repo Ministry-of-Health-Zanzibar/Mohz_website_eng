@@ -71,6 +71,7 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
       apk_link: [''],
       type_id: ['', Validators.required],
       document_path: [''],
+      pdf_link: [''],
     });
   }
 
@@ -85,6 +86,7 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
       apk_link: this.dialogData.data.apk_link,
       type_id: this.dialogData.data.type_id,
       document_path: this.dialogData.data.document_path,
+      pdf_link: this.dialogData.data.pdf_link,
     });
 
     if (this.dialogData.action === 'EDIT') {
@@ -95,6 +97,7 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
         apk_link: this.dialogData.data.apk_link,
         type_id: this.dialogData.data.type_id,
         document_path: this.dialogData.data.document_path,
+        pdf_link: this.dialogData.data.pdf_link,
       });
     }
   }
@@ -119,6 +122,7 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
         'document_path',
         this.publicationForm.get('document_path')?.value
       );
+      formData.append('pdf_link', this.publicationForm.get('pdf_link')?.value);
 
       this.publicationService.createPublication(formData).subscribe(
         (response: any) => {
@@ -151,6 +155,7 @@ export class PublicationFormComponent implements OnInit, OnDestroy {
         'document_path',
         this.publicationForm.get('document_path')?.value
       );
+      formData.append('pdf_link', this.publicationForm.get('pdf_link')?.value);
 
       this.publicationService
         .updatePublication(formData, this.dialogData.data.id)
