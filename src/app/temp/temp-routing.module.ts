@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'main',
+    path: 'home',
     title: 'Main',
     loadComponent: () =>
       import('./layout/main/main.component').then((c) => c.MainComponent),

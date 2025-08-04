@@ -67,7 +67,7 @@ export class AllNewsComponent implements OnInit {
   public findNewsById(id: any): void {
     this.newsService.findPublicNewsById(id).subscribe(
       () => {
-        this.router.navigate(['/temp/main/news', id]);
+        this.router.navigate(['/temp/home/news', id]);
       },
       (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse.error.message);

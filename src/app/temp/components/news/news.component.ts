@@ -101,7 +101,7 @@ public getEventPosts(): void {
       this.newsService.findPublicNewsById(id).subscribe(
         (response: any) => {
           
-          this.router.navigate(['/temp/main/news', id]);
+          this.router.navigate(['/temp/home/news', id]);
           
         },
     
@@ -115,7 +115,7 @@ public getEventPosts(): void {
       this.postService.getPublicPostsByTypeId(id).subscribe(
         (response: any) => {
           // id = 'page';
-          this.router.navigate(['/temp/main/read-events', id]);
+          this.router.navigate(['/temp/home/read-events', id]);
           
         },
         (errorResponse: HttpErrorResponse) => {

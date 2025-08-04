@@ -62,7 +62,7 @@ export class AllEventsComponent implements OnInit {
   }
 
   public findEventById(id: any): void {
-    this.router.navigate(['/temp/main/read-events', id]);
+    this.router.navigate(['/temp/home/read-events', id]);
   }
 
   public truncateText(text: string, words: number): string {
