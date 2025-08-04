@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PostService } from '../../../../services/posts/post.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -8,12 +8,14 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { PublicationTypeService } from '../../../../services/posts/publication-type.service';
 import { PublicationService } from '../../../../services/posts/publication.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @Component({
   selector: 'app-publication-links',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatPaginatorModule,MatIconModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatPaginatorModule,MatIconModule, MatProgressSpinnerModule],
   templateUrl: './publication-links.component.html',
   styleUrl: './publication-links.component.css',
 })
@@ -28,10 +30,11 @@ export class PublicationLinksComponent implements OnInit {
   currentPage = 0;
   publicationTypes: any;
   publication: any;
+  isLoading!: boolean;
 
   constructor(
     private publicationService: PublicationService, 
-    private publicationTypeService:PublicationTypeService
+    private publicationTypeService:PublicationTypeService,
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +54,7 @@ public getPublicPublicationsByType(typeName: string): void {
     
   );
 }
+
 
 
 public getAllPublicationTypes(): void {
@@ -74,21 +78,40 @@ public getAllPublicationTypes(): void {
 selectedPublicationType: any = null;
 
 onSelectedPublicationType(type: any): void {
+  this.selectedPublication = null;
+  this.publication = null; // Reset publication details
+
   this.selectedPublicationType = type;
     this.getPublicPublicationsByType(this.selectedPublicationType);
   console.log('Selected Publication Type:', this.selectedPublicationType);
 }
 
 
+
+
  public getPublicPublicationById(id: number): void {
+  this.isLoading = true;
   this.publicationService.getPublicPublicationsById(id).subscribe(
     (response) => {
-      if (response && response.data) {
-        this.publication = response.data; 
-      } else {
-        this.publication = null;
-      }
-    },
+  //     if (response && response.data) {
+  //       this.publication = response.data; 
+  // this.isLoading = false;
+
+  //     } else {
+  //       this.publication = null;
+  // this.isLoading = false;
+
+  //     }
+
+   setTimeout(() => {
+        if (response && response.data) {
+          this.publication = response.data;
+        } else {
+          this.publication = null;
+        }
+        this.isLoading = false;
+      }, 3000); // 3-second delay
+    }
    
   );
 }
