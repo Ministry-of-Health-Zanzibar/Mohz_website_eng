@@ -25,6 +25,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { DisplayNewsImageComponent } from '../display-news-image/display-news-image.component';
 import { PermissionService } from '../../../../services/auth/permission.service';
 import { environment } from '../../../../../environments/environment.prod';
+import { NgxEditorModule, Editor } from 'ngx-editor';
 
 interface News {
   id: string;
@@ -48,6 +49,7 @@ interface News {
     FormsModule,
     MatButtonModule,
     MatButtonModule,
+    NgxEditorModule,
   ],
   templateUrl: './news-list.component.html',
   styleUrl: './news-list.component.css',

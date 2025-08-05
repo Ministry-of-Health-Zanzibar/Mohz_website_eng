@@ -28,6 +28,7 @@
         </mat-error>
       </mat-form-field>
 
+      <!-- Desc -->
       <mat-form-field appearance="outline" class="col-md-12 mt-4">
         <mat-label>News Description</mat-label>
         <textarea
@@ -47,6 +48,21 @@
           >
         </mat-error>
       </mat-form-field>
+
+      <!-- <div class="col-md-12 mt-4">
+        <label class="form-label fw-semibold">News Description</label>
+        <ngx-editor [editor]="editor" [(ngModel)]="htmlContent"></ngx-editor>
+        <mat-error
+          *ngIf="
+            newsForm.controls.newsDescription.touched &&
+            newsForm.controls.newsDescription.invalid
+          "
+        >
+          <span *ngIf="newsForm.controls.newsDescription.errors?.required">
+            This field is mandatory
+          </span>
+        </mat-error>
+      </div> -->
 
       <mat-form-field appearance="outline" class="col-md-12 mt-3">
         <mat-label>End Date</mat-label>

@@ -1,9 +1,16 @@
-import { Component, EventEmitter, Inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   Validators,
   ReactiveFormsModule,
+  FormsModule,
 } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
@@ -21,23 +28,26 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { PermissionService } from '../../../../services/auth/permission.service';
+import { NgxEditorModule, Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-news-form',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
+    NgxEditorModule,
   ],
   templateUrl: './news-form.component.html',
   styleUrl: './news-form.component.css',
 })
-export class NewsFormComponent {
+export class NewsFormComponent implements OnInit, OnDestroy {
   private readonly onDestroy = new Subject<void>();
   onAddNewsEventEmitter = new EventEmitter();
   onEditNewsEventEmitter = new EventEmitter();
@@ -47,6 +57,9 @@ export class NewsFormComponent {
   public previewImage: string | ArrayBuffer | null = null;
   public fileError: string | null = null;
   public previewImages!: any;
+
+  editor!: Editor;
+  htmlContent = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
@@ -66,6 +79,8 @@ export class NewsFormComponent {
 
   ngOnInit(): void {
     this.getNewsData();
+    this.editor = new Editor();
+    this.htmlContent = this.newsForm.get('newsDescription')?.value;
   }
 
   private getNewsData(): void {
@@ -86,6 +101,8 @@ export class NewsFormComponent {
   }
 
   public handleNewsSubmit(): void {
+    this.newsForm.get('newsDescription')?.setValue(this.htmlContent);
+
     if (this.dialogAction === 'EDIT') {
       this.onUpdateNews();
     } else {
@@ -182,39 +199,9 @@ export class NewsFormComponent {
     }
   }
 
-  // WITH INDEX
-  // public onImageSelected(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input?.files?.length) {
-  //     const files = Array.from(input.files);
-
-  //     this.fileError = null;
-  //     this.newsForm.get('newsPhotos')?.setValue(files); // Store files array
-
-  //     // Reset previews and selected files
-  //     this.previewImages = [];
-  //     this.selectedFiles = files; // Store selected files
-
-  //     files.forEach((file) => {
-  //       const reader = new FileReader();
-  //       reader.onload = () => {
-  //         this.previewImages.push(reader.result as string);
-  //       };
-  //       reader.readAsDataURL(file);
-  //     });
-  //   }
-  // }
-
-  // public removeImage(index: number): void {
-  //   this.previewImages.splice(index, 1);
-  //   this.selectedFiles.splice(index, 1);
-
-  //   // Update form control with the modified file list
-  //   this.newsForm.get('newsPhotos')?.setValue(this.selectedFiles.length ? this.selectedFiles : null);
-  // }
-
   ngOnDestroy(): void {
     this.onDestroy.next();
+    this.editor.destroy();
   }
 
   onClose() {
