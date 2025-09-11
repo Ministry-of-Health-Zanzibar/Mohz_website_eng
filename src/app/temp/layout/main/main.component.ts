@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { NgwWowService } from 'ngx-wow';
 import { CommonModule } from '@angular/common';
+import { CopyrightComponent } from '../copyright/copyright.component';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common';
     CarouselComponent,
     RouterModule,
     FooterComponent,
+    CopyrightComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css',
