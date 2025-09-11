@@ -28,7 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { PermissionService } from '../../../../services/auth/permission.service';
-import { NgxEditorModule, Editor } from 'ngx-editor';
+
 
 @Component({
   selector: 'app-news-form',
@@ -42,7 +42,6 @@ import { NgxEditorModule, Editor } from 'ngx-editor';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    NgxEditorModule,
   ],
   templateUrl: './news-form.component.html',
   styleUrl: './news-form.component.css',
@@ -58,8 +57,6 @@ export class NewsFormComponent implements OnInit, OnDestroy {
   public fileError: string | null = null;
   public previewImages!: any;
 
-  editor!: Editor;
-  htmlContent = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
@@ -79,8 +76,6 @@ export class NewsFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getNewsData();
-    this.editor = new Editor();
-    this.htmlContent = this.newsForm.get('newsDescription')?.value;
   }
 
   private getNewsData(): void {
@@ -101,7 +96,6 @@ export class NewsFormComponent implements OnInit, OnDestroy {
   }
 
   public handleNewsSubmit(): void {
-    this.newsForm.get('newsDescription')?.setValue(this.htmlContent);
 
     if (this.dialogAction === 'EDIT') {
       this.onUpdateNews();
@@ -201,7 +195,6 @@ export class NewsFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.onDestroy.next();
-    this.editor.destroy();
   }
 
   onClose() {
