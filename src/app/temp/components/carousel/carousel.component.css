@@ -96,3 +96,30 @@
     object-fit: cover;
     border-bottom: 3px solid #14497d;
   } */
+
+/* Marquee Container */
+.announcement-marquee {
+  width: 100%;
+  /* background-color: #dc3545;  */
+  background-color: #d4d5d6;
+  color: rgb(10, 10, 10);
+  font-weight: bold;
+  font-size: 18px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Marquee Text */
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%; /* Anza nje ya screen */
+  animation: marquee 15s linear infinite;
+}
+
+/* Animation Keyframes */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+

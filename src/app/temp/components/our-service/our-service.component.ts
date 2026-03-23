@@ -54,7 +54,7 @@ export class OurServiceComponent implements OnInit{
         this.ourService.findPublicOurServiceById(id).subscribe(
           (response: any) => {
             // id = 'page';
-            this.router.navigate(['/temp/main/read-our-service', id]);
+            this.router.navigate(['/temp/home/read-our-service', id]);
           
           },
           (errorResponse: HttpErrorResponse) => {
