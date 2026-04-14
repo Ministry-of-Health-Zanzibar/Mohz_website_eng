@@ -4,5 +4,23 @@
     class="img-fluid w-100"
     alt="Banner"
   />
+
  
 </div>
+<!-- <div
+  *ngIf="showNotification && announcements.length > 0"
+  class="announcement-alert alert alert-danger alert-dismissible fade show"
+  role="alert"
+  (click)="goToAnnouncements()"
+  style="cursor: pointer"
+>
+  📢
+  <strong>{{ announcements[0]?.announcement_title }}</strong>
+
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="showNotification = false; $event.stopPropagation()"
+  ></button>
+</div> -->

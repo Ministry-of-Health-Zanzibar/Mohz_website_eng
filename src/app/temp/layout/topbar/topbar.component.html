@@ -16,16 +16,17 @@
     </div>
 
     <!-- Announcement Blink Icon -->
-   <div class="col-lg-4 text-center text-lg-end announcement-click"
-     (click)="goToAnnouncements()">
-  <div class="d-inline-flex align-items-center blink-new">
-    <!-- <span class="new-badge">NEW</span> -->
-    <span class="starburst">NEW</span>
-    <span *ngIf="announcements.length > 0">
-      {{ announcements[0]?.announcement_title }}
-    </span>
-  </div>
-</div>
+    <!-- <div
+      class="col-lg-4 text-center text-lg-end announcement-click"
+      (click)="goToAnnouncements()"
+    >
+      <div class="d-inline-flex align-items-center blink-new">
+        <span class="starburst">NEW</span>
+        <span *ngIf="announcements.length > 0">
+          {{ announcements[0]?.announcement_title }}
+        </span>
+      </div>
+    </div> -->
   </div>
 </div>
 <!-- Topbar End -->

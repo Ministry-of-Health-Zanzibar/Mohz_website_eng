@@ -40,7 +40,6 @@ export class OurServiceComponent implements OnInit{
     );
   
   }
-
   public truncateTitle(description: string, words: number): string {
     if (!description) return '';
     const wordArray = description.split(' ');
